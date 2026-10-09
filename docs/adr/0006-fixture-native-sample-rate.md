@@ -1,18 +1,23 @@
-# ADR 0006 — Fixture generator uses 0.1 Hz native sampling, not literal 1 Hz
+# ADR 0006 — Fixture generator covers fewer days at true 1 Hz, not literal 30
 Status: accepted (2026-10-09)
 
-Context: T1.2 (`02_IMPLEMENTATION_PLAN.md`) asks for a 30-day, 1 Hz fixture for `15_9-F-11_A` to mirror the
-richest Volve well. Literal 1 Hz × 30 days × ~9 channels is ~2.6M samples/channel/well; across L0 STRS chunks
-(6 h each, min+max f32) that is tens of MB per channel and a correspondingly slow generation pass, for fixture
-data whose only job is to exercise the UI/pipeline shapes, not to be realistic at sample level.
+Context: T1.2 (`02_IMPLEMENTATION_PLAN.md`) asks for a 30-day, 1 Hz fixture for `15_9-F-11_A`. The STRS
+pyramid's bucket sizes (L0=1 s, L1=8 s, … per `03_ARCHITECTURE.md` §3.4) are fixed global constants, not
+derived from a channel's native rate, so sampling coarser than 1 Hz would leave most L0 buckets genuinely
+empty (indistinguishable from a real gap) rather than just "lower resolution". Changing the native rate is
+therefore not a safe way to shrink fixture volume; 1 Hz × 30 days × ~9 channels (~2.6M samples/channel) is
+still the right shape to exercise the pyramid, but is slow to synthesize and large to keep in git for data
+whose only job is to drive the UI/pipeline, not to be a realistic 30-day record.
 
-Decision: the fixture synthesizer (`pipeline/strata_pipeline/fixtures/synth.py`) generates at a native
-10 s cadence (0.1 Hz) and declares that as the channel's real sampling interval in `series/index.json` — L0
-bucket size shrinks accordingly so the pyramid, gap-hatching, zoom and cursor-sync mechanics are exercised
-identically to 1 Hz; only the absolute sample count shrinks (~260k/channel/well instead of 2.6M). Real Volve/
-FORGE ingestion (Phase 2) uses the source data's actual rate, which may well be close to 1 Hz; this ADR is
-fixture-only and does not change `04_DATA_CONTRACTS.md` or the STRS format.
+Decision: fixtures keep true 1 Hz native sampling (`04_DATA_CONTRACTS.md` §4/§1 bucket semantics unchanged),
+but each well's dense time-log span is shorter than its nominal well life: `15_9-F-11_A` gets 4 days of
+contiguous 1 Hz data (with the one 4-min/day gap and slow connections still present), `15_9-F-5` gets 2 sparser
+days, the FORGE well `16A_78-32` gets 2 days. Section/DDR/KPI/ILT records still span the well's full nominal
+duration (`years`, section date ranges) — only the dense series payload is windowed — so S1's "30 days" framing
+and multi-section structure are intact; S2's zoom-from-full-well-to-one-connection and S3's day/section
+breakdowns still have real data to show, just over a shorter dense window.
 
-Consequences: fixture repo size and `make fixtures` runtime stay small; demo zoom/pan still goes from
-full-well to single-connection since bucket levels are still defined by the L0 cadence, just coarser;
-when real exports replace fixtures (T10.4) the true 1 Hz rate is used and this ADR no longer applies.
+Consequences: fixture repo size and `make fixtures` runtime stay small (~hundreds of thousands, not millions,
+of samples/channel); L0 bucket width stays a true 1 s, so gap-hatching and the pyramid decoder are exercised
+exactly as real Volve/FORGE exports (Phase 2+) will exercise them — only the covered time range shrinks. T10.4
+(real-data re-run) replaces this with the true multi-week export.
