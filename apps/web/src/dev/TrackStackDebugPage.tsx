@@ -1,6 +1,8 @@
 // Temporary dev-only harness for visually checking TrackStack while S2 is being built.
 // Not part of T6.x's file list — deleted once T6.5 assembles the real S2 screen.
 import { useMemo, useState } from 'react'
+import { DepthTime } from '../charts/DepthTime/DepthTime'
+import { Overview } from '../charts/DepthTime/Overview'
 import { createTimeRangeSync } from '../charts/TrackStack/sync'
 import { TrackStack, type TrackDef } from '../charts/TrackStack/TrackStack'
 
@@ -29,7 +31,11 @@ export function TrackStackDebugPage() {
         Range: {range[0]} → {range[1]} ({((range[1] - range[0]) / 60000).toFixed(1)} min). Wheel to zoom,
         drag to pan.
       </p>
+      <div className="mb-4">
+        <Overview wellId={WELL_ID} fullRange={FULL_RANGE} sync={sync} onRangeSettled={setRange} />
+      </div>
       <div className="rounded border" style={{ borderColor: 'var(--line)', background: 'var(--panel)' }}>
+        <DepthTime wellId={WELL_ID} fullRange={FULL_RANGE} sync={sync} onRangeSettled={setRange} />
         <TrackStack
           wellId={WELL_ID}
           tracks={TRACKS}
