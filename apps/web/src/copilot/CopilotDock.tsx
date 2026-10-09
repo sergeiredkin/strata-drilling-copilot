@@ -48,6 +48,8 @@ export function CopilotDock() {
   const timeRange = useView((s) => s.timeRange)
   const depthRange = useView((s) => s.depthRange)
   const section = useView((s) => s.section)
+  const copilotPrefill = useView((s) => s.copilotPrefill)
+  const setCopilotPrefill = useView((s) => s.setCopilotPrefill)
 
   const sessions = useSessions()
   const [conversation, setConversation] = useState<Conversation>({ status: 'idle' })
@@ -99,6 +101,15 @@ export function CopilotDock() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessionId, sessions.data])
+
+  useEffect(() => {
+    if (panel === 'copilot' && copilotPrefill) {
+      const question = copilotPrefill
+      setCopilotPrefill(null)
+      void ask(question)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [panel, copilotPrefill])
 
   if (panel !== 'copilot') return null
 

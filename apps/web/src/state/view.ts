@@ -13,6 +13,10 @@ export type ViewState = {
   section: string | null
   issueId: string | null
   filters: Record<string, string>
+  /** A question another screen wants the copilot dock to ask once it opens, e.g. a mismatch's
+   * "Ask copilot why" (docs/02_IMPLEMENTATION_PLAN.md T8.2). Not URL-synced — it's a one-shot
+   * handoff the dock consumes and clears, not durable view state. */
+  copilotPrefill: string | null
 }
 
 export type ViewActions = {
@@ -24,6 +28,7 @@ export type ViewActions = {
   setSection: (section: string | null) => void
   setIssueId: (id: string | null) => void
   setFilter: (key: string, value: string | null) => void
+  setCopilotPrefill: (question: string | null) => void
   replaceState: (state: ViewState) => void
 }
 
@@ -36,6 +41,7 @@ export const EMPTY_VIEW_STATE: ViewState = {
   section: null,
   issueId: null,
   filters: {},
+  copilotPrefill: null,
 }
 
 export const useView = create<ViewState & ViewActions>((set, get) => ({
@@ -47,6 +53,7 @@ export const useView = create<ViewState & ViewActions>((set, get) => ({
   setEvidenceId: (evidenceId) => set({ evidenceId }),
   setSection: (section) => set({ section }),
   setIssueId: (issueId) => set({ issueId }),
+  setCopilotPrefill: (copilotPrefill) => set({ copilotPrefill }),
   setFilter: (key, value) => {
     const next: Record<string, string> = {}
     for (const [k, v] of Object.entries(get().filters)) {
@@ -99,5 +106,6 @@ export function searchParamsToView(params: URLSearchParams): ViewState {
     section: params.get('section'),
     issueId: params.get('issue'),
     filters,
+    copilotPrefill: null,
   }
 }

@@ -1,9 +1,10 @@
 // S2 Well workspace — docs/06_SCREENS.md S2, comp docs/design/comps/S2-Workspace.dc.html.
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { DdrLaneTrack } from '../../charts/TrackStack/DdrLaneTrack'
 import { DepthTime } from '../../charts/DepthTime/DepthTime'
 import { Overview } from '../../charts/DepthTime/Overview'
+import { RIG_STATE_LABEL } from '../../charts/plugins/rigStateStyle'
 import { RibbonTrack } from '../../charts/TrackStack/RibbonTrack'
 import { RigStateLegend } from '../../charts/TrackStack/RigStateLegend'
 import { clampRange } from '../../charts/TrackStack/axes'
@@ -38,9 +39,10 @@ function breadcrumbLabel(windowMs: number): string {
 
 export function S2Workspace() {
   const { id: wellId } = useParams<{ id: string }>()
-  const navigate = useNavigate()
   const timeRange = useView((s) => s.timeRange)
   const setTimeRange = useView((s) => s.setTimeRange)
+  const setPanel = useView((s) => s.setPanel)
+  const setCopilotPrefill = useView((s) => s.setCopilotPrefill)
 
   const wells = useWells()
   const wellSummary = wells.data?.wells.find((w) => w.id === wellId)
@@ -247,9 +249,12 @@ export function S2Workspace() {
                 }}
                 onAskCopilot={() => {
                   setOpenMismatchId(null)
-                  navigate(
-                    `/well/${wellId}/workspace?t0=${effectiveRange[0]}&t1=${effectiveRange[1]}&panel=copilot`,
+                  setTimeRange([openMismatch.t0, openMismatch.t1])
+                  setCopilotPrefill(
+                    `Why does the sensor data say ${RIG_STATE_LABEL[openMismatch.sensor_state]} ` +
+                      `here while the daily report codes it ${openMismatch.ddr_code}?`,
                   )
+                  setPanel('copilot')
                 }}
               />
             </div>
@@ -258,15 +263,6 @@ export function S2Workspace() {
 
         <RigStateLegend />
       </main>
-
-      <aside
-        aria-label="Copilot"
-        className="flex w-full flex-1 flex-col gap-3 border-t p-4 sm:w-auto sm:max-w-[400px] sm:border-l sm:border-t-0"
-        style={{ background: 'var(--bg-nav)', borderColor: 'var(--line)' }}
-      >
-        <span className="font-condensed text-dense font-semibold">Copilot</span>
-        <p className="m-0 text-dense text-text-3">The copilot dock arrives in T8.1.</p>
-      </aside>
     </div>
   )
 }

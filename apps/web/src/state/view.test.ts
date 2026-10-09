@@ -12,10 +12,16 @@ describe('view <-> URL search params', () => {
       section: '12 1/4',
       issueId: 'iss_1',
       filters: { field: 'Volve', coverage: 'full' },
+      copilotPrefill: null,
     }
     const params = viewToSearchParams(state)
     const back = searchParamsToView(params)
     expect(back).toEqual(state)
+  })
+
+  it('copilotPrefill is never put on the URL (one-shot handoff, not durable view state)', () => {
+    const params = viewToSearchParams({ ...EMPTY_VIEW_STATE, copilotPrefill: 'why?' })
+    expect(params.toString()).toBe('')
   })
 
   it('round-trips the empty state to an empty query string', () => {

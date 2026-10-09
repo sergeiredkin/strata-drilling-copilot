@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router-dom'
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest'
 import { axe } from 'vitest-axe'
 import { installFixtureFetch } from '../../test/fixtureFetch'
-import { useView } from '../../state/view'
+import { EMPTY_VIEW_STATE, useView } from '../../state/view'
 import { S1Field } from './S1Field'
 
 beforeAll(() => {
@@ -25,16 +25,7 @@ function renderScreen() {
 
 describe('S1Field', () => {
   beforeEach(() => {
-    useView.getState().replaceState({
-      timeRange: null,
-      depthRange: null,
-      panel: null,
-      sessionId: null,
-      evidenceId: null,
-      section: null,
-      issueId: null,
-      filters: {},
-    })
+    useView.getState().replaceState(EMPTY_VIEW_STATE)
   })
 
   it('renders all 9 wells', async () => {
