@@ -73,8 +73,7 @@ for (const name of sorted) {
   lines.push('')
 }
 
-const banner = `/* eslint-disable */
-/**
+const banner = `/**
  * GENERATED FILE — do not hand-edit. Source: contracts/schemas/strata.schema.json
  * Regenerate with \`make contracts\` (contracts/codegen/gen_zod.mjs).
  */

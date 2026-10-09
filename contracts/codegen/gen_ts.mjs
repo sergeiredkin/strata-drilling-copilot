@@ -55,8 +55,7 @@ for (const name of Object.keys(defs)) {
 const sortedNames = [...declarations.keys()].sort()
 const body = sortedNames.map((n) => declarations.get(n)).join('\n\n')
 
-const banner = `/* eslint-disable */
-/**
+const banner = `/**
  * GENERATED FILE — do not hand-edit. Source: contracts/schemas/strata.schema.json
  * Regenerate with \`make contracts\` (contracts/codegen/gen_ts.mjs).
  */

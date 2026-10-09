@@ -6,7 +6,7 @@ import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
-  { ignores: ['dist', 'public', 'node_modules'] },
+  { ignores: ['dist', 'public', 'node_modules', 'src/contracts/**'] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.strict, ...tseslint.configs.stylistic],
     files: ['**/*.{ts,tsx}'],
