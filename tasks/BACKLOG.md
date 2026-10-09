@@ -2,7 +2,7 @@
 
 ## M0 Foundations
 - [x] T0.1 Monorepo scaffold
-- [ ] T0.2 CI workflow
+- [x] T0.2 CI workflow
 - [ ] T0.3 Fonts, Tailwind, tokens (dark + light)
 - [ ] T1.1 Contract codegen (TS, zod, Pydantic) + contracts-check
 - [ ] T1.2 Fixture generator (3 detailed wells + 6 summary wells, sessions, eval, repro)
