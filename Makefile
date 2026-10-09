@@ -5,7 +5,9 @@ setup:
 	uv sync --all-packages
 
 contracts:
-	@echo "TODO (T1.1): generate TS/zod/Pydantic from contracts/schemas/strata.schema.json"
+	node contracts/codegen/gen_ts.mjs
+	node contracts/codegen/gen_zod.mjs
+	bash contracts/codegen/gen_py.sh
 
 contracts-check: contracts
 	@git diff --exit-code -- apps/web/src/contracts pipeline/strata_pipeline/contracts.py \
