@@ -1,7 +1,7 @@
 {
   "ev_78bdbd9de3": {
-    "generated_at": "2026-10-09T07:38:44.959619+00:00",
-    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "generated_at": "2026-10-09T07:52:56.967460+00:00",
+    "git_commit": "88ffdb3444a10345c7a22e14dd0aa31a0b9deceb",
     "id": "ev_78bdbd9de3",
     "method_note": "composite best = P10 per KPI per section",
     "params": {

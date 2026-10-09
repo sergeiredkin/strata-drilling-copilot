@@ -25,6 +25,12 @@ export default tseslint.config(
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
     },
+  },
+  {
+    // ImportMetaEnv/ImportMeta augmentation requires `interface` (declaration merging).
+    files: ['src/vite-env.d.ts'],
+    rules: { '@typescript-eslint/consistent-type-definitions': 'off' },
   },
 )
