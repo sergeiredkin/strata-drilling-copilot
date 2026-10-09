@@ -1,5 +1,111 @@
-/* Design tokens — filled in T0.3 per docs/05_DESIGN_SYSTEM.md §2 */
+/* Design tokens — docs/05_DESIGN_SYSTEM.md §2–4. Dark is the default theme. */
+
+:root,
 :root[data-theme='dark'] {
   --bg: #0a0e13;
+  --bg-nav: #0d1218;
+  --panel: #11171e;
+  --panel-2: #161d25;
+  --line: #243040;
+  --line-soft: #1b2430;
   --text: #dce3ea;
+  --text-2: #a9b6c3;
+  --text-3: #93a1b0;
+  --accent: #f5a524;
+  --link: #7cc4ff;
+  --danger: #ff6b6b;
+  --ok: #3ddc97;
+  --mock-bg: #2a2112;
+  --mock-fg: #f5c46b;
+
+  /* Rig-state palette (§3): fill is the base colour; -stripe is the lighter stripe colour
+     used by CanvasPattern for sliding/trip_in/reaming; label is the text colour on the fill. */
+  --state-rotary-drilling-fill: #1f64aa;
+  --state-rotary-drilling-label: #ffffff;
+  --state-sliding-fill: #6fa6d8;
+  --state-sliding-stripe: #9ccbf5;
+  --state-sliding-label: #0a0e13;
+  --state-connection-fill: #e39a1e;
+  --state-connection-label: #0a0e13;
+  --state-trip-in-fill: #9670e0;
+  --state-trip-in-stripe: #b58cff;
+  --state-trip-in-label: #0a0e13;
+  --state-trip-out-fill: #5b3fa8;
+  --state-trip-out-label: #ffffff;
+  --state-reaming-fill: #2a9c7e;
+  --state-reaming-stripe: #4fd1ae;
+  --state-reaming-label: #0a0e13;
+  --state-circulating-fill: #5e7387;
+  --state-circulating-label: #ffffff;
+  --state-out-of-hole-fill: #2a3440;
+  --state-out-of-hole-label: #dce3ea;
+  --state-unknown-fill: #3a4552;
+  --state-unknown-bg: #161d25;
+  --state-unknown-label: #c8d2dc;
+
+  /* Confidence badge (§4) */
+  --confidence-high-bg: #123826;
+  --confidence-high-fg: #6ff0b4;
+  --confidence-medium-bg: #3a2c10;
+  --confidence-medium-fg: #ffc861;
+  --confidence-low-bg: #3a1515;
+  --confidence-low-fg: #ff9a9a;
+  --confidence-insufficient-bg: #161d25;
+  --confidence-insufficient-fg: #a9b6c3;
+}
+
+:root[data-theme='light'] {
+  --bg: #f5f7fa;
+  --bg-nav: #ffffff;
+  --panel: #ffffff;
+  --panel-2: #eef2f6;
+  --line: #d5dce4;
+  --line-soft: #e6ebf0;
+  --text: #121820;
+  --text-2: #3d4a58;
+  --text-3: #5a6878;
+  --accent: #b86e00;
+  --link: #0b62b0;
+  --danger: #c62828;
+  --ok: #1e7f55;
+  --mock-bg: #fff3d6;
+  --mock-fg: #7a4b00;
+
+  --state-rotary-drilling-fill: #1f64aa;
+  --state-rotary-drilling-label: #ffffff;
+  --state-sliding-fill: #6fa6d8;
+  --state-sliding-stripe: #9ccbf5;
+  --state-sliding-label: #0a0e13;
+  --state-connection-fill: #e39a1e;
+  --state-connection-label: #0a0e13;
+  --state-trip-in-fill: #9670e0;
+  --state-trip-in-stripe: #b58cff;
+  --state-trip-in-label: #0a0e13;
+  --state-trip-out-fill: #5b3fa8;
+  --state-trip-out-label: #ffffff;
+  --state-reaming-fill: #2a9c7e;
+  --state-reaming-stripe: #4fd1ae;
+  --state-reaming-label: #0a0e13;
+  --state-circulating-fill: #5e7387;
+  --state-circulating-label: #ffffff;
+  --state-out-of-hole-fill: #2a3440;
+  --state-out-of-hole-label: #dce3ea;
+  --state-unknown-fill: #3a4552;
+  --state-unknown-bg: #161d25;
+  --state-unknown-label: #c8d2dc;
+
+  --confidence-high-bg: #123826;
+  --confidence-high-fg: #6ff0b4;
+  --confidence-medium-bg: #3a2c10;
+  --confidence-medium-fg: #ffc861;
+  --confidence-low-bg: #3a1515;
+  --confidence-low-fg: #ff9a9a;
+  --confidence-insufficient-bg: #161d25;
+  --confidence-insufficient-fg: #a9b6c3;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
 }
