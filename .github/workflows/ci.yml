@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --dir apps/web lint
+      - run: pnpm --dir apps/web typecheck
+      - run: pnpm --dir apps/web test
+      - run: pnpm --dir apps/web build
+
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v3
+        with:
+          version: "0.8.x"
+      - run: uv sync --all-packages
+      - run: uv run ruff check pipeline services eval
+      - run: uv run mypy pipeline/strata_pipeline
+      - run: uv run --all-packages pytest
+
+  contracts-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - uses: astral-sh/setup-uv@v3
+        with:
+          version: "0.8.x"
+      - run: pnpm install --frozen-lockfile
+      - run: uv sync --all-packages
+      - run: make contracts-check
+
+  copy-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Forbidden copy (docs/05_DESIGN_SYSTEM.md §9)
+        run: |
+          set -e
+          pattern='autopilot|optimal setpoint|recommended WOB|recommended RPM|guaranteed|% NPT reduction|fleet-wide|AI-powered'
+          if grep -rniE "$pattern" apps/web/src --include='*.ts' --include='*.tsx' --include='*.md'; then
+            echo "Forbidden copy found — see docs/05_DESIGN_SYSTEM.md#copy-lint" >&2
+            exit 1
+          fi
+          echo "copy-lint clean"
+
+  # e2e: added in T10.1 (Playwright demo-script test, static mode, vite preview)
