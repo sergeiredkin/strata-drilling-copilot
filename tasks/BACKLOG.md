@@ -21,7 +21,7 @@
 - [x] T6.5 S2 assembly
 
 ## M2 Performance & Copilot (static)
-- [ ] T7.1 S3 KPI cards, distributions, waterfall, by section/day
+- [x] T7.1 S3 KPI cards, distributions, waterfall, by section/day
 - [ ] T7.2 S3 Booked-vs-measured, ILT definition, Reproduce (PR-1, PR-2)
 - [ ] T8.1 Copilot dock + AnswerCard + trace (static sessions)
 - [ ] T8.2 Copilot context plumbing
