@@ -1,0 +1,29 @@
+# Endpoint registry. `static` = path under apps/web/public/data used by StaticSource.
+# Response types reference $defs in schemas/strata.schema.json.
+version: 0.2
+endpoints:
+  - { method: GET,  path: /wells,                          response: WellList,            static: wells.json,                               prio: P0 }
+  - { method: GET,  path: /wells/{id}/sections,             response: "Section[]",         static: "wells/{id}/sections.json",              prio: P0 }
+  - { method: GET,  path: /wells/{id}/depthtime,            response: DepthTimeBlock,      static: "wells/{id}/depthtime.json",             prio: P0 }
+  - { method: GET,  path: /wells/{id}/series,               response: SeriesIndex,         static: "wells/{id}/series/index.json",          prio: P0 }
+  - { method: GET,  path: "/wells/{id}/channels?ch&start&end&px", response: "binary STRS block", static: "wells/{id}/series/{ch}/L{n}/{chunk}.bin", prio: P0 }
+  - { method: GET,  path: "/wells/{id}/rigstate?start&end", response: "RigStateInterval[]", static: "wells/{id}/rigstate.json",              prio: P0 }
+  - { method: GET,  path: "/wells/{id}/ddr?start&end",      response: "DdrActivity[]",     static: "wells/{id}/ddr.json",                   prio: P0 }
+  - { method: GET,  path: /wells/{id}/mismatches,           response: "Mismatch[]",        static: "wells/{id}/mismatches.json",            prio: P0 }
+  - { method: GET,  path: /wells/{id}/kpis,                 response: KpiReport,           static: "wells/{id}/kpis.json",                  prio: P0 }
+  - { method: GET,  path: /wells/{id}/ilt,                  response: IltReport,           static: "wells/{id}/ilt.json",                   prio: P0 }
+  - { method: GET,  path: "/reconciliation?well",           response: Reconciliation,      static: "reconciliation/{id|all}.json",          prio: P0 }
+  - { method: GET,  path: /wells/{id}/formations,           response: FormationReport,     static: "wells/{id}/formations.json",            prio: P1 }
+  - { method: GET,  path: /wells/{id}/formation-pred,       response: FormationPrediction, static: "wells/{id}/formation_pred.json",        prio: P1 }
+  - { method: GET,  path: "/models/{model}/card",           response: ModelCard,           static: "models/{model}_card.json",              prio: P1 }
+  - { method: GET,  path: "/issues?well&type&formation",    response: "Issue[]",           static: issues.json,                             prio: P1 }
+  - { method: GET,  path: /issues/{id}/precursors,          response: Precursors,          static: "issues/{id}_precursors.json",           prio: P1 }
+  - { method: GET,  path: /evidence/{id},                   response: Evidence,            static: "evidence/{id[3:5]}.json (shard map)",   prio: P0 }
+  - { method: GET,  path: /copilot/sessions,                response: SessionIndex,        static: copilot/sessions/index.json,             prio: P0 }
+  - { method: POST, path: /copilot/ask,                     response: "SSE CopilotEvent",  static: "copilot/sessions/{session}.jsonl",      prio: P0 }
+  - { method: WS,   path: /replay/{id},                     response: "ReplayEvent stream", static: "series L0 chunks + wells/{id}/replay_events.json", prio: P1 }
+  - { method: GET,  path: /eval,                            response: EvalReport,          static: eval.json,                               prio: P0 }
+  - { method: GET,  path: /meta/repro,                      response: ReproManifest,       static: repro.json,                              prio: P0 }
+  - { method: GET,  path: /wells/{id}/td,                   response: "TBD (P2)",          static: "wells/{id}/td.json",                    prio: P2 }
+  - { method: GET,  path: /wells/{id}/mse,                  response: "TBD (P2)",          static: "wells/{id}/mse.json",                   prio: P2 }
+  - { method: GET,  path: /wells/{id}/tripenvelope,         response: "TBD (P2)",          static: "wells/{id}/tripenvelope.json",          prio: P2 }

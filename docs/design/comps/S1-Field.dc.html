@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>STRATA field overview</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Sans+Condensed:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0A0E13}
+a{color:#7CC4FF}a:hover{color:#B5DCFF}
+.mono{font-family:'IBM Plex Mono',monospace}
+.cond{font-family:'IBM Plex Sans Condensed',sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.th{padding:10px 12px;font-size:11.5px;font-weight:600;color:#93A1B0;text-align:left;border-bottom:1px solid #243040;white-space:nowrap}
+.td{padding:10px 12px;border-bottom:1px solid #1B2430;font-size:13.5px;white-space:nowrap}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 14px;border-radius:4px;border:1px solid #2A3646;background:#11171E;color:#DCE3EA;font:inherit;font-size:13px;cursor:pointer}
+</style>
+</helmet>
+<div style="font-family: 'IBM Plex Sans', sans-serif; color: #DCE3EA; background: #0A0E13; min-height: 100vh; display: flex; flex-direction: column">
+
+<nav style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; padding: 0 24px; min-height: 56px; border-bottom: 1px solid #243040; background: #0D1218">
+<div class="cond" style="font-size: 15px; font-weight: 600; color: #F5A524; letter-spacing: .14em">STRATA</div>
+<div style="display: flex; gap: 4px; flex-wrap: wrap; font-size: 14px">
+<a href="S1-Field.dc.html" style="padding: 8px 12px; color: #DCE3EA; text-decoration: none; border-bottom: 2px solid #F5A524">Field</a>
+<a href="S2-Workspace.dc.html" style="padding: 8px 12px; color: #A9B6C3; text-decoration: none">Workspace</a>
+<a href="S3-Performance.dc.html" style="padding: 8px 12px; color: #A9B6C3; text-decoration: none">Performance</a>
+<a href="S6-Formation.dc.html" style="padding: 8px 12px; color: #A9B6C3; text-decoration: none">Formation</a>
+<a href="S5-Trust.dc.html" style="padding: 8px 12px; color: #A9B6C3; text-decoration: none">Trust</a>
+</div>
+<div style="margin-left: auto; display: flex; gap: 10px; align-items: center; flex-wrap: wrap">
+<span class="mono" style="font-size: 11.5px; padding: 3px 8px; border-radius: 3px; background: #2A2112; color: #F5C46B">STATIC MODE · recorded sessions</span>
+<button class="chip" type="button">m · kN · bar</button>
+<button class="chip" type="button" aria-label="Open copilot"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v11H8l-4 4z"></path></svg>Copilot</button>
+</div>
+</nav>
+
+<main style="max-width: 1360px; width: 100%; margin: 0 auto; box-sizing: border-box; padding: 32px 24px 64px; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-size: 28px; font-weight: 600">Field overview</h1>
+<p style="margin: 0; color: #A9B6C3; font-size: 14.5px">{{count}} public wellbores · Volve (Equinor open data) and Utah FORGE. Gaps are shown, not filled.</p>
+</div>
+<span class="mono" style="font-size: 11.5px; padding: 3px 8px; border-radius: 3px; border: 1px dashed #F5A524; color: #F5C46B">MOCK FIXTURE — depths, coverage, QC illustrative</span>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+<label for="q" class="cond" style="font-size: 12px; color: #93A1B0">Search</label>
+<input id="q" type="search" placeholder="Wellbore name" style="min-height: 36px; padding: 0 12px; background: #11171E; border: 1px solid #2A3646; border-radius: 4px; color: #DCE3EA; font: inherit; font-size: 13px; width: 200px">
+<span class="cond" style="font-size: 12px; color: #93A1B0; margin-left: 12px">Field</span>
+<button class="chip" type="button" style="border-color: #F5A524">All</button>
+<button class="chip" type="button">Volve</button>
+<button class="chip" type="button">FORGE</button>
+<span class="cond" style="font-size: 12px; color: #93A1B0; margin-left: 12px">Needs</span>
+<button class="chip" type="button">Time logs</button>
+<button class="chip" type="button">Daily reports</button>
+<button class="chip" type="button">Hide low confidence</button>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 18px; font-size: 12.5px; color: #A9B6C3; align-items: center">
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="display: inline-block; width: 18px; height: 14px; background: #2E7D5B; border-radius: 2px"></span>● full</span>
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="display: inline-block; width: 18px; height: 14px; background: repeating-linear-gradient(45deg,#8A6A1F 0 3px,#3A2F16 3px 6px); border-radius: 2px"></span>◐ partial</span>
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="display: inline-block; width: 18px; height: 14px; background: #161D25; border: 1px solid #2A3646; border-radius: 2px"></span>○ none</span>
+<span>Hover a cell for row counts, date span and source file.</span>
+</div>
+
+<div style="overflow-x: auto; border: 1px solid #243040; border-radius: 6px; background: #11171E">
+<table style="border-collapse: collapse; width: 100%; min-width: 1180px">
+<thead>
+<tr class="cond">
+<th class="th">Wellbore</th><th class="th">Field</th><th class="th">Years</th><th class="th">MD range (m)</th><th class="th">Hole sections</th>
+<th class="th" style="text-align: center">Time logs</th><th class="th" style="text-align: center">Depth logs</th><th class="th" style="text-align: center">Daily rpts</th><th class="th" style="text-align: center">Fm tops</th><th class="th" style="text-align: center">Survey</th><th class="th" style="text-align: center">Mud</th>
+<th class="th">QC score</th><th class="th">Confidence</th>
+</tr>
+</thead>
+<tbody>
+<sc-for list="{{wells}}" as="w" hint-placeholder-count="12">
+<tr style="cursor: pointer; background: {{w.rowBg}}">
+<td class="td mono" style="font-weight: 500"><a href="S2-Workspace.dc.html" style="color: #DCE3EA; text-decoration: none">{{w.name}}</a></td>
+<td class="td">{{w.field}}</td>
+<td class="td mono" style="color: #A9B6C3">{{w.years}}</td>
+<td class="td mono">{{w.md}}</td>
+<td class="td mono" style="color: #A9B6C3">{{w.sections}}</td>
+<sc-for list="{{w.cov}}" as="c" hint-placeholder-count="6">
+<td class="td" style="text-align: center; padding: 6px"><span style="display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 26px; border-radius: 3px; font-size: 13px; {{c.style}}">{{c.glyph}}</span></td>
+</sc-for>
+<td class="td"><div style="display: flex; align-items: center; gap: 8px"><div style="width: 64px; height: 6px; background: #1B2430; border-radius: 3px"><div style="height: 6px; border-radius: 3px; background: #7CC4FF; width: {{w.qcPct}}"></div></div><span class="mono" style="font-size: 12.5px">{{w.qc}}</span></div></td>
+<td class="td"><span class="mono" style="display: inline-flex; gap: 6px; align-items: center; font-size: 12px; padding: 3px 8px; border-radius: 3px; {{w.confStyle}}">{{w.confGlyph}} {{w.conf}}</span></td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px">
+<div style="background: #11171E; border: 1px solid #243040; border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 6px">
+<div class="cond" style="font-size: 12px; color: #93A1B0">How the QC score is built</div>
+<div style="font-size: 13.5px; line-height: 1.55; color: #C8D2DC">Coverage of the 6 data types × fraction of time-log hours without gaps × share of samples surviving spike/sentinel removal. Formula and per-well breakdown on the Trust page.</div>
+</div>
+<div style="background: #11171E; border: 1px solid #243040; border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 6px">
+<div class="cond" style="font-size: 12px; color: #93A1B0">Confidence</div>
+<div style="font-size: 13.5px; line-height: 1.55; color: #C8D2DC">Computed by the backend from data density — the same rules the copilot uses. Low-confidence wells stay listed; they are never silently dropped.</div>
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":980}}'>
+class Component extends DCLogic {
+renderVals() {
+const S = {
+f: { glyph: '●', style: 'background:#2E7D5B;color:#E8FFF4' },
+p: { glyph: '◐', style: 'background:repeating-linear-gradient(45deg,#8A6A1F 0 4px,#3A2F16 4px 8px);color:#FFE7B0' },
+n: { glyph: '○', style: 'background:#161D25;border:1px solid #2A3646;color:#6F7D8C' }
+};
+const C = {
+High: { g: '▲', s: 'background:#123826;color:#6FF0B4' },
+Medium: { g: '◆', s: 'background:#3A2C10;color:#FFC861' },
+Low: { g: '▼', s: 'background:#3A1515;color:#FF9A9A' }
+};
+const rows = [
+['15/9-F-11 A', 'Volve', '[YYYY]', '0 – 3 750', '26 · 17½ · 12¼ · 8½', 'ffffff', 0.91, 'High'],
+['15/9-F-15 D', 'Volve', '[YYYY]', '0 – 4 090', '17½ · 12¼ · 8½', 'fffpff', 0.84, 'High'],
+['15/9-F-14', 'Volve', '[YYYY]', '0 – 3 730', '26 · 17½ · 12¼ · 8½', 'pfffpf', 0.72, 'Medium'],
+['15/9-F-12', 'Volve', '[YYYY]', '0 – 3 520', '17½ · 12¼ · 8½', 'pffpfp', 0.66, 'Medium'],
+['15/9-F-5', 'Volve', '[YYYY]', '0 – 3 680', '12¼ · 8½', 'nffpfn', 0.41, 'Low'],
+['15/9-F-1 C', 'Volve', '[YYYY]', '0 – 3 680', '8½', 'nfpnpn', 0.33, 'Low'],
+['16A(78)-32', 'FORGE', '[YYYY]', '0 – 3 340', '26 · 17½ · 12¼ · 8¾', 'fffpff', 0.82, 'High'],
+['16B(78)-32', 'FORGE', '[YYYY]', '0 – 3 300', '17½ · 12¼ · 8¾', 'pffnfp', 0.58, 'Medium'],
+['58-32', 'FORGE', '[YYYY]', '0 – 2 290', '17½ · 12¼ · 8¾', 'nfpfnp', 0.37, 'Low']
+];
+const wells = rows.map((r, i) => ({
+name: r[0], field: r[1], years: r[2], md: r[3], sections: r[4],
+cov: r[5].split('').map((k) => S[k]),
+qc: r[6].toFixed(2), qcPct: Math.round(r[6] * 100) + '%',
+conf: r[7], confGlyph: C[r[7]].g, confStyle: C[r[7]].s,
+rowBg: i === 0 ? '#142030' : 'transparent'
+}));
+return { wells, count: '[~20]' };
+}
+}
+</script>
+</body>
+</html>

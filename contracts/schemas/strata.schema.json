@@ -1,0 +1,293 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://strata.local/schemas/strata.schema.json",
+  "title": "STRATA contracts v0.2",
+  "description": "Source of truth for every payload. Times are epoch milliseconds UTC. Depths are metres MD. All stored values are SI; the UI converts.",
+  "$defs": {
+    "WellId": { "type": "string", "pattern": "^[A-Za-z0-9_\\-().]+$", "description": "URL-safe id, e.g. 15_9-F-11_A, 16A_78-32" },
+    "EvidenceId": { "type": "string", "pattern": "^ev_[0-9a-f]{10}$" },
+    "Unit": { "type": "string", "enum": ["m", "m/h", "kN", "kN.m", "bar", "L/min", "rpm", "sg", "MPa", "min", "h", "s", "%", "m/s", "1", "degC", "deg"] },
+    "Quantity": {
+      "type": "object", "required": ["value", "unit", "evidence_id"], "additionalProperties": false,
+      "properties": {
+        "value": { "type": ["number", "null"] },
+        "unit": { "$ref": "#/$defs/Unit" },
+        "evidence_id": { "$ref": "#/$defs/EvidenceId" },
+        "precision": { "type": "integer", "minimum": 0, "maximum": 4, "description": "decimals to display in SI" }
+      }
+    },
+    "Confidence": {
+      "type": "object", "required": ["level", "reason"], "additionalProperties": false,
+      "properties": {
+        "level": { "type": "string", "enum": ["high", "medium", "low", "insufficient"] },
+        "reason": { "type": "string", "maxLength": 240 },
+        "rule_ids": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "TimeWindow": { "type": "array", "prefixItems": [{ "type": "number" }, { "type": "number" }], "minItems": 2, "maxItems": 2 },
+    "DepthWindow": { "type": "array", "prefixItems": [{ "type": "number" }, { "type": "number" }], "minItems": 2, "maxItems": 2 },
+    "GapReason": { "type": "string", "enum": ["no_data", "removed_spike", "sentinel", "unit_fix", "frozen_value"] },
+    "GapInterval": {
+      "type": "object", "required": ["t0", "t1", "reason"], "additionalProperties": false,
+      "properties": { "t0": { "type": "number" }, "t1": { "type": "number" }, "reason": { "$ref": "#/$defs/GapReason" } }
+    },
+    "Evidence": {
+      "type": "object", "required": ["id", "tool", "params", "value", "unit", "sources", "generated_at"], "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/EvidenceId" },
+        "tool": { "type": "string", "description": "pipeline function or copilot tool name, e.g. kpi.connection_times" },
+        "params": { "type": "object" },
+        "value": { "type": ["number", "null"] },
+        "unit": { "$ref": "#/$defs/Unit" },
+        "sources": { "type": "array", "items": {
+          "type": "object", "required": ["file", "sha256"], "additionalProperties": false,
+          "properties": {
+            "file": { "type": "string" }, "sha256": { "type": "string" },
+            "channels": { "type": "array", "items": { "type": "string" } },
+            "time_window": { "$ref": "#/$defs/TimeWindow" },
+            "depth_window": { "$ref": "#/$defs/DepthWindow" },
+            "ddr_rows": { "type": "array", "items": { "type": "string" } }
+          } } },
+        "method_note": { "type": "string" },
+        "git_commit": { "type": "string" },
+        "generated_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "CoverageCell": {
+      "type": "object", "required": ["kind", "status"], "additionalProperties": false,
+      "properties": {
+        "kind": { "type": "string", "enum": ["time_logs", "depth_logs", "daily_reports", "formation_tops", "survey", "mud"] },
+        "status": { "type": "string", "enum": ["full", "partial", "none"] },
+        "rows": { "type": ["integer", "null"] },
+        "span": { "anyOf": [{ "$ref": "#/$defs/TimeWindow" }, { "type": "null" }] },
+        "source_files": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "WellSummary": {
+      "type": "object", "required": ["id", "name", "field", "md_range", "sections", "coverage", "qc_score", "confidence", "is_mock"], "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/WellId" },
+        "name": { "type": "string" },
+        "field": { "type": "string", "enum": ["Volve", "FORGE"] },
+        "years": { "type": ["string", "null"] },
+        "md_range": { "$ref": "#/$defs/DepthWindow" },
+        "sections": { "type": "array", "items": { "type": "string" }, "description": "hole sizes in inches as display strings, e.g. 12¼" },
+        "coverage": { "type": "array", "items": { "$ref": "#/$defs/CoverageCell" }, "minItems": 6, "maxItems": 6 },
+        "qc_score": { "$ref": "#/$defs/Quantity" },
+        "confidence": { "$ref": "#/$defs/Confidence" },
+        "is_mock": { "type": "boolean" }
+      }
+    },
+    "WellList": { "type": "object", "required": ["wells", "generated_at"], "properties": { "wells": { "type": "array", "items": { "$ref": "#/$defs/WellSummary" } }, "generated_at": { "type": "string" } } },
+    "Section": {
+      "type": "object", "required": ["name", "size_in", "md_top", "md_base", "t_start", "t_end"], "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" }, "size_in": { "type": "number" },
+        "md_top": { "type": "number" }, "md_base": { "type": "number" },
+        "t_start": { "type": "number" }, "t_end": { "type": "number" },
+        "casing_shoe_md": { "type": ["number", "null"] }, "casing_od_in": { "type": ["number", "null"] }
+      }
+    },
+    "DepthTimeBlock": {
+      "type": "object", "required": ["t", "bit_md", "hole_md"], "additionalProperties": false,
+      "properties": {
+        "t": { "type": "array", "items": { "type": "number" } },
+        "bit_md": { "type": "array", "items": { "type": ["number", "null"] } },
+        "hole_md": { "type": "array", "items": { "type": ["number", "null"] } }
+      }
+    },
+    "ChannelId": { "type": "string", "enum": ["HKLD", "BPOS", "WOB", "RPM", "TORQ", "SPP", "FLOWIN", "BITDEPTH", "HOLEDEPTH", "ROP", "MW_IN", "ECD", "GAS"] },
+    "SeriesIndex": {
+      "type": "object", "required": ["well", "channels"], "additionalProperties": false,
+      "properties": {
+        "well": { "$ref": "#/$defs/WellId" },
+        "channels": { "type": "object", "additionalProperties": {
+          "type": "object", "required": ["unit", "levels", "gaps", "source"],
+          "properties": {
+            "unit": { "$ref": "#/$defs/Unit" },
+            "source": { "type": "string" },
+            "levels": { "type": "array", "items": {
+              "type": "object", "required": ["level", "bucket_s", "chunks"],
+              "properties": {
+                "level": { "type": "integer" }, "bucket_s": { "type": "number" },
+                "chunks": { "type": "array", "items": { "type": "object", "required": ["i", "t0", "t1", "n", "file"], "properties": { "i": { "type": "integer" }, "t0": { "type": "number" }, "t1": { "type": "number" }, "n": { "type": "integer" }, "file": { "type": "string" } } } }
+              } } },
+            "gaps": { "type": "array", "items": { "$ref": "#/$defs/GapInterval" } }
+          } } }
+      }
+    },
+    "RigState": { "type": "string", "enum": ["rotary_drilling", "sliding", "connection", "trip_in", "trip_out", "reaming", "circulating", "out_of_hole", "unknown"] },
+    "RigStateInterval": {
+      "type": "object", "required": ["t0", "t1", "state", "p"], "additionalProperties": false,
+      "properties": {
+        "t0": { "type": "number" }, "t1": { "type": "number" }, "state": { "$ref": "#/$defs/RigState" },
+        "p": { "type": "number", "minimum": 0, "maximum": 1, "description": "classifier confidence for this interval" },
+        "rule_id": { "type": "string" }, "cased_hole": { "type": ["boolean", "null"] }
+      }
+    },
+    "DdrActivity": {
+      "type": "object", "required": ["id", "t0", "t1", "code", "narrative", "report_date"], "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" }, "t0": { "type": "number" }, "t1": { "type": "number" },
+        "code": { "type": "string", "description": "normalized op code: DRILL, CIRC, TRIP, REAM, CASING, CEMENT, BOP, WAIT, OTHER" },
+        "raw_code": { "type": ["string", "null"] }, "md_from": { "type": ["number", "null"] }, "md_to": { "type": ["number", "null"] },
+        "narrative": { "type": "string" }, "report_date": { "type": "string", "format": "date" }, "npt": { "type": "boolean" }
+      }
+    },
+    "Mismatch": {
+      "type": "object", "required": ["id", "t0", "t1", "sensor_state", "ddr_code", "ddr_activity_id", "overlap_pct", "duration"], "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" }, "t0": { "type": "number" }, "t1": { "type": "number" },
+        "sensor_state": { "$ref": "#/$defs/RigState" }, "sensor_p": { "type": "number" },
+        "ddr_code": { "type": "string" }, "ddr_activity_id": { "type": "string" },
+        "overlap_pct": { "type": "number" }, "duration": { "$ref": "#/$defs/Quantity" },
+        "tolerance": { "type": "object", "properties": { "boundary_slack_min": { "type": "number" }, "min_duration_min": { "type": "number" } } }
+      }
+    },
+    "Distribution": {
+      "type": "object", "required": ["n", "min", "q1", "median", "q3", "max", "composite_best"], "additionalProperties": false,
+      "properties": {
+        "n": { "type": "integer" }, "min": { "$ref": "#/$defs/Quantity" }, "q1": { "$ref": "#/$defs/Quantity" },
+        "median": { "$ref": "#/$defs/Quantity" }, "q3": { "$ref": "#/$defs/Quantity" }, "max": { "$ref": "#/$defs/Quantity" },
+        "composite_best": { "$ref": "#/$defs/Quantity" },
+        "outliers": { "type": "array", "items": { "type": "object", "required": ["value", "t0", "t1"], "properties": { "value": { "$ref": "#/$defs/Quantity" }, "t0": { "type": "number" }, "t1": { "type": "number" } } } }
+      }
+    },
+    "KpiName": { "type": "string", "enum": ["conn_s2s", "conn_w2w", "trip_in_cased", "trip_in_open", "trip_out_cased", "trip_out_open", "flat_time_pct", "on_bottom_pct"] },
+    "KpiReport": {
+      "type": "object", "required": ["well", "cards", "distributions", "confidence"], "additionalProperties": false,
+      "properties": {
+        "well": { "$ref": "#/$defs/WellId" },
+        "cards": { "type": "array", "items": { "type": "object", "required": ["kpi", "value", "best"], "properties": { "kpi": { "$ref": "#/$defs/KpiName" }, "value": { "$ref": "#/$defs/Quantity" }, "best": { "anyOf": [{ "$ref": "#/$defs/Quantity" }, { "type": "null" }] }, "confidence": { "$ref": "#/$defs/Confidence" } } } },
+        "distributions": { "type": "array", "items": { "type": "object", "required": ["kpi", "section", "dist"], "properties": { "kpi": { "$ref": "#/$defs/KpiName" }, "section": { "type": "string" }, "dist": { "$ref": "#/$defs/Distribution" } } } },
+        "confidence": { "$ref": "#/$defs/Confidence" }
+      }
+    },
+    "IltCategory": { "type": "string", "enum": ["connections", "trips", "flat_time", "unreported_reaming"] },
+    "IltReport": {
+      "type": "object", "required": ["well", "definition", "total", "by_category", "by_section", "by_day", "excluded_gap_hours", "booked_npt"], "additionalProperties": false,
+      "properties": {
+        "well": { "$ref": "#/$defs/WellId" },
+        "definition": { "type": "object", "required": ["text", "baseline", "percentile"], "properties": { "text": { "type": "string" }, "baseline": { "type": "string", "enum": ["composite_best"] }, "percentile": { "type": "number" } } },
+        "total": { "$ref": "#/$defs/Quantity" },
+        "booked_npt": { "$ref": "#/$defs/Quantity" },
+        "by_category": { "type": "array", "items": { "type": "object", "required": ["category", "hours"], "properties": { "category": { "$ref": "#/$defs/IltCategory" }, "hours": { "$ref": "#/$defs/Quantity" } } } },
+        "by_section": { "type": "array", "items": { "type": "object", "required": ["section", "by_category", "total"], "properties": { "section": { "type": "string" }, "by_category": { "type": "object", "additionalProperties": { "$ref": "#/$defs/Quantity" } }, "total": { "$ref": "#/$defs/Quantity" } } } },
+        "by_day": { "type": "array", "items": { "type": "object", "required": ["date", "hours", "coverage_pct"], "properties": { "date": { "type": "string", "format": "date" }, "hours": { "$ref": "#/$defs/Quantity" }, "coverage_pct": { "type": "number" } } } },
+        "excluded_gap_hours": { "$ref": "#/$defs/Quantity" }
+      }
+    },
+    "Reconciliation": {
+      "type": "object", "required": ["scope", "rows", "cols", "cells", "agreement", "tolerance"], "additionalProperties": false,
+      "properties": {
+        "scope": { "type": "string", "description": "well id or 'all'" },
+        "rows": { "type": "array", "items": { "type": "string" }, "description": "DDR codes" },
+        "cols": { "type": "array", "items": { "$ref": "#/$defs/RigState" } },
+        "cells": { "type": "array", "items": { "type": "array", "items": { "type": "object", "required": ["minutes", "pct"], "properties": { "minutes": { "$ref": "#/$defs/Quantity" }, "pct": { "type": "number" } } } } },
+        "agreement": { "type": "array", "items": { "type": "object", "required": ["code", "pct"], "properties": { "code": { "type": "string" }, "pct": { "$ref": "#/$defs/Quantity" }, "booked": { "$ref": "#/$defs/Quantity" } } } },
+        "per_well": { "type": "array", "items": { "type": "object", "required": ["well", "agreement"], "properties": { "well": { "$ref": "#/$defs/WellId" }, "agreement": { "$ref": "#/$defs/Quantity" } } } },
+        "tolerance": { "type": "object", "required": ["boundary_slack_min", "min_duration_min"], "properties": { "boundary_slack_min": { "type": "number" }, "min_duration_min": { "type": "number" } } }
+      }
+    },
+    "FormationReport": {
+      "type": "object", "required": ["well", "tops", "lithology", "stats"], "additionalProperties": false,
+      "properties": {
+        "well": { "$ref": "#/$defs/WellId" },
+        "tops": { "type": "array", "items": { "type": "object", "required": ["name", "md_top", "md_base"], "properties": { "name": { "type": "string" }, "md_top": { "type": "number" }, "md_base": { "type": "number" }, "source": { "type": "string" } } } },
+        "lithology": { "type": "array", "items": { "type": "object", "required": ["md_top", "md_base", "lith"], "properties": { "md_top": { "type": "number" }, "md_base": { "type": "number" }, "lith": { "type": "string", "enum": ["sandstone", "shale", "claystone", "limestone", "marl", "coal", "granite", "other"] }, "pct": { "type": "number" } } } },
+        "stats": { "type": "array", "items": { "type": "object", "required": ["formation", "avg_rop", "avg_mse", "incidents", "n_wells", "confidence"], "properties": { "formation": { "type": "string" }, "avg_rop": { "$ref": "#/$defs/Quantity" }, "avg_mse": { "$ref": "#/$defs/Quantity" }, "incidents": { "type": "integer" }, "n_wells": { "type": "integer" }, "best_window": { "type": ["object", "null"], "description": "descriptive offset-well parameter ranges; advisory label mandatory", "properties": { "wob": { "$ref": "#/$defs/DepthWindow" }, "rpm": { "$ref": "#/$defs/DepthWindow" }, "flow": { "$ref": "#/$defs/DepthWindow" }, "evidence_id": { "$ref": "#/$defs/EvidenceId" } } }, "confidence": { "$ref": "#/$defs/Confidence" } } } }
+      }
+    },
+    "FormationPrediction": {
+      "type": "object", "required": ["well", "model_version", "held_out", "intervals"], "additionalProperties": false,
+      "properties": {
+        "well": { "$ref": "#/$defs/WellId" }, "model_version": { "type": "string" },
+        "held_out": { "type": "boolean", "description": "true when this well was excluded from training (LOWO)" },
+        "intervals": { "type": "array", "items": { "type": "object", "required": ["md_top", "md_base", "label", "p", "abstained", "agrees_with_pick"], "properties": { "md_top": { "type": "number" }, "md_base": { "type": "number" }, "label": { "type": ["string", "null"] }, "p": { "type": "number" }, "abstained": { "type": "boolean" }, "agrees_with_pick": { "type": ["boolean", "null"] } } } }
+      }
+    },
+    "ModelCard": {
+      "type": "object", "required": ["model", "version", "validation", "metrics", "baseline_metrics", "limitations"], "additionalProperties": false,
+      "properties": {
+        "model": { "type": "string", "enum": ["formation", "events"] }, "version": { "type": "string" },
+        "inputs": { "type": "array", "items": { "type": "string" } },
+        "validation": { "type": "string" }, "n_wells": { "type": "integer" }, "n_samples": { "type": "integer" },
+        "metrics": { "type": "object", "additionalProperties": { "anyOf": [{ "$ref": "#/$defs/Quantity" }, { "type": "null" }] } },
+        "baseline_metrics": { "type": "object", "additionalProperties": { "anyOf": [{ "$ref": "#/$defs/Quantity" }, { "type": "null" }] } },
+        "per_well": { "type": "array", "items": { "type": "object", "properties": { "well": { "$ref": "#/$defs/WellId" }, "macro_f1": { "type": ["number", "null"] } } } },
+        "calibration_bins": { "type": "array", "items": { "type": "object", "properties": { "p_mean": { "type": "number" }, "acc": { "type": "number" }, "n": { "type": "integer" } } } },
+        "limitations": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "IssueType": { "type": "string", "enum": ["stuck_pipe", "losses", "tight_hole", "kick", "pack_off", "washout", "other"] },
+    "Issue": {
+      "type": "object", "required": ["id", "well", "type", "t0", "md", "ddr_activity_ids", "excerpt", "report_date"], "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" }, "well": { "$ref": "#/$defs/WellId" }, "type": { "$ref": "#/$defs/IssueType" },
+        "t0": { "type": "number" }, "t1": { "type": ["number", "null"] }, "md": { "type": ["number", "null"] },
+        "formation": { "type": ["string", "null"] }, "section": { "type": ["string", "null"] },
+        "duration": { "anyOf": [{ "$ref": "#/$defs/Quantity" }, { "type": "null" }] },
+        "mud": { "type": ["object", "null"], "properties": { "mw": { "$ref": "#/$defs/Quantity" }, "ecd": { "$ref": "#/$defs/Quantity" } } },
+        "ddr_activity_ids": { "type": "array", "items": { "type": "string" } }, "excerpt": { "type": "string" },
+        "report_date": { "type": "string", "format": "date" }, "extraction": { "type": "string", "enum": ["rule", "llm", "manual"] }
+      }
+    },
+    "Precursors": {
+      "type": "object", "required": ["issue_id", "window_h", "channels"], "additionalProperties": false,
+      "properties": {
+        "issue_id": { "type": "string" }, "window_h": { "type": "number" },
+        "channels": { "type": "array", "items": { "type": "object", "required": ["channel", "unit", "t", "value", "band_lo", "band_hi"], "properties": { "channel": { "$ref": "#/$defs/ChannelId" }, "unit": { "$ref": "#/$defs/Unit" }, "t": { "type": "array", "items": { "type": "number" } }, "value": { "type": "array", "items": { "type": ["number", "null"] } }, "band_lo": { "type": "array", "items": { "type": ["number", "null"] } }, "band_hi": { "type": "array", "items": { "type": ["number", "null"] } } } } },
+        "baseline_note": { "type": "string" }
+      }
+    },
+    "Claim": {
+      "type": "object", "required": ["text", "value", "unit", "evidence_id", "verified"], "additionalProperties": false,
+      "properties": { "text": { "type": "string" }, "value": { "type": "number" }, "unit": { "$ref": "#/$defs/Unit" }, "evidence_id": { "type": ["string", "null"] }, "verified": { "type": "boolean" }, "verify_note": { "type": "string" } }
+    },
+    "DdrQuote": { "type": "object", "required": ["well", "date", "text", "ddr_activity_id"], "properties": { "well": { "$ref": "#/$defs/WellId" }, "date": { "type": "string" }, "text": { "type": "string" }, "ddr_activity_id": { "type": "string" } } },
+    "TraceStep": { "type": "object", "required": ["i", "tool", "args", "ms", "status"], "properties": { "i": { "type": "integer" }, "tool": { "type": "string" }, "args": { "type": "object" }, "ms": { "type": "number" }, "status": { "type": "string", "enum": ["ok", "error"] }, "result_summary": { "type": "string" }, "evidence_ids": { "type": "array", "items": { "type": "string" } } } },
+    "CopilotContext": { "type": "object", "required": ["screen"], "properties": { "screen": { "type": "string", "enum": ["field", "workspace", "performance", "trust", "formation", "issues", "td", "mse", "trips"] }, "well": { "$ref": "#/$defs/WellId" }, "time_window": { "$ref": "#/$defs/TimeWindow" }, "depth_window": { "$ref": "#/$defs/DepthWindow" }, "section": { "type": "string" } } },
+    "CopilotAnswer": {
+      "type": "object", "required": ["kind", "answer", "claims", "ddr_quotes", "reasoning", "assumptions", "confidence", "confidence_reason", "trace"], "additionalProperties": false,
+      "properties": {
+        "kind": { "type": "string", "enum": ["answer", "insufficient_data", "live_mode_required", "out_of_scope"] },
+        "answer": { "type": "string" }, "claims": { "type": "array", "items": { "$ref": "#/$defs/Claim" } },
+        "ddr_quotes": { "type": "array", "items": { "$ref": "#/$defs/DdrQuote" } },
+        "reasoning": { "type": "string" }, "assumptions": { "type": "array", "items": { "type": "string" } },
+        "confidence": { "type": "string", "enum": ["high", "medium", "low"] }, "confidence_reason": { "type": "string" },
+        "trace": { "type": "array", "items": { "$ref": "#/$defs/TraceStep" } },
+        "unverified_numbers_in_text": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "CopilotEvent": {
+      "oneOf": [
+        { "type": "object", "required": ["type", "session_id", "dt_ms"], "properties": { "type": { "const": "start" }, "session_id": { "type": "string" }, "dt_ms": { "type": "number" }, "context": { "$ref": "#/$defs/CopilotContext" } } },
+        { "type": "object", "required": ["type", "step", "dt_ms"], "properties": { "type": { "const": "tool_call" }, "step": { "$ref": "#/$defs/TraceStep" }, "dt_ms": { "type": "number" } } },
+        { "type": "object", "required": ["type", "step", "dt_ms"], "properties": { "type": { "const": "tool_result" }, "step": { "$ref": "#/$defs/TraceStep" }, "dt_ms": { "type": "number" } } },
+        { "type": "object", "required": ["type", "answer", "dt_ms"], "properties": { "type": { "const": "answer" }, "answer": { "$ref": "#/$defs/CopilotAnswer" }, "dt_ms": { "type": "number" } } },
+        { "type": "object", "required": ["type", "message", "dt_ms"], "properties": { "type": { "const": "error" }, "message": { "type": "string" }, "dt_ms": { "type": "number" } } }
+      ]
+    },
+    "SessionIndex": { "type": "object", "required": ["sessions"], "properties": { "sessions": { "type": "array", "items": { "type": "object", "required": ["id", "question", "context", "file"], "properties": { "id": { "type": "string" }, "question": { "type": "string" }, "context": { "$ref": "#/$defs/CopilotContext" }, "file": { "type": "string" }, "recorded_at": { "type": "string" }, "model": { "type": "string" } } } } } },
+    "ReplayEvent": {
+      "oneOf": [
+        { "type": "object", "required": ["type", "t", "values"], "properties": { "type": { "const": "sample" }, "t": { "type": "number" }, "values": { "type": "object", "additionalProperties": { "type": ["number", "null"] } } } },
+        { "type": "object", "required": ["type", "t", "state"], "properties": { "type": { "const": "state" }, "t": { "type": "number" }, "state": { "$ref": "#/$defs/RigState" } } },
+        { "type": "object", "required": ["type", "t", "alert"], "properties": { "type": { "const": "alert" }, "t": { "type": "number" }, "alert": { "type": "object", "required": ["id", "kind", "message"], "properties": { "id": { "type": "string" }, "kind": { "type": "string", "enum": ["slow_connection", "unreported_reaming", "flat_time", "data_gap"] }, "message": { "type": "string" }, "evidence_id": { "type": "string" } } } } }
+      ]
+    },
+    "EvalReport": {
+      "type": "object", "required": ["qc", "rigstate_agreement", "ablation", "gold_set"], "additionalProperties": false,
+      "properties": {
+        "qc": { "type": "array", "items": { "type": "object", "required": ["well", "gap_hours", "spikes_removed", "unit_fixes", "sentinels_removed"], "properties": { "well": { "$ref": "#/$defs/WellId" }, "gap_hours": { "$ref": "#/$defs/Quantity" }, "spikes_removed": { "type": "integer" }, "unit_fixes": { "type": "integer" }, "sentinels_removed": { "type": "integer" } } } },
+        "rigstate_agreement": { "type": "array", "items": { "type": "object", "required": ["well", "agreement"], "properties": { "well": { "$ref": "#/$defs/WellId" }, "agreement": { "anyOf": [{ "$ref": "#/$defs/Quantity" }, { "type": "null" }] } } } },
+        "gold_set": { "type": "object", "required": ["n_questions", "version", "author", "status"], "properties": { "n_questions": { "type": "integer" }, "version": { "type": "string" }, "author": { "type": "string" }, "status": { "type": "string", "enum": ["pending", "draft", "final"] } } },
+        "ablation": { "type": "array", "items": { "type": "object", "required": ["config", "metrics"], "properties": { "config": { "type": "string", "enum": ["no_tools", "simple_rag", "full", "full_minus_physics"] }, "metrics": { "type": "object", "properties": { "answer_correctness": { "type": ["number", "null"] }, "numbers_verified_pct": { "type": ["number", "null"] }, "unsupported_numbers": { "type": ["number", "null"] }, "correct_insufficient_pct": { "type": ["number", "null"] }, "median_latency_s": { "type": ["number", "null"] } } } } } }
+      }
+    },
+    "ReproManifest": {
+      "type": "object", "required": ["git_commit", "data_files", "command", "generated_at"], "additionalProperties": false,
+      "properties": { "git_commit": { "type": "string" }, "data_files": { "type": "array", "items": { "type": "object", "required": ["path", "sha256"], "properties": { "path": { "type": "string" }, "sha256": { "type": "string" }, "bytes": { "type": "integer" } } } }, "command": { "type": "string" }, "generated_at": { "type": "string" }, "pipeline_version": { "type": "string" } }
+    }
+  }
+}

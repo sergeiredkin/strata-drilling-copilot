@@ -1,0 +1,21 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Main.dc.html": {"expand": "fill", "h": 5400, "title": "Front-end plan & analysis · spec v0.2", "w": 1440, "x": 0, "y": 0},
+    "S1-Field.dc.html": {"expand": "fill", "h": 980, "title": "S1 · Field overview", "w": 1440, "x": 1520, "y": 0},
+    "S2-Workspace.dc.html": {"expand": "fill", "h": 1180, "title": "S2 · Well workspace + S4 Copilot", "w": 1440, "x": 3040, "y": 0},
+    "S3-Performance.dc.html": {"expand": "fill", "h": 1560, "title": "S3 · Performance & lost time", "w": 1440, "x": 4560, "y": 0},
+    "S5-Trust.dc.html": {"expand": "fill", "h": 1900, "title": "S5 · Trust page", "w": 1440, "x": 6080, "y": 0},
+    "S6-Formation.dc.html": {"expand": "fill", "h": 1200, "title": "S6 · Formation view (P1)", "w": 1440, "x": 7600, "y": 0}
+  },
+  "createdOnFiles": {"at": "2026-10-08T12:00:00Z", "v": 1},
+  "designSystems": [],
+  "launch": {"view": "canvas"},
+  "notes": {
+    "screens": {"kind": "title1", "maxW": 7519, "text": "Screens — layout comps on mock fixtures", "w": 240, "x": 1520, "y": -300}
+  },
+  "order": ["Main.dc.html", "S1-Field.dc.html", "S2-Workspace.dc.html", "S3-Performance.dc.html", "S5-Trust.dc.html", "S6-Formation.dc.html"],
+  "pages": [],
+  "title": "STRATA — Front-end plan"
+}

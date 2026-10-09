@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>STRATA formation view</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Sans+Condensed:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0A0E13}
+a{color:#7CC4FF}a:hover{color:#B5DCFF}
+.mono{font-family:'IBM Plex Mono',monospace}
+.cond{font-family:'IBM Plex Sans Condensed',sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.lbl{font-family:'IBM Plex Sans Condensed',sans-serif;letter-spacing:.05em;text-transform:uppercase;font-size:11px;font-weight:600;color:#93A1B0}
+.card{background:#11171E;border:1px solid #243040;border-radius:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border-radius:4px;border:1px solid #2A3646;background:#11171E;color:#DCE3EA;font:inherit;font-size:13px;cursor:pointer}
+.trk{display:flex;flex-direction:column;min-width:0}
+.trkh{height:46px;padding:6px 8px;box-sizing:border-box;border-bottom:1px solid #243040;display:flex;flex-direction:column;justify-content:flex-end;gap:2px}
+</style>
+</helmet>
+<div style="font-family: 'IBM Plex Sans', sans-serif; color: #DCE3EA; background: #0A0E13; min-height: 100vh; display: flex; flex-direction: column">
+
+<nav style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; padding: 0 24px; min-height: 56px; border-bottom: 1px solid #243040; background: #0D1218">
+<div class="cond" style="font-size: 15px; font-weight: 600; color: #F5A524; letter-spacing: .14em">STRATA</div>
+<div style="display: flex; gap: 4px; flex-wrap: wrap; font-size: 14px">
+<a href="S1-Field.dc.html" style="padding: 8px 12px; color: #A9B6C3; text-decoration: none">Field</a>
+<a href="S2-Workspace.dc.html" style="padding: 8px 12px; color: #A9B6C3; text-decoration: none">Workspace</a>
+<a href="S3-Performance.dc.html" style="padding: 8px 12px; color: #A9B6C3; text-decoration: none">Performance</a>
+<a href="S6-Formation.dc.html" style="padding: 8px 12px; color: #DCE3EA; text-decoration: none; border-bottom: 2px solid #F5A524">Formation</a>
+<a href="S5-Trust.dc.html" style="padding: 8px 12px; color: #A9B6C3; text-decoration: none">Trust</a>
+</div>
+<div style="margin-left: auto; display: flex; gap: 10px; align-items: center; flex-wrap: wrap">
+<span class="mono" style="font-size: 11.5px; padding: 3px 8px; border-radius: 3px; background: #2A2112; color: #F5C46B">STATIC MODE</span>
+<button class="chip" type="button">m · kN · bar</button>
+<button class="chip" type="button">Copilot</button>
+</div>
+</nav>
+
+<main style="padding: 18px 20px 40px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px">
+<h1 class="mono" style="margin: 0; font-size: 20px; font-weight: 500">15/9-F-11 A</h1>
+<span class="cond" style="font-size: 12px; color: #93A1B0">Depth view · 2 400 – 3 200 m MD</span>
+<span class="mono" style="font-size: 11.5px; padding: 3px 8px; border-radius: 3px; background: #2A2112; color: #F5C46B">P1 · NEW v0.2</span>
+<div style="margin-left: auto; display: flex; gap: 6px; flex-wrap: wrap; align-items: center">
+<button class="chip" type="button" style="border-color: #F5A524">Single well</button>
+<button class="chip" type="button">Offset compare · 3 wells</button>
+<button class="chip" type="button" style="background: #2A2112; border-color: #F5A524; color: #F5C46B">Generate formation brief</button>
+<span class="mono" style="font-size: 11.5px; padding: 3px 8px; border-radius: 3px; border: 1px dashed #F5A524; color: #F5C46B">MOCK · formation names illustrative</span>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+
+<section class="card" style="flex: 999 1 720px; min-width: 0; overflow-x: auto">
+<div style="display: grid; grid-template-columns: 64px 120px 120px 60px repeat(5, minmax(90px, 1fr)) 48px; min-width: 980px; position: relative">
+
+<div class="trk"><div class="trkh"><span class="lbl">MD</span><span class="mono" style="font-size: 11px; color: #93A1B0">m</span></div>
+<div style="position: relative; height: 720px">
+<sc-for list="{{ticks}}" as="t" hint-placeholder-count="9"><span class="mono" style="position: absolute; right: 8px; font-size: 11px; color: #93A1B0; top: {{t.y}}">{{t.v}}</span></sc-for>
+</div></div>
+
+<div class="trk" style="border-left: 1px solid #1F2934"><div class="trkh"><span class="lbl">Tops · picked</span><span class="mono" style="font-size: 11px; color: #93A1B0">label</span></div>
+<div style="position: relative; height: 720px">
+<sc-for list="{{fm}}" as="f" hint-placeholder-count="7"><div style="position: absolute; left: 0; right: 0; top: {{f.top}}; height: {{f.h}}; background: {{f.bg}}; border-top: 1px solid #0A0E13; padding: 4px 6px; box-sizing: border-box"><span style="font-size: 11.5px; color: #0A0E13; font-weight: 600">{{f.name}}</span></div></sc-for>
+</div></div>
+
+<div class="trk" style="border-left: 1px solid #1F2934"><div class="trkh"><span class="lbl" style="color: #F5C46B">Predicted · PR-3</span><span class="mono" style="font-size: 11px; color: #93A1B0">LOWO model</span></div>
+<div style="position: relative; height: 720px">
+<sc-for list="{{pred}}" as="f" hint-placeholder-count="8"><div style="position: absolute; left: 0; right: 0; top: {{f.top}}; height: {{f.h}}; background: {{f.bg}}; border-top: 1px solid #0A0E13; padding: 4px 6px; box-sizing: border-box; display: flex; justify-content: space-between"><span style="font-size: 11px; color: {{f.fg}}; font-weight: 600">{{f.name}}</span><span class="mono" style="font-size: 10.5px; color: {{f.fg}}">{{f.p}}</span></div></sc-for>
+</div></div>
+
+<div class="trk" style="border-left: 1px solid #1F2934"><div class="trkh"><span class="lbl">Lith.</span></div>
+<div style="position: relative; height: 720px">
+<sc-for list="{{lith}}" as="l" hint-placeholder-count="10"><div style="position: absolute; left: 0; right: 0; top: {{l.top}}; height: {{l.h}}; background: {{l.bg}}"></div></sc-for>
+</div></div>
+
+<sc-for list="{{curves}}" as="c" hint-placeholder-count="5">
+<div class="trk" style="border-left: 1px solid #1F2934"><div class="trkh"><span class="lbl">{{c.name}}</span><span class="mono" style="font-size: 11px; color: #93A1B0">{{c.unit}}</span></div>
+<div style="position: relative; height: 720px">
+<svg viewBox="0 0 100 720" preserveAspectRatio="none" style="width: 100%; height: 100%; display: block"><path d="{{c.path}}" fill="none" stroke="{{c.color}}" stroke-width="1.3" vector-effect="non-scaling-stroke"></path><path d="{{c.path2}}" fill="none" stroke="{{c.color2}}" stroke-width="1.3" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"></path></svg>
+</div></div>
+</sc-for>
+
+<div class="trk" style="border-left: 1px solid #1F2934"><div class="trkh"><span class="lbl">Events</span></div>
+<div style="position: relative; height: 720px">
+<sc-for list="{{events}}" as="e" hint-placeholder-count="4"><button type="button" aria-label="{{e.aria}}" style="position: absolute; left: 8px; width: 30px; height: 30px; margin-top: -15px; padding: 0; border-radius: 4px; border: 2px solid {{e.ring}}; background: {{e.bg}}; color: #0A0E13; font: 700 11px 'IBM Plex Mono', monospace; cursor: pointer; top: {{e.y}}">{{e.k}}</button></sc-for>
+</div></div>
+
+<div style="position: absolute; left: 0; right: 0; top: calc(46px + 720px * 0.6125); border-top: 1px dashed #FF6B6B; pointer-events: none"></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 18px; padding: 10px 14px; border-top: 1px solid #243040; font-size: 12px; color: #A9B6C3">
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 16px; height: 10px; display: inline-block; background: repeating-linear-gradient(45deg,#3A4552 0 2px,#161D25 2px 6px)"></span>Abstained (p &lt; threshold)</span>
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 16px; height: 10px; display: inline-block; background: #FF6B6B"></span>Disagrees with pick</span>
+<span>Event keys: <span class="mono">SP</span> stuck pipe · <span class="mono">LC</span> losses · <span class="mono">TH</span> tight hole</span>
+<span>Dashed curve = ECD next to mud weight</span>
+</div>
+</section>
+
+<aside style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<section class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 12px; border-color: #FF6B6B">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap"><span class="lbl" style="color: #FF9A9A">SP · stuck pipe · [MD] m · PR-4</span><span class="mono" style="font-size: 11px; color: #93A1B0">duration [h] h</span></div>
+<blockquote style="margin: 0; padding-left: 10px; border-left: 2px solid #3A4A5E; font-size: 13px; font-style: italic; color: #C8D2DC; line-height: 1.5">“[DDR narrative excerpt describing the event]”<span class="mono" style="display: block; font-style: normal; font-size: 11px; color: #93A1B0; margin-top: 4px">DDR [date] · [time]</span></blockquote>
+<span class="lbl">Precursor signature · 6 h before event</span>
+<sc-for list="{{prec}}" as="p" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; justify-content: space-between; font-size: 12px"><span>{{p.name}}</span><span class="mono" style="color: #93A1B0">{{p.unit}}</span></div>
+<svg viewBox="0 0 300 48" preserveAspectRatio="none" style="width: 100%; height: 48px; display: block; background: #0D1218; border-radius: 3px"><path d="{{p.band}}" fill="rgba(124,196,255,.16)"></path><path d="{{p.line}}" fill="none" stroke="{{p.color}}" stroke-width="1.5" vector-effect="non-scaling-stroke"></path><line x1="299" y1="0" x2="299" y2="48" stroke="#FF6B6B" stroke-width="2" vector-effect="non-scaling-stroke"></line></svg>
+</div>
+</sc-for>
+<div class="mono" style="display: flex; justify-content: space-between; font-size: 10.5px; color: #93A1B0"><span>−6 h</span><span>−3 h</span><span>event</span></div>
+<div style="font-size: 12.5px; color: #A9B6C3; line-height: 1.5">Band = normal stands at similar depth in this well and offsets. Shown for inspection only — no risk score, [n] events are too few to validate one.</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap"><a href="S2-Workspace.dc.html" class="chip" style="text-decoration: none">Open window in Workspace</a><button class="chip" type="button">Ask copilot</button></div>
+</section>
+
+<section class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap"><span class="lbl">Formation classifier · model card</span><a href="S5-Trust.dc.html" style="font-size: 12.5px">Full card →</a></div>
+<div class="mono" style="font-size: 12px; line-height: 1.7; color: #C8D2DC; white-space: pre-wrap">inputs       ROP, MSE, torque, d-exp, gas
+validation   leave-one-well-out
+this well    held out · macro-F1 [—]
+baseline     depth-only [—]
+abstained    [—] % of interval</div>
+</section>
+</aside>
+</div>
+
+<section class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 10px; overflow-x: auto">
+<span class="lbl">Per-formation summary · this well vs offsets</span>
+<table style="border-collapse: collapse; width: 100%; min-width: 860px; font-size: 13px">
+<thead><tr class="cond" style="text-align: left; color: #93A1B0; font-size: 11px"><th style="padding: 8px; border-bottom: 1px solid #243040">Formation</th><th style="padding: 8px; border-bottom: 1px solid #243040">Avg ROP m/h</th><th style="padding: 8px; border-bottom: 1px solid #243040">Avg MSE MPa</th><th style="padding: 8px; border-bottom: 1px solid #243040">Incidents</th><th style="padding: 8px; border-bottom: 1px solid #243040">Best parameter window (offsets)</th><th style="padding: 8px; border-bottom: 1px solid #243040">Wells</th><th style="padding: 8px; border-bottom: 1px solid #243040">Confidence</th></tr></thead>
+<tbody>
+<sc-for list="{{summ}}" as="s" hint-placeholder-count="7">
+<tr class="mono"><td style="padding: 8px; border-bottom: 1px solid #1B2430; font-family: 'IBM Plex Sans', sans-serif">{{s.f}}</td><td style="padding: 8px; border-bottom: 1px solid #1B2430">[—]</td><td style="padding: 8px; border-bottom: 1px solid #1B2430">[—]</td><td style="padding: 8px; border-bottom: 1px solid #1B2430">{{s.i}}</td><td style="padding: 8px; border-bottom: 1px solid #1B2430; color: #A9B6C3">WOB [—] · RPM [—] · flow [—]</td><td style="padding: 8px; border-bottom: 1px solid #1B2430">{{s.n}}</td><td style="padding: 8px; border-bottom: 1px solid #1B2430"><span style="font-size: 11.5px; padding: 2px 6px; border-radius: 3px; {{s.cs}}">{{s.c}}</span></td></tr>
+</sc-for>
+</tbody>
+</table>
+<div style="font-size: 12.5px; color: #A9B6C3">“Best parameter window” is a descriptive statistic from offset wells, labelled advisory — never a setpoint.</div>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1200}}'>
+class Component extends DCLogic {
+renderVals() {
+const D0 = 2400, D1 = 3200, H = 720;
+const y = (d) => (d - D0) / (D1 - D0) * H;
+const px = (v) => v.toFixed(1) + 'px';
+const ticks = [];
+for (let d = D0; d <= D1; d += 100) ticks.push({ v: d.toLocaleString('en').replace(',', ' '), y: px(Math.min(y(d), H - 14)) });
+const F = [['Shetland Gp', 2400, 2560, '#A7C4A0'], ['Ty', 2560, 2640, '#D9C27A'], ['Draupne', 2640, 2760, '#8F8F8F'], ['Heather', 2760, 2850, '#B0A08A'], ['Hugin', 2850, 3010, '#E8D27A'], ['Sleipner', 3010, 3110, '#C9A97A'], ['Skagerrak', 3110, 3200, '#C98A6A']];
+const fm = F.map((f) => ({ name: f[0], top: px(y(f[1])), h: px(y(f[2]) - y(f[1])), bg: f[3] }));
+const P = [['Shetland Gp', 2400, 2552, '0.91'], ['Ty', 2552, 2648, '0.78'], ['Draupne', 2648, 2770, '0.84'], ['?', 2770, 2830, ''], ['Heather', 2830, 2862, '0.55', 'bad'], ['Hugin', 2862, 3020, '0.88'], ['Sleipner', 3020, 3100, '0.71'], ['Skagerrak', 3100, 3200, '0.69']];
+const col = {}; F.forEach((f) => { col[f[0]] = f[3]; });
+const pred = P.map((p) => ({ name: p[0] === '?' ? 'abstain' : p[0], p: p[3], top: px(y(p[1])), h: px(y(p[2]) - y(p[1])), bg: p[0] === '?' ? 'repeating-linear-gradient(45deg,#3A4552 0 2px,#161D25 2px 6px)' : p[4] === 'bad' ? '#FF6B6B' : col[p[0]], fg: p[0] === '?' ? '#C8D2DC' : '#0A0E13' }));
+const L = ['#C9B27A', '#7F8C8D', '#C9B27A', '#5D6D7E', '#E8D27A', '#7F8C8D', '#E8D27A', '#C98A6A'];
+const lith = [];
+let d = D0, i = 0;
+while (d < D1) { const step = 60 + ((i * 37) % 70); lith.push({ top: px(y(d)), h: px(y(Math.min(D1, d + step)) - y(d)), bg: L[i % L.length] }); d += step; i++; }
+const curve = (fn) => { let s = ''; for (let dd = D0; dd <= D1; dd += 4) { s += (dd === D0 ? 'M' : 'L') + (8 + fn(dd) * 84).toFixed(1) + ' ' + y(dd).toFixed(1) + ' '; } return s; };
+const n = (dd, a) => Math.sin(dd * 0.05 + a) * 0.5 + Math.sin(dd * 0.013 + a * 3) * 0.5;
+const inF = (dd, a, b) => dd >= a && dd < b;
+const curves = [
+{ name: 'ROP', unit: 'm/h', color: '#F5A524', path: curve((dd) => (inF(dd, 2850, 3010) ? 0.65 : inF(dd, 2640, 2760) ? 0.3 : 0.45) + 0.12 * n(dd, 1)), path2: '', color2: '#000' },
+{ name: 'MSE', unit: 'MPa', color: '#C9A7FF', path: curve((dd) => (inF(dd, 2850, 3010) ? 0.3 : inF(dd, 2640, 2760) ? 0.7 : 0.5) + 0.1 * n(dd, 2)), path2: '', color2: '#000' },
+{ name: 'd-exp', unit: '—', color: '#6FE3C2', path: curve((dd) => 0.35 + (dd - D0) / (D1 - D0) * 0.3 + 0.06 * n(dd, 3)), path2: '', color2: '#000' },
+{ name: 'Total gas', unit: '%', color: '#FF9A7A', path: curve((dd) => (inF(dd, 2850, 3010) ? 0.55 : 0.12) + 0.08 * Math.abs(n(dd, 4))), path2: '', color2: '#000' },
+{ name: 'MW · ECD', unit: 'sg', color: '#7CC4FF', path: curve((dd) => dd < 2760 ? 0.45 : 0.55), path2: curve((dd) => (dd < 2760 ? 0.52 : 0.63) + 0.02 * n(dd, 5)), color2: '#E9EEF3' }
+];
+const events = [
+{ k: 'TH', y: px(y(2600)), bg: '#FFC861', ring: '#FFC861', aria: 'Tight hole at 2 600 m' },
+{ k: 'SP', y: px(y(2890)), bg: '#FF6B6B', ring: '#FFFFFF', aria: 'Stuck pipe, selected' },
+{ k: 'LC', y: px(y(3060)), bg: '#7CC4FF', ring: '#7CC4FF', aria: 'Losses at 3 060 m' }
+];
+const sig = (fn, a) => { let line = '', top = [], bot = []; for (let x = 0; x <= 300; x += 5) { const v = fn(x); line += (x === 0 ? 'M' : 'L') + x + ' ' + (44 - v * 40).toFixed(1) + ' '; const b = 44 - (0.45 + 0.05 * Math.sin(x * 0.1 + a)) * 40; top.push(x + ' ' + (b - 6).toFixed(1)); bot.unshift(x + ' ' + (b + 6).toFixed(1)); } return { line, band: 'M' + top.join(' L') + ' L' + bot.join(' L') + ' Z' }; };
+const mkP = (name, unit, color, fn, a) => { const s = sig(fn, a); return { name, unit, color, line: s.line, band: s.band }; };
+const prec = [
+mkP('Pick-up hookload', 'kN', '#E9EEF3', (x) => 0.45 + (x > 180 ? (x - 180) / 120 * 0.4 : 0) + 0.03 * Math.sin(x * 0.3), 1),
+mkP('Surface torque', 'kN·m', '#C9A7FF', (x) => 0.45 + (x > 150 ? (x - 150) / 150 * 0.35 * (1 + 0.4 * Math.sin(x * 0.5)) : 0.03 * Math.sin(x * 0.4)), 2),
+mkP('Standpipe pressure', 'bar', '#FF9A7A', (x) => 0.47 + (x > 230 ? (x - 230) / 70 * 0.3 : 0) + 0.02 * Math.sin(x * 0.2), 3)
+];
+const hi = 'background:#123826;color:#6FF0B4', md = 'background:#3A2C10;color:#FFC861', lo = 'background:#3A1515;color:#FF9A9A';
+const summ = [
+{ f: 'Shetland Gp', i: '0', n: '6', c: '▲ High', cs: hi }, { f: 'Ty', i: '1', n: '5', c: '◆ Medium', cs: md }, { f: 'Draupne', i: '2', n: '6', c: '▲ High', cs: hi },
+{ f: 'Heather', i: '0', n: '4', c: '◆ Medium', cs: md }, { f: 'Hugin', i: '3', n: '6', c: '▲ High', cs: hi }, { f: 'Sleipner', i: '1', n: '3', c: '▼ Low', cs: lo }, { f: 'Skagerrak', i: '0', n: '2', c: '▼ Low', cs: lo }
+];
+return { ticks, fm, pred, lith, curves, events, prec, summ };
+}
+}
+</script>
+</body>
+</html>

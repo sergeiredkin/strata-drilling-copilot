@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>STRATA performance and lost time</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Sans+Condensed:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0A0E13}
+a{color:#7CC4FF}a:hover{color:#B5DCFF}
+.mono{font-family:'IBM Plex Mono',monospace}
+.cond{font-family:'IBM Plex Sans Condensed',sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.lbl{font-family:'IBM Plex Sans Condensed',sans-serif;letter-spacing:.05em;text-transform:uppercase;font-size:11.5px;font-weight:600;color:#93A1B0}
+.card{background:#11171E;border:1px solid #243040;border-radius:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border-radius:4px;border:1px solid #2A3646;background:#11171E;color:#DCE3EA;font:inherit;font-size:13px;cursor:pointer}
+.num{font-family:'IBM Plex Mono',monospace;border-bottom:1px dashed #7CC4FF;cursor:pointer}
+</style>
+</helmet>
+<div style="font-family: 'IBM Plex Sans', sans-serif; color: #DCE3EA; background: #0A0E13; min-height: 100vh; display: flex; flex-direction: column">
+
+<nav style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; padding: 0 24px; min-height: 56px; border-bottom: 1px solid #243040; background: #0D1218">
+<div class="cond" style="font-size: 15px; font-weight: 600; color: #F5A524; letter-spacing: .14em">STRATA</div>
+<div style="display: flex; gap: 4px; flex-wrap: wrap; font-size: 14px">
+<a href="S1-Field.dc.html" style="padding: 8px 12px; color: #A9B6C3; text-decoration: none">Field</a>
+<a href="S2-Workspace.dc.html" style="padding: 8px 12px; color: #A9B6C3; text-decoration: none">Workspace</a>
+<a href="S3-Performance.dc.html" style="padding: 8px 12px; color: #DCE3EA; text-decoration: none; border-bottom: 2px solid #F5A524">Performance</a>
+<a href="S6-Formation.dc.html" style="padding: 8px 12px; color: #A9B6C3; text-decoration: none">Formation</a>
+<a href="S5-Trust.dc.html" style="padding: 8px 12px; color: #A9B6C3; text-decoration: none">Trust</a>
+</div>
+<div style="margin-left: auto; display: flex; gap: 10px; align-items: center; flex-wrap: wrap">
+<span class="mono" style="font-size: 11.5px; padding: 3px 8px; border-radius: 3px; background: #2A2112; color: #F5C46B">STATIC MODE</span>
+<button class="chip" type="button">m · kN · bar</button>
+<button class="chip" type="button">Copilot</button>
+</div>
+</nav>
+
+<main style="max-width: 1360px; width: 100%; margin: 0 auto; box-sizing: border-box; padding: 24px 24px 56px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 style="margin: 0; font-size: 26px; font-weight: 600">Performance &amp; invisible lost time</h1>
+<p style="margin: 0; color: #A9B6C3; font-size: 14px"><span class="mono">15/9-F-11 A</span> · all sections · composite best = best 10 % of connections and stands</p>
+</div>
+<div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center">
+<button class="chip" type="button" style="border-color: #F5A524">All sections</button><button class="chip" type="button">17½″</button><button class="chip" type="button">12¼″</button><button class="chip" type="button">8½″</button>
+<span class="mono" style="font-size: 11.5px; padding: 3px 8px; border-radius: 3px; border: 1px dashed #F5A524; color: #F5C46B">MOCK VALUES</span>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
+<div class="card" style="padding: 16px 18px; display: flex; flex-direction: column; gap: 8px">
+<span class="lbl">{{k.name}}</span>
+<div style="display: flex; align-items: baseline; gap: 8px"><span class="num" style="font-size: 28px; font-weight: 500">{{k.val}}</span><span style="font-size: 13px; color: #93A1B0">{{k.unit}}</span></div>
+<div style="font-size: 12.5px; color: #A9B6C3">{{k.sub}}</div>
+<div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #1F2934; padding-top: 8px"><span class="mono" style="font-size: 12px; color: #6FF0B4">best {{k.best}}</span><span class="mono" style="font-size: 11.5px; padding: 2px 6px; border-radius: 3px; {{k.confStyle}}">{{k.conf}}</span></div>
+</div>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px">
+<section class="card" style="flex: 3 1 560px; min-width: 0; padding: 18px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px"><span class="lbl">Connection time distribution · slips-to-slips</span><span style="font-size: 12px; color: #A9B6C3">● outlier — click to open in Workspace</span></div>
+<div style="display: flex; flex-direction: column; gap: 18px; position: relative; padding: 4px 0 8px">
+<sc-for list="{{boxes}}" as="b" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 12px">
+<div class="mono" style="width: 56px; flex: none; font-size: 13px">{{b.sec}}</div>
+<div style="flex: 1; position: relative; height: 34px">
+<div style="position: absolute; top: 16px; height: 2px; background: #5E7387; left: {{b.minL}}; width: {{b.whW}}"></div>
+<div style="position: absolute; top: 4px; height: 26px; background: #1F3A55; border: 1px solid #7CC4FF; box-sizing: border-box; left: {{b.q1L}}; width: {{b.boxW}}"></div>
+<div style="position: absolute; top: 2px; height: 30px; width: 2px; background: #E9EEF3; left: {{b.medL}}"></div>
+<sc-for list="{{b.out}}" as="o" hint-placeholder-count="2">
+<a href="S2-Workspace.dc.html" aria-label="Outlier connection" style="position: absolute; top: 9px; width: 16px; height: 16px; margin-left: -8px; border-radius: 50%; background: #FF9A7A; border: 2px solid #0A0E13; box-sizing: border-box; left: {{o.l}}"></a>
+</sc-for>
+</div>
+<div class="mono" style="width: 90px; flex: none; font-size: 12px; color: #A9B6C3; text-align: right">n={{b.n}} · {{b.med}}</div>
+</div>
+</sc-for>
+<div style="position: absolute; top: 0; bottom: 24px; left: calc(68px + (100% - 170px) * 0.26); width: 0; border-left: 2px dashed #3DDC97"></div>
+<div style="display: flex; gap: 12px"><div style="width: 56px; flex: none"></div><div class="mono" style="flex: 1; display: flex; justify-content: space-between; font-size: 11px; color: #93A1B0"><span>0</span><span>3</span><span>6</span><span>9</span><span>12</span><span>15 min</span></div><div style="width: 90px; flex: none"></div></div>
+</div>
+<div style="font-size: 12.5px; color: #A9B6C3; display: flex; gap: 8px; align-items: center"><span style="display: inline-block; width: 18px; border-top: 2px dashed #3DDC97"></span>composite best <span class="num">3.9 min</span> — the 10th percentile across all sections</div>
+</section>
+
+<section class="card" style="flex: 2 1 380px; min-width: 0; padding: 18px; display: flex; flex-direction: column; gap: 12px">
+<span class="lbl">Lost time vs composite best</span>
+<div style="display: flex; align-items: baseline; gap: 8px"><span class="num" style="font-size: 30px">12.6</span><span style="color: #93A1B0">hours</span><span class="mono" style="font-size: 11.5px; color: #A9B6C3; margin-left: auto">0.0 h booked as NPT in DDR</span></div>
+<div style="display: flex; align-items: flex-end; gap: 10px; height: 200px; border-bottom: 1px solid #2A3646; padding-top: 10px">
+<sc-for list="{{wf}}" as="w" hint-placeholder-count="5">
+<div style="flex: 1; height: 100%; position: relative; display: flex; flex-direction: column">
+<div style="position: absolute; left: 0; right: 0; bottom: {{w.b}}; height: {{w.h}}; background: {{w.bg}}; border-radius: 2px"></div>
+<div class="mono" style="position: absolute; left: 0; right: 0; text-align: center; font-size: 12px; bottom: {{w.labB}}">{{w.v}}</div>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; gap: 10px">
+<sc-for list="{{wf}}" as="w" hint-placeholder-count="5">
+<div style="flex: 1; font-size: 11.5px; color: #A9B6C3; text-align: center; line-height: 1.3">{{w.name}}</div>
+</sc-for>
+</div>
+</section>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px">
+<section class="card" style="flex: 1 1 520px; min-width: 0; padding: 18px; display: flex; flex-direction: column; gap: 12px; overflow-x: auto">
+<span class="lbl">By hole section</span>
+<table style="border-collapse: collapse; width: 100%; min-width: 480px; font-size: 13.5px">
+<thead><tr class="cond" style="color: #93A1B0; font-size: 11.5px; text-align: left"><th style="padding: 8px; border-bottom: 1px solid #243040">Section</th><th style="padding: 8px; border-bottom: 1px solid #243040">Connections</th><th style="padding: 8px; border-bottom: 1px solid #243040">Trips</th><th style="padding: 8px; border-bottom: 1px solid #243040">Flat time</th><th style="padding: 8px; border-bottom: 1px solid #243040">Reaming</th><th style="padding: 8px; border-bottom: 1px solid #243040">Total h</th></tr></thead>
+<tbody>
+<sc-for list="{{bySec}}" as="r" hint-placeholder-count="3">
+<tr class="mono"><td style="padding: 8px; border-bottom: 1px solid #1B2430">{{r.s}}</td><td style="padding: 8px; border-bottom: 1px solid #1B2430">{{r.c}}</td><td style="padding: 8px; border-bottom: 1px solid #1B2430">{{r.t}}</td><td style="padding: 8px; border-bottom: 1px solid #1B2430">{{r.f}}</td><td style="padding: 8px; border-bottom: 1px solid #1B2430">{{r.r}}</td><td style="padding: 8px; border-bottom: 1px solid #1B2430; color: #F5C46B">{{r.tot}}</td></tr>
+</sc-for>
+</tbody>
+</table>
+</section>
+<section class="card" style="flex: 1 1 520px; min-width: 0; padding: 18px; display: flex; flex-direction: column; gap: 12px">
+<span class="lbl">By day · lost hours</span>
+<div style="display: flex; align-items: flex-end; gap: 6px; height: 150px; border-bottom: 1px solid #2A3646">
+<sc-for list="{{days}}" as="d" hint-placeholder-count="14">
+<a href="S2-Workspace.dc.html" aria-label="Open day in workspace" style="flex: 1; min-width: 8px; background: {{d.bg}}; height: {{d.h}}; border-radius: 2px 2px 0 0"></a>
+</sc-for>
+</div>
+<div class="mono" style="display: flex; justify-content: space-between; font-size: 11px; color: #93A1B0"><span>Day 1</span><span>Day 7</span><span>Day 14</span></div>
+<div style="font-size: 12.5px; color: #A9B6C3">Hatched day = &lt; 60 % sensor coverage; its value is shown but excluded from the composite best.</div>
+</section>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px">
+<section class="card" style="flex: 3 1 600px; min-width: 0; padding: 18px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; align-items: baseline"><span class="lbl">Booked vs measured · what the daily report says vs what the sensors show</span><span class="mono" style="font-size: 11.5px; padding: 2px 8px; border-radius: 3px; background: #2A2112; color: #F5C46B">NEW v0.2 · PR-2</span></div>
+<sc-for list="{{recon}}" as="r" hint-placeholder-count="4">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px">
+<div style="width: 150px; flex: none; display: flex; flex-direction: column"><span class="mono" style="font-size: 13px">{{r.code}}</span><span style="font-size: 12px; color: #93A1B0">booked {{r.booked}}</span></div>
+<div style="flex: 1 1 360px; display: flex; height: 26px; border-radius: 3px; overflow: hidden">
+<sc-for list="{{r.parts}}" as="x" hint-placeholder-count="4">
+<a href="S2-Workspace.dc.html" aria-label="Open these intervals in Workspace" style="display: flex; align-items: center; justify-content: center; text-decoration: none; overflow: hidden; width: {{x.w}}; background: {{x.bg}}"><span class="mono" style="font-size: 11px; color: {{x.fg}}; white-space: nowrap">{{x.t}}</span></a>
+</sc-for>
+</div>
+<div class="mono" style="width: 120px; flex: none; text-align: right; font-size: 12.5px; color: {{r.agC}}">{{r.ag}} agree</div>
+</div>
+</sc-for>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 12px; color: #A9B6C3">
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 16px; height: 10px; background: #1F64AA; display: inline-block"></span>Rotary</span>
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 16px; height: 10px; background: #E39A1E; display: inline-block"></span>Connection</span>
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 16px; height: 10px; background: repeating-linear-gradient(90deg,#4FD1AE 0 3px,#2A9C7E 3px 6px); display: inline-block"></span>Reaming</span>
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 16px; height: 10px; background: #5E7387; display: inline-block"></span>Circulating / flat</span>
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 16px; height: 10px; background: #9670E0; display: inline-block"></span>Tripping</span>
+<span>Tolerance: ±[n] min at row boundaries, minimum interval 2 min.</span>
+</div>
+</section>
+
+<section class="card" style="flex: 2 1 400px; min-width: 0; padding: 18px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; align-items: baseline"><span class="lbl">How lost time is defined</span><span class="mono" style="font-size: 11.5px; padding: 2px 8px; border-radius: 3px; background: #2A2112; color: #F5C46B">NEW v0.2 · PR-1</span></div>
+<ol style="margin: 0; padding-left: 18px; font-size: 13.5px; line-height: 1.55; color: #C8D2DC; display: flex; flex-direction: column; gap: 6px">
+<li>Each connection, stand and flat-time block is timed from rig-state intervals.</li>
+<li>Composite best = 10th percentile per KPI, per hole section, per well.</li>
+<li>Lost time = Σ (actual − composite best) where actual &gt; best.</li>
+<li>Intervals overlapping a data gap are excluded, and counted on the Trust page.</li>
+</ol>
+<div style="background: #0A0E13; border: 1px solid #243040; border-radius: 4px; padding: 12px; display: flex; flex-direction: column; gap: 6px">
+<span class="lbl">Reproduce every number on this page</span>
+<div class="mono" style="font-size: 12px; line-height: 1.7; color: #C8D2DC; white-space: pre-wrap">commit   [git sha]
+data     [n] files · sha256 manifest
+command  make reproduce WELL=15_9-F-11_A</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap"><button class="chip" type="button">Copy command</button><button class="chip" type="button">Download manifest</button></div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1560}}'>
+class Component extends DCLogic {
+renderVals() {
+const hi = 'background:#123826;color:#6FF0B4', md = 'background:#3A2C10;color:#FFC861';
+const kpis = [
+{ name: 'Connection time', val: '6.8', unit: 'min median', sub: 'slips-to-slips · weight-to-weight 9.1 min', best: '3.9 min', conf: '▲ High', confStyle: hi },
+{ name: 'Tripping speed', val: '412', unit: 'm/h', sub: 'in: cased 520 · open 360 · out: cased 480 · open 300', best: '610 m/h', conf: '◆ Medium', confStyle: md },
+{ name: 'Flat time', val: '22', unit: '% of well time', sub: 'off-bottom, not tripping, not drilling', best: '—', conf: '▲ High', confStyle: hi },
+{ name: 'On-bottom drilling', val: '41', unit: '% of well time', sub: 'rotary + sliding', best: '—', conf: '▲ High', confStyle: hi }
+];
+const sc = (v) => (v / 15 * 100).toFixed(2) + '%';
+const mkBox = (sec, n, mn, q1, med, q3, mx, outs) => ({ sec, n, med: med + ' min', minL: sc(mn), whW: sc(mx - mn), q1L: sc(q1), boxW: sc(q3 - q1), medL: sc(med), out: outs.map((o) => ({ l: sc(o) })) });
+const boxes = [mkBox('17½″', 48, 3.6, 4.8, 5.9, 7.4, 10.1, [12.8]), mkBox('12¼″', 71, 3.9, 5.4, 6.8, 8.6, 11.9, [13.4, 14.2]), mkBox('8½″', 39, 3.4, 4.4, 5.2, 6.3, 8.4, [11.0])];
+const items = [['Connections', 5.1, '#E39A1E'], ['Trips', 4.3, '#9670E0'], ['Flat time', 2.2, '#5E7387'], ['Reaming (unreported)', 1.0, '#2A9C7E']];
+const total = 12.6, H = 190;
+let acc = 0;
+const wf = items.map((it) => { const b = acc; acc += it[1]; return { name: it[0], v: it[1].toFixed(1), bg: it[2], b: (b / 13 * H).toFixed(0) + 'px', h: (it[1] / 13 * H).toFixed(0) + 'px', labB: ((b + it[1]) / 13 * H + 4).toFixed(0) + 'px' }; });
+wf.push({ name: 'Total', v: total.toFixed(1), bg: '#F5A524', b: '0px', h: (total / 13 * H).toFixed(0) + 'px', labB: (total / 13 * H + 4).toFixed(0) + 'px' });
+const bySec = [
+{ s: '17½″', c: '1.4', t: '1.6', f: '0.6', r: '0.1', tot: '3.7' },
+{ s: '12¼″', c: '2.6', t: '1.9', f: '1.1', r: '0.8', tot: '6.4' },
+{ s: '8½″', c: '1.1', t: '0.8', f: '0.5', r: '0.1', tot: '2.5' }
+];
+const dv = [0.4, 0.9, 1.3, 0.6, 1.1, 0.8, 0.2, 1.5, 0.7, 1.0, 1.2, 0.5, 1.4, 1.0];
+const days = dv.map((v, i) => ({ h: (v / 1.6 * 100).toFixed(0) + '%', bg: i === 6 ? 'repeating-linear-gradient(45deg,#5E7387 0 2px,#161D25 2px 6px)' : '#C77F17' }));
+const SC = { rot: ['#1F64AA', '#FFFFFF', 'Rotary'], con: ['#E39A1E', '#0A0E13', 'Conn'], rea: ['repeating-linear-gradient(90deg,#4FD1AE 0 3px,#2A9C7E 3px 6px)', '#0A0E13', 'Ream'], cir: ['#5E7387', '#FFFFFF', 'Circ/flat'], tri: ['#9670E0', '#0A0E13', 'Trip'] };
+const mkR = (code, booked, parts, ag) => ({ code, booked, ag: ag + ' %', agC: ag >= 80 ? '#6FF0B4' : ag >= 60 ? '#FFC861' : '#FF9A9A', parts: parts.map((p) => ({ w: p[1] + '%', bg: SC[p[0]][0], fg: SC[p[0]][1], t: p[1] >= 8 ? SC[p[0]][2] + ' ' + p[1] + '%' : '' })) });
+const recon = [
+mkR('DRILL', '[h] h', [['rot', 68], ['con', 13], ['rea', 8], ['cir', 11]], 68),
+mkR('CIRC', '[h] h', [['cir', 81], ['rea', 12], ['rot', 7]], 81),
+mkR('TRIP', '[h] h', [['tri', 74], ['cir', 18], ['rea', 8]], 74),
+mkR('REAM', '[h] h', [['rea', 57], ['cir', 30], ['rot', 13]], 57)
+];
+return { kpis, boxes, wf, bySec, days, recon };
+}
+}
+</script>
+</body>
+</html>

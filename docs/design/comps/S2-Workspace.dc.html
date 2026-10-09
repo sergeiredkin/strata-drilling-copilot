@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>STRATA well workspace</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Sans+Condensed:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0A0E13}
+a{color:#7CC4FF}a:hover{color:#B5DCFF}
+.mono{font-family:'IBM Plex Mono',monospace}
+.cond{font-family:'IBM Plex Sans Condensed',sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border-radius:4px;border:1px solid #2A3646;background:#11171E;color:#DCE3EA;font:inherit;font-size:13px;cursor:pointer}
+.num{font-family:'IBM Plex Mono',monospace;border-bottom:1px dashed #7CC4FF;color:#BFE2FF;cursor:pointer;padding:0 2px;background:none;border-top:0;border-left:0;border-right:0;font-size:inherit}
+.num.bad{border-bottom:1px solid #FF6B6B;color:#FF9A9A;background:#3A1515}
+.sec{display:flex;flex-direction:column;gap:6px;padding:12px 0;border-top:1px solid #1F2934}
+.lbl{font-family:'IBM Plex Sans Condensed',sans-serif;letter-spacing:.05em;text-transform:uppercase;font-size:11px;font-weight:600;color:#93A1B0}
+</style>
+</helmet>
+<div style="font-family: 'IBM Plex Sans', sans-serif; color: #DCE3EA; background: #0A0E13; min-height: 100vh; display: flex; flex-direction: column">
+
+<nav style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; padding: 0 24px; min-height: 56px; border-bottom: 1px solid #243040; background: #0D1218">
+<div class="cond" style="font-size: 15px; font-weight: 600; color: #F5A524; letter-spacing: .14em">STRATA</div>
+<div style="display: flex; gap: 4px; flex-wrap: wrap; font-size: 14px">
+<a href="S1-Field.dc.html" style="padding: 8px 12px; color: #A9B6C3; text-decoration: none">Field</a>
+<a href="S2-Workspace.dc.html" style="padding: 8px 12px; color: #DCE3EA; text-decoration: none; border-bottom: 2px solid #F5A524">Workspace</a>
+<a href="S3-Performance.dc.html" style="padding: 8px 12px; color: #A9B6C3; text-decoration: none">Performance</a>
+<a href="S6-Formation.dc.html" style="padding: 8px 12px; color: #A9B6C3; text-decoration: none">Formation</a>
+<a href="S5-Trust.dc.html" style="padding: 8px 12px; color: #A9B6C3; text-decoration: none">Trust</a>
+</div>
+<div style="margin-left: auto; display: flex; gap: 10px; align-items: center; flex-wrap: wrap">
+<span class="mono" style="font-size: 11.5px; padding: 3px 8px; border-radius: 3px; background: #2A2112; color: #F5C46B">STATIC MODE</span>
+<button class="chip" type="button">m · kN · bar</button>
+<button class="chip" type="button" style="border-color: #F5A524" aria-label="Copilot panel open">Copilot ●</button>
+</div>
+</nav>
+
+<div style="display: flex; flex-wrap: wrap; flex: 1; min-height: 0">
+
+<main style="flex: 999 1 760px; min-width: 0; padding: 18px 20px 32px; display: flex; flex-direction: column; gap: 14px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px">
+<h1 class="mono" style="margin: 0; font-size: 20px; font-weight: 500">15/9-F-11 A</h1>
+<span class="mono" style="font-size: 12px; padding: 3px 8px; border-radius: 3px; background: #123826; color: #6FF0B4">▲ High confidence</span>
+<div style="display: flex; gap: 6px; align-items: center; font-size: 13px; color: #A9B6C3; flex-wrap: wrap">
+<a href="#" style="color: #A9B6C3">Full well</a><span>›</span><a href="#" style="color: #A9B6C3">12¼″ section</a><span>›</span><a href="#" style="color: #A9B6C3">Day [D]</a><span>›</span><span style="color: #DCE3EA">2 h window</span>
+</div>
+<div style="margin-left: auto; display: flex; gap: 6px; flex-wrap: wrap">
+<button class="chip" type="button" aria-label="Zoom out">−</button>
+<button class="chip" type="button" aria-label="Zoom in">+</button>
+<button class="chip" type="button">Fit connection</button>
+<button class="chip" type="button" disabled="" style="opacity: .55">▶ Replay · P1</button>
+<span class="mono" style="align-self: center; font-size: 11.5px; padding: 3px 8px; border-radius: 3px; border: 1px dashed #F5A524; color: #F5C46B">MOCK SERIES</span>
+</div>
+</div>
+
+<div style="background: #11171E; border: 1px solid #243040; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px"><span class="lbl">Full well · depth vs time · drag to select</span><span class="mono" style="font-size: 11.5px; color: #93A1B0">▼ casing shoe · shaded = hole section</span></div>
+<div style="position: relative; height: 64px">
+<sc-for list="{{overSecs}}" as="s" hint-placeholder-count="4">
+<div style="position: absolute; top: 0; bottom: 0; left: {{s.l}}; width: {{s.w}}; background: {{s.bg}}; border-right: 1px solid #2A3646"><span class="mono" style="position: absolute; top: 3px; left: 6px; font-size: 11px; color: #A9B6C3">{{s.name}}</span></div>
+</sc-for>
+<svg viewBox="0 0 1000 64" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%"><path d="{{overPath}}" fill="none" stroke="#DCE3EA" stroke-width="1.5" vector-effect="non-scaling-stroke"></path></svg>
+<div style="position: absolute; top: 0; bottom: 0; left: 61%; width: 1.2%; background: rgba(245,165,36,.25); border: 1px solid #F5A524"></div>
+</div>
+</div>
+
+<div style="position: relative; background: #11171E; border: 1px solid #243040; border-radius: 6px; padding: 6px 0">
+
+<div style="display: flex; border-bottom: 1px solid #1F2934">
+<div style="width: 148px; flex: none; padding: 8px 12px; display: flex; flex-direction: column; gap: 2px"><span class="lbl">Bit depth</span><span class="mono" style="font-size: 12px; color: #93A1B0">m MD</span><span class="mono" style="font-size: 14px">{{cur.depth}}</span></div>
+<div style="flex: 1; position: relative; height: 150px">
+<div class="mono" style="position: absolute; left: 4px; top: 4px; font-size: 11px; color: #93A1B0">2 455</div>
+<div class="mono" style="position: absolute; left: 4px; bottom: 4px; font-size: 11px; color: #93A1B0">2 500</div>
+<svg viewBox="0 0 1000 150" preserveAspectRatio="none" style="width: 100%; height: 100%; display: block"><path d="{{depthPath}}" fill="none" stroke="#F5A524" stroke-width="2" vector-effect="non-scaling-stroke"></path></svg>
+</div>
+</div>
+
+<div style="display: flex; border-bottom: 1px solid #1F2934">
+<div style="width: 148px; flex: none; padding: 8px 12px; display: flex; flex-direction: column; gap: 2px"><span class="lbl">Rig state</span><span class="mono" style="font-size: 13px; color: #6FE3C2">{{cur.state}}</span></div>
+<div style="flex: 1; position: relative; height: 40px; margin: 6px 0">
+<sc-for list="{{ribbon}}" as="r" hint-placeholder-count="10">
+<div style="position: absolute; top: 0; bottom: 0; left: {{r.l}}; width: {{r.w}}; background: {{r.bg}}; display: flex; align-items: center; justify-content: center; overflow: hidden; border-right: 1px solid #0A0E13"><span class="cond" style="font-size: 10.5px; font-weight: 600; color: {{r.fg}}; white-space: nowrap">{{r.label}}</span></div>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; border-bottom: 1px solid #1F2934">
+<div style="width: 148px; flex: none; padding: 8px 12px; display: flex; flex-direction: column; gap: 2px"><span class="lbl">Daily report</span><span class="mono" style="font-size: 11.5px; color: #93A1B0">DDR op codes</span></div>
+<div style="flex: 1; position: relative; height: 36px; margin: 6px 0">
+<sc-for list="{{ddr}}" as="d" hint-placeholder-count="3">
+<div style="position: absolute; top: 4px; bottom: 4px; left: {{d.l}}; width: {{d.w}}; background: #1B2633; border: 1px solid #3A4A5E; border-radius: 3px; display: flex; align-items: center; padding: 0 8px; box-sizing: border-box; overflow: hidden"><span class="mono" style="font-size: 11px; color: #C8D2DC; white-space: nowrap">{{d.label}}</span></div>
+</sc-for>
+<button type="button" aria-label="Mismatch: reaming reported as drilling" style="position: absolute; top: -10px; left: 51.7%; width: 22px; height: 22px; padding: 0; background: none; border: 0; cursor: pointer"><svg width="22" height="22" viewBox="0 0 22 22"><path d="M11 2 L20 19 H2 Z" fill="#FF6B6B" stroke="#0A0E13" stroke-width="1.5"></path><text x="11" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="#0A0E13" font-family="IBM Plex Mono">!</text></svg></button>
+</div>
+</div>
+
+<sc-for list="{{tracks}}" as="k" hint-placeholder-count="7">
+<div style="display: flex; border-bottom: 1px solid #1F2934">
+<div style="width: 148px; flex: none; padding: 6px 12px; display: flex; flex-direction: column; gap: 1px; justify-content: center"><span class="lbl">{{k.name}}</span><span class="mono" style="font-size: 13px">{{k.val}} <span style="color: #93A1B0; font-size: 11.5px">{{k.unit}}</span></span></div>
+<div style="flex: 1; position: relative; height: 54px">
+<svg viewBox="0 0 1000 54" preserveAspectRatio="none" style="width: 100%; height: 100%; display: block"><path d="{{k.band}}" fill="{{k.fill}}" stroke="none"></path><path d="{{k.path}}" fill="none" stroke="{{k.color}}" stroke-width="1.4" vector-effect="non-scaling-stroke"></path></svg>
+</div>
+</div>
+</sc-for>
+
+<div style="display: flex">
+<div style="width: 148px; flex: none"></div>
+<div class="mono" style="flex: 1; display: flex; justify-content: space-between; font-size: 11px; color: #93A1B0; padding: 6px 4px 2px">
+<span>[t0]</span><span>+20 min</span><span>+40 min</span><span>+60 min</span><span>+80 min</span><span>+100 min</span><span>[t1]</span>
+</div>
+</div>
+
+<div style="position: absolute; top: 0; bottom: 26px; left: calc(148px + (100% - 148px) * 0.833); width: calc((100% - 148px) * 0.033); background: repeating-linear-gradient(45deg, rgba(147,161,176,.35) 0 2px, transparent 2px 7px); border-left: 1px dashed #93A1B0; border-right: 1px dashed #93A1B0; pointer-events: none"><span class="mono" style="position: absolute; bottom: 4px; left: 4px; font-size: 10.5px; color: #C8D2DC; background: #0A0E13; padding: 1px 4px; white-space: nowrap">no data · 4 min</span></div>
+
+<div style="position: absolute; top: 0; bottom: 26px; left: calc(148px + (100% - 148px) * 0.533); width: 1px; background: #F5F7FA; pointer-events: none"></div>
+<div class="mono" style="position: absolute; top: -12px; left: calc(148px + (100% - 148px) * 0.533 - 34px); font-size: 11px; background: #F5F7FA; color: #0A0E13; padding: 2px 6px; border-radius: 2px">+64:00</div>
+
+<div style="position: absolute; top: 236px; left: calc(148px + (100% - 148px) * 0.53); width: 420px; max-width: 80%; background: #0D1218; border: 1px solid #FF6B6B; border-radius: 6px; box-shadow: 0 12px 32px rgba(0,0,0,.5); padding: 14px; display: flex; flex-direction: column; gap: 10px; z-index: 2">
+<div style="display: flex; justify-content: space-between; align-items: center"><span class="lbl" style="color: #FF9A9A">Mismatch · 6 min</span><span class="mono" style="font-size: 11px; color: #93A1B0">overlap 0 % · min dur 2 min</span></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="background: #11171E; border-radius: 4px; padding: 10px; display: flex; flex-direction: column; gap: 4px"><span class="lbl">Sensors say</span><span style="font-size: 14px; font-weight: 600; color: #6FE3C2">Reaming</span><span style="font-size: 12.5px; color: #A9B6C3; line-height: 1.45">Off bottom, RPM &gt; 0, flow on, block moving up and down. Classifier conf. 0.88</span></div>
+<div style="background: #11171E; border-radius: 4px; padding: 10px; display: flex; flex-direction: column; gap: 4px"><span class="lbl">Report says</span><span style="font-size: 14px; font-weight: 600">DRILL</span><span style="font-size: 12.5px; color: #A9B6C3; line-height: 1.45; font-style: italic">“Drilled 12¼″ hole from [MD] m to [MD] m.” — DDR [date] 06:00–09:00</span></div>
+</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap"><button class="chip" type="button">Zoom to window</button><button class="chip" type="button">Ask copilot why</button></div>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 12px; color: #A9B6C3">
+<sc-for list="{{legend}}" as="g" hint-placeholder-count="8">
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="display: inline-block; width: 22px; height: 12px; border-radius: 2px; background: {{g.bg}}"></span>{{g.label}}</span>
+</sc-for>
+</div>
+</main>
+
+<aside aria-label="Copilot" style="flex: 1 1 400px; max-width: 100%; box-sizing: border-box; background: #0D1218; border-left: 1px solid #243040; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<span class="cond" style="font-size: 14px; font-weight: 600">Copilot</span>
+<span class="mono" style="font-size: 11px; padding: 2px 6px; border-radius: 3px; background: #2A2112; color: #F5C46B">recorded session</span>
+</div>
+<div class="mono" style="font-size: 11.5px; color: #93A1B0; background: #11171E; border-radius: 4px; padding: 8px 10px; line-height: 1.5">context · 15/9-F-11 A · 12¼″ · [t0]–[t1] · 2 455–2 500 m</div>
+
+<div style="align-self: flex-end; max-width: 90%; background: #1B2633; border-radius: 6px; padding: 10px 12px; font-size: 14px">What drove the lost time in the 12¼″ section?</div>
+
+<button type="button" style="display: flex; justify-content: space-between; align-items: center; min-height: 40px; background: #11171E; border: 1px solid #243040; border-radius: 4px; color: #C8D2DC; font: inherit; font-size: 13px; padding: 0 12px; cursor: pointer"><span>▸ Tool trace · 5 calls</span><span class="mono" style="color: #93A1B0">2.4 s</span></button>
+
+<div style="background: #11171E; border: 1px solid #243040; border-radius: 6px; padding: 4px 14px 12px; display: flex; flex-direction: column">
+<div class="sec" style="border-top: 0"><span class="lbl">Answer</span><p style="margin: 0; font-size: 14px; line-height: 1.55">Connections and unreported reaming account for most of the lost time versus composite best. Connections took a median of <button type="button" class="num">6.8 min</button> slips-to-slips against a composite best of <button type="button" class="num">3.9 min</button>.</p></div>
+<div class="sec"><span class="lbl">Evidence from data</span>
+<sc-for list="{{claims}}" as="c" hint-placeholder-count="4">
+<div style="display: flex; justify-content: space-between; gap: 10px; font-size: 13px; align-items: baseline"><span style="color: #C8D2DC">{{c.text}}</span><button type="button" class="{{c.cls}}">{{c.val}}</button></div>
+</sc-for>
+<div style="font-size: 12px; color: #FF9A9A">✕ 1 number failed the verifier — no matching tool output.</div>
+</div>
+<div class="sec"><span class="lbl">Evidence from daily reports</span><blockquote style="margin: 0; padding-left: 10px; border-left: 2px solid #3A4A5E; font-size: 13px; font-style: italic; color: #C8D2DC; line-height: 1.5">“Drilled 12¼″ hole from [MD] m to [MD] m. Slow connections due to [reason].”<span class="mono" style="display: block; font-style: normal; font-size: 11px; color: #93A1B0; margin-top: 4px">15/9-F-11 A · DDR [date]</span></blockquote></div>
+<div class="sec"><span class="lbl">Reasoning</span><p style="margin: 0; font-size: 13px; color: #C8D2DC; line-height: 1.5">Rig-state intervals were aggregated per category and compared with the composite best per connection and per stand.</p></div>
+<div class="sec"><span class="lbl">Assumptions</span><ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #C8D2DC; line-height: 1.5"><li>Composite best = 10th percentile of section connections.</li><li>4 min data gap excluded, not interpolated.</li></ul></div>
+<div class="sec"><span class="lbl">Confidence</span><div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap"><span class="mono" style="font-size: 12px; padding: 3px 8px; border-radius: 3px; background: #3A2C10; color: #FFC861">◆ Medium</span><span style="font-size: 12.5px; color: #A9B6C3">Dense sensors, but report coverage is partial for 2 of [N] days.</span></div></div>
+</div>
+
+<div style="position: relative; background: #0A0E13; border: 1px solid #7CC4FF; border-radius: 6px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px">
+<span class="lbl" style="color: #7CC4FF">Provenance · 6.8 min · ✓ verified</span>
+<div class="mono" style="font-size: 11.5px; line-height: 1.7; color: #C8D2DC; white-space: pre-wrap">tool     kpi.connection_times
+params   {well:"15/9-F-11 A", section:"12¼", stat:"median"}
+source   [volve/WITSML/…/time_log_1s.parquet]
+channels BPOS, HKLD, WOB
+window   [t0] → [t1]
+evidence ev_[id]</div>
+<a href="#" style="font-size: 12.5px">Show this window in the workspace →</a>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span class="lbl">Suggested for this view</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<button class="chip" type="button" style="font-size: 12.5px">Why was ROP low here?</button>
+<button class="chip" type="button" style="font-size: 12.5px">Compare connections with 15/9-F-15 D</button>
+</div>
+</div>
+<div style="display: flex; gap: 8px">
+<label for="ask" style="position: absolute; left: -9999px">Ask the copilot</label>
+<input id="ask" type="text" placeholder="Live mode needed for free questions" style="flex: 1; min-width: 0; min-height: 44px; padding: 0 12px; background: #11171E; border: 1px solid #2A3646; border-radius: 4px; color: #DCE3EA; font: inherit; font-size: 13px">
+<button type="button" class="chip" style="min-height: 44px" aria-label="Send">Ask</button>
+</div>
+</aside>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+renderVals() {
+const T = 120;
+const segs = [
+['drill', 0, 28], ['conn', 28, 31], ['drill', 31, 58], ['conn', 58, 62], ['ream', 62, 68],
+['drill', 68, 80], ['circ', 80, 86], ['drill', 86, 100], ['gap', 100, 104], ['conn', 104, 107], ['drill', 107, 120]
+];
+const ST = {
+drill: { bg: '#1F64AA', fg: '#FFFFFF', label: 'Rotary drilling' },
+slide: { bg: 'repeating-linear-gradient(135deg,#9CCBF5 0 4px,#6FA6D8 4px 8px)', fg: '#0A0E13', label: 'Sliding' },
+conn: { bg: '#E39A1E', fg: '#0A0E13', label: 'Connection' },
+tin: { bg: 'repeating-linear-gradient(90deg,#B58CFF 0 4px,#9670E0 4px 8px)', fg: '#0A0E13', label: 'Trip in' },
+tout: { bg: '#5B3FA8', fg: '#FFFFFF', label: 'Trip out' },
+ream: { bg: 'repeating-linear-gradient(90deg,#4FD1AE 0 3px,#2A9C7E 3px 6px)', fg: '#0A0E13', label: 'Reaming' },
+circ: { bg: '#5E7387', fg: '#FFFFFF', label: 'Circulating' },
+ooh: { bg: '#2A3440', fg: '#DCE3EA', label: 'Out of hole' },
+gap: { bg: 'repeating-linear-gradient(45deg,#3A4552 0 2px,#161D25 2px 7px)', fg: '#C8D2DC', label: 'Unknown' }
+};
+const pct = (v) => (v / T * 100).toFixed(3) + '%';
+const ribbon = segs.map((s) => ({ l: pct(s[1]), w: pct(s[2] - s[1]), bg: ST[s[0]].bg, fg: ST[s[0]].fg, label: (s[2] - s[1]) >= 6 ? ST[s[0]].label : '' }));
+const legend = ['drill','slide','conn','ream','tin','tout','circ','ooh','gap'].map((k) => ({ bg: ST[k].bg, label: ST[k].label }));
+const stateAt = (t) => { for (const s of segs) if (t >= s[1] && t < s[2]) return s[0]; return 'drill'; };
+const n = (t, a) => Math.sin(t * 1.7 + a) * 0.5 + Math.sin(t * 0.37 + a * 2) * 0.5;
+const prof = {
+hkld: (s, t) => s === 'conn' ? 0.18 : s === 'ream' ? 0.62 + 0.06 * n(t, 1) : s === 'circ' ? 0.6 : 0.5 + 0.03 * n(t, 2),
+bpos: (s, t) => { if (s === 'conn') return 0.92; const base = t < 28 ? t / 28 : t < 58 ? (t - 31) / 27 : t < 80 ? (t - 62) / 18 : t < 104 ? (t - 80) / 20 : (t - 107) / 13; return s === 'ream' ? 0.5 + 0.35 * Math.sin(t * 2.2) : 0.9 - 0.8 * Math.min(1, Math.max(0, base)); },
+wob: (s, t) => s === 'drill' ? 0.6 + 0.12 * n(t, 3) : 0.04,
+rpm: (s, t) => s === 'drill' || s === 'ream' ? 0.7 + 0.04 * n(t, 4) : s === 'circ' ? 0.25 : 0.02,
+tq: (s, t) => s === 'drill' ? 0.55 + 0.15 * n(t, 5) : s === 'ream' ? 0.35 + 0.2 * n(t, 6) : 0.05,
+spp: (s, t) => s === 'conn' ? 0.03 : 0.72 + 0.04 * n(t, 7),
+flow: (s, t) => s === 'conn' ? 0.02 : 0.75 + 0.01 * n(t, 8)
+};
+const H = 54;
+const mk = (fn, jitter) => {
+let line = '', top = [], bot = [], pen = false;
+for (let t = 0; t <= T; t += 0.5) {
+const s = stateAt(t);
+const x = (t / T * 1000).toFixed(1);
+if (s === 'gap') { pen = false; continue; }
+const v = fn(s, t); const y = (H - 4 - v * (H - 8));
+line += (pen ? 'L' : 'M') + x + ' ' + y.toFixed(1) + ' ';
+top.push(x + ' ' + (y - jitter).toFixed(1)); bot.unshift(x + ' ' + (y + jitter).toFixed(1));
+pen = true;
+}
+const band = top.length ? 'M' + top.join(' L') + ' L' + bot.join(' L') + ' Z' : '';
+return { line, band };
+};
+const defs = [
+['Hookload', 'kN', 'hkld', '#E9EEF3', '1 182'], ['Block pos.', 'm', 'bpos', '#9FD0FF', '18.4'], ['WOB', 'kN', 'wob', '#F5A524', '3'],
+['RPM', 'rpm', 'rpm', '#6FE3C2', '118'], ['Torque', 'kN·m', 'tq', '#C9A7FF', '14.2'], ['SPP', 'bar', 'spp', '#FF9A7A', '208'], ['Flow in', 'L/min', 'flow', '#7CC4FF', '3 150']
+];
+const tracks = defs.map((d) => { const p = mk(prof[d[2]], 2.2); return { name: d[0], unit: d[1], color: d[3], val: d[4], path: p.line, band: p.band, fill: 'rgba(160,180,200,.14)' }; });
+let depth = 2457, dp = '', pen = false;
+for (let t = 0; t <= T; t += 0.5) {
+const s = stateAt(t);
+if (s === 'drill') depth += 0.19;
+if (s === 'gap') { pen = false; continue; }
+const y = (depth - 2455) / 45 * 140 + 5;
+dp += (pen ? 'L' : 'M') + (t / T * 1000).toFixed(1) + ' ' + y.toFixed(1) + ' ';
+pen = true;
+}
+const op = 'M0 2 L120 18 L180 20 L300 30 L360 31 L560 46 L610 46 L640 47 L840 58 L900 60 L1000 61';
+const overSecs = [
+{ name: '26″', l: '0%', w: '12%', bg: '#141C25' }, { name: '17½″', l: '12%', w: '24%', bg: '#17202A' },
+{ name: '12¼″', l: '36%', w: '38%', bg: '#1A2531' }, { name: '8½″', l: '74%', w: '26%', bg: '#17202A' }
+];
+const claims = [
+{ text: 'Median connection, slips-to-slips', val: '6.8 min', cls: 'num' },
+{ text: 'Composite best connection', val: '3.9 min', cls: 'num' },
+{ text: 'Unreported reaming, section total', val: '[h] h', cls: 'num' },
+{ text: 'Lost time vs composite best', val: '14.0 h', cls: 'num bad' }
+];
+return {
+ribbon, legend, tracks, depthPath: dp, overPath: op, overSecs, claims,
+ddr: [{ l: '0%', w: '66.6%', label: 'DRILL · drilled 12¼″ hole from [MD] to [MD] m' }, { l: '66.6%', w: '8.4%', label: 'CIRC' }, { l: '75%', w: '25%', label: 'DRILL · drilled 12¼″ hole …' }],
+cur: { depth: '2 468.9', state: 'Reaming' }
+};
+}
+}
+</script>
+</body>
+</html>

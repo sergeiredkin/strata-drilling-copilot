@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>STRATA front-end plan</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Sans+Condensed:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0A0E13}
+a{color:#7CC4FF}a:hover{color:#B5DCFF}
+.mono{font-family:'IBM Plex Mono',monospace}
+.cond{font-family:'IBM Plex Sans Condensed',sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.card{background:#11171E;border:1px solid #243040;border-radius:6px}
+.tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:12px;font-family:'IBM Plex Mono',monospace}
+</style>
+</helmet>
+<div style="font-family: 'IBM Plex Sans', sans-serif; color: #DCE3EA; background: #0A0E13; min-height: 100vh; box-sizing: border-box; padding: 56px 24px 96px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px">
+
+<header style="display: flex; flex-direction: column; gap: 14px; border-bottom: 1px solid #243040; padding-bottom: 32px">
+<div class="cond" style="font-size: 13px; color: #F5A524; font-weight: 600">STRATA · Drilling Copilot Demo</div>
+<h1 style="margin: 0; font-size: 44px; font-weight: 600; line-height: 1.1">Front-end plan for spec v0.1</h1>
+<p style="margin: 0; max-width: 860px; font-size: 17px; line-height: 1.55; color: #A9B6C3">What the spec asks for, where it is underspecified, the architecture that satisfies “trust over polish”, and a build order whose finish line is the 3-minute demo script running in static mode from a fresh clone.</p>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<span class="tag" style="background: #16222E; color: #9FD0FF">React · TS · Vite</span>
+<span class="tag" style="background: #16222E; color: #9FD0FF">uPlot + ECharts</span>
+<span class="tag" style="background: #16222E; color: #9FD0FF">TanStack Query · Zustand</span>
+<span class="tag" style="background: #16222E; color: #9FD0FF">Tailwind + tokens</span>
+<span class="tag" style="background: #2A2112; color: #F5C46B">Static mode = primary target</span>
+</div>
+</header>
+
+<section style="display: flex; flex-direction: column; gap: 20px">
+<h2 class="cond" style="margin: 0; font-size: 15px; color: #93A1B0">1 · What each screen has to prove</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
+<sc-for list="{{proofs}}" as="p" hint-placeholder-count="3">
+<div class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 12px">
+<div class="mono" style="font-size: 12px; color: #F5A524">{{p.n}}</div>
+<div style="font-size: 19px; font-weight: 600; line-height: 1.3">{{p.claim}}</div>
+<div style="font-size: 14px; color: #A9B6C3; line-height: 1.5">{{p.how}}</div>
+<div class="mono" style="font-size: 12px; color: #7CC4FF; border-top: 1px solid #243040; padding-top: 10px">{{p.screens}}</div>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 20px">
+<h2 class="cond" style="margin: 0; font-size: 15px; color: #93A1B0">2 · Gaps in the spec and the decision for each</h2>
+<div class="card" style="overflow-x: auto">
+<table style="width: 100%; min-width: 900px; border-collapse: collapse; font-size: 14px; line-height: 1.45">
+<thead>
+<tr style="text-align: left; color: #93A1B0">
+<th class="cond" style="padding: 14px 18px; font-size: 12px; font-weight: 600; border-bottom: 1px solid #243040; width: 22%">Gap</th>
+<th class="cond" style="padding: 14px 18px; font-size: 12px; font-weight: 600; border-bottom: 1px solid #243040; width: 33%">Why it bites</th>
+<th class="cond" style="padding: 14px 18px; font-size: 12px; font-weight: 600; border-bottom: 1px solid #243040">Decision</th>
+</tr>
+</thead>
+<tbody>
+<sc-for list="{{gaps}}" as="g" hint-placeholder-count="10">
+<tr>
+<td style="padding: 14px 18px; border-bottom: 1px solid #1B2430; font-weight: 600; vertical-align: top">{{g.gap}}</td>
+<td style="padding: 14px 18px; border-bottom: 1px solid #1B2430; color: #A9B6C3; vertical-align: top">{{g.why}}</td>
+<td style="padding: 14px 18px; border-bottom: 1px solid #1B2430; vertical-align: top">{{g.fix}}</td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 20px">
+<h2 class="cond" style="margin: 0; font-size: 15px; color: #93A1B0">3 · Architecture — one contract, two data sources</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{layers}}" as="l" hint-placeholder-count="6">
+<div class="card" style="padding: 16px 20px; display: flex; gap: 20px; flex-wrap: wrap; align-items: baseline">
+<div class="cond" style="width: 150px; flex: none; font-size: 13px; font-weight: 600; color: {{l.c}}">{{l.name}}</div>
+<div class="mono" style="flex: 1 1 300px; font-size: 13px; color: #DCE3EA; line-height: 1.6">{{l.items}}</div>
+</div>
+</sc-for>
+</div>
+<div class="card" style="flex: 1 1 360px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div style="font-size: 16px; font-weight: 600">Mode switch</div>
+<div style="font-size: 14px; color: #A9B6C3; line-height: 1.55">A single <span class="mono" style="color: #DCE3EA">DataSource</span> interface with two implementations. No <span class="mono" style="color: #DCE3EA">VITE_API_URL</span> → <span class="mono" style="color: #DCE3EA">StaticSource</span> reads <span class="mono" style="color: #DCE3EA">/data/**</span> exported from the backend. Screens never know which one is live.</div>
+<pre class="mono" style="margin: 0; padding: 14px; background: #0A0E13; border-radius: 4px; font-size: 12px; line-height: 1.6; color: #B9C6D2; white-space: pre-wrap">interface DataSource {
+  wells(): Promise&lt;WellList&gt;
+  channels(id, t0, t1, px): Promise&lt;SeriesBlock&gt;
+  rigstate(id, t0, t1): Promise&lt;Interval[]&gt;
+  ddr(id, t0, t1) · mismatches(id)
+  kpis(id) · formations(id) · issues(q)
+  evidence(eid): Promise&lt;Provenance&gt;
+  ask(q, ctx): AsyncIterable&lt;CopilotEvent&gt;
+  replay(id, speed): AsyncIterable&lt;ReplayEvent&gt;
+  eval(): Promise&lt;EvalReport&gt;
+}</pre>
+<div style="font-size: 13px; color: #A9B6C3; line-height: 1.5">Static <span class="mono">ask()</span> replays a recorded SSE log with its original timings; free text in static mode gets an honest “live mode required” card, not a guess.</div>
+</div>
+</div>
+</section>
+
+<section style="display: flex; flex-wrap: wrap; gap: 24px">
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<h2 class="cond" style="margin: 0; font-size: 15px; color: #93A1B0">4 · Shared state and deep links</h2>
+<pre class="card mono" style="margin: 0; padding: 20px; font-size: 12.5px; line-height: 1.65; color: #B9C6D2; white-space: pre-wrap">// Zustand — useView (mirrored to URL)
+wellId      '15_9-F-11_A'
+timeRange   [t0, t1]        // ms epoch
+depthRange  [d0, d1]        // m MD, derived via depth↔time index
+panel       'copilot' | null
+session     'cp_lost_time_12in' | null
+evidence    'ev_8f2c' | null  // open provenance popover
+
+// useCursor — NOT in URL, 60 fps, rAF-throttled
+t           number | null    // shared by every uPlot via sync key
+
+// usePrefs — localStorage
+units 'metric' | 'oilfield' · theme 'dark' | 'light'
+
+/well/15_9-F-11_A/workspace?t0=…&amp;t1=…&amp;panel=copilot&amp;ev=ev_8f2c</pre>
+</div>
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<h2 class="cond" style="margin: 0; font-size: 15px; color: #93A1B0">5 · Components that carry the trust story</h2>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{comps}}" as="c" hint-placeholder-count="7">
+<div class="card" style="padding: 14px 18px; display: flex; flex-direction: column; gap: 4px">
+<div class="mono" style="font-size: 14px; color: #7CC4FF">{{c.name}}</div>
+<div style="font-size: 13.5px; color: #A9B6C3; line-height: 1.5">{{c.does}}</div>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 20px">
+<h2 class="cond" style="margin: 0; font-size: 15px; color: #93A1B0">6 · Large-data plan for S2 (static mode is the hard case)</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
+<sc-for list="{{lod}}" as="x" hint-placeholder-count="4">
+<div class="card" style="padding: 20px; display: flex; flex-direction: column; gap: 8px">
+<div class="mono" style="font-size: 13px; color: #F5A524">{{x.k}}</div>
+<div style="font-size: 14px; line-height: 1.55; color: #C8D2DC">{{x.v}}</div>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 20px">
+<h2 class="cond" style="margin: 0; font-size: 15px; color: #93A1B0">7 · Build order — milestones with exit criteria</h2>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{ms}}" as="m" hint-placeholder-count="9">
+<div class="card" style="padding: 16px 20px; display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline">
+<div class="mono" style="width: 44px; flex: none; color: #F5A524; font-size: 14px">{{m.id}}</div>
+<div style="flex: 1 1 260px; font-size: 15px; font-weight: 600">{{m.name}}</div>
+<div style="flex: 2 1 420px; font-size: 14px; color: #A9B6C3; line-height: 1.5">{{m.exit}}</div>
+<div class="tag" style="background: #16222E; color: #9FD0FF">{{m.size}}</div>
+</div>
+</sc-for>
+</div>
+<p style="margin: 0; font-size: 13.5px; color: #93A1B0">Size = relative effort (S/M/L/XL). M2 is the critical path; everything after it can be parallelised with backend work because it codes against the fixtures from M0.</p>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 20px">
+<h2 class="cond" style="margin: 0; font-size: 15px; color: #93A1B0">8 · Risks to watch</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px">
+<sc-for list="{{risks}}" as="r" hint-placeholder-count="4">
+<div class="card" style="padding: 20px; display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 15px; font-weight: 600">{{r.t}}</div>
+<div style="font-size: 14px; color: #A9B6C3; line-height: 1.55">{{r.d}}</div>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 20px; border-top: 1px solid #243040; padding-top: 40px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div class="cond" style="font-size: 13px; color: #F5A524; font-weight: 600">Spec v0.2 addendum · from the industry review</div>
+<h2 style="margin: 0; font-size: 30px; font-weight: 600">9 · What STRATA proposes beyond standard practice</h2>
+<p style="margin: 0; max-width: 900px; font-size: 15px; line-height: 1.55; color: #A9B6C3">Reviewed: SPE-227235-MS (real-time analytics, ILT KPIs, rig benchmarking) and SPE-229231-MS (tree-ensemble instability risk, parameter recommendations). Both describe established industry practice and publish no model metrics. STRATA competes on what they leave out: reproducibility, measured disagreement, honest validation and verified AI answers.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<sc-for list="{{props}}" as="p" hint-placeholder-count="6">
+<div class="card" style="padding: 20px; display: flex; flex-wrap: wrap; gap: 14px 28px">
+<div style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap"><span class="mono" style="font-size: 13px; color: #F5A524">{{p.id}}</span><span style="font-size: 17px; font-weight: 600">{{p.name}}</span></div>
+<div style="font-size: 14px; color: #C8D2DC; line-height: 1.5">{{p.what}}</div>
+<div style="font-size: 13px; color: #A9B6C3; line-height: 1.5"><span class="cond" style="font-size: 11px; color: #93A1B0">Industry gap · </span>{{p.gap}}</div>
+</div>
+<div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 8px; font-size: 13px; line-height: 1.5">
+<div><span class="cond" style="font-size: 11px; color: #93A1B0">Data · </span><span style="color: #C8D2DC">{{p.data}}</span></div>
+<div><span class="cond" style="font-size: 11px; color: #93A1B0">Pages · </span><span class="mono" style="color: #7CC4FF">{{p.pages}}</span></div>
+<div><span class="cond" style="font-size: 11px; color: #93A1B0">Contract · </span><span class="mono" style="color: #C8D2DC">{{p.api}}</span></div>
+<div><span class="cond" style="font-size: 11px; color: #93A1B0">Milestone · </span><span class="mono" style="color: #C8D2DC">{{p.ms}}</span></div>
+</div>
+</div>
+</sc-for>
+</div>
+<div class="card" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; border-color: #5A2A2A">
+<div class="cond" style="font-size: 12px; color: #FF9A9A; font-weight: 600">Deliberately not built</div>
+<div style="font-size: 14px; color: #C8D2DC; line-height: 1.55">WOB / RPM / mud-weight setpoint recommendations (breaks advisory-only, cannot be validated without downhole data) · geomechanics and shale-reactivity modelling (no data) · multi-rig or fleet benchmarking (≈20 wells, 2 fields) · any “% NPT reduction” claim.</div>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 20px">
+<h2 class="cond" style="margin: 0; font-size: 15px; color: #93A1B0">10 · Contracts added in v0.2</h2>
+<div class="card" style="overflow-x: auto">
+<table style="width: 100%; min-width: 860px; border-collapse: collapse; font-size: 13.5px; line-height: 1.45">
+<thead><tr style="text-align: left; color: #93A1B0"><th class="cond" style="padding: 12px 18px; font-size: 12px; border-bottom: 1px solid #243040; width: 34%">Endpoint</th><th class="cond" style="padding: 12px 18px; font-size: 12px; border-bottom: 1px solid #243040">Returns</th><th class="cond" style="padding: 12px 18px; font-size: 12px; border-bottom: 1px solid #243040; width: 18%">Used on</th></tr></thead>
+<tbody>
+<sc-for list="{{apis}}" as="a" hint-placeholder-count="8">
+<tr><td class="mono" style="padding: 11px 18px; border-bottom: 1px solid #1B2430; color: #7CC4FF; vertical-align: top">{{a.ep}}</td><td style="padding: 11px 18px; border-bottom: 1px solid #1B2430; color: #C8D2DC; vertical-align: top">{{a.ret}}</td><td class="mono" style="padding: 11px 18px; border-bottom: 1px solid #1B2430; color: #A9B6C3; vertical-align: top">{{a.on}}</td></tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 20px">
+<h2 class="cond" style="margin: 0; font-size: 15px; color: #93A1B0">11 · Function → page map (coding-agent checklist)</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 12.5px; color: #A9B6C3">
+<span><span class="mono" style="padding: 2px 6px; border-radius: 3px; background: #123826; color: #6FF0B4">COMP</span> drawn on this canvas in v0.1</span>
+<span><span class="mono" style="padding: 2px 6px; border-radius: 3px; background: #2A2112; color: #F5C46B">NEW v0.2</span> drawn in this update</span>
+<span><span class="mono" style="padding: 2px 6px; border-radius: 3px; background: #1B2633; color: #A9B6C3">SPEC</span> specified, no comp yet</span>
+<span>Nothing is implemented in code yet — every row is open work.</span>
+</div>
+<div class="card" style="overflow-x: auto">
+<table style="width: 100%; min-width: 980px; border-collapse: collapse; font-size: 13.5px; line-height: 1.45">
+<thead><tr style="text-align: left; color: #93A1B0"><th class="cond" style="padding: 12px 18px; font-size: 12px; border-bottom: 1px solid #243040; width: 32%">Function</th><th class="cond" style="padding: 12px 18px; font-size: 12px; border-bottom: 1px solid #243040; width: 24%">Primary page</th><th class="cond" style="padding: 12px 18px; font-size: 12px; border-bottom: 1px solid #243040">Also available on</th><th class="cond" style="padding: 12px 18px; font-size: 12px; border-bottom: 1px solid #243040; width: 12%">Design</th><th class="cond" style="padding: 12px 18px; font-size: 12px; border-bottom: 1px solid #243040; width: 8%">Prio</th></tr></thead>
+<tbody>
+<sc-for list="{{fmap}}" as="f" hint-placeholder-count="24">
+<tr><td style="padding: 10px 18px; border-bottom: 1px solid #1B2430">{{f.fn}}</td><td class="mono" style="padding: 10px 18px; border-bottom: 1px solid #1B2430; color: #7CC4FF">{{f.home}}</td><td class="mono" style="padding: 10px 18px; border-bottom: 1px solid #1B2430; color: #A9B6C3">{{f.also}}</td><td style="padding: 10px 18px; border-bottom: 1px solid #1B2430"><span class="mono" style="font-size: 11.5px; padding: 2px 6px; border-radius: 3px; {{f.st}}">{{f.s}}</span></td><td class="mono" style="padding: 10px 18px; border-bottom: 1px solid #1B2430; color: #C8D2DC">{{f.p}}</td></tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+<p style="margin: 0; font-size: 13.5px; color: #93A1B0">Global, every page: Copilot dock (S4), units toggle, theme, deep links, provenance on hover for every computed number, confidence badges, static/live mode indicator.</p>
+</section>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5400}}'>
+class Component extends DCLogic {
+renderVals() {
+return {
+proofs: [
+{ n: '01 · UNDERSTANDS OPERATIONS', claim: 'Raw surface sensors become a rig-state timeline', how: 'Rig-state ribbon, sensor tracks and the daily-report lane share one time axis and one cursor; zoom from full well to a single connection.', screens: 'S1 → S2 · demo beats 1–2' },
+{ n: '02 · FINDS HIDDEN LOST TIME', claim: 'Lost time the daily reports never booked', how: 'KPI distributions vs a composite-best line, a lost-time waterfall, and every outlier links back to its moment in S2.', screens: 'S3 → S2 · demo beat 3' },
+{ n: '03 · NEVER INVENTS', claim: 'Every AI number resolves to a tool output', how: 'Structured answer cards, clickable numbers with provenance, verifier flags in red, tool trace, and a trust page with ablations and limits.', screens: 'S4 · S5 · demo beats 4–5' }
+],
+gaps: [
+{ gap: 'No hole-section / casing contract', why: 'S2 shading, casing markers and S3 “by hole section” all need it; it is not in any listed endpoint.', fix: 'Add GET /wells/{id}/sections → [{name, size_in, md_top, md_base, t_start, t_end, casing_shoe_md}].' },
+{ gap: 'Time ↔ depth sync is undefined', why: 'S2 is time-indexed, S6 depth-indexed; “selection carries over” needs a mapping and depth is not monotonic in time (trips).', fix: 'Add GET /wells/{id}/depthtime (bit depth + hole depth, downsampled). Front end maps depth→time as the set of intervals where hole depth crosses that depth.' },
+{ gap: 'Static mode vs 1 Hz × 30 days', why: '~2.6 M samples per channel × 7 channels cannot ship as JSON, and there is no server to downsample.', fix: 'Export a min/max pyramid in binary chunks (see §6). JSON only for metadata, intervals and answers.' },
+{ gap: 'Where confidence is computed', why: 'Spec says badges and copilot use “the same rules”. Two implementations will drift.', fix: 'Backend is the only place confidence is computed; front end renders {level, reason} and never derives it.' },
+{ gap: 'Units vs the verifier', why: 'Toggling to oilfield changes displayed digits; a reviewer comparing to the tool output sees a mismatch.', fix: 'Claims keep SI value + unit; <Num> converts for display and shows the source value and unit in the provenance popover.' },
+{ gap: 'Recorded copilot sessions', why: 'Static mode needs a catalogue keyed to screen context, or suggested questions point to nothing.', fix: 'Add /copilot/sessions index {id, question, context:{well, t0, t1}}; suggestions in static mode come only from it.' },
+{ gap: 'Evidence ID scope', why: 'Numbers on S1/S3/S5 are computed too, but only copilot claims carry evidence_id.', fix: 'Every computed number in every contract is {value, unit, evidence_id}. One Evidence type, one popover.' },
+{ gap: 'Gap masks shape', why: '“Gap masks” per channel is ambiguous (bitset? intervals?) and decides how hatching is drawn.', fix: 'Gaps as intervals [[t0,t1,reason]] per channel; reason ∈ {no_data, removed_spike, sentinel, unit_fix}. Drives both hatching and S5 QC.' },
+{ gap: 'Mismatch semantics', why: 'Sensor and report granularity differ (1 s vs 15–30 min rows). Without a tolerance, everything mismatches.', fix: 'Backend emits mismatches with overlap %, minimum duration and both labels; UI only renders. Threshold shown on S5.' },
+{ gap: 'Gold answers not yet defined', why: 'Ablation table on S5 depends on an expert gold set that does not exist yet.', fix: 'S5 ships with the table schema and an explicit “gold set: N questions, version, author” header; empty state says so.' }
+],
+layers: [
+{ name: 'Screens', c: '#F5A524', items: 'S1 Field · S2 Workspace · S3 Performance · S4 Copilot dock · S5 Trust · (P1) S6 Formation · S7 Issues · S8 Replay' },
+{ name: 'Trust kit', c: '#3DDC97', items: '<Num> · <ConfidenceBadge> · <EvidencePopover> · <GapHatch> · <InsufficientData> · <Limitation>' },
+{ name: 'Chart kit', c: '#7CC4FF', items: 'TrackStack (uPlot ×N, sync key) · DepthTime · plugins: ribbon, ddrLane, mismatch, gaps, sections · KpiDist / Waterfall (ECharts)' },
+{ name: 'State', c: '#B58CFF', items: 'useView (URL-synced) · useCursor (hot path) · usePrefs (units, theme) · useReplay' },
+{ name: 'Data', c: '#9FB0C2', items: 'TanStack Query hooks → DataSource { StaticSource | HttpSource } · SSE/WS adapters' },
+{ name: 'Contracts', c: '#9FB0C2', items: 'contracts/*.schema.json → TS types + zod (front) and Pydantic (back) · fixtures validated in CI' }
+],
+comps: [
+{ name: '<Num value unit evidenceId verified/>', does: 'The single way any computed number renders. Converts units, opens provenance on hover/click, red when verified=false, dashed underline when it has no evidence (should never ship).' },
+{ name: '<ConfidenceBadge level reason/>', does: 'High / Medium / Low as text + shape + colour. Reason always in the tooltip. Same component on S1 rows and copilot cards.' },
+{ name: 'TrackStack', does: 'N uPlot instances, one x-scale, one cursor sync key. Shared y-gutter width so tracks align with the ribbon and depth-vs-time chart.' },
+{ name: 'ribbon / ddrLane plugins', does: 'Drawn in uPlot draw hooks, so they pan and zoom with the sensors for free. Each rig state has colour + pattern + label at sufficient width.' },
+{ name: 'GapHatch plugin', does: 'Draws hatched rects from gap intervals; series values inside gaps are null, so uPlot breaks the line — never interpolated.' },
+{ name: 'AnswerCard + ToolTrace', does: 'Renders the copilot schema as sections; streams trace events while running; verifier state per claim.' },
+{ name: 'CoverageMatrix', does: 'Well × data-type grid with full / partial / none as fill + glyph, not colour alone.' }
+],
+lod: [
+{ k: 'L0 … L6 pyramid', v: 'Each level stores min and max per bucket at 1 s, 8 s, 64 s, 512 s … Level chosen from (t1 − t0) / pixel width so you never draw more than ~2 points per pixel.' },
+{ k: 'Chunked binary', v: 'Float32 arrays in fixed time chunks (e.g. 6 h) per channel per level, gzip-served. ~5 MB/well for 7 channels at L3+, raw L0 fetched only when zoomed to < 2 h.' },
+{ k: 'Min/max preserving', v: 'Drawing min and max as two series (or a filled band) keeps hookload spikes and pressure surges visible at every zoom level — the spec requirement.' },
+{ k: 'Same shape live', v: 'HttpSource asks the server for the same block format with px=width, so StaticSource and live mode share one decoder and one render path.' }
+],
+ms: [
+{ id: 'M0', name: 'Contracts, fixtures, shell', exit: 'JSON Schemas for §5 + added endpoints; fixture generator for 3 wells (rich Volve, sparse Volve, FORGE 16A); routing, theme tokens, units, stores, <Num>, <ConfidenceBadge>.', size: 'M' },
+{ id: 'M1', name: 'S1 Field overview', exit: 'Table + coverage matrix + QC + filters; row click deep-links to S2.', size: 'S' },
+{ id: 'M2a', name: 'S2 TrackStack + cursor sync', exit: '7 sensor tracks synced; pan/zoom ≥ 50 fps on a 30-day well from pyramid.', size: 'L' },
+{ id: 'M2b', name: 'S2 Depth-vs-time, sections, gaps', exit: 'Depth chart on shared time axis, section shading, casing marks, hatched gaps.', size: 'M' },
+{ id: 'M2c', name: 'S2 Ribbon, DDR lane, mismatches', exit: 'Click a mismatch → side-by-side sensor vs report popover. Zoom to one connection.', size: 'M' },
+{ id: 'M3', name: 'S3 Performance & lost time', exit: 'KPI cards, distributions with composite best, waterfall, by section/day; outlier click lands in S2.', size: 'M' },
+{ id: 'M4', name: 'S4 Copilot (recorded → live)', exit: 'Dock on all screens, recorded SSE replay, provenance on every number, trace drawer, insufficient-data card; then HttpSource SSE.', size: 'L' },
+{ id: 'M5', name: 'S5 Trust page', exit: 'QC per well, rig-state agreement, ablation table, limitations, TADI positioning.', size: 'S' },
+{ id: 'M6', name: 'Demo script as an e2e test', exit: 'Playwright runs demo beats 1–5 against a fresh clone in static mode; this is the P0 acceptance gate in CI.', size: 'S' }
+],
+risks: [
+{ t: 'S2 eats the schedule', d: 'Time-box M2a. If uPlot sync + plugins stall, ship tracks first and add ribbon/DDR as overlays; the demo needs alignment, not every channel.' },
+{ t: 'Fixture realism', d: 'Mock data that looks too clean undermines the trust story. Generate fixtures from the real exported Volve/FORGE files as soon as ingestion exists; keep a visible “mock” badge until then.' },
+{ t: 'Rig-state colours at small widths', d: 'A 90-second connection is a few pixels at full-well zoom. Ribbon must aggregate to dominant state per pixel and show a count on hover.' },
+{ t: 'Overclaiming in copy', d: 'No “autopilot”, no fleet ROP claims, no competitor comparisons in the UI beyond the TADI positioning. Add a copy lint list to the PR checklist.' }
+],
+props: [
+{ id: 'PR-1', name: 'Reproducible invisible lost time', what: 'ILT with a published definition (composite best = P10 per KPI per section, gaps excluded), per-well and per-category results, and a “Reproduce” panel: commit hash, data file hashes and the one command that regenerates every number.', gap: 'Industry papers quote ILT (e.g. “25 %”) without defining the baseline.', data: 'Volve + FORGE time logs, rig-state intervals', pages: 'S3 (ILT definition drawer, Reproduce panel) · S5 (method) · S4 tool kpi.ilt', api: 'GET /wells/{id}/ilt · GET /meta/repro', ms: 'M3, M5' },
+{ id: 'PR-2', name: 'Measured sensor ↔ report reconciliation', what: 'For every DDR-booked category, how many minutes the sensors actually show in each rig state (booked-vs-measured matrix). Reveals unreported reaming, flat time inside “drilling”, and connection time hidden in drilling rows.', gap: 'Papers “integrate” daily reports but never publish the disagreement rate.', data: 'Volve DDR XML + time logs; FORGE daily reports', pages: 'S2 (mismatch lane) · S3 (Booked vs measured) · S5 (field matrix)', api: 'GET /reconciliation?well= · GET /wells/{id}/mismatches', ms: 'M2c, M3, M5' },
+{ id: 'PR-3', name: 'Formation classification from surface data, honestly validated', what: 'Predict formation from surface drilling response (ROP, MSE, torque, d-exponent). Leave-one-well-out validation, calibrated probabilities, compared against a depth-only baseline; abstains when uncertain.', gap: 'Abstract claims “auto-detect formation” with no validation scheme or metric.', data: 'Volve formation tops (labels), depth logs, mud logs', pages: 'S6 (predicted vs picked track, model card) · S5 (model card summary)', api: 'GET /models/formation/card · GET /wells/{id}/formation-pred', ms: 'M7 (P1)' },
+{ id: 'PR-4', name: 'Event retrieval + precursor signatures (not a predictor)', what: 'Stuck pipe, losses, tight hole extracted from DDR narratives, geolocated, and shown with the 2–6 h of hookload / torque / SPP before each event against a normal baseline. Explicitly not a risk score: too few events to validate one.', gap: 'Tree-ensemble stuck-pipe models published without hold-out metrics.', data: 'DDR narratives, time logs around events', pages: 'S6 (pins + precursor panel) · S7 (catalogue) · S2 (jump to window)', api: 'GET /issues · GET /issues/{id}/precursors', ms: 'M7–M8 (P1)' },
+{ id: 'PR-5', name: 'Verified copilot with ablations', what: 'Already in v0.1: tool-grounded answers, per-number verifier, provenance, trace, ablation table. v0.2 adds the positioning panel against industry practice.', gap: 'Neither paper has a language-model layer or an evaluation of one.', data: 'All of the above + gold question set', pages: 'S4 dock (all pages) · S5 (ablation, positioning)', api: 'POST /copilot/ask · GET /eval', ms: 'M4, M5' },
+{ id: 'PR-6', name: 'Physics next to statistics', what: 'Torque & drag friction-factor trend, MSE per bit run, trip speed vs surge/swab envelope — explainable checks that ML-only workflows lack.', gap: 'Purely data-driven workflows, no physics cross-check.', data: 'FORGE 16A survey + hookload, BHA records', pages: 'S9 · S10 · S11 (P2)', api: 'GET /wells/{id}/td · /mse · /tripenvelope', ms: 'P2' }
+],
+apis: [
+{ ep: 'GET /wells/{id}/ilt', ret: '{definition, baseline_method, by_category[], by_section[], by_day[], each value with evidence_id}', on: 'S3 · S4' },
+{ ep: 'GET /meta/repro', ret: '{git_commit, data_files[{path, sha256}], command, generated_at}', on: 'S3 · S5' },
+{ ep: 'GET /reconciliation?well', ret: 'Matrix: DDR code × sensor rig state → minutes, agreement %, tolerance used', on: 'S3 · S5' },
+{ ep: 'GET /models/formation/card', ret: 'Validation scheme, per-well accuracy, macro-F1, calibration bins, baseline scores, abstain rate', on: 'S5 · S6' },
+{ ep: 'GET /wells/{id}/formation-pred', ret: 'Depth intervals {md_top, md_base, label, p, abstained}', on: 'S6' },
+{ ep: 'GET /issues/{id}/precursors', ret: 'Channel windows before the event + baseline band from normal stands at similar depth', on: 'S6 · S7' },
+{ ep: 'GET /wells/{id}/sections', ret: 'Hole sections and casing shoes (from v0.1 gaps)', on: 'S2 · S3 · S6' },
+{ ep: 'GET /wells/{id}/depthtime', ret: 'Bit and hole depth vs time (from v0.1 gaps)', on: 'S2 · S6' }
+],
+fmap: [
+{ fn: 'Well table, coverage matrix, QC score, confidence', home: 'S1 Field', also: 'S5 (QC detail)', s: 'COMP', p: 'P0' },
+{ fn: 'Depth-vs-time with sections and casing', home: 'S2 Workspace', also: '—', s: 'COMP', p: 'P0' },
+{ fn: 'Rig-state ribbon + legend', home: 'S2 Workspace', also: 'S8 Replay', s: 'COMP', p: 'P0' },
+{ fn: 'Sensor tracks, linked cursor, zoom, gap hatching', home: 'S2 Workspace', also: 'S6 (depth tracks)', s: 'COMP', p: 'P0' },
+{ fn: 'DDR lane + mismatch popover (PR-2)', home: 'S2 Workspace', also: '—', s: 'COMP', p: 'P0' },
+{ fn: 'KPI cards, distributions, composite best, waterfall', home: 'S3 Performance', also: 'S4 answers', s: 'COMP', p: 'P0' },
+{ fn: 'ILT definition drawer + Reproduce panel (PR-1)', home: 'S3 Performance', also: 'S5 Trust', s: 'NEW v0.2', p: 'P0' },
+{ fn: 'Booked vs measured per category (PR-2)', home: 'S3 Performance', also: 'S5 field matrix', s: 'NEW v0.2', p: 'P0' },
+{ fn: 'Copilot answer card, provenance, verifier, trace', home: 'S4 dock', also: 'every page', s: 'COMP', p: 'P0' },
+{ fn: 'Insufficient-data answer card', home: 'S4 dock', also: 'every page', s: 'SPEC', p: 'P0' },
+{ fn: 'QC per well, rig-state agreement, ablation, limits', home: 'S5 Trust', also: '—', s: 'COMP', p: 'P0' },
+{ fn: 'Reconciliation matrix, field level (PR-2)', home: 'S5 Trust', also: '—', s: 'NEW v0.2', p: 'P0' },
+{ fn: 'Positioning vs industry practice', home: 'S5 Trust', also: '—', s: 'NEW v0.2', p: 'P0' },
+{ fn: 'Model card summary (PR-3)', home: 'S5 Trust', also: 'S6', s: 'NEW v0.2', p: 'P1' },
+{ fn: 'Formation tops, lithology, ROP, MSE, d-exp, ECD', home: 'S6 Formation', also: '—', s: 'NEW v0.2', p: 'P1' },
+{ fn: 'Predicted vs picked formation track (PR-3)', home: 'S6 Formation', also: 'S5 card', s: 'NEW v0.2', p: 'P1' },
+{ fn: 'Event pins + precursor signatures (PR-4)', home: 'S6 Formation', also: 'S7, S2 jump', s: 'NEW v0.2', p: 'P1' },
+{ fn: 'Offset comparison + Generate formation brief', home: 'S6 Formation', also: 'S4', s: 'NEW v0.2', p: 'P1' },
+{ fn: 'Issue catalogue + summary by formation/type', home: 'S7 Issues', also: 'S6 pins', s: 'SPEC', p: 'P1' },
+{ fn: 'Replay 1×/10×/60×, live alerts, event log', home: 'S8 in S2', also: '—', s: 'SPEC', p: 'P1' },
+{ fn: 'Torque & drag broomstick (PR-6)', home: 'S9', also: '—', s: 'SPEC', p: 'P2' },
+{ fn: 'MSE per bit run (PR-6)', home: 'S10', also: 'S6 MSE track', s: 'SPEC', p: 'P2' },
+{ fn: 'Trip-speed envelope (PR-6)', home: 'S11', also: 'S3 tripping KPI', s: 'SPEC', p: 'P2' }
+].map((r) => ({ ...r, st: r.s === 'COMP' ? 'background:#123826;color:#6FF0B4' : r.s === 'SPEC' ? 'background:#1B2633;color:#A9B6C3' : 'background:#2A2112;color:#F5C46B' }))
+};
+}
+}
+</script>
+</body>
+</html>

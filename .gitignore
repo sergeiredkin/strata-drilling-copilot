@@ -1,0 +1,14 @@
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+apps/web/dist/
+data/raw/
+data/interim/
+.env
+.env.*
+!.env.example
+.DS_Store
