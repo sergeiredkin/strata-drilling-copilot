@@ -1,0 +1,25 @@
+{
+  "ev_f4451d48fc": {
+    "generated_at": "2026-10-09T07:38:45.381587+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_f4451d48fc",
+    "params": {
+      "stat": "total",
+      "well": "15_9-F-5"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "kpi.ilt_breakdown",
+    "unit": "h",
+    "value": 4.341916666666667
+  }
+}

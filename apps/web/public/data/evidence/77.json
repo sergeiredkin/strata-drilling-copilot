@@ -1,0 +1,49 @@
+{
+  "ev_776b940ab0": {
+    "generated_at": "2026-10-09T07:38:45.380759+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_776b940ab0",
+    "params": {
+      "stat": "value",
+      "well": "15_9-F-5"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "kpi.trips",
+    "unit": "m/h",
+    "value": null
+  },
+  "ev_77ed42288c": {
+    "generated_at": "2026-10-09T07:38:44.962872+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_77ed42288c",
+    "params": {
+      "section": "8\u00bd",
+      "stat": "total",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "kpi.ilt_breakdown",
+    "unit": "h",
+    "value": 14.958333333333337
+  }
+}

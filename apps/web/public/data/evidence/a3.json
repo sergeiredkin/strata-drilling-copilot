@@ -1,0 +1,98 @@
+{
+  "ev_a31edc23be": {
+    "generated_at": "2026-10-09T07:38:44.974475+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_a31edc23be",
+    "params": {
+      "code": "DRILL",
+      "state": "unknown",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "recon.matrix",
+    "unit": "min",
+    "value": 13.100000000000001
+  },
+  "ev_a3da39fdea": {
+    "generated_at": "2026-10-09T07:38:45.381500+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_a3da39fdea",
+    "params": {
+      "category": "connections",
+      "section": "8\u00bd",
+      "well": "15_9-F-5"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "kpi.ilt_breakdown",
+    "unit": "h",
+    "value": 3.122194444444445
+  },
+  "ev_a3db8a7e69": {
+    "generated_at": "2026-10-09T07:38:45.384611+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_a3db8a7e69",
+    "params": {
+      "code": "DRILL",
+      "state": "out_of_hole",
+      "well": "15_9-F-5"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "recon.matrix",
+    "unit": "min",
+    "value": 0.0
+  },
+  "ev_a3e646ad20": {
+    "generated_at": "2026-10-09T07:38:45.384529+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_a3e646ad20",
+    "params": {
+      "code": "DRILL",
+      "state": "rotary_drilling",
+      "well": "15_9-F-5"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "recon.matrix",
+    "unit": "min",
+    "value": 1147.9666666666667
+  }
+}

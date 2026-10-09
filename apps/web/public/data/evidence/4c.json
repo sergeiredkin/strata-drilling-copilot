@@ -1,0 +1,48 @@
+{
+  "ev_4c6900f734": {
+    "generated_at": "2026-10-09T07:38:45.378973+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_4c6900f734",
+    "params": {
+      "row": 79,
+      "well": "15_9-F-5"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "recon.mismatch",
+    "unit": "min",
+    "value": 3.533333333333333
+  },
+  "ev_4cc955286d": {
+    "generated_at": "2026-10-09T07:38:45.379342+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_4cc955286d",
+    "params": {
+      "row": 127,
+      "well": "15_9-F-5"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "recon.mismatch",
+    "unit": "min",
+    "value": 5.066666666666666
+  }
+}

@@ -1,0 +1,662 @@
+{
+  "generated_at": "2026-10-09T07:38:45.783049+00:00",
+  "wells": [
+    {
+      "confidence": {
+        "level": "high",
+        "reason": "coverage of all 6 data types is full or near-full with few gaps.",
+        "rule_ids": [
+          "C1"
+        ]
+      },
+      "coverage": [
+        {
+          "kind": "time_logs",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "depth_logs",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "daily_reports",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "formation_tops",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "survey",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "mud",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        }
+      ],
+      "field": "Volve",
+      "id": "15_9-F-11_A",
+      "is_mock": true,
+      "md_range": [
+        0,
+        3750
+      ],
+      "name": "15/9-F-11 A",
+      "qc_score": {
+        "evidence_id": "ev_a8006fed4f",
+        "precision": 2,
+        "unit": "1",
+        "value": 0.91
+      },
+      "sections": [
+        "26",
+        "17\u00bd",
+        "12\u00bc",
+        "8\u00bd"
+      ],
+      "years": "2008\u20132016"
+    },
+    {
+      "confidence": {
+        "level": "high",
+        "reason": "coverage of all 6 data types is full or near-full with few gaps.",
+        "rule_ids": [
+          "C1"
+        ]
+      },
+      "coverage": [
+        {
+          "kind": "time_logs",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "depth_logs",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "daily_reports",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "formation_tops",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "partial"
+        },
+        {
+          "kind": "survey",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "mud",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        }
+      ],
+      "field": "Volve",
+      "id": "15_9-F-15_D",
+      "is_mock": true,
+      "md_range": [
+        0,
+        4090
+      ],
+      "name": "15/9-F-15 D",
+      "qc_score": {
+        "evidence_id": "ev_b12a5099ec",
+        "precision": 2,
+        "unit": "1",
+        "value": 0.84
+      },
+      "sections": [
+        "17\u00bd",
+        "12\u00bc",
+        "8\u00bd"
+      ],
+      "years": "2008\u20132016"
+    },
+    {
+      "confidence": {
+        "level": "medium",
+        "reason": "some data types are partial, which reduces certainty.",
+        "rule_ids": [
+          "C1"
+        ]
+      },
+      "coverage": [
+        {
+          "kind": "time_logs",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "partial"
+        },
+        {
+          "kind": "depth_logs",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "daily_reports",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "formation_tops",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "survey",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "partial"
+        },
+        {
+          "kind": "mud",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        }
+      ],
+      "field": "Volve",
+      "id": "15_9-F-14",
+      "is_mock": true,
+      "md_range": [
+        0,
+        3730
+      ],
+      "name": "15/9-F-14",
+      "qc_score": {
+        "evidence_id": "ev_227a97a8a6",
+        "precision": 2,
+        "unit": "1",
+        "value": 0.72
+      },
+      "sections": [
+        "26",
+        "17\u00bd",
+        "12\u00bc",
+        "8\u00bd"
+      ],
+      "years": "2008\u20132016"
+    },
+    {
+      "confidence": {
+        "level": "medium",
+        "reason": "some data types are partial, which reduces certainty.",
+        "rule_ids": [
+          "C1"
+        ]
+      },
+      "coverage": [
+        {
+          "kind": "time_logs",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "partial"
+        },
+        {
+          "kind": "depth_logs",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "daily_reports",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "formation_tops",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "partial"
+        },
+        {
+          "kind": "survey",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "mud",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "partial"
+        }
+      ],
+      "field": "Volve",
+      "id": "15_9-F-12",
+      "is_mock": true,
+      "md_range": [
+        0,
+        3520
+      ],
+      "name": "15/9-F-12",
+      "qc_score": {
+        "evidence_id": "ev_1e112627dc",
+        "precision": 2,
+        "unit": "1",
+        "value": 0.66
+      },
+      "sections": [
+        "17\u00bd",
+        "12\u00bc",
+        "8\u00bd"
+      ],
+      "years": "2008\u20132016"
+    },
+    {
+      "confidence": {
+        "level": "low",
+        "reason": "multiple data types are partial or missing.",
+        "rule_ids": [
+          "C1"
+        ]
+      },
+      "coverage": [
+        {
+          "kind": "time_logs",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "partial"
+        },
+        {
+          "kind": "depth_logs",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "daily_reports",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "formation_tops",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "partial"
+        },
+        {
+          "kind": "survey",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "mud",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "none"
+        }
+      ],
+      "field": "Volve",
+      "id": "15_9-F-5",
+      "is_mock": true,
+      "md_range": [
+        0,
+        3680
+      ],
+      "name": "15/9-F-5",
+      "qc_score": {
+        "evidence_id": "ev_3292e889a8",
+        "precision": 2,
+        "unit": "1",
+        "value": 0.41
+      },
+      "sections": [
+        "12\u00bc",
+        "8\u00bd"
+      ],
+      "years": "2008\u20132016"
+    },
+    {
+      "confidence": {
+        "level": "low",
+        "reason": "multiple data types are partial or missing.",
+        "rule_ids": [
+          "C1"
+        ]
+      },
+      "coverage": [
+        {
+          "kind": "time_logs",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "none"
+        },
+        {
+          "kind": "depth_logs",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "daily_reports",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "partial"
+        },
+        {
+          "kind": "formation_tops",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "none"
+        },
+        {
+          "kind": "survey",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "partial"
+        },
+        {
+          "kind": "mud",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "none"
+        }
+      ],
+      "field": "Volve",
+      "id": "15_9-F-1_C",
+      "is_mock": true,
+      "md_range": [
+        0,
+        3680
+      ],
+      "name": "15/9-F-1 C",
+      "qc_score": {
+        "evidence_id": "ev_944b8eca42",
+        "precision": 2,
+        "unit": "1",
+        "value": 0.33
+      },
+      "sections": [
+        "8\u00bd"
+      ],
+      "years": "2008\u20132016"
+    },
+    {
+      "confidence": {
+        "level": "high",
+        "reason": "coverage of all 6 data types is full or near-full with few gaps.",
+        "rule_ids": [
+          "C1"
+        ]
+      },
+      "coverage": [
+        {
+          "kind": "time_logs",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "depth_logs",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "daily_reports",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "formation_tops",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "partial"
+        },
+        {
+          "kind": "survey",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "mud",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        }
+      ],
+      "field": "FORGE",
+      "id": "16A_78-32",
+      "is_mock": true,
+      "md_range": [
+        0,
+        3340
+      ],
+      "name": "16A(78)-32",
+      "qc_score": {
+        "evidence_id": "ev_19c2990c56",
+        "precision": 2,
+        "unit": "1",
+        "value": 0.82
+      },
+      "sections": [
+        "26",
+        "17\u00bd",
+        "12\u00bc",
+        "8\u00be"
+      ],
+      "years": "2020\u20132022"
+    },
+    {
+      "confidence": {
+        "level": "medium",
+        "reason": "some data types are partial, which reduces certainty.",
+        "rule_ids": [
+          "C1"
+        ]
+      },
+      "coverage": [
+        {
+          "kind": "time_logs",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "partial"
+        },
+        {
+          "kind": "depth_logs",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "daily_reports",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "formation_tops",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "none"
+        },
+        {
+          "kind": "survey",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "mud",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "partial"
+        }
+      ],
+      "field": "FORGE",
+      "id": "16B_78-32",
+      "is_mock": true,
+      "md_range": [
+        0,
+        3300
+      ],
+      "name": "16B(78)-32",
+      "qc_score": {
+        "evidence_id": "ev_c77377877b",
+        "precision": 2,
+        "unit": "1",
+        "value": 0.58
+      },
+      "sections": [
+        "17\u00bd",
+        "12\u00bc",
+        "8\u00be"
+      ],
+      "years": "2020\u20132022"
+    },
+    {
+      "confidence": {
+        "level": "low",
+        "reason": "multiple data types are partial or missing.",
+        "rule_ids": [
+          "C1"
+        ]
+      },
+      "coverage": [
+        {
+          "kind": "time_logs",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "none"
+        },
+        {
+          "kind": "depth_logs",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "daily_reports",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "partial"
+        },
+        {
+          "kind": "formation_tops",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "survey",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "none"
+        },
+        {
+          "kind": "mud",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "partial"
+        }
+      ],
+      "field": "FORGE",
+      "id": "58-32",
+      "is_mock": true,
+      "md_range": [
+        0,
+        2290
+      ],
+      "name": "58-32",
+      "qc_score": {
+        "evidence_id": "ev_2162085b52",
+        "precision": 2,
+        "unit": "1",
+        "value": 0.37
+      },
+      "sections": [
+        "17\u00bd",
+        "12\u00bc",
+        "8\u00be"
+      ],
+      "years": "2020\u20132022"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "ev_c589d7cd3d": {
+    "generated_at": "2026-10-09T07:38:45.381454+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_c589d7cd3d",
+    "params": {
+      "category": "connections",
+      "well": "15_9-F-5"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "kpi.ilt_breakdown",
+    "unit": "h",
+    "value": 3.122194444444445
+  },
+  "ev_c5ab4a9f3c": {
+    "generated_at": "2026-10-09T07:38:44.974670+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_c5ab4a9f3c",
+    "params": {
+      "code": "TRIP",
+      "state": "unknown",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "recon.matrix",
+    "unit": "min",
+    "value": 0.0
+  }
+}

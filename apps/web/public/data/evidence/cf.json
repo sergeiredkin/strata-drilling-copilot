@@ -1,0 +1,49 @@
+{
+  "ev_cfac00492b": {
+    "generated_at": "2026-10-09T07:38:44.962773+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_cfac00492b",
+    "params": {
+      "category": "connections",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "kpi.ilt_breakdown",
+    "unit": "h",
+    "value": 12.267777777777782
+  },
+  "ev_cfe039c0e1": {
+    "generated_at": "2026-10-09T07:38:45.381527+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_cfe039c0e1",
+    "params": {
+      "category": "unreported_reaming",
+      "section": "8\u00bd",
+      "well": "15_9-F-5"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "kpi.ilt_breakdown",
+    "unit": "h",
+    "value": 0.31
+  }
+}

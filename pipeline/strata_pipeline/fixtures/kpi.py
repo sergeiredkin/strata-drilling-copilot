@@ -309,3 +309,78 @@ def compute_mismatches(detail: WellDetail, reg: EvidenceRegistry) -> list[dict[s
         flush(core_t1)
 
     return mismatches
+
+
+ALL_RIG_STATES = [
+    "rotary_drilling", "sliding", "connection", "trip_in", "trip_out",
+    "reaming", "circulating", "out_of_hole", "unknown",
+]
+
+
+def compute_reconciliation(detail: WellDetail, reg: EvidenceRegistry) -> dict[str, Any]:
+    """Minutes of each measured rig state within each DDR code's row windows (minus the
+    ±5 min boundary slack), per `07_DATA_AND_ALGORITHMS.md` §7."""
+    well = detail.spec.id
+    boundary_slack_ms = 5 * 60 * 1000
+    codes = sorted({r[2] for r in detail.ddr_rows})
+    minutes_by: dict[str, dict[str, float]] = {code: dict.fromkeys(ALL_RIG_STATES, 0.0) for code in codes}
+    row_total_min: dict[str, float] = dict.fromkeys(codes, 0.0)
+
+    for t0, t1, code, *_rest in detail.ddr_rows:
+        core_t0, core_t1 = t0 + boundary_slack_ms, t1 - boundary_slack_ms
+        if core_t1 <= core_t0:
+            continue
+        row_total_min[code] += (core_t1 - core_t0) / 60_000.0
+        for s in detail.state_intervals:
+            ov0, ov1 = max(s[0], core_t0), min(s[1], core_t1)
+            if ov1 > ov0:
+                minutes_by[code][s[2]] += (ov1 - ov0) / 60_000.0
+
+    def cell_minutes(code: str, state: str) -> dict[str, Any]:
+        return reg.quantity(
+            "recon.matrix", {"well": well, "code": code, "state": state}, minutes_by[code][state], "min", _SOURCE, 1
+        )
+
+    cells = [
+        [
+            {
+                "minutes": cell_minutes(code, state),
+                "pct": round(minutes_by[code][state] / row_total_min[code] * 100, 1) if row_total_min[code] else 0.0,
+            }
+            for state in ALL_RIG_STATES
+        ]
+        for code in codes
+    ]
+
+    agreement: list[dict[str, Any]] = []
+    for code in codes:
+        expected = CODE_EXPECTED.get(code)
+        if not expected or row_total_min[code] == 0:
+            continue
+        agree_min = sum(minutes_by[code][s] for s in expected)
+        agree_pct = agree_min / row_total_min[code] * 100
+        pct_q = reg.quantity("recon.agreement", {"well": well, "code": code}, agree_pct, "%", _SOURCE, 1)
+        agreement.append({"code": code, "pct": pct_q})
+
+    weighted_total = sum(row_total_min[a["code"]] for a in agreement)
+    well_agreement_pct = (
+        sum(a["pct"]["value"] * row_total_min[a["code"]] for a in agreement) / weighted_total
+        if weighted_total
+        else None
+    )
+    per_well = []
+    if well_agreement_pct is not None:
+        overall_q = reg.quantity(
+            "recon.agreement", {"well": well, "stat": "overall"}, well_agreement_pct, "%", _SOURCE, 1
+        )
+        per_well.append({"well": well, "agreement": overall_q})
+
+    return {
+        "scope": well,
+        "rows": codes,
+        "cols": ALL_RIG_STATES,
+        "cells": cells,
+        "agreement": agreement,
+        "per_well": per_well,
+        "tolerance": {"boundary_slack_min": 5, "min_duration_min": 2},
+    }

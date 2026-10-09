@@ -1,0 +1,49 @@
+{
+  "ev_0d73009b0c": {
+    "generated_at": "2026-10-09T07:38:45.639873+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_0d73009b0c",
+    "params": {
+      "code": "DRILL",
+      "well": "16A_78-32"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "recon.agreement",
+    "unit": "%",
+    "value": 96.8402777777778
+  },
+  "ev_0dbef28eec": {
+    "generated_at": "2026-10-09T07:38:45.384548+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_0dbef28eec",
+    "params": {
+      "code": "DRILL",
+      "state": "sliding",
+      "well": "15_9-F-5"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "recon.matrix",
+    "unit": "min",
+    "value": 0.0
+  }
+}

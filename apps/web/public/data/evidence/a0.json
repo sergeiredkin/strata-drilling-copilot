@@ -1,0 +1,49 @@
+{
+  "ev_a08a715c52": {
+    "generated_at": "2026-10-09T07:38:44.960533+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_a08a715c52",
+    "method_note": "composite best = P90 per KPI per section",
+    "params": {
+      "stat": "p90",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "kpi.trips",
+    "unit": "m/h",
+    "value": 6886.95652173913
+  },
+  "ev_a0ae3018c6": {
+    "generated_at": "2026-10-09T07:38:45.378618+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_a0ae3018c6",
+    "params": {
+      "row": 39,
+      "well": "15_9-F-5"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "recon.mismatch",
+    "unit": "min",
+    "value": 2.7333333333333334
+  }
+}

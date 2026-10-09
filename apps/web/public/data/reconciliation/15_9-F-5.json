@@ -1,0 +1,128 @@
+{
+  "agreement": [
+    {
+      "code": "DRILL",
+      "pct": {
+        "evidence_id": "ev_dc26df1317",
+        "precision": 1,
+        "unit": "%",
+        "value": 97.11342592592594
+      }
+    }
+  ],
+  "cells": [
+    [
+      {
+        "minutes": {
+          "evidence_id": "ev_a3e646ad20",
+          "precision": 1,
+          "unit": "min",
+          "value": 1147.9666666666667
+        },
+        "pct": 79.7
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_0dbef28eec",
+          "precision": 1,
+          "unit": "min",
+          "value": 0.0
+        },
+        "pct": 0.0
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_94bf4e3297",
+          "precision": 1,
+          "unit": "min",
+          "value": 250.46666666666673
+        },
+        "pct": 17.4
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_e07b3b66f2",
+          "precision": 1,
+          "unit": "min",
+          "value": 0.0
+        },
+        "pct": 0.0
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_0e00d4f69e",
+          "precision": 1,
+          "unit": "min",
+          "value": 0.0
+        },
+        "pct": 0.0
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_ee27f477b8",
+          "precision": 1,
+          "unit": "min",
+          "value": 10.916666666666666
+        },
+        "pct": 0.8
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_ff481a2694",
+          "precision": 1,
+          "unit": "min",
+          "value": 30.65
+        },
+        "pct": 2.1
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_a3db8a7e69",
+          "precision": 1,
+          "unit": "min",
+          "value": 0.0
+        },
+        "pct": 0.0
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_0145e05e24",
+          "precision": 1,
+          "unit": "min",
+          "value": 8.0
+        },
+        "pct": 0.6
+      }
+    ]
+  ],
+  "cols": [
+    "rotary_drilling",
+    "sliding",
+    "connection",
+    "trip_in",
+    "trip_out",
+    "reaming",
+    "circulating",
+    "out_of_hole",
+    "unknown"
+  ],
+  "per_well": [
+    {
+      "agreement": {
+        "evidence_id": "ev_21b5080c41",
+        "precision": 1,
+        "unit": "%",
+        "value": 97.11342592592594
+      },
+      "well": "15_9-F-5"
+    }
+  ],
+  "rows": [
+    "DRILL"
+  ],
+  "scope": "15_9-F-5",
+  "tolerance": {
+    "boundary_slack_min": 5,
+    "min_duration_min": 2
+  }
+}

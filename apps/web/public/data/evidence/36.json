@@ -1,0 +1,49 @@
+{
+  "ev_361265ba19": {
+    "generated_at": "2026-10-09T07:38:45.639840+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_361265ba19",
+    "params": {
+      "code": "DRILL",
+      "state": "circulating",
+      "well": "16A_78-32"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "recon.matrix",
+    "unit": "min",
+    "value": 30.43333333333333
+  },
+  "ev_36425f0547": {
+    "generated_at": "2026-10-09T07:38:44.959588+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_36425f0547",
+    "params": {
+      "stat": "q3",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "kpi.connection_times",
+    "unit": "min",
+    "value": 12.228333333333333
+  }
+}

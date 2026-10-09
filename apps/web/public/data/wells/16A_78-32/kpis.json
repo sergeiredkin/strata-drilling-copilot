@@ -1,0 +1,426 @@
+{
+  "cards": [
+    {
+      "best": {
+        "evidence_id": "ev_cef1160074",
+        "precision": 2,
+        "unit": "min",
+        "value": 3.6166666666666667
+      },
+      "confidence": {
+        "level": "high",
+        "reason": "sample size is 101",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "kpi": "conn_s2s",
+      "value": {
+        "evidence_id": "ev_2ef2c6b6d3",
+        "precision": 2,
+        "unit": "min",
+        "value": 5.533333333333333
+      }
+    },
+    {
+      "best": {
+        "evidence_id": "ev_cef1160074",
+        "precision": 2,
+        "unit": "min",
+        "value": 4.159166666666667
+      },
+      "confidence": {
+        "level": "high",
+        "reason": "sample size is 101",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "kpi": "conn_w2w",
+      "value": {
+        "evidence_id": "ev_2ef2c6b6d3",
+        "precision": 2,
+        "unit": "min",
+        "value": 6.363333333333332
+      }
+    },
+    {
+      "best": null,
+      "confidence": {
+        "level": "insufficient",
+        "reason": "sample size is 0",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "kpi": "trip_in_open",
+      "value": {
+        "evidence_id": "ev_18e57f90bc",
+        "unit": "m/h",
+        "value": null
+      }
+    },
+    {
+      "best": null,
+      "confidence": {
+        "level": "insufficient",
+        "reason": "sample size is 0",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "kpi": "trip_out_open",
+      "value": {
+        "evidence_id": "ev_18e57f90bc",
+        "unit": "m/h",
+        "value": null
+      }
+    },
+    {
+      "best": null,
+      "confidence": {
+        "level": "insufficient",
+        "reason": "sample size is 0",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "kpi": "trip_in_cased",
+      "value": {
+        "evidence_id": "ev_28c663bf8c",
+        "unit": "m/h",
+        "value": null
+      }
+    },
+    {
+      "best": null,
+      "confidence": {
+        "level": "insufficient",
+        "reason": "sample size is 0",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "kpi": "trip_out_cased",
+      "value": {
+        "evidence_id": "ev_8361d40c06",
+        "unit": "m/h",
+        "value": null
+      }
+    },
+    {
+      "best": null,
+      "confidence": {
+        "level": "high",
+        "reason": "sample size is 239",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "kpi": "flat_time_pct",
+      "value": {
+        "evidence_id": "ev_05d6d852ce",
+        "precision": 1,
+        "unit": "%",
+        "value": 2.972222222222222
+      }
+    },
+    {
+      "best": null,
+      "confidence": {
+        "level": "high",
+        "reason": "sample size is 239",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "kpi": "on_bottom_pct",
+      "value": {
+        "evidence_id": "ev_9b9650682c",
+        "precision": 1,
+        "unit": "%",
+        "value": 76.46006944444446
+      }
+    }
+  ],
+  "confidence": {
+    "level": "high",
+    "reason": "sample size is 101",
+    "rule_ids": [
+      "C2"
+    ]
+  },
+  "distributions": [
+    {
+      "dist": {
+        "composite_best": {
+          "evidence_id": "ev_cef1160074",
+          "precision": 2,
+          "unit": "min",
+          "value": 3.6166666666666667
+        },
+        "max": {
+          "evidence_id": "ev_8f8acea218",
+          "precision": 2,
+          "unit": "min",
+          "value": 14.9
+        },
+        "median": {
+          "evidence_id": "ev_2ef2c6b6d3",
+          "precision": 2,
+          "unit": "min",
+          "value": 5.533333333333333
+        },
+        "min": {
+          "evidence_id": "ev_671c5c9805",
+          "precision": 2,
+          "unit": "min",
+          "value": 3.1666666666666665
+        },
+        "n": 101,
+        "outliers": [
+          {
+            "t0": 0,
+            "t1": 0,
+            "value": {
+              "evidence_id": "ev_cce6b06508",
+              "precision": 2,
+              "unit": "min",
+              "value": 14.85
+            }
+          },
+          {
+            "t0": 0,
+            "t1": 0,
+            "value": {
+              "evidence_id": "ev_cce6b06508",
+              "precision": 2,
+              "unit": "min",
+              "value": 13.183333333333334
+            }
+          },
+          {
+            "t0": 0,
+            "t1": 0,
+            "value": {
+              "evidence_id": "ev_cce6b06508",
+              "precision": 2,
+              "unit": "min",
+              "value": 11.216666666666667
+            }
+          },
+          {
+            "t0": 0,
+            "t1": 0,
+            "value": {
+              "evidence_id": "ev_cce6b06508",
+              "precision": 2,
+              "unit": "min",
+              "value": 14.35
+            }
+          },
+          {
+            "t0": 0,
+            "t1": 0,
+            "value": {
+              "evidence_id": "ev_cce6b06508",
+              "precision": 2,
+              "unit": "min",
+              "value": 10.133333333333333
+            }
+          },
+          {
+            "t0": 0,
+            "t1": 0,
+            "value": {
+              "evidence_id": "ev_cce6b06508",
+              "precision": 2,
+              "unit": "min",
+              "value": 9.166666666666666
+            }
+          },
+          {
+            "t0": 0,
+            "t1": 0,
+            "value": {
+              "evidence_id": "ev_cce6b06508",
+              "precision": 2,
+              "unit": "min",
+              "value": 14.616666666666667
+            }
+          },
+          {
+            "t0": 0,
+            "t1": 0,
+            "value": {
+              "evidence_id": "ev_cce6b06508",
+              "precision": 2,
+              "unit": "min",
+              "value": 14.9
+            }
+          },
+          {
+            "t0": 0,
+            "t1": 0,
+            "value": {
+              "evidence_id": "ev_cce6b06508",
+              "precision": 2,
+              "unit": "min",
+              "value": 9.233333333333333
+            }
+          }
+        ],
+        "q1": {
+          "evidence_id": "ev_9e37a07d48",
+          "precision": 2,
+          "unit": "min",
+          "value": 4.483333333333333
+        },
+        "q3": {
+          "evidence_id": "ev_fb70e24f83",
+          "precision": 2,
+          "unit": "min",
+          "value": 6.283333333333333
+        }
+      },
+      "kpi": "conn_s2s",
+      "section": "8\u00be"
+    },
+    {
+      "dist": {
+        "composite_best": {
+          "evidence_id": "ev_cef1160074",
+          "precision": 2,
+          "unit": "min",
+          "value": 4.159166666666667
+        },
+        "max": {
+          "evidence_id": "ev_8f8acea218",
+          "precision": 2,
+          "unit": "min",
+          "value": 17.134999999999998
+        },
+        "median": {
+          "evidence_id": "ev_2ef2c6b6d3",
+          "precision": 2,
+          "unit": "min",
+          "value": 6.363333333333332
+        },
+        "min": {
+          "evidence_id": "ev_671c5c9805",
+          "precision": 2,
+          "unit": "min",
+          "value": 3.641666666666666
+        },
+        "n": 101,
+        "outliers": [
+          {
+            "t0": 0,
+            "t1": 0,
+            "value": {
+              "evidence_id": "ev_cce6b06508",
+              "precision": 2,
+              "unit": "min",
+              "value": 17.077499999999997
+            }
+          },
+          {
+            "t0": 0,
+            "t1": 0,
+            "value": {
+              "evidence_id": "ev_cce6b06508",
+              "precision": 2,
+              "unit": "min",
+              "value": 15.160833333333333
+            }
+          },
+          {
+            "t0": 0,
+            "t1": 0,
+            "value": {
+              "evidence_id": "ev_cce6b06508",
+              "precision": 2,
+              "unit": "min",
+              "value": 12.899166666666666
+            }
+          },
+          {
+            "t0": 0,
+            "t1": 0,
+            "value": {
+              "evidence_id": "ev_cce6b06508",
+              "precision": 2,
+              "unit": "min",
+              "value": 16.502499999999998
+            }
+          },
+          {
+            "t0": 0,
+            "t1": 0,
+            "value": {
+              "evidence_id": "ev_cce6b06508",
+              "precision": 2,
+              "unit": "min",
+              "value": 11.653333333333332
+            }
+          },
+          {
+            "t0": 0,
+            "t1": 0,
+            "value": {
+              "evidence_id": "ev_cce6b06508",
+              "precision": 2,
+              "unit": "min",
+              "value": 10.541666666666664
+            }
+          },
+          {
+            "t0": 0,
+            "t1": 0,
+            "value": {
+              "evidence_id": "ev_cce6b06508",
+              "precision": 2,
+              "unit": "min",
+              "value": 16.809166666666666
+            }
+          },
+          {
+            "t0": 0,
+            "t1": 0,
+            "value": {
+              "evidence_id": "ev_cce6b06508",
+              "precision": 2,
+              "unit": "min",
+              "value": 17.134999999999998
+            }
+          },
+          {
+            "t0": 0,
+            "t1": 0,
+            "value": {
+              "evidence_id": "ev_cce6b06508",
+              "precision": 2,
+              "unit": "min",
+              "value": 10.618333333333332
+            }
+          }
+        ],
+        "q1": {
+          "evidence_id": "ev_9e37a07d48",
+          "precision": 2,
+          "unit": "min",
+          "value": 5.155833333333333
+        },
+        "q3": {
+          "evidence_id": "ev_fb70e24f83",
+          "precision": 2,
+          "unit": "min",
+          "value": 7.225833333333332
+        }
+      },
+      "kpi": "conn_w2w",
+      "section": "8\u00be"
+    }
+  ],
+  "well": "16A_78-32"
+}

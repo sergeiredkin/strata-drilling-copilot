@@ -1,0 +1,26 @@
+{
+  "ev_afbd97a0f0": {
+    "generated_at": "2026-10-09T07:38:44.974594+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_afbd97a0f0",
+    "params": {
+      "code": "TRIP",
+      "state": "trip_out",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "recon.matrix",
+    "unit": "min",
+    "value": 6.666666666666667
+  }
+}

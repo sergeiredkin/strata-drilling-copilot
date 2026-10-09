@@ -1,0 +1,36 @@
+{
+  "ev_05a3d1e4e3": {
+    "generated_at": "2026-10-09T07:38:45.783943+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_05a3d1e4e3",
+    "params": {
+      "well": "15_9-F-15_D"
+    },
+    "sources": [],
+    "tool": "qc.gaps",
+    "unit": "h",
+    "value": 0.0
+  },
+  "ev_05d6d852ce": {
+    "generated_at": "2026-10-09T07:38:45.636127+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_05d6d852ce",
+    "params": {
+      "well": "16A_78-32"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "kpi.flat_time",
+    "unit": "%",
+    "value": 2.972222222222222
+  }
+}

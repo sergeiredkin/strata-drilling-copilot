@@ -1,0 +1,73 @@
+{
+  "ev_8361d40c06": {
+    "generated_at": "2026-10-09T07:38:45.636113+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_8361d40c06",
+    "params": {
+      "stat": "trip_out_cased",
+      "well": "16A_78-32"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "kpi.trips",
+    "unit": "m/h",
+    "value": null
+  },
+  "ev_83ad53a23e": {
+    "generated_at": "2026-10-09T07:38:45.381518+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_83ad53a23e",
+    "params": {
+      "category": "flat_time",
+      "section": "8\u00bd",
+      "well": "15_9-F-5"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "kpi.ilt_breakdown",
+    "unit": "h",
+    "value": 0.909722222222222
+  },
+  "ev_83bb40791e": {
+    "generated_at": "2026-10-09T07:38:44.974433+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_83bb40791e",
+    "params": {
+      "code": "DRILL",
+      "state": "circulating",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "recon.matrix",
+    "unit": "min",
+    "value": 44.63333333333333
+  }
+}

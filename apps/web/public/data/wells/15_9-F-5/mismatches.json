@@ -1,0 +1,262 @@
+[
+  {
+    "ddr_activity_id": "ddr_15_9-F-5_16",
+    "ddr_code": "DRILL",
+    "duration": {
+      "evidence_id": "ev_ce3e5ac0f9",
+      "precision": 1,
+      "unit": "min",
+      "value": 4.433333333333334
+    },
+    "id": "mm_15_9-F-5_16_0",
+    "overlap_pct": 22.2,
+    "sensor_p": 0.85,
+    "sensor_state": "circulating",
+    "t0": 1700019834000.0,
+    "t1": 1700020100000.0,
+    "tolerance": {
+      "boundary_slack_min": 5,
+      "min_duration_min": 2
+    }
+  },
+  {
+    "ddr_activity_id": "ddr_15_9-F-5_34",
+    "ddr_code": "DRILL",
+    "duration": {
+      "evidence_id": "ev_87f529b02c",
+      "precision": 1,
+      "unit": "min",
+      "value": 6.366666666666666
+    },
+    "id": "mm_15_9-F-5_34_1",
+    "overlap_pct": 31.8,
+    "sensor_p": 0.85,
+    "sensor_state": "unknown",
+    "t0": 1700041318000.0,
+    "t1": 1700041700000.0,
+    "tolerance": {
+      "boundary_slack_min": 5,
+      "min_duration_min": 2
+    }
+  },
+  {
+    "ddr_activity_id": "ddr_15_9-F-5_36",
+    "ddr_code": "DRILL",
+    "duration": {
+      "evidence_id": "ev_2a899bb9ba",
+      "precision": 1,
+      "unit": "min",
+      "value": 2.3
+    },
+    "id": "mm_15_9-F-5_36_2",
+    "overlap_pct": 11.5,
+    "sensor_p": 0.85,
+    "sensor_state": "circulating",
+    "t0": 1700043962000.0,
+    "t1": 1700044100000.0,
+    "tolerance": {
+      "boundary_slack_min": 5,
+      "min_duration_min": 2
+    }
+  },
+  {
+    "ddr_activity_id": "ddr_15_9-F-5_39",
+    "ddr_code": "DRILL",
+    "duration": {
+      "evidence_id": "ev_a0ae3018c6",
+      "precision": 1,
+      "unit": "min",
+      "value": 2.7333333333333334
+    },
+    "id": "mm_15_9-F-5_39_3",
+    "overlap_pct": 13.7,
+    "sensor_p": 0.85,
+    "sensor_state": "reaming",
+    "t0": 1700047264000.0,
+    "t1": 1700047428000.0,
+    "tolerance": {
+      "boundary_slack_min": 5,
+      "min_duration_min": 2
+    }
+  },
+  {
+    "ddr_activity_id": "ddr_15_9-F-5_46",
+    "ddr_code": "DRILL",
+    "duration": {
+      "evidence_id": "ev_693222a38b",
+      "precision": 1,
+      "unit": "min",
+      "value": 2.1333333333333333
+    },
+    "id": "mm_15_9-F-5_46_4",
+    "overlap_pct": 10.7,
+    "sensor_p": 0.85,
+    "sensor_state": "circulating",
+    "t0": 1700055972000.0,
+    "t1": 1700056100000.0,
+    "tolerance": {
+      "boundary_slack_min": 5,
+      "min_duration_min": 2
+    }
+  },
+  {
+    "ddr_activity_id": "ddr_15_9-F-5_61",
+    "ddr_code": "DRILL",
+    "duration": {
+      "evidence_id": "ev_6632f4063f",
+      "precision": 1,
+      "unit": "min",
+      "value": 4.166666666666667
+    },
+    "id": "mm_15_9-F-5_61_5",
+    "overlap_pct": 20.8,
+    "sensor_p": 0.85,
+    "sensor_state": "circulating",
+    "t0": 1700073807000.0,
+    "t1": 1700074057000.0,
+    "tolerance": {
+      "boundary_slack_min": 5,
+      "min_duration_min": 2
+    }
+  },
+  {
+    "ddr_activity_id": "ddr_15_9-F-5_69",
+    "ddr_code": "DRILL",
+    "duration": {
+      "evidence_id": "ev_8f003d7db0",
+      "precision": 1,
+      "unit": "min",
+      "value": 2.683333333333333
+    },
+    "id": "mm_15_9-F-5_69_6",
+    "overlap_pct": 13.4,
+    "sensor_p": 0.85,
+    "sensor_state": "reaming",
+    "t0": 1700083330000.0,
+    "t1": 1700083491000.0,
+    "tolerance": {
+      "boundary_slack_min": 5,
+      "min_duration_min": 2
+    }
+  },
+  {
+    "ddr_activity_id": "ddr_15_9-F-5_79",
+    "ddr_code": "DRILL",
+    "duration": {
+      "evidence_id": "ev_4c6900f734",
+      "precision": 1,
+      "unit": "min",
+      "value": 3.533333333333333
+    },
+    "id": "mm_15_9-F-5_79_7",
+    "overlap_pct": 17.7,
+    "sensor_p": 0.85,
+    "sensor_state": "circulating",
+    "t0": 1700095152000.0,
+    "t1": 1700095364000.0,
+    "tolerance": {
+      "boundary_slack_min": 5,
+      "min_duration_min": 2
+    }
+  },
+  {
+    "ddr_activity_id": "ddr_15_9-F-5_90",
+    "ddr_code": "DRILL",
+    "duration": {
+      "evidence_id": "ev_f0d37313a6",
+      "precision": 1,
+      "unit": "min",
+      "value": 2.25
+    },
+    "id": "mm_15_9-F-5_90_8",
+    "overlap_pct": 11.2,
+    "sensor_p": 0.85,
+    "sensor_state": "reaming",
+    "t0": 1700108300000.0,
+    "t1": 1700108435000.0,
+    "tolerance": {
+      "boundary_slack_min": 5,
+      "min_duration_min": 2
+    }
+  },
+  {
+    "ddr_activity_id": "ddr_15_9-F-5_90",
+    "ddr_code": "DRILL",
+    "duration": {
+      "evidence_id": "ev_f0d37313a6",
+      "precision": 1,
+      "unit": "min",
+      "value": 3.183333333333333
+    },
+    "id": "mm_15_9-F-5_90_9",
+    "overlap_pct": 15.9,
+    "sensor_p": 0.85,
+    "sensor_state": "circulating",
+    "t0": 1700108546000.0,
+    "t1": 1700108737000.0,
+    "tolerance": {
+      "boundary_slack_min": 5,
+      "min_duration_min": 2
+    }
+  },
+  {
+    "ddr_activity_id": "ddr_15_9-F-5_110",
+    "ddr_code": "DRILL",
+    "duration": {
+      "evidence_id": "ev_8c38696c2d",
+      "precision": 1,
+      "unit": "min",
+      "value": 5.55
+    },
+    "id": "mm_15_9-F-5_110_10",
+    "overlap_pct": 27.8,
+    "sensor_p": 0.85,
+    "sensor_state": "circulating",
+    "t0": 1700132564000.0,
+    "t1": 1700132897000.0,
+    "tolerance": {
+      "boundary_slack_min": 5,
+      "min_duration_min": 2
+    }
+  },
+  {
+    "ddr_activity_id": "ddr_15_9-F-5_127",
+    "ddr_code": "DRILL",
+    "duration": {
+      "evidence_id": "ev_4cc955286d",
+      "precision": 1,
+      "unit": "min",
+      "value": 5.066666666666666
+    },
+    "id": "mm_15_9-F-5_127_11",
+    "overlap_pct": 25.3,
+    "sensor_p": 0.85,
+    "sensor_state": "unknown",
+    "t0": 1700152883000.0,
+    "t1": 1700153187000.0,
+    "tolerance": {
+      "boundary_slack_min": 5,
+      "min_duration_min": 2
+    }
+  },
+  {
+    "ddr_activity_id": "ddr_15_9-F-5_140",
+    "ddr_code": "DRILL",
+    "duration": {
+      "evidence_id": "ev_de4f4d5be9",
+      "precision": 1,
+      "unit": "min",
+      "value": 3.216666666666667
+    },
+    "id": "mm_15_9-F-5_140_12",
+    "overlap_pct": 16.1,
+    "sensor_p": 0.85,
+    "sensor_state": "circulating",
+    "t0": 1700168300000.0,
+    "t1": 1700168493000.0,
+    "tolerance": {
+      "boundary_slack_min": 5,
+      "min_duration_min": 2
+    }
+  }
+]

@@ -1,0 +1,48 @@
+{
+  "ev_8f003d7db0": {
+    "generated_at": "2026-10-09T07:38:45.378890+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_8f003d7db0",
+    "params": {
+      "row": 69,
+      "well": "15_9-F-5"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "recon.mismatch",
+    "unit": "min",
+    "value": 2.683333333333333
+  },
+  "ev_8f8acea218": {
+    "generated_at": "2026-10-09T07:38:45.635958+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_8f8acea218",
+    "params": {
+      "stat": "max",
+      "well": "16A_78-32"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "kpi.connection_times",
+    "unit": "min",
+    "value": 17.134999999999998
+  }
+}

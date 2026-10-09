@@ -1,0 +1,72 @@
+{
+  "ev_f6302076c7": {
+    "generated_at": "2026-10-09T07:38:44.948625+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_f6302076c7",
+    "params": {
+      "row": 83,
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "recon.mismatch",
+    "unit": "min",
+    "value": 2.15
+  },
+  "ev_f65fc3eba3": {
+    "generated_at": "2026-10-09T07:38:45.636939+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_f65fc3eba3",
+    "params": {
+      "category": "unreported_reaming",
+      "section": "8\u00be",
+      "well": "16A_78-32"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "kpi.ilt_breakdown",
+    "unit": "h",
+    "value": 0.4005555555555556
+  },
+  "ev_f6b220611f": {
+    "generated_at": "2026-10-09T07:38:45.634380+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_f6b220611f",
+    "params": {
+      "row": 95,
+      "well": "16A_78-32"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "recon.mismatch",
+    "unit": "min",
+    "value": 2.2666666666666666
+  }
+}

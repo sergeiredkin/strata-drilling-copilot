@@ -6,6 +6,7 @@ Format: `04_DATA_CONTRACTS.md` §4. Levels: `03_ARCHITECTURE.md` §3.4.
 from __future__ import annotations
 
 import struct
+import warnings
 from pathlib import Path
 
 import numpy as np
@@ -52,7 +53,8 @@ def _downsample(
     mins2 = mins.reshape(-1, factor)
     maxs2 = maxs.reshape(-1, factor)
     all_nan_rows = np.all(np.isnan(mins2), axis=1)
-    with np.errstate(invalid="ignore", all="ignore"):
+    with warnings.catch_warnings(), np.errstate(invalid="ignore", all="ignore"):
+        warnings.simplefilter("ignore", category=RuntimeWarning)
         out_min = np.nanmin(mins2, axis=1)
         out_max = np.nanmax(maxs2, axis=1)
     out_min[all_nan_rows] = np.nan

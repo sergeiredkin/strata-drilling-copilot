@@ -1,0 +1,123 @@
+{
+  "booked_npt": {
+    "evidence_id": "ev_cb4bec088b",
+    "precision": 2,
+    "unit": "h",
+    "value": 0.0
+  },
+  "by_category": [
+    {
+      "category": "connections",
+      "hours": {
+        "evidence_id": "ev_c589d7cd3d",
+        "precision": 2,
+        "unit": "h",
+        "value": 3.122194444444445
+      }
+    },
+    {
+      "category": "trips",
+      "hours": {
+        "evidence_id": "ev_c18b2e5bed",
+        "precision": 2,
+        "unit": "h",
+        "value": 0.0
+      }
+    },
+    {
+      "category": "flat_time",
+      "hours": {
+        "evidence_id": "ev_129c5b22e5",
+        "precision": 2,
+        "unit": "h",
+        "value": 0.909722222222222
+      }
+    },
+    {
+      "category": "unreported_reaming",
+      "hours": {
+        "evidence_id": "ev_5b68cd7f73",
+        "precision": 2,
+        "unit": "h",
+        "value": 0.31
+      }
+    }
+  ],
+  "by_day": [
+    {
+      "coverage_pct": 99.7,
+      "date": "2015-06-01",
+      "hours": {
+        "evidence_id": "ev_bd56465418",
+        "precision": 2,
+        "unit": "h",
+        "value": 2.3036944444444445
+      }
+    },
+    {
+      "coverage_pct": 99.7,
+      "date": "2015-06-02",
+      "hours": {
+        "evidence_id": "ev_59409faafd",
+        "precision": 2,
+        "unit": "h",
+        "value": 2.038222222222222
+      }
+    }
+  ],
+  "by_section": [
+    {
+      "by_category": {
+        "connections": {
+          "evidence_id": "ev_a3da39fdea",
+          "precision": 2,
+          "unit": "h",
+          "value": 3.122194444444445
+        },
+        "flat_time": {
+          "evidence_id": "ev_83ad53a23e",
+          "precision": 2,
+          "unit": "h",
+          "value": 0.909722222222222
+        },
+        "trips": {
+          "evidence_id": "ev_396fe1987e",
+          "precision": 2,
+          "unit": "h",
+          "value": 0.0
+        },
+        "unreported_reaming": {
+          "evidence_id": "ev_cfe039c0e1",
+          "precision": 2,
+          "unit": "h",
+          "value": 0.31
+        }
+      },
+      "section": "8\u00bd",
+      "total": {
+        "evidence_id": "ev_84a6ffc581",
+        "precision": 2,
+        "unit": "h",
+        "value": 4.341916666666667
+      }
+    }
+  ],
+  "definition": {
+    "baseline": "composite_best",
+    "percentile": 10,
+    "text": "Invisible lost time is the excess of each connection/trip over the composite best (P10 of durations, or P90 of speeds) for its section, plus circulating or reaming time inside DDR rows coded DRILL/TRIP that the report does not call out."
+  },
+  "excluded_gap_hours": {
+    "evidence_id": "ev_4627651c9e",
+    "precision": 2,
+    "unit": "h",
+    "value": 0.0
+  },
+  "total": {
+    "evidence_id": "ev_f4451d48fc",
+    "precision": 2,
+    "unit": "h",
+    "value": 4.341916666666667
+  },
+  "well": "15_9-F-5"
+}

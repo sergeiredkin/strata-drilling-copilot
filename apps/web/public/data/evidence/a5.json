@@ -1,0 +1,25 @@
+{
+  "ev_a536b30bb2": {
+    "generated_at": "2026-10-09T07:38:45.634726+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_a536b30bb2",
+    "params": {
+      "row": 143,
+      "well": "16A_78-32"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "recon.mismatch",
+    "unit": "min",
+    "value": 2.3333333333333335
+  }
+}

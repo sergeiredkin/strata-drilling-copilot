@@ -1,0 +1,25 @@
+{
+  "ev_87f529b02c": {
+    "generated_at": "2026-10-09T07:38:45.378553+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_87f529b02c",
+    "params": {
+      "row": 34,
+      "well": "15_9-F-5"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "recon.mismatch",
+    "unit": "min",
+    "value": 6.366666666666666
+  }
+}

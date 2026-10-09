@@ -1,0 +1,143 @@
+{
+  "booked_npt": {
+    "evidence_id": "ev_4750e76b13",
+    "precision": 2,
+    "unit": "h",
+    "value": 0.0
+  },
+  "by_category": [
+    {
+      "category": "connections",
+      "hours": {
+        "evidence_id": "ev_cfac00492b",
+        "precision": 2,
+        "unit": "h",
+        "value": 12.267777777777782
+      }
+    },
+    {
+      "category": "trips",
+      "hours": {
+        "evidence_id": "ev_9a22e3d5e4",
+        "precision": 2,
+        "unit": "h",
+        "value": 0.0
+      }
+    },
+    {
+      "category": "flat_time",
+      "hours": {
+        "evidence_id": "ev_710c850f79",
+        "precision": 2,
+        "unit": "h",
+        "value": 1.0558333333333334
+      }
+    },
+    {
+      "category": "unreported_reaming",
+      "hours": {
+        "evidence_id": "ev_2e6adb72f6",
+        "precision": 2,
+        "unit": "h",
+        "value": 1.6347222222222217
+      }
+    }
+  ],
+  "by_day": [
+    {
+      "coverage_pct": 99.7,
+      "date": "2015-06-01",
+      "hours": {
+        "evidence_id": "ev_f98fcf6b76",
+        "precision": 2,
+        "unit": "h",
+        "value": 3.3763888888888887
+      }
+    },
+    {
+      "coverage_pct": 99.7,
+      "date": "2015-06-02",
+      "hours": {
+        "evidence_id": "ev_b37cb10c05",
+        "precision": 2,
+        "unit": "h",
+        "value": 3.707500000000001
+      }
+    },
+    {
+      "coverage_pct": 99.7,
+      "date": "2015-06-03",
+      "hours": {
+        "evidence_id": "ev_6c91a3a651",
+        "precision": 2,
+        "unit": "h",
+        "value": 4.604444444444445
+      }
+    },
+    {
+      "coverage_pct": 99.7,
+      "date": "2015-06-04",
+      "hours": {
+        "evidence_id": "ev_5af90c8063",
+        "precision": 2,
+        "unit": "h",
+        "value": 3.2700000000000022
+      }
+    }
+  ],
+  "by_section": [
+    {
+      "by_category": {
+        "connections": {
+          "evidence_id": "ev_16304e7b0f",
+          "precision": 2,
+          "unit": "h",
+          "value": 12.267777777777782
+        },
+        "flat_time": {
+          "evidence_id": "ev_74c8bf0146",
+          "precision": 2,
+          "unit": "h",
+          "value": 1.0558333333333334
+        },
+        "trips": {
+          "evidence_id": "ev_14341a2329",
+          "precision": 2,
+          "unit": "h",
+          "value": 0.0
+        },
+        "unreported_reaming": {
+          "evidence_id": "ev_e638e50a6e",
+          "precision": 2,
+          "unit": "h",
+          "value": 1.6347222222222217
+        }
+      },
+      "section": "8\u00bd",
+      "total": {
+        "evidence_id": "ev_77ed42288c",
+        "precision": 2,
+        "unit": "h",
+        "value": 14.958333333333337
+      }
+    }
+  ],
+  "definition": {
+    "baseline": "composite_best",
+    "percentile": 10,
+    "text": "Invisible lost time is the excess of each connection/trip over the composite best (P10 of durations, or P90 of speeds) for its section, plus circulating or reaming time inside DDR rows coded DRILL/TRIP that the report does not call out."
+  },
+  "excluded_gap_hours": {
+    "evidence_id": "ev_0a9d7a0411",
+    "precision": 2,
+    "unit": "h",
+    "value": 0.0
+  },
+  "total": {
+    "evidence_id": "ev_c835739e23",
+    "precision": 2,
+    "unit": "h",
+    "value": 14.958333333333337
+  },
+  "well": "15_9-F-11_A"
+}

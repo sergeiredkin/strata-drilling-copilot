@@ -1,0 +1,42 @@
+{
+  "ev_2162085b52": {
+    "generated_at": "2026-10-09T07:38:45.783039+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_2162085b52",
+    "params": {
+      "well": "58-32"
+    },
+    "sources": [
+      {
+        "file": "fixtures/wells.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "qc.score",
+    "unit": "1",
+    "value": 0.37
+  },
+  "ev_21b5080c41": {
+    "generated_at": "2026-10-09T07:38:45.384646+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_21b5080c41",
+    "params": {
+      "stat": "overall",
+      "well": "15_9-F-5"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "recon.agreement",
+    "unit": "%",
+    "value": 97.11342592592594
+  }
+}

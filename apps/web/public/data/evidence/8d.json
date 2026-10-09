@@ -1,0 +1,50 @@
+{
+  "ev_8d4e1c9abe": {
+    "generated_at": "2026-10-09T07:38:44.974538+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_8d4e1c9abe",
+    "params": {
+      "code": "TRIP",
+      "state": "sliding",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "recon.matrix",
+    "unit": "min",
+    "value": 0.0
+  },
+  "ev_8dc67ef62f": {
+    "generated_at": "2026-10-09T07:38:44.974452+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_8dc67ef62f",
+    "params": {
+      "code": "DRILL",
+      "state": "out_of_hole",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "recon.matrix",
+    "unit": "min",
+    "value": 0.0
+  }
+}

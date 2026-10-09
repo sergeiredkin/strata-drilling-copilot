@@ -1,0 +1,221 @@
+{
+  "agreement": [
+    {
+      "code": "DRILL",
+      "pct": {
+        "evidence_id": "ev_982bdb09e5",
+        "precision": 1,
+        "unit": "%",
+        "value": 96.95163170163168
+      }
+    },
+    {
+      "code": "TRIP",
+      "pct": {
+        "evidence_id": "ev_571827f8f9",
+        "precision": 1,
+        "unit": "%",
+        "value": 100.0
+      }
+    }
+  ],
+  "cells": [
+    [
+      {
+        "minutes": {
+          "evidence_id": "ev_50727a5977",
+          "precision": 1,
+          "unit": "min",
+          "value": 2077.383333333333
+        },
+        "pct": 72.6
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_2a9e43bf15",
+          "precision": 1,
+          "unit": "min",
+          "value": 0.0
+        },
+        "pct": 0.0
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_11879f9a24",
+          "precision": 1,
+          "unit": "min",
+          "value": 695.433333333333
+        },
+        "pct": 24.3
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_2b2dd36a12",
+          "precision": 1,
+          "unit": "min",
+          "value": 0.0
+        },
+        "pct": 0.0
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_496d4271e3",
+          "precision": 1,
+          "unit": "min",
+          "value": 2.5
+        },
+        "pct": 0.1
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_a93d78ae65",
+          "precision": 1,
+          "unit": "min",
+          "value": 40.05
+        },
+        "pct": 1.4
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_83bb40791e",
+          "precision": 1,
+          "unit": "min",
+          "value": 44.63333333333333
+        },
+        "pct": 1.6
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_8dc67ef62f",
+          "precision": 1,
+          "unit": "min",
+          "value": 0.0
+        },
+        "pct": 0.0
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_a31edc23be",
+          "precision": 1,
+          "unit": "min",
+          "value": 13.100000000000001
+        },
+        "pct": 0.5
+      }
+    ],
+    [
+      {
+        "minutes": {
+          "evidence_id": "ev_086efec503",
+          "precision": 1,
+          "unit": "min",
+          "value": 0.0
+        },
+        "pct": 0.0
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_8d4e1c9abe",
+          "precision": 1,
+          "unit": "min",
+          "value": 0.0
+        },
+        "pct": 0.0
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_cbaa698118",
+          "precision": 1,
+          "unit": "min",
+          "value": 0.0
+        },
+        "pct": 0.0
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_dece4f1750",
+          "precision": 1,
+          "unit": "min",
+          "value": 13.333333333333334
+        },
+        "pct": 66.7
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_afbd97a0f0",
+          "precision": 1,
+          "unit": "min",
+          "value": 6.666666666666667
+        },
+        "pct": 33.3
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_e571c81f29",
+          "precision": 1,
+          "unit": "min",
+          "value": 0.0
+        },
+        "pct": 0.0
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_c9aff5c250",
+          "precision": 1,
+          "unit": "min",
+          "value": 0.0
+        },
+        "pct": 0.0
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_49efe80b23",
+          "precision": 1,
+          "unit": "min",
+          "value": 0.0
+        },
+        "pct": 0.0
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_c5ab4a9f3c",
+          "precision": 1,
+          "unit": "min",
+          "value": 0.0
+        },
+        "pct": 0.0
+      }
+    ]
+  ],
+  "cols": [
+    "rotary_drilling",
+    "sliding",
+    "connection",
+    "trip_in",
+    "trip_out",
+    "reaming",
+    "circulating",
+    "out_of_hole",
+    "unknown"
+  ],
+  "per_well": [
+    {
+      "agreement": {
+        "evidence_id": "ev_1c2af05963",
+        "precision": 1,
+        "unit": "%",
+        "value": 96.97280092592591
+      },
+      "well": "15_9-F-11_A"
+    }
+  ],
+  "rows": [
+    "DRILL",
+    "TRIP"
+  ],
+  "scope": "15_9-F-11_A",
+  "tolerance": {
+    "boundary_slack_min": 5,
+    "min_duration_min": 2
+  }
+}

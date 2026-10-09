@@ -1,0 +1,14 @@
+{
+  "ev_6b5375fe40": {
+    "generated_at": "2026-10-09T07:38:45.783969+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_6b5375fe40",
+    "params": {
+      "well": "15_9-F-5"
+    },
+    "sources": [],
+    "tool": "qc.gaps",
+    "unit": "h",
+    "value": 0.13333333333333333
+  }
+}

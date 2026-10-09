@@ -1,0 +1,25 @@
+{
+  "ev_86beeef32c": {
+    "generated_at": "2026-10-09T07:38:45.636984+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_86beeef32c",
+    "params": {
+      "day": "2015-06-02",
+      "well": "16A_78-32"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "kpi.ilt_breakdown",
+    "unit": "h",
+    "value": 2.651944444444445
+  }
+}

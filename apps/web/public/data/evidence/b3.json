@@ -1,0 +1,25 @@
+{
+  "ev_b37cb10c05": {
+    "generated_at": "2026-10-09T07:38:44.962920+00:00",
+    "git_commit": "8f7144d453451c06e9b573071fbc6321a7ec779e",
+    "id": "ev_b37cb10c05",
+    "params": {
+      "day": "2015-06-02",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "channels": [
+          "HKLD",
+          "BPOS",
+          "WOB"
+        ],
+        "file": "fixtures/synth.py",
+        "sha256": "mock-fixture"
+      }
+    ],
+    "tool": "kpi.ilt_breakdown",
+    "unit": "h",
+    "value": 3.707500000000001
+  }
+}

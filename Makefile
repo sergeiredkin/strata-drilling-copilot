@@ -14,7 +14,7 @@ contracts-check: contracts
 		|| (echo "Generated contracts are stale — run 'make contracts' and commit." && exit 1)
 
 fixtures:
-	@echo "TODO (T1.2): uv run python -m strata_pipeline.fixtures.generate"
+	uv run --project pipeline python3 -m strata_pipeline.fixtures.generate
 
 web:
 	cd apps/web && pnpm dev

@@ -1,0 +1,198 @@
+{
+  "ablation": [
+    {
+      "config": "no_tools",
+      "metrics": {
+        "answer_correctness": null,
+        "correct_insufficient_pct": null,
+        "median_latency_s": null,
+        "numbers_verified_pct": null,
+        "unsupported_numbers": null
+      }
+    },
+    {
+      "config": "simple_rag",
+      "metrics": {
+        "answer_correctness": null,
+        "correct_insufficient_pct": null,
+        "median_latency_s": null,
+        "numbers_verified_pct": null,
+        "unsupported_numbers": null
+      }
+    },
+    {
+      "config": "full",
+      "metrics": {
+        "answer_correctness": null,
+        "correct_insufficient_pct": null,
+        "median_latency_s": null,
+        "numbers_verified_pct": null,
+        "unsupported_numbers": null
+      }
+    },
+    {
+      "config": "full_minus_physics",
+      "metrics": {
+        "answer_correctness": null,
+        "correct_insufficient_pct": null,
+        "median_latency_s": null,
+        "numbers_verified_pct": null,
+        "unsupported_numbers": null
+      }
+    }
+  ],
+  "gold_set": {
+    "author": "pending",
+    "n_questions": 0,
+    "status": "pending",
+    "version": "0.0"
+  },
+  "qc": [
+    {
+      "gap_hours": {
+        "evidence_id": "ev_4931b38841",
+        "precision": 2,
+        "unit": "h",
+        "value": 0.26666666666666666
+      },
+      "sentinels_removed": 0,
+      "spikes_removed": 0,
+      "unit_fixes": 0,
+      "well": "15_9-F-11_A"
+    },
+    {
+      "gap_hours": {
+        "evidence_id": "ev_05a3d1e4e3",
+        "precision": 2,
+        "unit": "h",
+        "value": 0.0
+      },
+      "sentinels_removed": 0,
+      "spikes_removed": 0,
+      "unit_fixes": 0,
+      "well": "15_9-F-15_D"
+    },
+    {
+      "gap_hours": {
+        "evidence_id": "ev_89c9ed3a5c",
+        "precision": 2,
+        "unit": "h",
+        "value": 0.0
+      },
+      "sentinels_removed": 0,
+      "spikes_removed": 0,
+      "unit_fixes": 0,
+      "well": "15_9-F-14"
+    },
+    {
+      "gap_hours": {
+        "evidence_id": "ev_1601b76aa6",
+        "precision": 2,
+        "unit": "h",
+        "value": 0.0
+      },
+      "sentinels_removed": 0,
+      "spikes_removed": 0,
+      "unit_fixes": 0,
+      "well": "15_9-F-12"
+    },
+    {
+      "gap_hours": {
+        "evidence_id": "ev_6b5375fe40",
+        "precision": 2,
+        "unit": "h",
+        "value": 0.13333333333333333
+      },
+      "sentinels_removed": 0,
+      "spikes_removed": 0,
+      "unit_fixes": 0,
+      "well": "15_9-F-5"
+    },
+    {
+      "gap_hours": {
+        "evidence_id": "ev_e57faef88c",
+        "precision": 2,
+        "unit": "h",
+        "value": 0.0
+      },
+      "sentinels_removed": 0,
+      "spikes_removed": 0,
+      "unit_fixes": 0,
+      "well": "15_9-F-1_C"
+    },
+    {
+      "gap_hours": {
+        "evidence_id": "ev_db8e00e4c4",
+        "precision": 2,
+        "unit": "h",
+        "value": 0.13333333333333333
+      },
+      "sentinels_removed": 0,
+      "spikes_removed": 0,
+      "unit_fixes": 0,
+      "well": "16A_78-32"
+    },
+    {
+      "gap_hours": {
+        "evidence_id": "ev_0b5df63e6f",
+        "precision": 2,
+        "unit": "h",
+        "value": 0.0
+      },
+      "sentinels_removed": 0,
+      "spikes_removed": 0,
+      "unit_fixes": 0,
+      "well": "16B_78-32"
+    },
+    {
+      "gap_hours": {
+        "evidence_id": "ev_bf29c50375",
+        "precision": 2,
+        "unit": "h",
+        "value": 0.0
+      },
+      "sentinels_removed": 0,
+      "spikes_removed": 0,
+      "unit_fixes": 0,
+      "well": "58-32"
+    }
+  ],
+  "rigstate_agreement": [
+    {
+      "agreement": null,
+      "well": "15_9-F-11_A"
+    },
+    {
+      "agreement": null,
+      "well": "15_9-F-15_D"
+    },
+    {
+      "agreement": null,
+      "well": "15_9-F-14"
+    },
+    {
+      "agreement": null,
+      "well": "15_9-F-12"
+    },
+    {
+      "agreement": null,
+      "well": "15_9-F-5"
+    },
+    {
+      "agreement": null,
+      "well": "15_9-F-1_C"
+    },
+    {
+      "agreement": null,
+      "well": "16A_78-32"
+    },
+    {
+      "agreement": null,
+      "well": "16B_78-32"
+    },
+    {
+      "agreement": null,
+      "well": "58-32"
+    }
+  ]
+}
