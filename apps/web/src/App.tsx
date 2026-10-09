@@ -1,3 +1,5 @@
+import { RouterProvider } from 'react-router-dom'
+import { router } from './app/router'
 import { TokensPage } from './dev/TokensPage'
 
 export function App() {
@@ -5,9 +7,5 @@ export function App() {
     return <TokensPage />
   }
 
-  return (
-    <div data-theme="dark" className="min-h-screen bg-bg text-text">
-      <p className="p-6">STRATA — scaffold (T0.1–T0.3). Shell arrives in T4.2.</p>
-    </div>
-  )
+  return <RouterProvider router={router} />
 }

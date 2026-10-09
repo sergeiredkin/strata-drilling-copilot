@@ -230,10 +230,10 @@ def _build_sessions(
     return [{"id": sid, "question": q, "answer": a} for sid, q, a in sessions]
 
 
-def _write_sessions(sessions: list[dict[str, Any]], well_id: str) -> None:
+def _write_sessions(sessions: list[dict[str, Any]], well_id: str, out_dir: Path) -> None:
     index_entries = []
     for s in sessions:
-        session_dir = OUT_DIR / "copilot" / "sessions"
+        session_dir = out_dir / "copilot" / "sessions"
         session_dir.mkdir(parents=True, exist_ok=True)
         events = [
             {"type": "start", "session_id": s["id"], "dt_ms": 0, "context": {"screen": "performance", "well": well_id}},
@@ -250,10 +250,10 @@ def _write_sessions(sessions: list[dict[str, Any]], well_id: str) -> None:
             "file": f"copilot/sessions/{s['id']}.jsonl",
             "recorded_at": datetime.now(UTC).isoformat(), "model": "fixture",
         })
-    _write_json(OUT_DIR / "copilot" / "sessions" / "index.json", {"sessions": index_entries})
+    _write_json(out_dir / "copilot" / "sessions" / "index.json", {"sessions": index_entries})
 
 
-def generate() -> None:
+def generate(out_dir: Path = OUT_DIR) -> None:
     reg = EvidenceRegistry(git_commit=_git_commit())
     well_summaries = []
     reconciliations: list[dict[str, Any]] = []
@@ -267,7 +267,7 @@ def generate() -> None:
             continue
 
         detail = synthesize_well(spec, seed=100 + i)
-        well_dir = OUT_DIR / "wells" / spec.id
+        well_dir = out_dir / "wells" / spec.id
 
         _write_json(well_dir / "sections.json", _build_sections(detail))
         _write_json(well_dir / "depthtime.json", _build_depthtime(detail))
@@ -284,7 +284,7 @@ def generate() -> None:
         _write_json(well_dir / "ilt.json", ilt)
 
         recon = compute_reconciliation(detail, reg)
-        _write_json(OUT_DIR / "reconciliation" / f"{spec.id}.json", recon)
+        _write_json(out_dir / "reconciliation" / f"{spec.id}.json", recon)
         reconciliations.append(recon)
 
         _export_series(detail, well_dir)
@@ -292,18 +292,18 @@ def generate() -> None:
         if spec.id == "15_9-F-11_A":
             well_a_detail, well_a_ilt, well_a_kpi = detail, ilt, kpis
 
-    _write_json(OUT_DIR / "wells.json", {"wells": well_summaries, "generated_at": datetime.now(UTC).isoformat()})
-    _write_json(OUT_DIR / "issues.json", [])
+    _write_json(out_dir / "wells.json", {"wells": well_summaries, "generated_at": datetime.now(UTC).isoformat()})
+    _write_json(out_dir / "issues.json", [])
 
     all_agreement = [a for r in reconciliations for a in r.get("per_well", [])]
-    _write_json(OUT_DIR / "reconciliation" / "all.json", {
+    _write_json(out_dir / "reconciliation" / "all.json", {
         "scope": "all", "rows": [], "cols": [], "cells": [], "agreement": [],
         "per_well": all_agreement, "tolerance": {"boundary_slack_min": 5, "min_duration_min": 2},
     })
 
     assert well_a_detail is not None and well_a_ilt is not None and well_a_kpi is not None
     sessions = _build_sessions(well_a_detail, well_a_ilt, well_a_kpi, reg)
-    _write_sessions(sessions, well_a_detail.spec.id)
+    _write_sessions(sessions, well_a_detail.spec.id, out_dir)
 
     qc_entries = []
     rigstate_agreement = []
@@ -321,7 +321,7 @@ def generate() -> None:
         })
         rigstate_agreement.append({"well": spec.id, "agreement": None})  # no gold labels yet (Sergei)
 
-    _write_json(OUT_DIR / "eval.json", {
+    _write_json(out_dir / "eval.json", {
         "qc": qc_entries,
         "rigstate_agreement": rigstate_agreement,
         "gold_set": {"n_questions": 0, "version": "0.0", "author": "pending", "status": "pending"},
@@ -334,18 +334,18 @@ def generate() -> None:
         ],
     })
 
-    reg.write_shards(OUT_DIR)
+    reg.write_shards(out_dir)
 
     data_files = []
-    for p in sorted(OUT_DIR.rglob("*")):
+    for p in sorted(out_dir.rglob("*")):
         if p.is_file():
             data = p.read_bytes()
             data_files.append({
-                "path": str(p.relative_to(OUT_DIR)),
+                "path": str(p.relative_to(out_dir)),
                 "sha256": hashlib.sha256(data).hexdigest(),
                 "bytes": len(data),
             })
-    _write_json(OUT_DIR / "repro.json", {
+    _write_json(out_dir / "repro.json", {
         "git_commit": reg.git_commit,
         "data_files": data_files,
         "command": "make fixtures",
