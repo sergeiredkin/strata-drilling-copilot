@@ -18,7 +18,7 @@
 - [x] T6.2 Plugins: gaps, sections, cursor
 - [x] T6.3 Depth-vs-time + overview brush
 - [x] T6.4 Ribbon, DDR lane, mismatches + popover
-- [ ] T6.5 S2 assembly
+- [x] T6.5 S2 assembly
 
 ## M2 Performance & Copilot (static)
 - [ ] T7.1 S3 KPI cards, distributions, waterfall, by section/day
