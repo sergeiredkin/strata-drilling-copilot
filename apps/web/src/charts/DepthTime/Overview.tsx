@@ -34,6 +34,10 @@ export function Overview({
     () => (sections.data ?? []).map((s) => ({ name: s.name, t0: s.t_start, t1: s.t_end })),
     [sections.data],
   )
+  // See RibbonTrack.tsx: the uPlot instance (and its plugin) is built once and never remounted
+  // on prop changes, so the plugin reads this ref rather than closing over sectionBands.
+  const sectionBandsRef = useRef(sectionBands)
+  sectionBandsRef.current = sectionBands
 
   const data: uPlot.AlignedData = useMemo(() => {
     if (!depthTime.data) return [[], []]
@@ -50,9 +54,9 @@ export function Overview({
       scales: { x: { time: false, range: () => fullRange }, y: { dir: -1, auto: true } },
       axes: [{ show: false }, { show: false }],
       series: [{}, { stroke: 'var(--text)', width: 1.5, points: { show: false }, spanGaps: false }],
-      plugins: [sectionsPlugin(() => sectionBands)],
+      plugins: [sectionsPlugin(() => sectionBandsRef.current)],
     }),
-    [fullRange, sectionBands],
+    [fullRange],
   )
 
   const uplotRef = useUplot(containerRef, { data, buildOptions, sync: undefined, fullRange, interactive: false })
@@ -60,6 +64,9 @@ export function Overview({
   useEffect(() => {
     uplotRef.current?.setData(data)
   }, [data, uplotRef])
+  useEffect(() => {
+    uplotRef.current?.redraw()
+  }, [sectionBands, uplotRef])
 
   const span = fullRange[1] - fullRange[0] || 1
   const leftPct = ((range[0] - fullRange[0]) / span) * 100
