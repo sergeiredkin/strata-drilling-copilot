@@ -75,6 +75,6 @@
 ## Needs Sergei (not agent work)
 - [ ] Rig-state gold labels (200 windows) → eval/rigstate_gold.csv
 - [ ] Copilot gold question set (≥ 25) → eval/gold/questions.yaml
-- [ ] TADI paper citation + summary for S5 (PDF received: `docs/references/TADI_PAPER_2605.00060v1.pdf` — summary/citation text still needed at T9.1)
+- [x] TADI paper citation + summary for S5 (written at T9.1 from `docs/references/TADI_PAPER_2605.00060v1.pdf`)
 - [ ] OnePetro PDFs of SPE-227235-MS and SPE-229231-MS before public positioning
 - [ ] Visual review of each screen against comps

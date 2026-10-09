@@ -125,6 +125,11 @@ export function useRepro() {
   return useQuery({ queryKey: ['repro'], queryFn: () => ds.repro() })
 }
 
+export function useModelCard(model: 'formation' | 'events') {
+  const ds = useDataSource()
+  return useQuery({ queryKey: ['modelCard', model], queryFn: () => ds.modelCard(model), retry: false })
+}
+
 /** Picks the right LOD level for [t0, t1) at `plotWidthPx`, fetches every chunk of every
  * requested channel that overlaps the window, and concatenates + decodes them (NaN -> null). */
 export function useSeriesWindow(

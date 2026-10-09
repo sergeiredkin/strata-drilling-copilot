@@ -5,6 +5,7 @@ import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { S1Field } from '../screens/S1Field/S1Field'
 import { S2Workspace } from '../screens/S2Workspace/S2Workspace'
 import { S3Performance } from '../screens/S3Performance/S3Performance'
+import { S5Trust } from '../screens/S5Trust/S5Trust'
 import { Placeholder } from './Placeholder'
 import { Shell } from './Shell'
 
@@ -22,7 +23,7 @@ export const router = createBrowserRouter([
       { path: 'well/:id/mse', element: <Placeholder name="S10 MSE" /> },
       { path: 'well/:id/trips', element: <Placeholder name="S11 Trip-speed envelope" /> },
       { path: 'issues', element: <Placeholder name="S7 Issue catalogue" /> },
-      { path: 'trust', element: <Placeholder name="S5 Trust" /> },
+      { path: 'trust', element: <S5Trust /> },
       { path: '*', element: <Navigate to="/field" replace /> },
     ],
   },
