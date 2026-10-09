@@ -9,7 +9,7 @@
 - [x] T1.3 STRS series pyramid writer + TS decoder
 - [x] T4.1 DataSource (Static/Http) + query hooks + session player
 - [x] T4.2 Stores, routing, URL sync, nav
-- [ ] T4.3 Units registry
+- [x] T4.3 Units registry
 - [ ] T4.4 Trust kit (Num, EvidencePopover, badges, InsufficientData)
 
 ## M1 Workspace
