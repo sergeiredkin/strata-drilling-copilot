@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom'
+import { CopilotDock } from '../copilot/CopilotDock'
 import { usePrefs } from '../state/prefs'
 import { useViewUrlSync } from '../state/useViewUrlSync'
 import { Nav } from './Nav'
@@ -11,6 +12,7 @@ export function Shell() {
     <div className="min-h-screen bg-bg text-text" data-theme={theme}>
       <Nav />
       <Outlet />
+      <CopilotDock />
     </div>
   )
 }

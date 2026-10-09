@@ -3,6 +3,7 @@
 // toggle.
 import { NavLink } from 'react-router-dom'
 import { usePrefs } from '../state/prefs'
+import { useView } from '../state/view'
 import { ModeBadge } from '../trust/ModeBadge'
 
 const LINKS = [
@@ -16,6 +17,8 @@ const LINKS = [
 export function Nav() {
   const units = usePrefs((s) => s.units)
   const toggleUnits = usePrefs((s) => s.toggleUnits)
+  const panel = useView((s) => s.panel)
+  const setPanel = useView((s) => s.setPanel)
 
   return (
     <nav
@@ -57,13 +60,16 @@ export function Nav() {
         </button>
         <button
           type="button"
-          disabled
-          className="min-h-9 rounded border px-3 text-dense text-text-3"
-          style={{ borderColor: 'var(--line)' }}
+          onClick={() => setPanel(panel === 'copilot' ? null : 'copilot')}
+          aria-pressed={panel === 'copilot'}
+          className="min-h-9 rounded border px-3 text-dense"
+          style={{
+            borderColor: panel === 'copilot' ? 'var(--accent)' : 'var(--line)',
+            color: panel === 'copilot' ? 'var(--text)' : 'var(--text-2)',
+          }}
           aria-label="Toggle copilot panel"
-          title="Copilot dock arrives in T8.1"
         >
-          Copilot
+          Copilot {panel === 'copilot' ? '●' : ''}
         </button>
       </div>
     </nav>
