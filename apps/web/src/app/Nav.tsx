@@ -1,10 +1,9 @@
 // Nav — docs/05_DESIGN_SYSTEM.md §6: 56px, brand "STRATA" condensed amber, links Field ·
 // Workspace · Performance · Formation · Trust; right side ModeBadge, units toggle, Copilot
-// toggle. ModeBadge is inlined here for now — T4.4 (trust kit) gives it its own component and
-// this import switches over then.
+// toggle.
 import { NavLink } from 'react-router-dom'
-import { isLiveMode } from '../data/createDataSource'
 import { usePrefs } from '../state/prefs'
+import { ModeBadge } from '../trust/ModeBadge'
 
 const LINKS = [
   { to: '/field', label: 'Field' },
@@ -13,22 +12,6 @@ const LINKS = [
   { to: '/well/15_9-F-11_A/formation', label: 'Formation' },
   { to: '/trust', label: 'Trust' },
 ]
-
-function ModeBadgeInline() {
-  const live = isLiveMode()
-  return (
-    <span
-      className="rounded border px-2 py-0.5 text-label font-mono uppercase tracking-wide"
-      style={{
-        borderColor: 'var(--line)',
-        color: live ? 'var(--ok)' : 'var(--mock-fg)',
-        background: live ? 'transparent' : 'var(--mock-bg)',
-      }}
-    >
-      {live ? 'Live' : 'Static mode'}
-    </span>
-  )
-}
 
 export function Nav() {
   const units = usePrefs((s) => s.units)
@@ -62,7 +45,7 @@ export function Nav() {
         </ul>
       </div>
       <div className="flex items-center gap-3">
-        <ModeBadgeInline />
+        <ModeBadge />
         <button
           type="button"
           onClick={toggleUnits}
