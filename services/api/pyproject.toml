@@ -1,0 +1,24 @@
+[project]
+name = "strata-api"
+version = "0.0.0"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115",
+  "sse-starlette>=2.1",
+  "uvicorn>=0.31",
+  "anthropic>=0.36",
+  "strata-pipeline",
+]
+
+[dependency-groups]
+dev = ["pytest>=8.3", "httpx>=0.27", "ruff>=0.6", "mypy>=1.11"]
+
+[tool.uv.sources]
+strata-pipeline = { workspace = true }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["strata_api"]

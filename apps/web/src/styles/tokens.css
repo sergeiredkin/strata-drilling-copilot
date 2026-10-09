@@ -1,0 +1,5 @@
+/* Design tokens — filled in T0.3 per docs/05_DESIGN_SYSTEM.md §2 */
+:root[data-theme='dark'] {
+  --bg: #0a0e13;
+  --text: #dce3ea;
+}
