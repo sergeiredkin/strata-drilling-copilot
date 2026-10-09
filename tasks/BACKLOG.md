@@ -13,7 +13,7 @@
 - [x] T4.4 Trust kit (Num, EvidencePopover, badges, InsufficientData)
 
 ## M1 Workspace
-- [ ] T5.1 S1 Field overview
+- [x] T5.1 S1 Field overview
 - [ ] T6.1 TrackStack core (uPlot sync, gutter, zoom/pan)
 - [ ] T6.2 Plugins: gaps, sections, cursor
 - [ ] T6.3 Depth-vs-time + overview brush
