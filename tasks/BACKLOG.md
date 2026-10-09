@@ -5,7 +5,7 @@
 - [x] T0.2 CI workflow
 - [x] T0.3 Fonts, Tailwind, tokens (dark + light)
 - [x] T1.1 Contract codegen (TS, zod, Pydantic) + contracts-check
-- [ ] T1.2 Fixture generator (3 detailed wells + 6 summary wells, sessions, eval, repro)
+- [x] T1.2 Fixture generator (3 detailed wells + 6 summary wells, sessions, eval, repro)
 - [x] T1.3 STRS series pyramid writer + TS decoder
 - [ ] T4.1 DataSource (Static/Http) + query hooks + session player
 - [ ] T4.2 Stores, routing, URL sync, nav
