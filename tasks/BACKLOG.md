@@ -24,7 +24,7 @@
 - [x] T7.1 S3 KPI cards, distributions, waterfall, by section/day
 - [x] T7.2 S3 Booked-vs-measured, ILT definition, Reproduce (PR-1, PR-2)
 - [x] T8.1 Copilot dock + AnswerCard + trace (static sessions)
-- [ ] T8.2 Copilot context plumbing
+- [x] T8.2 Copilot context plumbing
 
 ## M3 Trust + P0 e2e
 - [ ] T9.1 S5 Trust (incl. reconciliation matrix, model cards, positioning)
