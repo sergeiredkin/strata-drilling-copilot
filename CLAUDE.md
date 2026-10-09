@@ -29,8 +29,8 @@ built only on public data (Equinor Volve, Utah FORGE). Read this file fully befo
 
 ## 3. Working agreement (two-instance setup)
 - This repo is implemented by you (Claude Code in VS Code). Planning/review happens in a separate chat.
-- **Do not `git push`.** Sergei reviews and pushes. You may create local commits only when asked;
-  otherwise leave changes staged/unstaged with a short summary of what changed.
+- **Do not `git push`, add remotes, rewrite history or force anything.** Sergei reviews and pushes.
+- You MAY make local commits, one per task, with the message format `T<id>: <short summary>`.
 - One task ID per change set. Start each summary with the task ID, e.g. `T6.2 — TrackStack cursor sync`.
 - If a task is ambiguous, prefer the spec; if the spec is silent, choose the simplest option, record it
   as a short ADR in `docs/adr/`, and continue. Do not stop to ask unless the choice is irreversible.
