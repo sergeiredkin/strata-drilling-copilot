@@ -16,7 +16,7 @@
 - [x] T5.1 S1 Field overview
 - [x] T6.1 TrackStack core (uPlot sync, gutter, zoom/pan)
 - [x] T6.2 Plugins: gaps, sections, cursor
-- [ ] T6.3 Depth-vs-time + overview brush
+- [x] T6.3 Depth-vs-time + overview brush
 - [ ] T6.4 Ribbon, DDR lane, mismatches + popover
 - [ ] T6.5 S2 assembly
 
