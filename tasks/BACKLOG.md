@@ -1,7 +1,7 @@
 # Backlog (tick as done; order = critical path in docs/02_IMPLEMENTATION_PLAN.md §2)
 
 ## M0 Foundations
-- [ ] T0.1 Monorepo scaffold
+- [x] T0.1 Monorepo scaffold
 - [ ] T0.2 CI workflow
 - [ ] T0.3 Fonts, Tailwind, tokens (dark + light)
 - [ ] T1.1 Contract codegen (TS, zod, Pydantic) + contracts-check
