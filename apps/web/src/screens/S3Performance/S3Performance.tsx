@@ -4,13 +4,16 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { ByDay } from '../../charts/echarts/ByDay'
 import { KpiDist } from '../../charts/echarts/KpiDist'
 import { Waterfall } from '../../charts/echarts/Waterfall'
-import { useIlt, useKpis, useWells } from '../../data/hooks'
+import { useIlt, useKpis, useReconciliation, useRepro, useWells } from '../../data/hooks'
 import { useView } from '../../state/view'
 import { ConfidenceBadge } from '../../trust/ConfidenceBadge'
 import { InsufficientData } from '../../trust/InsufficientData'
 import { MockBadge } from '../../trust/MockBadge'
 import { Num } from '../../trust/Num'
+import { BookedVsMeasured } from './BookedVsMeasured'
+import { IltDefinition } from './IltDefinition'
 import { buildDisplayCards } from './kpiCards'
+import { ReproducePanel } from './ReproducePanel'
 
 const ILT_CATEGORY_LABEL: Record<string, string> = {
   connections: 'Connections',
@@ -35,6 +38,8 @@ export function S3Performance() {
   const wellSummary = wells.data?.wells.find((w) => w.id === wellId)
   const kpis = useKpis(wellId)
   const ilt = useIlt(wellId)
+  const reconciliation = useReconciliation(wellId)
+  const repro = useRepro()
 
   const displayCards = useMemo(() => (kpis.data ? buildDisplayCards(kpis.data) : []), [kpis.data])
   const connDistAll = useMemo(
@@ -226,6 +231,28 @@ export function S3Performance() {
           <p className="mt-2 text-meta text-text-2">
             Hatched day = &lt; 60% sensor coverage; its value is shown but excluded from the composite best.
           </p>
+        </section>
+      </div>
+
+      <div className="flex flex-wrap gap-4">
+        {reconciliation.data ? (
+          <BookedVsMeasured reconciliation={reconciliation.data} wellId={wellId} />
+        ) : (
+          <section
+            className="flex min-w-0 flex-[3_1_600px] rounded border p-4.5"
+            style={{ borderColor: 'var(--line)', background: 'var(--panel)' }}
+          >
+            <InsufficientData reason="No booked-vs-measured reconciliation export for this well." />
+          </section>
+        )}
+
+        <section
+          className="flex min-w-0 flex-[2_1_400px] flex-col gap-3 rounded border p-4.5"
+          style={{ borderColor: 'var(--line)', background: 'var(--panel)' }}
+        >
+          <span className="font-condensed text-label uppercase text-text-3">How lost time is defined</span>
+          <IltDefinition definition={ilt.data.definition} />
+          {repro.data && <ReproducePanel manifest={repro.data} wellId={wellId} />}
         </section>
       </div>
     </main>
