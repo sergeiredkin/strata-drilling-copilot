@@ -46,6 +46,14 @@ qc:
     mud: 0.10
 
 rigstate:
+  # Not in the written spec — found necessary against real data (see preprocess.py's
+  # hold_last_value docstring): real channels are each sampled independently every ~1-3s by
+  # different log objects, so almost no 1s grid point has every core channel simultaneously
+  # non-null even when each individually has excellent coverage. 60s comfortably covers the
+  # archive's typical per-channel gap (median/p90/p99 observed at 3s on 15/9-F-11 A) while still
+  # treating multi-minute+ real gaps as missing, not held.
+  hold_last_value_seconds: 60.0
+
   # §4 preprocessing.
   median_filter_seconds: 5.0
   block_velocity_window_seconds: 5.0 # centred difference window for v = dBPOS/dt

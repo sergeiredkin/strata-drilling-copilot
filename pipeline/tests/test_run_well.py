@@ -11,6 +11,7 @@ T0 = datetime(2013, 1, 1, tzinfo=UTC)
 
 RIGSTATE_CFG = {
     "median_filter_seconds": 5.0,
+    "hold_last_value_seconds": 60.0,
     "block_velocity_window_seconds": 5.0,
     "slips_fallback_margin": 0.15,
     "on_bottom_m": 0.5,

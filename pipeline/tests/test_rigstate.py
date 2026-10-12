@@ -4,12 +4,13 @@ from strata_pipeline.rigstate.calibration import compute_hl_slips
 from strata_pipeline.rigstate.classify import run_rigstate
 from strata_pipeline.rigstate.flags import compute_flags
 from strata_pipeline.rigstate.intervals import build_intervals
-from strata_pipeline.rigstate.preprocess import block_velocity, median_filter
+from strata_pipeline.rigstate.preprocess import block_velocity, hold_last_value, median_filter
 from strata_pipeline.rigstate.rules import classify_sample
 
 T0 = datetime(2013, 1, 1, tzinfo=UTC)
 CFG: dict = {
     "median_filter_seconds": 5.0,
+    "hold_last_value_seconds": 60.0,
     "block_velocity_window_seconds": 5.0,
     "slips_fallback_margin": 0.15,
     "on_bottom_m": 0.5,
@@ -38,6 +39,33 @@ def test_median_filter_preserves_none_as_none():
     values = [1.0, None, 3.0]
     out = median_filter(values, window_seconds=5.0)
     assert out[1] is None
+
+
+def test_hold_last_value_bridges_short_gap():
+    t = _seconds(10)
+    values: list[float | None] = [5.0, None, None, None, 5.0, None, None, None, None, None]
+    held = hold_last_value(values, t, max_hold_seconds=5.0)
+    assert held[:4] == [5.0, 5.0, 5.0, 5.0]
+    assert held[4] == 5.0
+
+
+def test_hold_last_value_reverts_to_none_past_max_hold():
+    t = _seconds(10)
+    values: list[float | None] = [5.0] + [None] * 9
+    held = hold_last_value(values, t, max_hold_seconds=3.0)
+    assert held[:4] == [5.0, 5.0, 5.0, 5.0]
+    assert held[4] is None
+    assert held[9] is None
+
+
+def test_hold_last_value_leading_nulls_stay_none():
+    t = _seconds(5)
+    values: list[float | None] = [None, None, 1.0, None, None]
+    held = hold_last_value(values, t, max_hold_seconds=5.0)
+    assert held[0] is None
+    assert held[1] is None
+    assert held[2] == 1.0
+    assert held[3] == 1.0
 
 
 def test_block_velocity_constant_position_is_zero():
@@ -212,6 +240,32 @@ def test_run_rigstate_end_to_end_rotary_drilling_well():
     assert len(run.intervals) == 1
     assert run.intervals[0].state == "rotary_drilling"
     assert run.intervals[0].confidence == 1.0
+
+
+def test_run_rigstate_independently_sparse_channels_still_classify_correctly():
+    # Real-data regression: each core channel sampled only every 3s, on a different phase offset
+    # from the others — no 1s grid point has every channel simultaneously non-null, yet the well
+    # is unambiguously rotary_drilling throughout and must not collapse to one giant R0 gap.
+    n = 600
+    t = _seconds(n)
+
+    def sparse(value: float, offset: int) -> list[float | None]:
+        return [value if (i - offset) % 3 == 0 else None for i in range(n)]
+
+    channels = {
+        "HKLD": sparse(500.0, 0),
+        "BPOS": sparse(10.0, 1),
+        "FLOWIN": sparse(800.0, 2),
+        "RPM": sparse(120.0, 0),
+        "BITDEPTH": sparse(2000.0, 1),
+        "HOLEDEPTH": sparse(2000.2, 2),
+    }
+    run = run_rigstate(t, channels, travelling_block_weight=200.0, cfg=CFG)
+    rotary_seconds = sum(
+        (iv.t1 - iv.t0).total_seconds() for iv in run.intervals if iv.state == "rotary_drilling"
+    )
+    assert rotary_seconds > n * 0.9
+    assert not any(iv.rule_id == "R0" for iv in run.intervals if (iv.t1 - iv.t0).total_seconds() > 10)
 
 
 def test_run_rigstate_gap_in_core_channel_yields_unknown_interval():

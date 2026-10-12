@@ -11,7 +11,7 @@ from typing import Any
 from .calibration import compute_hl_slips
 from .flags import compute_flags
 from .intervals import RigStateInterval, build_intervals
-from .preprocess import block_velocity, median_filter
+from .preprocess import block_velocity, hold_last_value, median_filter
 from .rules import CORE_CHANNELS, RuleResult, classify_sample
 
 
@@ -48,8 +48,9 @@ def run_rigstate(
     """`channels` must have every key in CORE_CHANNELS (HKLD, BPOS, FLOWIN, RPM, BITDEPTH,
     HOLEDEPTH), each a list the same length as `t`, already on a uniform `grid_seconds` grid with
     `None` at gaps (QC's output)."""
+    held = {c: hold_last_value(channels[c], t, cfg["hold_last_value_seconds"]) for c in CORE_CHANNELS}
     filtered = {
-        c: median_filter(channels[c], cfg["median_filter_seconds"], grid_seconds)
+        c: median_filter(held[c], cfg["median_filter_seconds"], grid_seconds)
         for c in CORE_CHANNELS
     }
     v = block_velocity(filtered["BPOS"], cfg["block_velocity_window_seconds"], grid_seconds)
