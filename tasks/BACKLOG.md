@@ -34,9 +34,9 @@
 
 ## M4 Real data (Lane B)
 - [x] T2.1 Data inventory + licences  ← reported to Sergei (see docs/DATA_INVENTORY.md, docs/LICENSES.md)
-- [ ] T2.2 Volve time-log ingest
-- [ ] T2.3 Volve DDR ingest
-- [ ] T2.4 FORGE ingest
+- [x] T2.2 Volve time-log ingest (witsml_time.py; sections derivation + tops still open — see docs/DATA_INVENTORY.md)
+- [x] T2.3 Volve DDR ingest (ddr.py)
+- [ ] T2.4 FORGE ingest ← blocked on OpenEI/GDR infrastructure outage, see docs/DATA_INVENTORY.md §4
 - [ ] T3.1 QC
 - [ ] T3.2 Rig-state classifier + gold-sample agreement
 - [ ] T3.3 KPIs + composite best

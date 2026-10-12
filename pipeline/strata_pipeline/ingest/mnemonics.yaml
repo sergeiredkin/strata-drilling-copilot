@@ -1,0 +1,87 @@
+# Mnemonic map — docs/07_DATA_AND_ALGORITHMS.md §2 canonical time.parquet channels.
+# Per T2.1 (docs/DATA_INVENTORY.md): Volve's real-time WITSML data is NOT one composite feed —
+# each wellbore has dozens of separate named log objects (service-company/tool-specific), and
+# the relevant drilling mnemonic shows up under different names depending on which log/company
+# recorded it. `candidates` is priority-ordered: the first mnemonic found in a given log's
+# logCurveInfo wins for that log. `raw_units` lists the units actually observed in the archive
+# for that mnemonic (read per-curve from each log's own <unit> tag at ingest time, never
+# assumed) — this is just documentation of what to expect, not a hardcoded override.
+
+channels:
+  HKLD:
+    canonical_unit: kN
+    candidates: [HKLD, HKLD_AVG, HKLDX]
+    raw_units_observed: [N]  # N -> kN: divide by 1000
+
+  BPOS:
+    canonical_unit: m
+    candidates: [BPOS, BLOCKCOMP, BLOCKPOS]
+    raw_units_observed: [m]
+
+  WOB:
+    canonical_unit: kN
+    candidates: [SWOB, WOB, WOB_AVG, WOBX]
+    raw_units_observed: [N]
+
+  RPM:
+    canonical_unit: rpm
+    candidates: [RPM, SURF_RPM, TRPM_RT, CRPM_RT, NRPM_RT, TRPM]
+    raw_units_observed: [c/s, rpm]  # c/s (cycles/sec) -> rpm: multiply by 60
+
+  TORQ:
+    canonical_unit: kN.m
+    candidates: [TORQUE, TORQUE_AVG, TORQ]
+    raw_units_observed: [N.m]  # N.m -> kN.m: divide by 1000
+
+  SPP:
+    canonical_unit: bar
+    candidates: [SPPA, SPP]
+    raw_units_observed: [Pa, bar]  # Pa -> bar: divide by 100000
+
+  FLOWIN:
+    canonical_unit: L/min
+    candidates: [FLOWIN]
+    raw_units_observed: [m3/s]  # m3/s -> L/min: multiply by 60000
+
+  BITDEPTH:
+    canonical_unit: m
+    candidates: [DBTM, BITDEP, BITDEPTH]
+    raw_units_observed: [m]
+
+  HOLEDEPTH:
+    canonical_unit: m
+    candidates: [DMEA, Depth]
+    raw_units_observed: [m]
+
+  ROP:
+    canonical_unit: m/h
+    candidates: [ROP, ROP_AVG, ROP5]
+    raw_units_observed: [m/s, m/h]  # m/s -> m/h: multiply by 3600
+
+  MW_IN:
+    canonical_unit: sg
+    candidates: [MWIN]
+    raw_units_observed: [kg/m3]  # kg/m3 -> sg: divide by 1000
+
+  GAS:
+    canonical_unit: "%"
+    candidates: [TOTGAS, TOTGAS2]
+    raw_units_observed: [Euc]  # "Euc" (dimensionless) in this archive reads as already-% scale;
+    # verified per-well during QC (T3.1) rather than assumed here.
+
+# Raw-unit -> canonical-unit conversion factors. `value_canonical = value_raw * factor`.
+# A raw unit not listed here is a pipeline/strata_pipeline.ingest.witsml_time.UnitConversionError
+# at ingest time — never silently dropped or silently treated as already-canonical.
+unit_conversions:
+  N->kN: 0.001
+  "N.m->kN.m": 0.001
+  Pa->bar: 0.00001
+  bar->bar: 1.0
+  "m3/s->L/min": 60000.0
+  "c/s->rpm": 60.0
+  rpm->rpm: 1.0
+  "m/s->m/h": 3600.0
+  "m/h->m/h": 1.0
+  m->m: 1.0
+  "kg/m3->sg": 0.001
+  "Euc->%": 1.0
