@@ -15,35 +15,22 @@ from typing import Any
 
 import polars as pl
 
+from ..recon.ddr_codes import load_ddr_code_rules
+from ..recon.ddr_codes import normalize_code as _normalize_code
 from .witsml_common import parse_stripped
 
-# Normalized op codes — docs/07_DATA_AND_ALGORITHMS.md §7's CODE_EXPECTED set (DRILL, CIRC,
-# TRIP, REAM) plus the other real categories observed in the archive (docs/DATA_INVENTORY.md).
-# Matched against the raw `proprietaryCode` ("<category> -- <subcategory>"), case-insensitive,
-# longest/most-specific match first.
-_CODE_RULES: list[tuple[str, str]] = [
-    ("drilling -- drill", "DRILL"),
-    ("drilling -- circulating", "CIRC"),
-    ("drilling -- trip", "TRIP"),
-    ("drilling -- ream", "REAM"),
-    ("drilling -- casing", "CASING"),
-    ("drilling -- bop", "BOP"),
-    ("plug abandon -- cement", "CEMENT"),
-    ("interruption --", "WAIT"),
-]
+# Loaded once at import time; recon/ddr_codes.yaml is the single source of truth for this
+# mapping, shared with recon/reconciliation.py (docs/07_DATA_AND_ALGORITHMS.md §7).
+_CODE_RULES = load_ddr_code_rules()
 
 
 def normalize_code(raw_code: str) -> str:
     """Maps a raw Volve `proprietaryCode` to one of DRILL/CIRC/TRIP/REAM/CASING/CEMENT/BOP/WAIT/
-    OTHER. Falls back to OTHER for anything not explicitly matched (completion, workover, plug
-    abandon other than cementing, formation evaluation, etc.) rather than guessing — those
-    aren't drilling-phase activity and docs/07_DATA_AND_ALGORITHMS.md's reconciliation only
+    OTHER (`recon/ddr_codes.yaml`). Falls back to OTHER for anything not explicitly matched
+    (completion, workover, plug abandon other than cementing, formation evaluation, etc.) rather
+    than guessing — those aren't drilling-phase activity and the reconciliation module only
     defines expected sensor states for DRILL/CIRC/TRIP/REAM anyway."""
-    code = raw_code.strip().lower()
-    for prefix, normalized in _CODE_RULES:
-        if code.startswith(prefix):
-            return normalized
-    return "OTHER"
+    return _normalize_code(raw_code, _CODE_RULES)
 
 
 def _parse_local_datetime(s: str) -> datetime | None:

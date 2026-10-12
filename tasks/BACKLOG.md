@@ -42,7 +42,7 @@
 - [ ] T3.2 Rig-state classifier + gold-sample agreement
 - [x] T3.3 KPIs + composite best (strata_pipeline/kpi/*; per-stand trip speed distributions deferred — see trips.py docstring)
 - [x] T3.4 ILT (strata_pipeline/kpi/ilt/*)
-- [ ] T3.5 Reconciliation + mismatches
+- [x] T3.5 Reconciliation + mismatches (strata_pipeline/recon/*; ddr_codes.yaml now the shared normalization source for ingest + recon)
 - [ ] T3.6 Confidence module + evidence registry
 - [ ] T3.7 Exporter + make reproduce (deterministic)
 - [ ] T8.3 FastAPI service (serves export)

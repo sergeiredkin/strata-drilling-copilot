@@ -1,0 +1,16 @@
+# DDR raw activity code -> normalized code map — docs/07_DATA_AND_ALGORITHMS.md §7. This is the
+# single source of truth for the mapping; ingest (`ingest/ddr.py`) and reconciliation
+# (`recon/reconciliation.py`) both load it from here rather than each keeping their own copy.
+# Matched against the raw `proprietaryCode` ("<category> -- <subcategory>"), case-insensitive,
+# in order (first matching prefix wins) — longest/most-specific entries come first.
+rules:
+  - ["drilling -- drill", "DRILL"]
+  - ["drilling -- circulating", "CIRC"]
+  - ["drilling -- trip", "TRIP"]
+  - ["drilling -- ream", "REAM"]
+  - ["drilling -- casing", "CASING"]
+  - ["drilling -- bop", "BOP"]
+  - ["plug abandon -- cement", "CEMENT"]
+  - ["interruption --", "WAIT"]
+# Anything not matched above normalizes to OTHER (completion, workover, formation evaluation,
+# etc. — not drilling-phase activity, so it has no expected rig-state set to validate against).

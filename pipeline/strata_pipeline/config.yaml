@@ -70,3 +70,20 @@ rigstate:
   # §4 confidence: a sample is "decisive" only if every one of the winning rule's deciding
   # inputs is more than this fraction away from its own threshold (relative margin).
   confidence_margin_frac: 0.10
+
+recon:
+  # §7 tolerance: ignore the first/last `boundary_slack_min` minutes of every DDR row when
+  # looking for mismatches (a sensor naturally lags a logged activity-code boundary), and only
+  # count a mismatch once an out-of-expected-set run lasts at least `min_duration_min`.
+  boundary_slack_min: 5.0
+  min_duration_min: 2.0
+
+  # §7 expected rig states per normalized DDR code. CASING/CEMENT/BOP/WAIT/OTHER have no expected
+  # set and are excluded from agreement entirely (not "always wrong").
+  expected_states:
+    DRILL: [rotary_drilling, sliding, connection]
+    CIRC: [circulating]
+    TRIP: [trip_in, trip_out]
+    REAM: [reaming, circulating]
+
+  included_codes: [DRILL, CIRC, TRIP, REAM]
