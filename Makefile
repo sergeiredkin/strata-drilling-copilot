@@ -20,7 +20,7 @@ web:
 	cd apps/web && pnpm dev
 
 api:
-	@echo "TODO (T8.3): uv run uvicorn strata_api.main:app --reload --port 8000"
+	uv run --project services/api uvicorn strata_api.main:app --reload --port 8000
 
 pipeline:
 	uv run --project pipeline python3 -m strata_pipeline.export.cli_pipeline --well $(WELL)
