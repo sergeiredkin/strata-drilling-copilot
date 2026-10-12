@@ -44,7 +44,7 @@
 - [x] T3.4 ILT (strata_pipeline/kpi/ilt/*)
 - [x] T3.5 Reconciliation + mismatches (strata_pipeline/recon/*; ddr_codes.yaml now the shared normalization source for ingest + recon)
 - [x] T3.6 Confidence module + evidence registry (strata_pipeline/confidence.py + evidence.py already matched 07 §8 from T1.2; added C3/C4 + multi-rule-binding test coverage)
-- [x] T3.7 Exporter + make reproduce (deterministic) — wiring complete (export/run_well.py, generate_real.py, cli.py, Makefile); real smoke-test run against the downloaded archive not yet done this session, see note in commit
+- [x] T3.7 Exporter + make reproduce (deterministic) — wiring complete; 15_9-F-11_A fully validated live (real bugs found+fixed: hold_last_value, plausible_ranges, frozen_value exclusions, qc_score wiring, DDR-window bounding). Other 5 real wells not yet validated live — blocked on this session's memory-constrained environment, not a known code issue; revisit when convenient (see commits 4c4be3c, a181387, 918df86)
 - [ ] T8.3 FastAPI service (serves export)
 - [ ] T8.4 Copilot agent, tools, verifier (live)
 - [ ] T8.5 Recorder + session catalogue
