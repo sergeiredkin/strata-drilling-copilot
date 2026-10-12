@@ -18,11 +18,17 @@ def compute_hl_slips(
     travelling_block_weight: float,
     fallback_margin: float,
     n_bins: int = 50,
+    min_peak_frac: float = 0.05,
+    min_valley_drop_frac: float = 0.5,
 ) -> SlipsThreshold:
     """Builds a histogram of non-null `hkld_values` and looks for a valley (local minimum) between
     two modes (local maxima). Falls back to `travelling_block_weight * (1 + fallback_margin)` when
-    the histogram doesn't have a clear two-mode shape (fewer than two local maxima, or no valley
-    strictly between the two tallest ones)."""
+    the histogram doesn't have a clear two-mode shape: fewer than two local maxima, no valley
+    strictly between the two tallest ones, either peak holding less than `min_peak_frac` of all
+    samples (a real second population, not one noisy bin), or the valley not dipping below
+    `min_valley_drop_frac` of the *smaller* peak's height (otherwise a continuous, roughly
+    unimodal distribution's own sampling noise gets misread as two modes — this matters for a
+    well that's genuinely all-drilling with no real slips population in the window at all)."""
     values = [v for v in hkld_values if v is not None]
     fallback = SlipsThreshold(
         hl_slips=travelling_block_weight * (1.0 + fallback_margin),
@@ -48,7 +54,15 @@ def compute_hl_slips(
     if right_peak <= left_peak + 1:
         return fallback
 
+    min_peak_count = min_peak_frac * len(values)
+    if counts[left_peak] < min_peak_count or counts[right_peak] < min_peak_count:
+        return fallback
+
     valley_idx = min(range(left_peak + 1, right_peak), key=lambda i: counts[i])
+    smaller_peak_count = min(counts[left_peak], counts[right_peak])
+    if counts[valley_idx] > min_valley_drop_frac * smaller_peak_count:
+        return fallback
+
     hl_slips = lo + (valley_idx + 0.5) * width
     return SlipsThreshold(hl_slips=hl_slips, method="histogram_valley")
 

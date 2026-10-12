@@ -30,6 +30,27 @@ from strata_pipeline.rigstate.intervals import RigStateInterval
 SECTION = "unknown"  # placeholder hole section — see module docstring
 
 
+def build_depthtime_json(
+    t: list[datetime], channels: dict[str, list[float | None]], stride_s: int = 60
+) -> dict[str, Any]:
+    hole = channels.get("HOLEDEPTH", [None] * len(t))
+    bit = channels.get("BITDEPTH", [None] * len(t))
+    idx = range(0, len(t), stride_s)
+    return {
+        "t": [int(t[i].timestamp() * 1000) for i in idx],
+        "bit_md": [bit[i] for i in idx],
+        "hole_md": [hole[i] for i in idx],
+    }
+
+
+def build_sections_json() -> list[dict[str, Any]]:
+    """Empty: `sections.parquet` derivation (casing/hole-size records, or the DDR-narrative +
+    bit-size-change fallback) isn't built yet (docs/DATA_INVENTORY.md) — an honest empty list,
+    not a guessed single section, since the front end's section-based views should show
+    "no section data" rather than one fabricated boundary."""
+    return []
+
+
 def build_rigstate_json(intervals: list[RigStateInterval]) -> list[dict[str, Any]]:
     return [
         {
