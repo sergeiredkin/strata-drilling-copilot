@@ -28,7 +28,7 @@
 
 ## M3 Trust + P0 e2e
 - [x] T9.1 S5 Trust (incl. reconciliation matrix, model cards, positioning)
-- [ ] T10.1 Playwright demo-script e2e
+- [x] T10.1 Playwright demo-script e2e
 - [ ] T10.2 Performance budget test
 - [ ] T10.3 A11y + copy lint
 
