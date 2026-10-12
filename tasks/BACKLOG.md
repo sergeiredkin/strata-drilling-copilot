@@ -43,7 +43,7 @@
 - [x] T3.3 KPIs + composite best (strata_pipeline/kpi/*; per-stand trip speed distributions deferred — see trips.py docstring)
 - [x] T3.4 ILT (strata_pipeline/kpi/ilt/*)
 - [x] T3.5 Reconciliation + mismatches (strata_pipeline/recon/*; ddr_codes.yaml now the shared normalization source for ingest + recon)
-- [ ] T3.6 Confidence module + evidence registry
+- [x] T3.6 Confidence module + evidence registry (strata_pipeline/confidence.py + evidence.py already matched 07 §8 from T1.2; added C3/C4 + multi-rule-binding test coverage)
 - [ ] T3.7 Exporter + make reproduce (deterministic)
 - [ ] T8.3 FastAPI service (serves export)
 - [ ] T8.4 Copilot agent, tools, verifier (live)

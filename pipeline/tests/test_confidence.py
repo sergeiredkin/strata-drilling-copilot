@@ -21,3 +21,24 @@ def test_no_inputs_is_insufficient():
     c = assess()
     assert c["level"] == "insufficient"
     assert c["rule_ids"] == []
+
+
+def test_c3_rigstate_confidence_thresholds():
+    assert assess(mean_rigstate_p=0.9)["level"] == "high"
+    assert assess(mean_rigstate_p=0.75)["level"] == "medium"
+    assert assess(mean_rigstate_p=0.5)["level"] == "low"
+
+
+def test_c4_ddr_coverage_thresholds():
+    assert assess(ddr_coverage=0.95)["level"] == "high"
+    assert assess(ddr_coverage=0.70)["level"] == "medium"
+    assert assess(ddr_coverage=0.10)["level"] == "low"
+    assert assess(ddr_coverage=0.0)["level"] == "insufficient"
+
+
+def test_binding_rule_ids_list_every_rule_tied_for_lowest():
+    c = assess(core_channel_coverage=0.95, mean_rigstate_p=0.5, ddr_coverage=0.5)  # C3, C4 both "low"
+    assert c["level"] == "low"
+    assert c["rule_ids"] == ["C3", "C4"]
+    assert "mean rig-state classifier confidence" in c["reason"]
+    assert "DDR coverage" in c["reason"]
