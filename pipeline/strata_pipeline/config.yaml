@@ -1,0 +1,46 @@
+# Pipeline thresholds — docs/07_DATA_AND_ALGORITHMS.md. Every rule here must cite this file via
+# an Evidence `params` entry (CLAUDE.md: numbers need provenance) rather than hard-coding a value
+# in the rule's module.
+
+qc:
+  # §3.1 unit detection & fix by plausible ranges — a channel's raw-unit candidate is accepted if
+  # its median falls inside the channel's plausible SI range; otherwise the next candidate
+  # (scaled by a known raw-unit conversion) is tried. See qc/units.py.
+  plausible_ranges:
+    HKLD: {min: 0, max: 4000, unit: kN} # typical rig hookload envelope
+    BPOS: {min: 0, max: 60, unit: m}
+    WOB: {min: 0, max: 500, unit: kN}
+    RPM: {min: 0, max: 400, unit: rpm}
+    TORQ: {min: 0, max: 100, unit: kN.m}
+    SPP: {min: 0, max: 600, unit: bar} # §3.1 SPP > 600 => assume psi
+    FLOWIN: {min: 0, max: 10000, unit: L/min}
+    BITDEPTH: {min: 0, max: 12000, unit: m}
+    HOLEDEPTH: {min: 0, max: 12000, unit: m}
+    ROP: {min: 0, max: 500, unit: m/h}
+    MW_IN: {min: 0.5, max: 3.0, unit: sg}
+    GAS: {min: 0, max: 100, unit: "%"}
+
+  # §3.1 example rule: hookload median > 1500 (kN) implies the raw values were actually lbf.
+  unit_fix_rules:
+    HKLD: {median_above: 1500, assume_raw_unit: lbf, factor_to_kn: 0.0044482216}
+    SPP: {median_above: 600, assume_raw_unit: psi, factor_to_bar: 0.0689476}
+
+  sentinels: [-999.25, -9999, 9999]
+
+  spike_hampel_window: 31 # samples, odd
+  spike_hampel_threshold_mad: 6.0
+
+  frozen_min_seconds: 300.0 # non-zero constant value held longer than this => frozen_value gap
+
+  resample_grid_seconds: 1.0
+  resample_gap_seconds: 5.0 # hole in the 1 s grid longer than this => no_data gap
+
+  core_channels: [HKLD, BPOS, FLOWIN, RPM, BITDEPTH, HOLEDEPTH]
+
+  coverage_weights:
+    time_logs: 0.35
+    daily_reports: 0.20
+    depth_logs: 0.15
+    tops: 0.10
+    survey: 0.10
+    mud: 0.10

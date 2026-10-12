@@ -37,7 +37,7 @@
 - [x] T2.2 Volve time-log ingest (witsml_time.py; sections derivation + tops still open — see docs/DATA_INVENTORY.md)
 - [x] T2.3 Volve DDR ingest (ddr.py)
 - [ ] T2.4 FORGE ingest ← blocked on OpenEI/GDR infrastructure outage, see docs/DATA_INVENTORY.md §4
-- [ ] T3.1 QC
+- [x] T3.1 QC (strata_pipeline/qc/*; source reconciliation per docs/adr/0007)
 - [ ] T3.2 Rig-state classifier + gold-sample agreement
 - [ ] T3.3 KPIs + composite best
 - [ ] T3.4 ILT
