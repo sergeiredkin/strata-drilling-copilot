@@ -30,7 +30,7 @@
 - [x] T9.1 S5 Trust (incl. reconciliation matrix, model cards, positioning)
 - [x] T10.1 Playwright demo-script e2e
 - [x] T10.2 Performance budget test
-- [ ] T10.3 A11y + copy lint
+- [x] T10.3 A11y + copy lint
 
 ## M4 Real data (Lane B)
 - [ ] T2.1 Data inventory + licences  ← report to Sergei before continuing
