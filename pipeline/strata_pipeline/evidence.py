@@ -73,6 +73,13 @@ class EvidenceRegistry:
     def __len__(self) -> int:
         return len(self._by_id)
 
+    def all_records(self) -> dict[str, dict[str, Any]]:
+        """Every registered record, keyed by evidence id. For callers merging this registry's
+        output with evidence already on disk from a separate export run (e.g. `generate_real.py`
+        alongside `fixtures/generate.py`) rather than overwriting it — `write_shards` on its own
+        only ever reflects what *this* registry instance registered."""
+        return dict(self._by_id)
+
     def write_shards(self, out_dir: Path) -> None:
         """Writes evidence/{00..ff}.json (256 shards, keyed by the first 2 hex chars after
         `ev_`) plus evidence/shards.json (id -> shard) per `04_DATA_CONTRACTS.md` §3."""

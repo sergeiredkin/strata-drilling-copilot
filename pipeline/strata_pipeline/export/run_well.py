@@ -30,7 +30,10 @@ from strata_pipeline.ingest.witsml_time import load_well_time_series
 from strata_pipeline.qc.align import align_well_channels
 from strata_pipeline.qc.config import load_qc_config
 from strata_pipeline.qc.pipeline import run_well_qc
+from strata_pipeline.qc.qc_score import CoverageLevel
+from strata_pipeline.qc.qc_score import qc_score as compute_qc_score
 from strata_pipeline.rigstate.classify import run_rigstate
+from strata_pipeline.rigstate.rules import CORE_CHANNELS
 
 _CANONICAL_UNITS = {
     "HKLD": "kN", "BPOS": "m", "WOB": "kN", "RPM": "rpm", "TORQ": "kN.m", "SPP": "bar",
@@ -96,6 +99,27 @@ def run_well_from_dataframes(
             series_channels[name] = export_channel_series(well_dir, name, unit, "pipeline:real", t0_ms, arr)
         _write_json(well_dir / "series" / "index.json", {"well": well_id, "channels": series_channels})
 
+    well_duration_hours = (t[-1] - t[0]).total_seconds() / 3600.0 if len(t) > 1 else 0.0
+    core_survived = [
+        qc_report["channels"][c].survived_fraction for c in CORE_CHANNELS if c in qc_report["channels"]
+    ]
+    survived_fraction = sum(core_survived) / len(core_survived) if core_survived else 0.0
+    core_gap_fraction = (
+        min(1.0, qc_report["gap_hours"] / well_duration_hours) if well_duration_hours > 0 else 1.0
+    )
+    # Coverage is about what THIS exporter run actually produced, not everything the raw
+    # archive has on disk — survey files exist for every real well (docs/DATA_INVENTORY.md) but
+    # aren't ingested into this export yet, so they're "none" here, not "full".
+    coverage: dict[str, CoverageLevel] = {
+        "time_logs": "full" if t else "none",
+        "daily_reports": "full" if ddr_rows_raw else "none",
+        "depth_logs": "none",
+        "tops": "none",
+        "survey": "none",
+        "mud": "none",
+    }
+    well_qc_score = compute_qc_score(coverage, qc_cfg["coverage_weights"], core_gap_fraction, survived_fraction)
+
     return {
         "well": well_id,
         "qc": {
@@ -105,6 +129,9 @@ def run_well_from_dataframes(
             "unit_fixes": qc_report["unit_fixes"],
             "sentinels_removed": qc_report["sentinels_removed"],
         },
+        "qc_score": well_qc_score,
+        "coverage": coverage,
+        "well_duration_hours": well_duration_hours,
         "reconciliation": recon_report,
         "n_rigstate_intervals": len(intervals),
         "n_ddr_rows": len(ddr_rows_raw),

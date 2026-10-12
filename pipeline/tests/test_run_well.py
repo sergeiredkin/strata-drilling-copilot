@@ -103,6 +103,11 @@ def test_run_well_from_dataframes_writes_all_expected_files(tmp_path):
     assert summary["n_rigstate_intervals"] >= 1
     assert summary["n_ddr_rows"] == 1
     assert summary["qc"]["well"] == "W1"
+    assert summary["coverage"]["time_logs"] == "full"
+    assert summary["coverage"]["daily_reports"] == "full"
+    assert summary["coverage"]["survey"] == "none"
+    assert 0.0 <= summary["qc_score"] <= 1.0
+    assert summary["well_duration_hours"] > 0
 
 
 def test_run_well_from_dataframes_rigstate_classifies_as_rotary_drilling(tmp_path):

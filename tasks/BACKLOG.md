@@ -44,7 +44,7 @@
 - [x] T3.4 ILT (strata_pipeline/kpi/ilt/*)
 - [x] T3.5 Reconciliation + mismatches (strata_pipeline/recon/*; ddr_codes.yaml now the shared normalization source for ingest + recon)
 - [x] T3.6 Confidence module + evidence registry (strata_pipeline/confidence.py + evidence.py already matched 07 §8 from T1.2; added C3/C4 + multi-rule-binding test coverage)
-- [ ] T3.7 Exporter + make reproduce (deterministic)
+- [x] T3.7 Exporter + make reproduce (deterministic) — wiring complete (export/run_well.py, generate_real.py, cli.py, Makefile); real smoke-test run against the downloaded archive not yet done this session, see note in commit
 - [ ] T8.3 FastAPI service (serves export)
 - [ ] T8.4 Copilot agent, tools, verifier (live)
 - [ ] T8.5 Recorder + session catalogue

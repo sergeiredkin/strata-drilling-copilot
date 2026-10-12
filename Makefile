@@ -23,10 +23,10 @@ api:
 	@echo "TODO (T8.3): uv run uvicorn strata_api.main:app --reload --port 8000"
 
 pipeline:
-	@echo "TODO (Phase 2/3): ingest -> qc -> rigstate -> kpis -> export for WELL=$(WELL)"
+	uv run --project pipeline python3 -m strata_pipeline.export.cli_pipeline --well $(WELL)
 
 export:
-	@echo "TODO (T3.7): full export for all wells into apps/web/public/data"
+	uv run --project pipeline python3 -m strata_pipeline.export.cli_export
 
 test:
 	cd apps/web && pnpm test
@@ -44,4 +44,4 @@ e2e:
 	cd apps/web && pnpm build && pnpm e2e
 
 reproduce:
-	@echo "TODO (T3.7): regenerate every number for WELL=$(WELL); prints manifest"
+	uv run --project pipeline python3 -m strata_pipeline.export.cli_reproduce --well $(WELL)
