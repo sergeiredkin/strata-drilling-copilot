@@ -4,6 +4,7 @@ import polars as pl
 from strata_pipeline.qc.config import load_qc_config
 from strata_pipeline.qc.frozen import frozen_value_mask
 from strata_pipeline.qc.pipeline import run_channel_qc, run_well_qc
+from strata_pipeline.qc.plausible import implausible_mask
 from strata_pipeline.qc.qc_score import qc_score
 from strata_pipeline.qc.reconcile import pick_source_per_channel
 from strata_pipeline.qc.resample import find_no_data_gaps, resample_to_grid
@@ -160,6 +161,80 @@ def test_run_channel_qc_end_to_end_known_answer():
     assert result.unit_fix is None
     expected_survived = (n - 1 - 1 - 350) / n
     assert abs(result.survived_fraction - expected_survived) < 1e-9
+
+
+def test_run_channel_qc_skips_frozen_value_for_excluded_channels():
+    # Real-data regression: several real channels (depth/position, and driller-set/governed
+    # values like RPM/TORQ/MW_IN) legitimately sit perfectly constant for long real stretches —
+    # that must never be flagged frozen_value the way a truly dynamic channel's stuck sensor
+    # would be. See config.yaml's frozen_value_excluded_channels comment for the measured
+    # evidence behind this exact list.
+    n = 700
+    values = [2000.0] * n  # constant the whole way, far longer than frozen_min_seconds
+    excluded = ["BITDEPTH", "HOLEDEPTH", "BPOS", "ROP", "RPM", "TORQ", "MW_IN"]
+    cfg = {
+        "unit_fix_rules": {},
+        "sentinels": [-999.25, -9999, 9999],
+        "spike_hampel_window": 31,
+        "spike_hampel_threshold_mad": 6.0,
+        "frozen_min_seconds": 300.0,
+        "frozen_value_excluded_channels": excluded,
+        "resample_grid_seconds": 1.0,
+        "resample_gap_seconds": 5.0,
+    }
+    for channel in excluded:
+        result = run_channel_qc(_seconds(n), list(values), channel, cfg)
+        assert "frozen_value" not in result.reason_counts, channel
+        assert result.survived_fraction == 1.0
+
+    # A genuinely dynamic channel held constant this long is still correctly flagged.
+    result = run_channel_qc(_seconds(n), list(values), "HKLD", cfg)
+    assert result.reason_counts.get("frozen_value") == n
+
+
+def test_implausible_mask_flags_only_out_of_range_values():
+    values = [500.0, -35504.0, 1200.0, 519337.0, None]
+    mask = implausible_mask(values, plausible_min=0.0, plausible_max=4000.0)
+    assert mask == [False, True, False, True, False]
+
+
+def test_run_channel_qc_removes_rare_implausible_values_outside_hampel_reach():
+    # A real-data regression: a handful of isolated garbage samples, each physically impossible
+    # for HKLD (negative, or 100x a plausible value) but spread far enough apart that Hampel's
+    # per-sample MAD test (tuned for spikes, not range violations) wasn't guaranteed to catch
+    # every one — the explicit plausible-range check must remove them regardless.
+    n = 500
+    values = [500.0] * n
+    values[50] = -35504.0
+    values[250] = 519337.0
+    cfg = {
+        "unit_fix_rules": {},
+        "sentinels": [-999.25, -9999, 9999],
+        "plausible_ranges": {"HKLD": {"min": 0.0, "max": 4000.0}},
+        "spike_hampel_window": 31,
+        "spike_hampel_threshold_mad": 6.0,
+        "frozen_min_seconds": 1e9,  # disabled — not what this test is about
+        "resample_grid_seconds": 1.0,
+        "resample_gap_seconds": 5.0,
+    }
+    result = run_channel_qc(_seconds(n), values, "HKLD", cfg)
+    assert result.reason_counts.get("implausible_value") == 2
+    kept = [v for v in result.clean_values if v is not None]
+    assert all(0.0 <= v <= 4000.0 for v in kept)
+
+
+def test_run_channel_qc_without_plausible_ranges_entry_skips_the_check():
+    cfg = {
+        "unit_fix_rules": {},
+        "sentinels": [-999.25, -9999, 9999],
+        "spike_hampel_window": 31,
+        "spike_hampel_threshold_mad": 6.0,
+        "frozen_min_seconds": 1e9,
+        "resample_grid_seconds": 1.0,
+        "resample_gap_seconds": 5.0,
+    }
+    result = run_channel_qc(_seconds(10), [999999.0] * 10, "UNMAPPED_CHANNEL", cfg)
+    assert "implausible_value" not in result.reason_counts
 
 
 def test_run_well_qc_aggregates_report_matching_eval_report_contract_shape():

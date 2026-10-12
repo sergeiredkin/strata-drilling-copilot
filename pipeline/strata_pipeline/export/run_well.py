@@ -104,9 +104,16 @@ def run_well_from_dataframes(
         qc_report["channels"][c].survived_fraction for c in CORE_CHANNELS if c in qc_report["channels"]
     ]
     survived_fraction = sum(core_survived) / len(core_survived) if core_survived else 0.0
-    core_gap_fraction = (
-        min(1.0, qc_report["gap_hours"] / well_duration_hours) if well_duration_hours > 0 else 1.0
-    )
+    # core_gap_fraction means "fraction of well time where a core channel is missing" (07 §3.6)
+    # — R0 ("any core channel in gap") already is exactly that, measured once over the whole
+    # timeline. qc_report["gap_hours"] is NOT this: it sums every channel's own gap hours
+    # independently, so it trivially exceeds well_duration_hours once there are more than a
+    # couple of channels (every well's gap_hours > duration otherwise) and must never be used
+    # as a 0-1 fraction here.
+    r0_hours = sum(
+        (iv.t1 - iv.t0).total_seconds() for iv in intervals if iv.rule_id == "R0"
+    ) / 3600.0
+    core_gap_fraction = min(1.0, r0_hours / well_duration_hours) if well_duration_hours > 0 else 1.0
     # Coverage is about what THIS exporter run actually produced, not everything the raw
     # archive has on disk — survey files exist for every real well (docs/DATA_INVENTORY.md) but
     # aren't ingested into this export yet, so they're "none" here, not "full".

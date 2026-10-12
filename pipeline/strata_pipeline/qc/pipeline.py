@@ -1,5 +1,7 @@
 """QC orchestration — docs/07_DATA_AND_ALGORITHMS.md §3, run in the written order: unit fix →
-sentinels → spikes → frozen values → resample-without-fill (holes > 5 s → gap(no_data)) → report.
+sentinels → implausible values → spikes → frozen values → resample-without-fill (holes > 5 s →
+gap(no_data)) → report. The implausible-value step isn't in the written spec by name, but uses
+the `plausible_ranges` the spec's unit-fix rule already defines — see qc/plausible.py.
 """
 
 from __future__ import annotations
@@ -11,6 +13,7 @@ from typing import Any
 import polars as pl
 
 from .frozen import frozen_value_mask
+from .plausible import implausible_mask
 from .reconcile import pick_source_per_channel
 from .resample import GapInterval, find_no_data_gaps, resample_to_grid
 from .sentinels import sentinel_mask
@@ -43,11 +46,17 @@ def run_channel_qc(t: list[datetime], values: list[float], channel: str, cfg: di
     sentinel_flagged = sentinel_mask(pl.Series(working, dtype=pl.Float64), cfg["sentinels"]).to_list()
     gaps += _flag(t, working, sentinel_flagged, "sentinel", reason_counts)
 
+    plausible = cfg.get("plausible_ranges", {}).get(channel)
+    if plausible is not None:
+        implausible_flagged = implausible_mask(working, plausible["min"], plausible["max"])
+        gaps += _flag(t, working, implausible_flagged, "implausible_value", reason_counts)
+
     spike_flagged = hampel_spike_mask(working, cfg["spike_hampel_window"], cfg["spike_hampel_threshold_mad"])
     gaps += _flag(t, working, spike_flagged, "removed_spike", reason_counts)
 
-    frozen_flagged = frozen_value_mask(t, working, cfg["frozen_min_seconds"])
-    gaps += _flag(t, working, frozen_flagged, "frozen_value", reason_counts)
+    if channel not in cfg.get("frozen_value_excluded_channels", []):
+        frozen_flagged = frozen_value_mask(t, working, cfg["frozen_min_seconds"])
+        gaps += _flag(t, working, frozen_flagged, "frozen_value", reason_counts)
 
     kept_t = [ti for ti, vi in zip(t, working, strict=True) if vi is not None]
     kept_v = [vi for vi in working if vi is not None]

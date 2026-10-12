@@ -136,6 +136,50 @@ def test_run_well_from_dataframes_is_deterministic(tmp_path):
         assert a == b, name
 
 
+def test_run_well_from_dataframes_core_gap_fraction_uses_r0_not_summed_per_channel_gaps(tmp_path):
+    # Regression for a real bug found during the T3.7 smoke run: qc_score was wired to
+    # qc_report["gap_hours"] (every channel's OWN gap hours summed independently), which
+    # trivially exceeds well_duration_hours once more than a couple of channels have real gaps —
+    # it is not a 0-1 "core_gap_fraction" (07 §3.6). Here all 6 core channels share the exact
+    # same missing 50% window: the correct core_gap_fraction is 0.5 (R0 fires only there); the
+    # old buggy wiring summed 6 * 50% = 300% of the well's duration, hit the min(1.0, ...) clamp,
+    # and always produced core_gap_fraction=1.0 (qc_score=0.0) whenever more than ~2 channels had
+    # any real gap at all.
+    n = 1200
+    t = [T0 + timedelta(seconds=i) for i in range(n)]
+    rows = []
+    for seed, (channel, unit, value) in enumerate(
+        [
+            ("HKLD", "kN", 500.0),
+            ("BPOS", "m", 10.0),
+            ("WOB", "kN", 20.0),
+            ("RPM", "rpm", 120.0),
+            ("FLOWIN", "L/min", 800.0),
+            ("BITDEPTH", "m", 2000.0),
+            ("HOLEDEPTH", "m", 2000.2),
+        ]
+    ):
+        rng = random.Random(seed)
+        for i, ti in enumerate(t):
+            if 300 <= i < 900 and channel != "WOB":  # shared 50% gap, same window every channel
+                continue
+            jittered = value + rng.uniform(-0.5, 0.5) if value != 0.0 else 0.0
+            rows.append(
+                {
+                    "t": ti, "channel": channel, "value": jittered,
+                    "raw_mnemonic": channel, "raw_unit": unit, "source_log": "synthetic",
+                }
+            )
+    long_df = pl.DataFrame(rows)
+
+    reg = EvidenceRegistry(git_commit="test")
+    cfg = load_qc_config()
+    summary = run_well_from_dataframes(
+        "W1", long_df, _synthetic_ddr_df(), tmp_path, reg, cfg, RIGSTATE_CFG, RECON_CFG, 200.0
+    )
+    assert summary["qc_score"] > 0.0
+
+
 def test_run_well_from_dataframes_handles_no_surviving_data_without_crashing(tmp_path):
     reg = EvidenceRegistry(git_commit="test")
     cfg = load_qc_config()

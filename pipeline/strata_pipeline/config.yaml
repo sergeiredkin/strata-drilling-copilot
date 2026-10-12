@@ -31,6 +31,19 @@ qc:
   spike_hampel_threshold_mad: 6.0
 
   frozen_min_seconds: 300.0 # non-zero constant value held longer than this => frozen_value gap
+  # Found against real data: §3.4's rule only makes sense for a channel expected to show
+  # continuous mechanical/hydraulic noise regardless of rig state (hookload, flow, gas). Several
+  # real Volve channels are legitimately piecewise-constant for long real stretches instead —
+  # either because what they measure only changes when something physically happens
+  # (BITDEPTH/HOLEDEPTH/BPOS: depth/position only changes while advancing; ROP is depth-derived),
+  # or because the surface system reports a driller-set/governed value that holds exactly steady
+  # for as long as nobody touches it (RPM, TORQ, MW_IN — mud weight is a mud-program setting, not
+  # a continuously sampled property). Evidence per channel on one real well (15/9-F-11 A):
+  # MW_IN was 100% frozen-flagged (0 samples survived — clearly wrong), TORQ lost 62%, RPM lost
+  # 48%, ROP lost 39%, HOLEDEPTH lost 82%, vs. HKLD/FLOWIN/WOB/GAS/SPP each losing <2% — a
+  # defensible, small minority consistent with genuine stuck-sensor catches rather than false
+  # positives, so those stay covered by the rule.
+  frozen_value_excluded_channels: [BITDEPTH, HOLEDEPTH, BPOS, ROP, RPM, TORQ, MW_IN]
 
   resample_grid_seconds: 1.0
   resample_gap_seconds: 5.0 # hole in the 1 s grid longer than this => no_data gap
