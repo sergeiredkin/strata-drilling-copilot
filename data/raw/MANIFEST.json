@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-10-12T06:44:00+00:00",
+  "note": "Raw source archives, gitignored (see docs/07_DATA_AND_ALGORITHMS.md §1). Only this manifest (hashes, not the data) is tracked in git. Each archive was downloaded manually via the Equinor Volve listing in Databricks Marketplace (no stable public URL — see docs/DATA_INVENTORY.md for the access path) and selectively extracted to data/raw/equinor_volve/{witsml,reports,well_technical_data} for the 6 wells this project uses.",
+  "files": [
+    {
+      "path": "equinor_volve/_source_archives/Volve_WITSML Realtime drilling data.zip",
+      "sha256": "ede391a18f4ef90ed51afb5f3c79d1254b320636a0a94c72ce452fa74fdeeff3",
+      "bytes": 2476597726,
+      "source": "Equinor Open Data (Volve) via Databricks Marketplace",
+      "downloaded_at": "2026-10-12T06:43:54+00:00"
+    },
+    {
+      "path": "equinor_volve/_source_archives/Volve_Reports.zip",
+      "sha256": "3ca647c440bbdde26f1dd6d5cf04263cac5d9db4847868fb9886899a6406312d",
+      "bytes": 169470945,
+      "source": "Equinor Open Data (Volve) via Databricks Marketplace",
+      "downloaded_at": "2026-10-12T06:43:54+00:00"
+    },
+    {
+      "path": "equinor_volve/_source_archives/Volve_Well_technical_data.zip",
+      "sha256": "d52c42f4a146ee04c35435e21e6609ecc4a0479acac6626e0c49c4fab4a6b133",
+      "bytes": 222167142,
+      "source": "Equinor Open Data (Volve) via Databricks Marketplace",
+      "downloaded_at": "2026-10-12T06:43:55+00:00"
+    }
+  ],
+  "skipped": [
+    "Volve_GeoScience_OW_Archive.zip (54.64 GB) — not drilling-relevant",
+    "Volve_Geophysical_Interpretations.zip (99.10 MB) — not drilling-relevant",
+    "Volve_Production_data.zip (1.92 MB) — not drilling-relevant",
+    "Volve_Reservoir_Model-Eclipse_model.zip (390.42 MB) — not drilling-relevant",
+    "Volve_Reservoir_Model-RMS_model.zip (2.11 GB) — not drilling-relevant",
+    "Volve_Seismic_ST0202.zip (1.17 TB) — not drilling-relevant",
+    "Volve_Seismic_ST0202vsST10010_4D.zip (330.40 GB) — not drilling-relevant",
+    "Volve_Seismic_ST10010.zip (2.59 TB) — not drilling-relevant",
+    "Volve_Seismic_VSP.zip (95.33 MB) — not drilling-relevant",
+    "Volve_Well_logs.zip (6.94 GB) — petrophysical LAS logs, not needed for rig-state/KPI pipeline; revisit if formation tops aren't derivable from Reports/Well_technical_data",
+    "Volve_Well_logs_pr_WELL.zip (6.98 GB) — same as above, per-well split"
+  ],
+  "forge": {
+    "status": "blocked",
+    "reason": "Utah FORGE's data host (openei.org wiki, gdr.openei.org, data.openei.org) is mid-migration as of 2026-10-12: openei.org returns 503 'Under Maintenance' site-wide, gdr.openei.org/data.openei.org submission detail pages return 'No data found', and the sitemap is empty. The licence (CC BY 4.0, confirmed) is not the blocker — the infrastructure to discover and download the per-well files currently is. Retry later; see docs/DATA_INVENTORY.md."
+  }
+}
