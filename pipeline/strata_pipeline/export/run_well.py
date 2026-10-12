@@ -26,6 +26,7 @@ from strata_pipeline.export.real_well import (
 )
 from strata_pipeline.export.series import export_channel_series
 from strata_pipeline.ingest.ddr import load_well_ddr
+from strata_pipeline.ingest.drilling_window import drilling_windows_from_ddr
 from strata_pipeline.ingest.witsml_time import load_well_time_series
 from strata_pipeline.qc.align import align_well_channels
 from strata_pipeline.qc.config import load_qc_config
@@ -157,10 +158,18 @@ def run_well(
     write_series: bool = True,
 ) -> dict[str, Any]:
     """Resolves real raw-data paths (as produced by T2.1's download + T2.2/T2.3's ingest) and
-    runs `run_well_from_dataframes`. This is what the CLI (`make pipeline WELL=<id>`) calls."""
+    runs `run_well_from_dataframes`. This is what the CLI (`make pipeline WELL=<id>`) calls.
+
+    DDR loads first (cheap — a few thousand XML activity rows) so its drilling-coded activity
+    windows (`ingest.drilling_window`) can bound the real-time log load — several real Volve
+    wellbores carry years of mostly-irrelevant post-campaign history that would otherwise blow
+    up QC/rig-state's per-sample processing to minutes and gigabytes for no benefit (found during
+    the T3.7 smoke test). No drilling-coded DDR rows at all means no bound is available, not that
+    nothing is in-window — the full log is loaded in that case."""
     qc_cfg = load_qc_config()
-    long_time_df = load_well_time_series(witsml_root, wellbore_name)
     ddr_df = load_well_ddr(ddr_dir, ddr_file_prefix)
+    windows = drilling_windows_from_ddr(ddr_df) or None
+    long_time_df = load_well_time_series(witsml_root, wellbore_name, windows=windows)
 
     config_path = Path(__file__).resolve().parents[1] / "config.yaml"
     raw_cfg = yaml.safe_load(config_path.read_text())

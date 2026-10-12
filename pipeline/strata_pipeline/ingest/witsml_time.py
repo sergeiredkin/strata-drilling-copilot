@@ -19,6 +19,7 @@ from xml.etree import ElementTree as ET
 import polars as pl
 import yaml
 
+from .drilling_window import in_any_window
 from .witsml_common import find_wellbore_dirs, log_data_files, log_objects, log_sets, parse_stripped
 
 _MNEMONICS_PATH = Path(__file__).parent / "mnemonics.yaml"
@@ -111,13 +112,20 @@ def _parse_timestamp(s: str) -> datetime | None:
         return None
 
 
-def load_well_time_series(witsml_root: Path, wellbore_name: str) -> pl.DataFrame:
+def load_well_time_series(
+    witsml_root: Path, wellbore_name: str, windows: list[tuple[datetime, datetime]] | None = None
+) -> pl.DataFrame:
     """All canonical drilling channels for one wellbore, UTC-indexed, long-format rows
     `(t, channel, value_canonical, raw_mnemonic, raw_unit, source_log)` — deliberately NOT
     pre-pivoted/resampled here (that's QC's job, §3: unit fixes, sentinel/spike/frozen-value gap
     detection need the raw per-source rows first). One raw mnemonic can appear in several
     different named logs for the same wellbore; all are kept with their source log recorded so
-    QC can reconcile disagreements rather than silently picking one."""
+    QC can reconcile disagreements rather than silently picking one.
+
+    `windows`, if given (see `ingest.drilling_window`), restricts rows to those falling inside
+    at least one window — skipped as early as possible (right after each row's own timestamp is
+    parsed) so a well with years of irrelevant real-time history never holds those rows in
+    memory at all, rather than loading everything and filtering after the fact."""
     channels, conversions = load_mnemonic_map()
     mnemonic_to_channel: dict[str, str] = {}
     for canon, spec in channels.items():
@@ -153,6 +161,8 @@ def load_well_time_series(witsml_root: Path, wellbore_name: str) -> pl.DataFrame
                             continue
                         t = _parse_timestamp(row[time_idx])
                         if t is None:
+                            continue
+                        if windows is not None and not in_any_window(t, windows):
                             continue
                         for col_idx, (canon, raw_mnem) in wanted.items():
                             if col_idx >= len(row) or not row[col_idx]:

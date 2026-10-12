@@ -1,3 +1,4 @@
+from datetime import UTC, datetime
 from pathlib import Path
 
 from strata_pipeline.ingest.witsml_common import find_wellbore_dirs
@@ -32,6 +33,27 @@ def test_load_well_time_series_parses_real_log_chunk():
     # Every row is already in canonical units and UTC.
     assert df["t"].dtype.time_zone == "UTC"
     assert df["value"].is_not_null().all()
+
+
+def test_load_well_time_series_windows_excludes_rows_outside_them():
+    out_of_range_window = [(datetime(2020, 1, 1, tzinfo=UTC), datetime(2020, 1, 2, tzinfo=UTC))]
+    df = load_well_time_series(SAMPLE_ROOT, "15/9-F-11 A", windows=out_of_range_window)
+    assert len(df) == 0
+
+
+def test_load_well_time_series_windows_keeps_rows_inside_them():
+    in_range_window = [
+        (datetime(2013, 5, 13, 6, 0, tzinfo=UTC), datetime(2013, 5, 13, 7, 0, tzinfo=UTC))
+    ]
+    with_window = load_well_time_series(SAMPLE_ROOT, "15/9-F-11 A", windows=in_range_window)
+    without_window = load_well_time_series(SAMPLE_ROOT, "15/9-F-11 A")
+    assert len(with_window) == len(without_window)
+
+
+def test_load_well_time_series_none_windows_means_unbounded():
+    unbounded = load_well_time_series(SAMPLE_ROOT, "15/9-F-11 A", windows=None)
+    default = load_well_time_series(SAMPLE_ROOT, "15/9-F-11 A")
+    assert len(unbounded) == len(default)
 
 
 def test_load_well_time_series_unknown_wellbore_raises():
