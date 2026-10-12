@@ -46,7 +46,20 @@ export function RibbonTrack({
       padding: [0, 0, 0, 0],
       legend: { show: false },
       cursor: { sync: { key: 'strata-s2' }, points: { show: false } },
-      scales: { x: { time: false, range: () => fullRange }, y: { range: () => [0, 1] } },
+      // uPlot calls `range(u, min, max, key)` on *every* setScale, not just the initial
+      // auto-range — a callback that ignores its (min, max) args and always returns the same
+      // constant silently clobbers every later u.setScale('x', ...) call back to that constant
+      // (found via T10.1 e2e: the ribbon never visually reflected "Fit connection" or any zoom
+      // triggered by another track — only its own drag/wheel, which calls setScale from inside
+      // the same closure uPlot had already resolved). But the very first auto-range call (before
+      // any series data/setScale exists) passes (min, max) as null — this track has no real
+      // series data to derive bounds from (dummy 2-point data spanning fullRange, see `data`
+      // above) — so that first call still needs the fullRange fallback, matching the original
+      // "auto-ranging from a 2-point dummy series leaves u.scales.x.min/max as null" fix.
+      scales: {
+        x: { time: false, range: (_u, min, max) => (min == null || max == null ? fullRange : [min, max]) },
+        y: { range: () => [0, 1] },
+      },
       axes: [NO_X_AXIS, HIDDEN_Y_AXIS],
       series: [{}, { show: false }],
       plugins: [ribbonPlugin(() => intervalsRef.current)],
@@ -56,10 +69,22 @@ export function RibbonTrack({
 
   const uplotRef = useUplot(containerRef, { data, buildOptions, sync, fullRange, onRangeSettled })
   useEffect(() => {
-    uplotRef.current?.setData(data)
+    // resetScales=false: `data` is a dummy 2-point placeholder recreated on every render (new
+    // `fullRange` array identity each time, since S2Workspace doesn't memoize it) — setData's
+    // default resetScales=true would re-trigger the x scale's range() auto-ranging (from that
+    // placeholder's own span, i.e. fullRange) on practically every render, clobbering whatever
+    // zoom/pan/sync setScale() last applied. Found via T10.1 e2e: "Fit connection" visually
+    // zoomed the shared x-scale correctly but the ribbon snapped back to the full well moments
+    // later, right as the narrower window's rig-state refetch resolved and re-rendered this
+    // component.
+    uplotRef.current?.setData(data, false)
   }, [data, uplotRef])
   useEffect(() => {
-    uplotRef.current?.redraw()
+    // recalcAxes=false: this plugin draws from `intervalsRef`, not uPlot's own series/scale
+    // auto-ranging, so a plain redraw() (which defaults recalcAxes to true) re-invokes the x
+    // scale's `range()` callback and can clobber whatever setScale() last applied (e.g. right
+    // after "Fit connection" settles a narrower window and the refetched intervals arrive).
+    uplotRef.current?.redraw(true, false)
   }, [ribbonIntervals, uplotRef])
 
   const currentState = (() => {

@@ -63,6 +63,7 @@ export function ByDay({ rows, onBarClick }: { rows: ByDayRow[]; onBarClick?: (da
     <ReactECharts
       option={option}
       style={{ height: 150 }}
+      opts={{ renderer: 'svg' }}
       onEvents={
         onBarClick
           ? {

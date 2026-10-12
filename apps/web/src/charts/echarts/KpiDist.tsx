@@ -44,6 +44,7 @@ export function KpiDist({
 
     return {
       backgroundColor: 'transparent',
+      animation: false,
       grid: { left: 70, right: 24, top: 16, bottom: 28 },
       xAxis: {
         type: 'value',
@@ -94,6 +95,7 @@ export function KpiDist({
     <ReactECharts
       option={option}
       style={{ height: Math.max(rows.length * 56 + 40, 140) }}
+      opts={{ renderer: 'svg' }}
       onEvents={
         onOutlierClick
           ? {

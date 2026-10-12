@@ -55,7 +55,15 @@ export function DdrLaneTrack({
       padding: [12, 0, 0, 0],
       legend: { show: false },
       cursor: { sync: { key: 'strata-s2' }, points: { show: false } },
-      scales: { x: { time: false, range: () => fullRange }, y: { range: () => [0, 1] } },
+      // See RibbonTrack.tsx for why this passes through (min, max) once they're real numbers,
+      // but still falls back to fullRange on the very first auto-range call (min/max null,
+      // no real series data to derive bounds from): uPlot calls `range()` on every setScale,
+      // not just the initial auto-range, so a callback that ignores its args clobbers every
+      // later zoom/pan/sync update.
+      scales: {
+        x: { time: false, range: (_u, min, max) => (min == null || max == null ? fullRange : [min, max]) },
+        y: { range: () => [0, 1] },
+      },
       axes: [NO_X_AXIS, HIDDEN_Y_AXIS],
       series: [{}, { show: false }],
       plugins: [
@@ -71,10 +79,13 @@ export function DdrLaneTrack({
 
   const uplotRef = useUplot(containerRef, { data, buildOptions, sync, fullRange, onRangeSettled })
   useEffect(() => {
-    uplotRef.current?.setData(data)
+    // See RibbonTrack.tsx for why resetScales=false matters here too.
+    uplotRef.current?.setData(data, false)
   }, [data, uplotRef])
   useEffect(() => {
-    uplotRef.current?.redraw()
+    // See RibbonTrack.tsx: recalcAxes=false so a plain data-refresh redraw doesn't re-invoke the
+    // x scale's range() callback and clobber whatever setScale() last applied.
+    uplotRef.current?.redraw(true, false)
   }, [ddrRows, markers, uplotRef])
 
   return (

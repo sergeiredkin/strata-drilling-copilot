@@ -43,6 +43,12 @@ export function useUplot(containerRef: React.RefObject<HTMLDivElement | null>, o
     const resizeObserver = new ResizeObserver(() => {
       if (!container.clientWidth) return
       u.setSize({ width: container.clientWidth, height: container.clientHeight })
+      // setSize triggers uPlot's own auto-range recompute for any scale with a `range`
+      // callback (every track here — see RibbonTrack/DdrLaneTrack for why), which can resolve
+      // to something other than the currently-applied range (e.g. during initial layout, before
+      // the first real pointer/sync-driven setScale has settled). Reassert the authoritative
+      // "current" range every time so a resize mid-mount can't leave a stale scale behind.
+      u.setScale('x', { min: currentRange.current[0], max: currentRange.current[1] })
     })
     resizeObserver.observe(container)
 

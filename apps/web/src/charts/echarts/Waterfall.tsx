@@ -57,5 +57,5 @@ export function Waterfall({ items, total }: { items: WaterfallItem[]; total: num
     }
   }, [items, total])
 
-  return <ReactECharts option={option} style={{ height: 240 }} />
+  return <ReactECharts option={option} style={{ height: 240 }} opts={{ renderer: 'svg' }} />
 }

@@ -148,6 +148,7 @@ def _build_sessions(
     section = well_a.spec.sections[-1] if well_a.spec.sections else "section"
     total_q = ilt_a["total"]
     reaming_q = next(c["hours"] for c in ilt_a["by_category"] if c["category"] == "unreported_reaming")
+    connections_q = next(c["hours"] for c in ilt_a["by_category"] if c["category"] == "connections")
 
     sessions = []
 
@@ -167,6 +168,10 @@ def _build_sessions(
                 "text": "Unreported reaming", "value": reaming_q["value"], "unit": "h",
                 "evidence_id": reaming_q["evidence_id"], "verified": True,
             },
+            {
+                "text": "Connections", "value": connections_q["value"], "unit": "h",
+                "evidence_id": connections_q["evidence_id"], "verified": True,
+            },
         ],
         "ddr_quotes": [],
         "reasoning": (
@@ -184,7 +189,7 @@ def _build_sessions(
         "trace": [{
             "i": 0, "tool": "ilt_breakdown", "args": {"well": well_a.spec.id, "by": "category"},
             "ms": 420, "status": "ok",
-            "evidence_ids": [total_q["evidence_id"], reaming_q["evidence_id"]],
+            "evidence_ids": [total_q["evidence_id"], reaming_q["evidence_id"], connections_q["evidence_id"]],
         }],
     }
     sessions.append(("s1_ilt_breakdown", f"What drove the lost time in the {section} section?", answer_1))

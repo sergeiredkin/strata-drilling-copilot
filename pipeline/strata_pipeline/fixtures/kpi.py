@@ -67,17 +67,19 @@ def compute_kpis(detail: WellDetail, reg: EvidenceRegistry) -> dict[str, Any]:
         _minutes(s[0], s[1]) for s in valid_states if s[2] in ("rotary_drilling", "sliding")
     )
 
-    def dist(values: list[float], tool: str, unit: str, better: str) -> dict[str, Any] | None:
+    def dist(
+        values: list[float], windows: list[tuple[float, float]], tool: str, unit: str, better: str
+    ) -> dict[str, Any] | None:
         if not values:
             return None
         best_pctl = 10.0 if better == "low" else 90.0
         best = _pctl(values, best_pctl)
-        outliers = []
+        outliers: list[tuple[float, float, float]] = []
         if len(values) >= 4:
             q1, q3 = _pctl(values, 25), _pctl(values, 75)
             iqr = q3 - q1
             hi = q3 + 1.5 * iqr
-            outliers = [v for v in values if v > hi]
+            outliers = [(v, w[0], w[1]) for v, w in zip(values, windows) if v > hi]
         return {
             "n": len(values),
             "min": reg.quantity(tool, {"well": well, "stat": "min"}, min(values), unit, _SOURCE, 2),
@@ -90,21 +92,29 @@ def compute_kpis(detail: WellDetail, reg: EvidenceRegistry) -> dict[str, Any]:
                 method_note=f"composite best = P{best_pctl:.0f} per KPI per section",
             ),
             "outliers": [
-                {"value": reg.quantity(tool, {"well": well, "stat": "outlier"}, v, unit, _SOURCE, 2), "t0": 0, "t1": 0}
-                for v in outliers
+                {
+                    "value": reg.quantity(tool, {"well": well, "stat": "outlier"}, v, unit, _SOURCE, 2),
+                    "t0": t0,
+                    "t1": t1,
+                }
+                for v, t0, t1 in outliers
             ],
         }
+
+    conn_windows = [(s[0], s[1]) for s in conn]
+    trip_in_windows = [(s[0], s[1]) for s in trip_in]
+    trip_out_windows = [(s[0], s[1]) for s in trip_out]
 
     cards = []
     distributions = []
     kpi_defs = [
-        ("conn_s2s", conn_s2s, "min", "low", "kpi.connection_times"),
-        ("conn_w2w", conn_w2w, "min", "low", "kpi.connection_times"),
-        ("trip_in_open", trip_in_speed, "m/h", "high", "kpi.trips"),
-        ("trip_out_open", trip_out_speed, "m/h", "high", "kpi.trips"),
+        ("conn_s2s", conn_s2s, conn_windows, "min", "low", "kpi.connection_times"),
+        ("conn_w2w", conn_w2w, conn_windows, "min", "low", "kpi.connection_times"),
+        ("trip_in_open", trip_in_speed, trip_in_windows, "m/h", "high", "kpi.trips"),
+        ("trip_out_open", trip_out_speed, trip_out_windows, "m/h", "high", "kpi.trips"),
     ]
-    for name, values, unit, better, tool in kpi_defs:
-        d = dist(values, tool, unit, better)
+    for name, values, windows, unit, better, tool in kpi_defs:
+        d = dist(values, windows, tool, unit, better)
         conf = assess(sample_size=len(values)) if values else assess(sample_size=0)
         if d is None:
             eid = reg.add(tool, {"well": well, "stat": "value"}, None, unit, _SOURCE)
