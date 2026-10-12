@@ -86,6 +86,11 @@ def parse_ddr_file(xml_path: Path) -> list[dict[str, Any]]:
                 "narrative": re.sub(r"\s+", " ", comments_el.text).strip()
                 if comments_el is not None and comments_el.text
                 else "",
+                # Volve's WITSML DDR activity records have no explicit NPT boolean (`state`
+                # here is a data-quality flag like "ok", not "lost time") — docs/07's
+                # "npt_flag" column has no documented derivation rule, so it stays an honest
+                # null rather than a guessed heuristic (CLAUDE.md: never fabricate data).
+                "npt_flag": None,
             }
         )
     return rows
@@ -112,6 +117,7 @@ def load_well_ddr(ddr_dir: Path, well_file_prefix: str) -> pl.DataFrame:
                 "normalized_code": pl.Utf8,
                 "state": pl.Utf8,
                 "narrative": pl.Utf8,
+                "npt_flag": pl.Boolean,
             }
         )
     df = pl.DataFrame(rows)
