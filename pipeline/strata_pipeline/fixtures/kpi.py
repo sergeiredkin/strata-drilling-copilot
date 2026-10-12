@@ -79,7 +79,7 @@ def compute_kpis(detail: WellDetail, reg: EvidenceRegistry) -> dict[str, Any]:
             q1, q3 = _pctl(values, 25), _pctl(values, 75)
             iqr = q3 - q1
             hi = q3 + 1.5 * iqr
-            outliers = [(v, w[0], w[1]) for v, w in zip(values, windows) if v > hi]
+            outliers = [(v, w[0], w[1]) for v, w in zip(values, windows, strict=True) if v > hi]
         return {
             "n": len(values),
             "min": reg.quantity(tool, {"well": well, "stat": "min"}, min(values), unit, _SOURCE, 2),

@@ -9,7 +9,7 @@
       "id": "s1_ilt_breakdown",
       "model": "fixture",
       "question": "What drove the lost time in the 8\u00bd section?",
-      "recorded_at": "2026-10-12T05:08:34.354425+00:00"
+      "recorded_at": "2026-10-12T05:26:59.070756+00:00"
     },
     {
       "context": {
@@ -20,7 +20,7 @@
       "id": "s2_unverified_example",
       "model": "fixture",
       "question": "Give me the one-line lost-time number.",
-      "recorded_at": "2026-10-12T05:08:34.354559+00:00"
+      "recorded_at": "2026-10-12T05:26:59.070885+00:00"
     },
     {
       "context": {
@@ -31,7 +31,7 @@
       "id": "s3_insufficient_data",
       "model": "fixture",
       "question": "What's the trip-in speed for 15/9-F-5?",
-      "recorded_at": "2026-10-12T05:08:34.354682+00:00"
+      "recorded_at": "2026-10-12T05:26:59.071006+00:00"
     }
   ]
 }

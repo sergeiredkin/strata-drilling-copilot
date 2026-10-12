@@ -33,7 +33,7 @@ test:
 	uv run --all-packages pytest; status=$$?; [ $$status -eq 0 ] || [ $$status -eq 5 ]
 
 lint:
-	cd apps/web && pnpm lint
+	cd apps/web && pnpm lint && pnpm copy-lint
 	uv run ruff check pipeline services eval
 
 typecheck:
