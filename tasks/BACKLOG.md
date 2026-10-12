@@ -38,6 +38,7 @@
 - [x] T2.3 Volve DDR ingest (ddr.py)
 - [ ] T2.4 FORGE ingest ← blocked on OpenEI/GDR infrastructure outage, see docs/DATA_INVENTORY.md §4
 - [x] T3.1 QC (strata_pipeline/qc/*; source reconciliation per docs/adr/0007)
+- [ ] T3.2 rig-state rules classifier (strata_pipeline/rigstate/*) ← rules+intervals+confidence done; gold-sample agreement script still open
 - [ ] T3.2 Rig-state classifier + gold-sample agreement
 - [ ] T3.3 KPIs + composite best
 - [ ] T3.4 ILT

@@ -44,3 +44,29 @@ qc:
     tops: 0.10
     survey: 0.10
     mud: 0.10
+
+rigstate:
+  # §4 preprocessing.
+  median_filter_seconds: 5.0
+  block_velocity_window_seconds: 5.0 # centred difference window for v = dBPOS/dt
+
+  # §4 per-well calibration fallback: HL_slips = travelling-block weight * (1 + this margin),
+  # used only when the hookload histogram has no clear two-mode valley.
+  slips_fallback_margin: 0.15
+
+  # §4 flag thresholds.
+  on_bottom_m: 0.5 # HOLEDEPTH - BITDEPTH <= this => on_bottom
+  near_bottom_m: 40.0 # HOLEDEPTH - BITDEPTH < this => near_bottom
+  rotating_rpm: 5.0 # RPM > this => rotating
+  pumping_lpm: 100.0 # FLOWIN > this => pumping
+  moving_mps: 0.05 # |v| > this => moving
+  out_of_hole_bitdepth_m: 30.0 # R1: BITDEPTH < this and not pumping => out_of_hole
+
+  trip_direction_window_seconds: 600.0 # R3: sign of net BITDEPTH change over this trailing window
+
+  min_interval_seconds: 10.0 # §4 post-processing: merge intervals shorter than this into a
+  # neighbour (hysteresis), except connection intervals, which are kept regardless of length.
+
+  # §4 confidence: a sample is "decisive" only if every one of the winning rule's deciding
+  # inputs is more than this fraction away from its own threshold (relative margin).
+  confidence_margin_frac: 0.10
