@@ -41,7 +41,7 @@
 - [x] T3.2 rig-state rules classifier + gold-sample agreement script (eval/strata_eval/rigstate_agreement.py; eval/rigstate_gold.csv pending Sergei's hand labels)
 - [ ] T3.2 Rig-state classifier + gold-sample agreement
 - [x] T3.3 KPIs + composite best (strata_pipeline/kpi/*; per-stand trip speed distributions deferred — see trips.py docstring)
-- [ ] T3.4 ILT
+- [x] T3.4 ILT (strata_pipeline/kpi/ilt/*)
 - [ ] T3.5 Reconciliation + mismatches
 - [ ] T3.6 Confidence module + evidence registry
 - [ ] T3.7 Exporter + make reproduce (deterministic)
