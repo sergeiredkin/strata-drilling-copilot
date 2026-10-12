@@ -33,7 +33,7 @@
 - [x] T10.3 A11y + copy lint
 
 ## M4 Real data (Lane B)
-- [ ] T2.1 Data inventory + licences  ← report to Sergei before continuing
+- [x] T2.1 Data inventory + licences  ← reported to Sergei (see docs/DATA_INVENTORY.md, docs/LICENSES.md)
 - [ ] T2.2 Volve time-log ingest
 - [ ] T2.3 Volve DDR ingest
 - [ ] T2.4 FORGE ingest
