@@ -117,7 +117,14 @@ async def run_agent(
     session_id: str,
     client: LlmClient | None = None,
     model: str | None = None,
+    allowed_tools: set[str] | None = None,
+    extra_context: str | None = None,
 ) -> AsyncIterator[dict[str, Any]]:
+    """`allowed_tools`, if given, restricts which non-`submit_answer` tools the model may call —
+    used by eval/strata_eval/run_ablation.py's `no_tools`/`full_minus_physics` configs (`None`
+    means every tool in `TOOL_SPECS`, i.e. the `full` config). `extra_context`, if given, is
+    appended to the user turn verbatim — `run_ablation.py`'s `simple_rag` config uses this to
+    inject BM25-retrieved text instead of letting the model call tools for it."""
     start = time.monotonic()
 
     def dt_ms() -> float:
@@ -129,16 +136,13 @@ async def run_agent(
     model_id = model or os.environ.get("STRATA_LLM_MODEL", "claude-sonnet-5-5")
     reg = EvidenceRegistry(git_commit=os.environ.get("STRATA_GIT_COMMIT", "unknown"))
     tools = CopilotTools(settings, reg)
-    all_specs = [*TOOL_SPECS, _SUBMIT_ANSWER_SPEC]
+    specs = TOOL_SPECS if allowed_tools is None else [s for s in TOOL_SPECS if s["name"] in allowed_tools]
+    all_specs = [*specs, _SUBMIT_ANSWER_SPEC]
 
-    messages: list[dict[str, Any]] = [
-        {
-            "role": "user",
-            "content": (
-                f"Context: {context.model_dump_json()}\n\nQuestion: {question}"
-            ),
-        }
-    ]
+    question_block = f"Context: {context.model_dump_json()}\n\nQuestion: {question}"
+    if extra_context:
+        question_block += f"\n\n{extra_context}"
+    messages: list[dict[str, Any]] = [{"role": "user", "content": question_block}]
 
     tool_calls_used = 0
     trace: list[dict[str, Any]] = []

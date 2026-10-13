@@ -1,0 +1,25 @@
+# Copilot gold question set — docs/07_DATA_AND_ALGORITHMS.md §13. Authored by Sergei; status
+# stays "pending" until there are >= 25 real questions (count excludes the EXAMPLE- entry below,
+# which exists only to document the schema `eval/strata_eval/run_ablation.py` and `score.py`
+# expect, not as real gold data — CLAUDE.md: never fabricate data).
+status: pending
+version: "0.0"
+author: pending
+
+questions:
+  - id: EXAMPLE-ignore
+    question: "What was the median connection time for the well?"
+    context:
+      screen: performance
+      well: "15_9-F-11_A"
+    expected_kind: answer
+    # Each entry: the number the answer should contain, its unit, and an absolute tolerance —
+    # OR an `evidence_id` instead of value/unit/tolerance when the exact exported number (and
+    # therefore its id) is already known ahead of time.
+    expected_numbers:
+      - value: 6.15
+        unit: min
+        tolerance: 0.5
+    rubric_notes: >
+      Illustrative only — not a real gold question. Delete this entry once real ones are added;
+      it must never count toward the >= 25 threshold that flips `status` to "final".

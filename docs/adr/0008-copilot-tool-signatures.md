@@ -31,6 +31,16 @@ shards (this is a live, per-request computation, not an export artifact), but re
 checks a claim's `evidence_id` against this session registry first, falling back to the on-disk
 static shards, so both pass-through and freshly-minted claims verify the same way.
 
+Decision 4 — which tools are "physics" for `full_minus_physics`: `07_DATA_AND_ALGORITHMS.md` §13
+names this ablation ("physics tools disabled") without listing them.
+`eval/strata_eval/run_ablation.py` treats a tool as "physics" when it derives from sensor/
+classifier output or a DDR-vs-sensor comparison — `rigstate_summary`, `kpi_connection_times`,
+`kpi_trips`, `ilt_breakdown`, `formation_stats`, `reconciliation`, `mismatches` — and leaves
+`list_wells`, `well_summary`, `ddr_search`, `issues_query`, `evidence` available (metadata and
+narrative lookups, nothing computed from channel data). This is the ablation meant to answer "how
+much does the model lean on computed drilling metrics vs. just narrative/metadata", so the split
+follows that question rather than, say, which pipeline module produced the underlying export file.
+
 Consequences: a `rigstate_summary` evidence id is only ever valid within the session that minted
 it (never shareable across sessions or persisted) — acceptable, since the recorder (T8.5) saves
 the whole session trace including the evidence that validated each claim, and static-mode replay
