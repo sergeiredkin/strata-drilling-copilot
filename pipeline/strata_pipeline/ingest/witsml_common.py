@@ -32,7 +32,7 @@ def find_wellbore_dirs(witsml_root: Path, wellbore_name: str) -> list[Path]:
     and ignoring a leading "NO " country prefix some registrations add). A well re-registered
     under Statoil/StatoilHydro/Statoil-NO over the field's life resolves to multiple directories
     here; callers must read from all of them, not just one."""
-    target = _normalize_wellbore_name(wellbore_name)
+    target = normalize_wellbore_name(wellbore_name)
     matches: list[Path] = []
     for info_file in witsml_root.glob("*/*/_wellboreInfo/*.xml"):
         try:
@@ -43,12 +43,12 @@ def find_wellbore_dirs(witsml_root: Path, wellbore_name: str) -> list[Path]:
         name_el = wellbore_el.find("name") if wellbore_el is not None else None
         if name_el is None or name_el.text is None:
             continue
-        if _normalize_wellbore_name(name_el.text) == target:
+        if normalize_wellbore_name(name_el.text) == target:
             matches.append(info_file.parent.parent)
     return matches
 
 
-def _normalize_wellbore_name(name: str) -> str:
+def normalize_wellbore_name(name: str) -> str:
     """Volve's WITSML archive has at least two source systems registering the same physical
     wellbore under slightly different names — BHI-sourced registrations use the plain NPD name
     ("15/9-F-11 A"), sometimes with a "NO " country prefix ("NO 15/9-F-11 A"); InterAct-sourced

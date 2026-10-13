@@ -89,6 +89,19 @@ non-commercial-only use beyond that.
 Data publisher: Equinor ASA. Data owners: Equinor (operator), ExxonMobil (partner), Bayerngas
 (partner), and the Norwegian Petroleum Directorate (NPD).
 
+### Formation tops (`data/raw/volve_well_picks/Volve_well_picks_modified.csv`)
+Not obtained via Databricks Marketplace — none of the three archives downloaded there have
+per-well formation tops (`docs/DATA_INVENTORY.md` §1), and NPD/Sodir's own public tops layer has
+no records for these development wells either. Sergei approved (2026-10-13) using a third-party
+GitHub redistribution instead of waiting on the un-downloaded, multi-GB `Well_logs*.zip` archives:
+`github.com/yohanesnuwara/volve-machine-learning`'s `Volve_well_picks_modified.csv`. The *repo* is
+MIT-licensed, but that licence covers the repo author's own code, not Equinor's data riding along
+in it — the CSV's content (formation names carrying Equinor's own "VOLVE" naming convention, full
+34-wellbore Volve coverage) is treated as the same Volve dataset under the same terms as §1 above,
+same attribution requirement, same "not resold." sha256 recorded in `data/raw/MANIFEST.json`
+alongside the Databricks-sourced files. Not yet verified byte-for-byte against an Equinor-original
+copy of the same file (see `docs/DATA_INVENTORY.md` §1 for what would close that out).
+
 ## 2. Utah FORGE (Geothermal Data Repository / OpenEI)
 
 **Licence: CC BY 4.0** (Creative Commons Attribution), confirmed via `data.openei.org`'s own

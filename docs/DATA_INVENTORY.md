@@ -52,9 +52,24 @@ extraction of the WITSML archive alone would be ~36 GB for all ~31 wellbores in 
   ingest must convert DDR timestamps to UTC before aligning with the real-time logs.
 - Formation tops were **not** found as a distinct file type in what we downloaded — `Reports.zip`
   contains only a Discovery report and the PUD (field-level, not per-well tops), and
-  `Well_technical_data.zip` has no tops-specific folder. May be inside the un-downloaded
-  `Well_logs*.zip` archives (6.9-7.0 GB each, skipped — see `data/raw/MANIFEST.json`); revisit if
-  S6/Formation (T11.x, P1) needs real tops before then.
+  `Well_technical_data.zip` has no tops-specific folder. NPD/Sodir's own public factpages
+  (`factmaps.sodir.no`'s `wellbore_formation_top` ArcGIS layer, government-interpreted tops) was
+  also checked directly and returns zero records for any `15/9-F-*` Volve development wellbore —
+  confirmed via a direct query, not an absence of search effort.
+
+  T11.1/T11.2 (P1) needed these for real, so rather than wait on the un-downloaded
+  `Well_logs*.zip` archives (6.9-7.0 GB each, still skipped — see `data/raw/MANIFEST.json`),
+  Sergei approved using `data/raw/volve_well_picks/Volve_well_picks_modified.csv` — a third-party
+  GitHub redistribution (`yohanesnuwara/volve-machine-learning`, MIT-licensed *repo*, but the CSV's
+  own content is Equinor's) of what is almost certainly Equinor's original 2018 Volve well-picks
+  file: formation names carry Equinor's own "VOLVE" suffix convention (e.g. "Hugin Fm. VOLVE
+  Top"), and the file covers all 34 Volve wellbores including every one of STRATA's 6, which a
+  random fabrication is unlikely to reproduce exactly. Recorded with its sha256 in
+  `data/raw/MANIFEST.json` like every other raw source; licence treated as the same Volve CC
+  BY-NC-SA terms as the archives downloaded via Databricks (`docs/LICENSES.md`), since it's the
+  same underlying dataset, not a new one. Not yet cross-checked byte-for-byte against an
+  Equinor-original copy — if the `Well_logs*.zip` archives are ever downloaded, diff their own
+  picks file against this one and update this note.
 
 ## 2. Per-wellbore coverage (the 6 wells STRATA's fixtures currently model)
 
