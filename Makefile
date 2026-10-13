@@ -38,7 +38,7 @@ lint:
 
 typecheck:
 	cd apps/web && pnpm typecheck
-	uv run mypy pipeline/strata_pipeline
+	uv run mypy pipeline/strata_pipeline services/api/strata_api
 
 e2e:
 	cd apps/web && pnpm build && pnpm e2e

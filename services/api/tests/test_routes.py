@@ -165,7 +165,11 @@ def test_copilot_sessions(client: TestClient) -> None:
     assert "sessions" in res.json()
 
 
-def test_copilot_ask_streams_live_mode_required_answer(client: TestClient) -> None:
+def test_copilot_ask_streams_start_then_a_graceful_error_without_llm_credentials(client: TestClient) -> None:
+    # No ANTHROPIC_API_KEY is configured for this test run — the real agent (T8.4) must fail
+    # gracefully over the SSE stream (an "error" CopilotEvent), never a 500 or a hang. Scripted
+    # tool-call behavior of the agent loop itself is covered by test_copilot_agent.py's fake LLM
+    # client, which doesn't need real credentials.
     with client.stream(
         "POST",
         "/copilot/ask",
@@ -173,7 +177,8 @@ def test_copilot_ask_streams_live_mode_required_answer(client: TestClient) -> No
     ) as res:
         assert res.status_code == 200
         body = "".join(res.iter_text())
-    assert "live_mode_required" in body
+    assert '"type": "start"' in body
+    assert '"type": "error"' in body
 
 
 def test_issues_empty_fixture_list(client: TestClient) -> None:

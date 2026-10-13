@@ -30,7 +30,7 @@ jobs:
           version: "0.8.x"
       - run: uv sync --all-packages
       - run: uv run ruff check pipeline services eval
-      - run: uv run mypy pipeline/strata_pipeline
+      - run: uv run mypy pipeline/strata_pipeline services/api/strata_api
       - run: uv run --all-packages pytest
 
   contracts-check:

@@ -1,13 +1,14 @@
-"""`/copilot/sessions` and `/copilot/ask`. The real agent (tools, LLM loop, verifier) is T8.4 —
-not built yet. `ask` still honestly answers over SSE with `kind: "live_mode_required"`
-(`CopilotAnswer`'s own enum has exactly this value) rather than a bare error or a 404, since a
-contract-valid "not available yet" response is what a live-mode client should be able to render
-today; T8.4 replaces this handler's body, not its route or wire format.
+"""`/copilot/sessions` and `/copilot/ask` — docs/02_IMPLEMENTATION_PLAN.md T8.4. `ask` runs the
+real agent loop (`copilot/agent.py`): an Anthropic Messages API tool-use loop over
+`copilot/tools.py`, ending when the model calls `submit_answer`, verified by
+`copilot/verifier.py` before being streamed back. Every intermediate tool call is also streamed
+as its own `CopilotEvent` so a live client can show progress, not just the final answer.
 """
 
 from __future__ import annotations
 
 import json
+import uuid
 from collections.abc import AsyncIterator
 from typing import Any
 
@@ -16,6 +17,7 @@ from pydantic import BaseModel
 from sse_starlette.sse import EventSourceResponse
 from strata_pipeline.contracts import CopilotContext
 
+from ..copilot.agent import run_agent
 from ..data_access import read_json
 from ..deps import SettingsDep
 
@@ -34,28 +36,13 @@ def sessions(settings: SettingsDep) -> dict[str, Any]:
 
 
 @router.post("/ask")
-async def ask(request: AskRequest) -> EventSourceResponse:
+async def ask(request: AskRequest, settings: SettingsDep) -> EventSourceResponse:
+    session_id = request.session_id or f"live_{uuid.uuid4().hex[:12]}"
+
     async def events() -> AsyncIterator[dict[str, Any]]:
-        session_id = request.session_id or "live"
-        yield {
-            "data": json.dumps(
-                {"type": "start", "session_id": session_id, "dt_ms": 0, "context": request.context.model_dump()}
-            )
-        }
-        answer = {
-            "kind": "live_mode_required",
-            "answer": (
-                "The live copilot agent isn't implemented yet (T8.4) — "
-                "ask in static mode to see recorded demo sessions."
-            ),
-            "claims": [],
-            "ddr_quotes": [],
-            "reasoning": "services/api/strata_api/copilot/agent.py has not been built.",
-            "assumptions": [],
-            "confidence": "low",
-            "confidence_reason": "no agent is running; this is a placeholder response.",
-            "trace": [],
-        }
-        yield {"data": json.dumps({"type": "answer", "answer": answer, "dt_ms": 0})}
+        async for event in run_agent(
+            question=request.question, context=request.context, settings=settings, session_id=session_id
+        ):
+            yield {"data": json.dumps(event)}
 
     return EventSourceResponse(events())
