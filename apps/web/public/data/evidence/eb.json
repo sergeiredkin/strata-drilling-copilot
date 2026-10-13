@@ -1,0 +1,21 @@
+{
+  "ev_ebfcad6b34": {
+    "generated_at": "2026-10-13T11:57:48.977521+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "id": "ev_ebfcad6b34",
+    "params": {
+      "formation": "Sleipner Fm.",
+      "stat": "avg_mse",
+      "well": "15_9-F-5"
+    },
+    "sources": [
+      {
+        "file": "fixture:synthetic",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "formation.stats",
+    "unit": "MPa",
+    "value": 161.77470075373606
+  }
+}

@@ -1,7 +1,7 @@
 {
   "ev_90162c0e7a": {
-    "generated_at": "2026-10-12T05:26:58.934594+00:00",
-    "git_commit": "23add431fc45ab8b1439705b1677123947feed35",
+    "generated_at": "2026-10-13T11:57:49.053123+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_90162c0e7a",
     "params": {
       "code": "DRILL",
@@ -23,9 +23,28 @@
     "unit": "min",
     "value": 1097.816666666667
   },
+  "ev_9028565614": {
+    "generated_at": "2026-10-13T11:57:48.831530+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "id": "ev_9028565614",
+    "params": {
+      "formation": "Hod Fm.",
+      "stat": "avg_rop",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "fixture:synthetic",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "formation.stats",
+    "unit": "m/h",
+    "value": 15.27715945275408
+  },
   "ev_90a04dfd4f": {
-    "generated_at": "2026-10-13T11:47:35.498501+00:00",
-    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
+    "generated_at": "2026-10-13T11:58:44.473730+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_90a04dfd4f",
     "params": {
       "code": "TRIP",

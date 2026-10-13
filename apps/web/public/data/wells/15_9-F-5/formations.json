@@ -1,0 +1,297 @@
+{
+  "lithology": [
+    {
+      "lith": "sandstone",
+      "md_base": 460.0,
+      "md_top": 0.0
+    },
+    {
+      "lith": "sandstone",
+      "md_base": 920.0,
+      "md_top": 460.0
+    },
+    {
+      "lith": "limestone",
+      "md_base": 1380.0,
+      "md_top": 920.0
+    },
+    {
+      "lith": "limestone",
+      "md_base": 1840.0,
+      "md_top": 1380.0
+    },
+    {
+      "lith": "shale",
+      "md_base": 2300.0,
+      "md_top": 1840.0
+    },
+    {
+      "lith": "shale",
+      "md_base": 2760.0,
+      "md_top": 2300.0
+    },
+    {
+      "lith": "sandstone",
+      "md_base": 3220.0,
+      "md_top": 2760.0
+    },
+    {
+      "lith": "sandstone",
+      "md_base": 3680.0,
+      "md_top": 3220.0
+    }
+  ],
+  "stats": [
+    {
+      "avg_mse": {
+        "evidence_id": "ev_5ffe66f24c",
+        "precision": 2,
+        "unit": "MPa",
+        "value": 108.97211066409426
+      },
+      "avg_rop": {
+        "evidence_id": "ev_baa6deeb07",
+        "precision": 2,
+        "unit": "m/h",
+        "value": 22.179441938463587
+      },
+      "best_window": null,
+      "confidence": {
+        "level": "high",
+        "reason": "sample size is 65",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "formation": "Utsira Fm.",
+      "incidents": 0,
+      "n_wells": 1
+    },
+    {
+      "avg_mse": {
+        "evidence_id": "ev_6edd365342",
+        "precision": 2,
+        "unit": "MPa",
+        "value": 78.12836646003504
+      },
+      "avg_rop": {
+        "evidence_id": "ev_ae40ce4545",
+        "precision": 2,
+        "unit": "m/h",
+        "value": 17.2767241523889
+      },
+      "best_window": null,
+      "confidence": {
+        "level": "high",
+        "reason": "sample size is 53",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "formation": "Ty Fm.",
+      "incidents": 0,
+      "n_wells": 1
+    },
+    {
+      "avg_mse": {
+        "evidence_id": "ev_86774c63b7",
+        "precision": 2,
+        "unit": "MPa",
+        "value": 41.19813860482585
+      },
+      "avg_rop": {
+        "evidence_id": "ev_f1d1d312ea",
+        "precision": 2,
+        "unit": "m/h",
+        "value": 8.815177294431738
+      },
+      "best_window": null,
+      "confidence": {
+        "level": "high",
+        "reason": "sample size is 54",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "formation": "Ekofisk Fm.",
+      "incidents": 0,
+      "n_wells": 1
+    },
+    {
+      "avg_mse": {
+        "evidence_id": "ev_87b9113a7d",
+        "precision": 2,
+        "unit": "MPa",
+        "value": 46.602834700527765
+      },
+      "avg_rop": {
+        "evidence_id": "ev_451e3e8938",
+        "precision": 2,
+        "unit": "m/h",
+        "value": 12.115682363030475
+      },
+      "best_window": null,
+      "confidence": {
+        "level": "high",
+        "reason": "sample size is 67",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "formation": "Hod Fm.",
+      "incidents": 0,
+      "n_wells": 1
+    },
+    {
+      "avg_mse": {
+        "evidence_id": "ev_6f4fd83e3b",
+        "precision": 2,
+        "unit": "MPa",
+        "value": 101.88150203697649
+      },
+      "avg_rop": {
+        "evidence_id": "ev_8a6a81ea4f",
+        "precision": 2,
+        "unit": "m/h",
+        "value": 6.117865770912922
+      },
+      "best_window": null,
+      "confidence": {
+        "level": "high",
+        "reason": "sample size is 42",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "formation": "Draupne Fm.",
+      "incidents": 0,
+      "n_wells": 1
+    },
+    {
+      "avg_mse": {
+        "evidence_id": "ev_e9ee491fe2",
+        "precision": 2,
+        "unit": "MPa",
+        "value": 124.00339568664627
+      },
+      "avg_rop": {
+        "evidence_id": "ev_0f674fde79",
+        "precision": 2,
+        "unit": "m/h",
+        "value": 6.976903613133511
+      },
+      "best_window": null,
+      "confidence": {
+        "level": "high",
+        "reason": "sample size is 36",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "formation": "Heather Fm.",
+      "incidents": 0,
+      "n_wells": 1
+    },
+    {
+      "avg_mse": {
+        "evidence_id": "ev_66ceae5352",
+        "precision": 2,
+        "unit": "MPa",
+        "value": 161.46064152150868
+      },
+      "avg_rop": {
+        "evidence_id": "ev_4778f042dd",
+        "precision": 2,
+        "unit": "m/h",
+        "value": 10.085513790055703
+      },
+      "best_window": null,
+      "confidence": {
+        "level": "high",
+        "reason": "sample size is 64",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "formation": "Hugin Fm. VOLVE",
+      "incidents": 0,
+      "n_wells": 1
+    },
+    {
+      "avg_mse": {
+        "evidence_id": "ev_ebfcad6b34",
+        "precision": 2,
+        "unit": "MPa",
+        "value": 161.77470075373606
+      },
+      "avg_rop": {
+        "evidence_id": "ev_92bce151ec",
+        "precision": 2,
+        "unit": "m/h",
+        "value": 10.324120713604357
+      },
+      "best_window": null,
+      "confidence": {
+        "level": "high",
+        "reason": "sample size is 43",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "formation": "Sleipner Fm.",
+      "incidents": 0,
+      "n_wells": 1
+    }
+  ],
+  "tops": [
+    {
+      "md_base": 460.0,
+      "md_top": 0.0,
+      "name": "Utsira Fm.",
+      "source": "fixture:synthetic"
+    },
+    {
+      "md_base": 920.0,
+      "md_top": 460.0,
+      "name": "Ty Fm.",
+      "source": "fixture:synthetic"
+    },
+    {
+      "md_base": 1380.0,
+      "md_top": 920.0,
+      "name": "Ekofisk Fm.",
+      "source": "fixture:synthetic"
+    },
+    {
+      "md_base": 1840.0,
+      "md_top": 1380.0,
+      "name": "Hod Fm.",
+      "source": "fixture:synthetic"
+    },
+    {
+      "md_base": 2300.0,
+      "md_top": 1840.0,
+      "name": "Draupne Fm.",
+      "source": "fixture:synthetic"
+    },
+    {
+      "md_base": 2760.0,
+      "md_top": 2300.0,
+      "name": "Heather Fm.",
+      "source": "fixture:synthetic"
+    },
+    {
+      "md_base": 3220.0,
+      "md_top": 2760.0,
+      "name": "Hugin Fm. VOLVE",
+      "source": "fixture:synthetic"
+    },
+    {
+      "md_base": 3680.0,
+      "md_top": 3220.0,
+      "name": "Sleipner Fm.",
+      "source": "fixture:synthetic"
+    }
+  ],
+  "well": "15_9-F-5"
+}

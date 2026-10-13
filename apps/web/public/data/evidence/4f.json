@@ -1,7 +1,7 @@
 {
   "ev_4f1d9678f7": {
-    "generated_at": "2026-10-13T11:47:35.443066+00:00",
-    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
+    "generated_at": "2026-10-13T11:58:44.419339+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_4f1d9678f7",
     "params": {
       "kpi": "conn_s2s",
@@ -19,8 +19,8 @@
     "value": 188.98333333333332
   },
   "ev_4fadc2159f": {
-    "generated_at": "2026-10-13T11:47:35.443057+00:00",
-    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
+    "generated_at": "2026-10-13T11:58:44.419329+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_4fadc2159f",
     "params": {
       "kpi": "conn_s2s",
@@ -36,5 +36,24 @@
     "tool": "kpi.connection_times",
     "unit": "min",
     "value": 3.1125
+  },
+  "ev_4ff02a5840": {
+    "generated_at": "2026-10-13T11:57:48.831726+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "id": "ev_4ff02a5840",
+    "params": {
+      "formation": "Hugin Fm. VOLVE",
+      "stat": "avg_rop",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "fixture:synthetic",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "formation.stats",
+    "unit": "m/h",
+    "value": 15.323398680238626
   }
 }

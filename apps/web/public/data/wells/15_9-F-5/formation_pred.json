@@ -1,0 +1,71 @@
+{
+  "held_out": false,
+  "intervals": [
+    {
+      "abstained": false,
+      "agrees_with_pick": true,
+      "label": "Utsira Fm.",
+      "md_base": 460.0,
+      "md_top": 0.0,
+      "p": 0.858
+    },
+    {
+      "abstained": true,
+      "agrees_with_pick": null,
+      "label": null,
+      "md_base": 920.0,
+      "md_top": 460.0,
+      "p": 0.741
+    },
+    {
+      "abstained": false,
+      "agrees_with_pick": false,
+      "label": "Heather Fm.",
+      "md_base": 1380.0,
+      "md_top": 920.0,
+      "p": 0.786
+    },
+    {
+      "abstained": false,
+      "agrees_with_pick": true,
+      "label": "Hod Fm.",
+      "md_base": 1840.0,
+      "md_top": 1380.0,
+      "p": 0.951
+    },
+    {
+      "abstained": true,
+      "agrees_with_pick": null,
+      "label": null,
+      "md_base": 2300.0,
+      "md_top": 1840.0,
+      "p": 0.591
+    },
+    {
+      "abstained": false,
+      "agrees_with_pick": true,
+      "label": "Heather Fm.",
+      "md_base": 2760.0,
+      "md_top": 2300.0,
+      "p": 0.881
+    },
+    {
+      "abstained": true,
+      "agrees_with_pick": null,
+      "label": null,
+      "md_base": 3220.0,
+      "md_top": 2760.0,
+      "p": 0.678
+    },
+    {
+      "abstained": true,
+      "agrees_with_pick": null,
+      "label": null,
+      "md_base": 3680.0,
+      "md_top": 3220.0,
+      "p": 0.666
+    }
+  ],
+  "model_version": "mock-0.0.0",
+  "well": "15_9-F-5"
+}

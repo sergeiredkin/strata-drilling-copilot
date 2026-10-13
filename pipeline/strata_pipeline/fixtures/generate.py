@@ -16,6 +16,7 @@ from typing import Any
 
 from ..evidence import EvidenceRegistry
 from ..export.series import export_channel_series
+from .formation import synthesize_formation_prediction, synthesize_formation_report
 from .kpi import compute_ilt, compute_kpis, compute_mismatches, compute_reconciliation
 from .synth import WellDetail, synthesize_well
 from .wells import COVERAGE_KINDS, WELLS, WellSpec
@@ -293,6 +294,16 @@ def generate(out_dir: Path = OUT_DIR) -> None:
         reconciliations.append(recon)
 
         _export_series(detail, well_dir)
+
+        # T11.2/T11.3: synthetic, clearly-mock formations + predictions for S6. 15_9-F-11_A's
+        # version here is overwritten by export/generate_real.py's real one once `make export`
+        # runs for it -- harmless in the meantime, same pattern as its other mock-then-real files.
+        formation_report = synthesize_formation_report(spec, reg, seed=300 + i)
+        _write_json(well_dir / "formations.json", formation_report)
+        _write_json(
+            well_dir / "formation_pred.json",
+            synthesize_formation_prediction(spec, formation_report, seed=300 + i),
+        )
 
         if spec.id == "15_9-F-11_A":
             well_a_detail, well_a_ilt, well_a_kpi = detail, ilt, kpis

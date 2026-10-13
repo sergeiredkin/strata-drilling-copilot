@@ -1,7 +1,7 @@
 {
   "ev_27658ef481": {
-    "generated_at": "2026-10-13T11:47:35.486729+00:00",
-    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
+    "generated_at": "2026-10-13T11:58:44.462043+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_27658ef481",
     "params": {
       "stat": "excluded_gap_hours",
@@ -18,8 +18,8 @@
     "value": 0.0
   },
   "ev_27ea43d776": {
-    "generated_at": "2026-10-13T11:47:35.443315+00:00",
-    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
+    "generated_at": "2026-10-13T11:58:44.419604+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_27ea43d776",
     "params": {
       "kpi": "trip_in_open",

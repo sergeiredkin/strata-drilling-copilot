@@ -1,7 +1,26 @@
 {
+  "ev_86774c63b7": {
+    "generated_at": "2026-10-13T11:57:48.977181+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "id": "ev_86774c63b7",
+    "params": {
+      "formation": "Ekofisk Fm.",
+      "stat": "avg_mse",
+      "well": "15_9-F-5"
+    },
+    "sources": [
+      {
+        "file": "fixture:synthetic",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "formation.stats",
+    "unit": "MPa",
+    "value": 41.19813860482585
+  },
   "ev_86beeef32c": {
-    "generated_at": "2026-10-12T05:26:58.931876+00:00",
-    "git_commit": "23add431fc45ab8b1439705b1677123947feed35",
+    "generated_at": "2026-10-13T11:57:49.049931+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_86beeef32c",
     "params": {
       "day": "2015-06-02",

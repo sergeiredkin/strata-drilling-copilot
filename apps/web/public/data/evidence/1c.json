@@ -1,7 +1,7 @@
 {
   "ev_1c1d172acf": {
-    "generated_at": "2026-10-12T05:26:58.385922+00:00",
-    "git_commit": "23add431fc45ab8b1439705b1677123947feed35",
+    "generated_at": "2026-10-13T11:57:48.701183+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_1c1d172acf",
     "params": {
       "stat": "median",
@@ -23,8 +23,8 @@
     "value": 6886.95652173913
   },
   "ev_1c2af05963": {
-    "generated_at": "2026-10-12T05:26:58.398617+00:00",
-    "git_commit": "23add431fc45ab8b1439705b1677123947feed35",
+    "generated_at": "2026-10-13T11:57:48.716416+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_1c2af05963",
     "params": {
       "stat": "overall",
@@ -46,8 +46,8 @@
     "value": 96.97280092592591
   },
   "ev_1c40686b6d": {
-    "generated_at": "2026-10-12T05:26:58.386047+00:00",
-    "git_commit": "23add431fc45ab8b1439705b1677123947feed35",
+    "generated_at": "2026-10-13T11:57:48.701303+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_1c40686b6d",
     "params": {
       "stat": "trip_out_cased",
@@ -69,8 +69,8 @@
     "value": null
   },
   "ev_1c56835c1d": {
-    "generated_at": "2026-10-12T05:26:58.373890+00:00",
-    "git_commit": "23add431fc45ab8b1439705b1677123947feed35",
+    "generated_at": "2026-10-13T11:57:48.688687+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_1c56835c1d",
     "params": {
       "row": 18,
@@ -92,8 +92,8 @@
     "value": 3.9166666666666665
   },
   "ev_1c9481a2f7": {
-    "generated_at": "2026-10-13T11:47:35.498677+00:00",
-    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
+    "generated_at": "2026-10-13T11:58:44.473907+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_1c9481a2f7",
     "params": {
       "code": "REAM",
@@ -108,5 +108,24 @@
     "tool": "recon.booked",
     "unit": "h",
     "value": 1.5
+  },
+  "ev_1ca9e7e442": {
+    "generated_at": "2026-10-13T11:57:48.831629+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "id": "ev_1ca9e7e442",
+    "params": {
+      "formation": "Draupne Fm.",
+      "stat": "avg_mse",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "fixture:synthetic",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "formation.stats",
+    "unit": "MPa",
+    "value": 203.10931846005505
   }
 }

@@ -1,0 +1,21 @@
+{
+  "ev_42b8de7845": {
+    "generated_at": "2026-10-13T11:57:48.831788+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "id": "ev_42b8de7845",
+    "params": {
+      "formation": "Sleipner Fm.",
+      "stat": "avg_rop",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "fixture:synthetic",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "formation.stats",
+    "unit": "m/h",
+    "value": 6.098038443259728
+  }
+}

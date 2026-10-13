@@ -1,7 +1,7 @@
 {
   "ev_c72759ca82": {
-    "generated_at": "2026-10-13T11:47:36.297415+00:00",
-    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
+    "generated_at": "2026-10-13T11:58:45.328359+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_c72759ca82",
     "params": {
       "formation": "Heather Fm.",
@@ -19,8 +19,8 @@
     "value": 18.243129695288605
   },
   "ev_c77377877b": {
-    "generated_at": "2026-10-12T05:26:59.068120+00:00",
-    "git_commit": "23add431fc45ab8b1439705b1677123947feed35",
+    "generated_at": "2026-10-13T11:57:49.102366+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_c77377877b",
     "params": {
       "well": "16B_78-32"
@@ -36,8 +36,8 @@
     "value": 0.58
   },
   "ev_c7ab519ff9": {
-    "generated_at": "2026-10-13T11:47:35.498493+00:00",
-    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
+    "generated_at": "2026-10-13T11:58:44.473722+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_c7ab519ff9",
     "params": {
       "code": "TRIP",
@@ -53,5 +53,24 @@
     "tool": "recon.cell",
     "unit": "min",
     "value": 0.0
+  },
+  "ev_c7f55c760b": {
+    "generated_at": "2026-10-13T11:57:49.101806+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "id": "ev_c7f55c760b",
+    "params": {
+      "formation": "Overburden",
+      "stat": "avg_mse",
+      "well": "16A_78-32"
+    },
+    "sources": [
+      {
+        "file": "fixture:synthetic",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "formation.stats",
+    "unit": "MPa",
+    "value": 66.78777239252364
   }
 }

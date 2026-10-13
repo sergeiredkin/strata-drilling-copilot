@@ -1,7 +1,7 @@
 {
   "ev_f1cb84ec98": {
-    "generated_at": "2026-10-13T11:47:35.498524+00:00",
-    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
+    "generated_at": "2026-10-13T11:58:44.473754+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_f1cb84ec98",
     "params": {
       "code": "TRIP",
@@ -18,9 +18,28 @@
     "unit": "min",
     "value": 79.25
   },
+  "ev_f1d1d312ea": {
+    "generated_at": "2026-10-13T11:57:48.977158+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "id": "ev_f1d1d312ea",
+    "params": {
+      "formation": "Ekofisk Fm.",
+      "stat": "avg_rop",
+      "well": "15_9-F-5"
+    },
+    "sources": [
+      {
+        "file": "fixture:synthetic",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "formation.stats",
+    "unit": "m/h",
+    "value": 8.815177294431738
+  },
   "ev_f1dba8c574": {
-    "generated_at": "2026-10-12T05:26:58.385855+00:00",
-    "git_commit": "23add431fc45ab8b1439705b1677123947feed35",
+    "generated_at": "2026-10-13T11:57:48.701118+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_f1dba8c574",
     "params": {
       "stat": "q1",

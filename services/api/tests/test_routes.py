@@ -198,8 +198,17 @@ def test_formations_200s_for_the_real_well_with_real_tops(client: TestClient) ->
     assert len(body["tops"]) > 0
 
 
-def test_formations_404s_when_not_yet_produced(client: TestClient) -> None:
-    # Any other well still has no formations.json -- the classifier/LOWO side of T11.2 (and
-    # mock-well formations) aren't built yet.
+def test_formations_200s_for_a_mock_detailed_well(client: TestClient) -> None:
+    # 15_9-F-5 is a mock *detailed* well -- fixtures/formation.py synthesizes a clearly-mock
+    # formations.json/formation_pred.json for it (and 16A_78-32), same pattern as every other
+    # synthetic fixture number.
     res = client.get("/wells/15_9-F-5/formations")
+    assert res.status_code == 200
+    assert len(res.json()["tops"]) > 0
+
+
+def test_formations_404s_when_not_yet_produced(client: TestClient) -> None:
+    # A summary-only well (no dense channel series at all) has nothing to derive formations
+    # from, mock or real -- still an honest 404.
+    res = client.get("/wells/15_9-F-1_C/formations")
     assert res.status_code == 404

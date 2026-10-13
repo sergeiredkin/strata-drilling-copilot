@@ -1,25 +1,7 @@
 {
-  "ev_af0529c67d": {
-    "generated_at": "2026-10-13T09:00:29.185134+00:00",
-    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
-    "id": "ev_af0529c67d",
-    "params": {
-      "stat": "median",
-      "well": "15_9-F-11_A"
-    },
-    "sources": [
-      {
-        "file": "pipeline:real",
-        "sha256": "n/a"
-      }
-    ],
-    "tool": "kpi.trips",
-    "unit": "m/h",
-    "value": 0.7962740384615384
-  },
   "ev_afbd97a0f0": {
-    "generated_at": "2026-10-12T05:26:58.398542+00:00",
-    "git_commit": "23add431fc45ab8b1439705b1677123947feed35",
+    "generated_at": "2026-10-13T11:57:48.716315+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_afbd97a0f0",
     "params": {
       "code": "TRIP",

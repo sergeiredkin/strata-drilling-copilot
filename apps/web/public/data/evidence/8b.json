@@ -1,7 +1,7 @@
 {
   "ev_8b34285f01": {
-    "generated_at": "2026-10-13T11:47:35.443331+00:00",
-    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
+    "generated_at": "2026-10-13T11:58:44.419620+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_8b34285f01",
     "params": {
       "kpi": "trip_in_open",

@@ -1,7 +1,7 @@
 {
   "ev_70185fe878": {
-    "generated_at": "2026-10-13T11:47:35.443119+00:00",
-    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
+    "generated_at": "2026-10-13T11:58:44.419393+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_70185fe878",
     "params": {
       "kpi": "conn_s2s",
@@ -19,8 +19,8 @@
     "value": 2.3583333333333334
   },
   "ev_7042cac622": {
-    "generated_at": "2026-10-13T11:47:35.486627+00:00",
-    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
+    "generated_at": "2026-10-13T11:58:44.461952+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
     "id": "ev_7042cac622",
     "params": {
       "category": "unreported_reaming",
@@ -35,5 +35,24 @@
     "tool": "kpi.ilt_breakdown",
     "unit": "h",
     "value": 0.0038888888888888888
+  },
+  "ev_707a79a359": {
+    "generated_at": "2026-10-13T11:57:48.831664+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "id": "ev_707a79a359",
+    "params": {
+      "formation": "Heather Fm.",
+      "stat": "avg_rop",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "fixture:synthetic",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "formation.stats",
+    "unit": "m/h",
+    "value": 22.67985415304628
   }
 }

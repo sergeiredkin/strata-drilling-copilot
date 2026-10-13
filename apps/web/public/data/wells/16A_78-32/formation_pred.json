@@ -1,0 +1,23 @@
+{
+  "held_out": false,
+  "intervals": [
+    {
+      "abstained": false,
+      "agrees_with_pick": true,
+      "label": "Overburden",
+      "md_base": 1670.0,
+      "md_top": 0.0,
+      "p": 0.822
+    },
+    {
+      "abstained": false,
+      "agrees_with_pick": true,
+      "label": "Granitoid basement",
+      "md_base": 3340.0,
+      "md_top": 1670.0,
+      "p": 0.833
+    }
+  ],
+  "model_version": "mock-0.0.0",
+  "well": "16A_78-32"
+}

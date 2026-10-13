@@ -1,0 +1,21 @@
+{
+  "ev_61048993e1": {
+    "generated_at": "2026-10-13T11:57:48.831408+00:00",
+    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "id": "ev_61048993e1",
+    "params": {
+      "formation": "Ty Fm.",
+      "stat": "avg_rop",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "fixture:synthetic",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "formation.stats",
+    "unit": "m/h",
+    "value": 10.532131958409312
+  }
+}

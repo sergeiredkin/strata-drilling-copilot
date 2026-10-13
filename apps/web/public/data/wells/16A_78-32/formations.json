@@ -1,0 +1,81 @@
+{
+  "lithology": [
+    {
+      "lith": "other",
+      "md_base": 1670.0,
+      "md_top": 0.0
+    },
+    {
+      "lith": "granite",
+      "md_base": 3340.0,
+      "md_top": 1670.0
+    }
+  ],
+  "stats": [
+    {
+      "avg_mse": {
+        "evidence_id": "ev_c7f55c760b",
+        "precision": 2,
+        "unit": "MPa",
+        "value": 66.78777239252364
+      },
+      "avg_rop": {
+        "evidence_id": "ev_b6589967f2",
+        "precision": 2,
+        "unit": "m/h",
+        "value": 11.41515865633638
+      },
+      "best_window": null,
+      "confidence": {
+        "level": "high",
+        "reason": "sample size is 68",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "formation": "Overburden",
+      "incidents": 0,
+      "n_wells": 1
+    },
+    {
+      "avg_mse": {
+        "evidence_id": "ev_0874e9c517",
+        "precision": 2,
+        "unit": "MPa",
+        "value": 214.5601474825333
+      },
+      "avg_rop": {
+        "evidence_id": "ev_072ce0272d",
+        "precision": 2,
+        "unit": "m/h",
+        "value": 21.472527031199306
+      },
+      "best_window": null,
+      "confidence": {
+        "level": "medium",
+        "reason": "sample size is 23",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "formation": "Granitoid basement",
+      "incidents": 0,
+      "n_wells": 1
+    }
+  ],
+  "tops": [
+    {
+      "md_base": 1670.0,
+      "md_top": 0.0,
+      "name": "Overburden",
+      "source": "fixture:synthetic"
+    },
+    {
+      "md_base": 3340.0,
+      "md_top": 1670.0,
+      "name": "Granitoid basement",
+      "source": "fixture:synthetic"
+    }
+  ],
+  "well": "16A_78-32"
+}
