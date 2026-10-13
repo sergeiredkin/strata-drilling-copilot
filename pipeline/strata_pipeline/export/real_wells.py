@@ -16,6 +16,9 @@ WITSML_ROOT = _VOLVE_ROOT / "witsml" / "WITSML Realtime drilling data"
 DDR_DIR = (
     _VOLVE_ROOT / "well_technical_data" / "Well_technical_data" / "Daily Drilling Report - XML Version"
 )
+# Formation tops (ADR 0010) — a separate provenance from the Databricks-sourced archives above,
+# so it's its own path rather than nested under `_VOLVE_ROOT`.
+WELL_PICKS_CSV = REPO_ROOT / "data" / "raw" / "volve_well_picks" / "Volve_well_picks_modified.csv"
 
 
 @dataclass(frozen=True)

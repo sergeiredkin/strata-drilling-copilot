@@ -1,0 +1,21 @@
+{
+  "ev_232e6ea1c6": {
+    "generated_at": "2026-10-13T11:47:36.297524+00:00",
+    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
+    "id": "ev_232e6ea1c6",
+    "params": {
+      "formation": "Hugin Fm. VOLVE",
+      "stat": "avg_rop",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "Volve_well_picks_modified.csv",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "formation.stats",
+    "unit": "m/h",
+    "value": 18.579505868990584
+  }
+}

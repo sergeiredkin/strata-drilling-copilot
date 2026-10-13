@@ -15,5 +15,24 @@
     "tool": "qc.score",
     "unit": "1",
     "value": 0.72
+  },
+  "ev_22ab67e2f6": {
+    "generated_at": "2026-10-13T11:47:36.297243+00:00",
+    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
+    "id": "ev_22ab67e2f6",
+    "params": {
+      "formation": "Ekofisk Fm.",
+      "stat": "avg_mse",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "Volve_well_picks_modified.csv",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "formation.stats",
+    "unit": "MPa",
+    "value": 1209.3258971582588
   }
 }

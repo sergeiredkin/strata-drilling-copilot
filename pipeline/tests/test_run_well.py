@@ -5,6 +5,8 @@ from datetime import UTC, datetime, timedelta
 import polars as pl
 from strata_pipeline.evidence import EvidenceRegistry
 from strata_pipeline.export.run_well import run_well_from_dataframes
+from strata_pipeline.formation.depth_features import BitInterval
+from strata_pipeline.formation.labels import FormationInterval
 from strata_pipeline.qc.config import load_qc_config
 
 T0 = datetime(2013, 1, 1, tzinfo=UTC)
@@ -207,3 +209,65 @@ def test_run_well_from_dataframes_handles_no_surviving_data_without_crashing(tmp
     assert summary["n_rigstate_intervals"] == 0
     rigstate = json.loads((tmp_path / "wells" / "W1" / "rigstate.json").read_text())
     assert rigstate == []
+
+
+def _synthetic_long_df_with_rop(n: int = 200) -> pl.DataFrame:
+    t = [T0 + timedelta(seconds=i) for i in range(n)]
+    rows = []
+    for seed, (channel, unit, value) in enumerate(
+        [
+            ("HKLD", "kN", 500.0),
+            ("BPOS", "m", 10.0),
+            ("WOB", "kN", 20.0),
+            ("RPM", "rpm", 120.0),
+            ("TORQ", "kN.m", 15.0),
+            ("GAS", "%", 2.0),
+            ("FLOWIN", "L/min", 800.0),
+            ("HOLEDEPTH", "m", 2000.2),
+        ]
+    ):
+        rng = random.Random(seed)
+        for ti in t:
+            jittered = value + rng.uniform(-0.5, 0.5) if value != 0.0 else 0.0
+            rows.append(
+                {"t": ti, "channel": channel, "value": jittered, "raw_mnemonic": channel,
+                 "raw_unit": unit, "source_log": "synthetic"}
+            )
+    # BITDEPTH and ROP advance together across the run so build_depth_features has multiple MD
+    # bins to label.
+    for i, ti in enumerate(t):
+        rows.append(
+            {"t": ti, "channel": "BITDEPTH", "value": 2000.0 + i * 0.5, "raw_mnemonic": "BITDEPTH",
+             "raw_unit": "m", "source_log": "synthetic"}
+        )
+        rows.append(
+            {"t": ti, "channel": "ROP", "value": 18.0, "raw_mnemonic": "ROP", "raw_unit": "m/h",
+             "source_log": "synthetic"}
+        )
+    return pl.DataFrame(rows)
+
+
+def test_run_well_from_dataframes_writes_formations_json_when_tops_and_bit_intervals_given(tmp_path):
+    reg = EvidenceRegistry(git_commit="test")
+    cfg = load_qc_config()
+    bit_intervals = [BitInterval(md_top=2000.0, md_base=2200.0, diameter_in=8.5)]
+    formation_tops = [FormationInterval(name="Ty Fm.", md_top=2000.0, md_base=2100.0)]
+    run_well_from_dataframes(
+        "W1", _synthetic_long_df_with_rop(), _synthetic_ddr_df(), tmp_path, reg, cfg, RIGSTATE_CFG, RECON_CFG, 200.0,
+        bit_intervals=bit_intervals, formation_tops=formation_tops, formation_tops_source="test_picks.csv",
+    )
+    formations_path = tmp_path / "wells" / "W1" / "formations.json"
+    assert formations_path.exists()
+    report = json.loads(formations_path.read_text())
+    assert report["well"] == "W1"
+    assert report["tops"] == [{"name": "Ty Fm.", "md_top": 2000.0, "md_base": 2100.0, "source": "test_picks.csv"}]
+    assert report["stats"][0]["avg_rop"]["value"] is not None
+
+
+def test_run_well_from_dataframes_skips_formations_json_without_tops(tmp_path):
+    reg = EvidenceRegistry(git_commit="test")
+    cfg = load_qc_config()
+    run_well_from_dataframes(
+        "W1", _synthetic_long_df_with_rop(), _synthetic_ddr_df(), tmp_path, reg, cfg, RIGSTATE_CFG, RECON_CFG, 200.0,
+    )
+    assert not (tmp_path / "wells" / "W1" / "formations.json").exists()

@@ -1,0 +1,297 @@
+{
+  "lithology": [
+    {
+      "lith": "sandstone",
+      "md_base": 2624.0,
+      "md_top": 884.84
+    },
+    {
+      "lith": "sandstone",
+      "md_base": 2794.5,
+      "md_top": 2624.0
+    },
+    {
+      "lith": "limestone",
+      "md_base": 3118.0,
+      "md_top": 2794.5
+    },
+    {
+      "lith": "limestone",
+      "md_base": 3525.8,
+      "md_top": 3118.0
+    },
+    {
+      "lith": "shale",
+      "md_base": 3574.9,
+      "md_top": 3525.8
+    },
+    {
+      "lith": "shale",
+      "md_base": 3585.2,
+      "md_top": 3574.9
+    },
+    {
+      "lith": "sandstone",
+      "md_base": 3594.6,
+      "md_top": 3585.2
+    },
+    {
+      "lith": "sandstone",
+      "md_base": 3702.0,
+      "md_top": 3594.6
+    }
+  ],
+  "stats": [
+    {
+      "avg_mse": {
+        "evidence_id": "ev_8edbe281e4",
+        "precision": 2,
+        "unit": "MPa",
+        "value": 215.27109104488045
+      },
+      "avg_rop": {
+        "evidence_id": "ev_5dacc6a11b",
+        "precision": 2,
+        "unit": "m/h",
+        "value": 17.02666507124031
+      },
+      "best_window": null,
+      "confidence": {
+        "level": "high",
+        "reason": "sample size is 144",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "formation": "Utsira Fm.",
+      "incidents": 0,
+      "n_wells": 1
+    },
+    {
+      "avg_mse": {
+        "evidence_id": "ev_f901ec7f88",
+        "precision": 2,
+        "unit": "MPa",
+        "value": 261.25721532100147
+      },
+      "avg_rop": {
+        "evidence_id": "ev_1e9f584dbb",
+        "precision": 2,
+        "unit": "m/h",
+        "value": 30.927205205355065
+      },
+      "best_window": null,
+      "confidence": {
+        "level": "high",
+        "reason": "sample size is 171",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "formation": "Ty Fm.",
+      "incidents": 0,
+      "n_wells": 1
+    },
+    {
+      "avg_mse": {
+        "evidence_id": "ev_22ab67e2f6",
+        "precision": 2,
+        "unit": "MPa",
+        "value": 1209.3258971582588
+      },
+      "avg_rop": {
+        "evidence_id": "ev_fe5d92f9df",
+        "precision": 2,
+        "unit": "m/h",
+        "value": 22.39559401923392
+      },
+      "best_window": null,
+      "confidence": {
+        "level": "high",
+        "reason": "sample size is 323",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "formation": "Ekofisk Fm.",
+      "incidents": 0,
+      "n_wells": 1
+    },
+    {
+      "avg_mse": {
+        "evidence_id": "ev_bf5cf4660f",
+        "precision": 2,
+        "unit": "MPa",
+        "value": 1523.1376203078514
+      },
+      "avg_rop": {
+        "evidence_id": "ev_1bf8ef7991",
+        "precision": 2,
+        "unit": "m/h",
+        "value": 20.49486985826166
+      },
+      "best_window": null,
+      "confidence": {
+        "level": "high",
+        "reason": "sample size is 408",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "formation": "Hod Fm.",
+      "incidents": 0,
+      "n_wells": 1
+    },
+    {
+      "avg_mse": {
+        "evidence_id": "ev_9d1e37789a",
+        "precision": 2,
+        "unit": "MPa",
+        "value": 1387.7030453524387
+      },
+      "avg_rop": {
+        "evidence_id": "ev_08bc11a6c5",
+        "precision": 2,
+        "unit": "m/h",
+        "value": 19.5607321953186
+      },
+      "best_window": null,
+      "confidence": {
+        "level": "high",
+        "reason": "sample size is 49",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "formation": "Draupne Fm.",
+      "incidents": 0,
+      "n_wells": 1
+    },
+    {
+      "avg_mse": {
+        "evidence_id": "ev_03cab7bc77",
+        "precision": 2,
+        "unit": "MPa",
+        "value": 1153.6221749670133
+      },
+      "avg_rop": {
+        "evidence_id": "ev_c72759ca82",
+        "precision": 2,
+        "unit": "m/h",
+        "value": 18.243129695288605
+      },
+      "best_window": null,
+      "confidence": {
+        "level": "medium",
+        "reason": "sample size is 11",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "formation": "Heather Fm.",
+      "incidents": 0,
+      "n_wells": 1
+    },
+    {
+      "avg_mse": {
+        "evidence_id": "ev_833183c980",
+        "precision": 2,
+        "unit": "MPa",
+        "value": 1517.576736787558
+      },
+      "avg_rop": {
+        "evidence_id": "ev_7fa4d503d8",
+        "precision": 2,
+        "unit": "m/h",
+        "value": 19.957258104055743
+      },
+      "best_window": null,
+      "confidence": {
+        "level": "low",
+        "reason": "sample size is 9",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "formation": "Heather Fm. Sand VOLVE",
+      "incidents": 0,
+      "n_wells": 1
+    },
+    {
+      "avg_mse": {
+        "evidence_id": "ev_db57069b7e",
+        "precision": 2,
+        "unit": "MPa",
+        "value": 1114.2181380896664
+      },
+      "avg_rop": {
+        "evidence_id": "ev_232e6ea1c6",
+        "precision": 2,
+        "unit": "m/h",
+        "value": 18.579505868990584
+      },
+      "best_window": null,
+      "confidence": {
+        "level": "high",
+        "reason": "sample size is 107",
+        "rule_ids": [
+          "C2"
+        ]
+      },
+      "formation": "Hugin Fm. VOLVE",
+      "incidents": 0,
+      "n_wells": 1
+    }
+  ],
+  "tops": [
+    {
+      "md_base": 2624.0,
+      "md_top": 884.84,
+      "name": "Utsira Fm.",
+      "source": "Volve_well_picks_modified.csv"
+    },
+    {
+      "md_base": 2794.5,
+      "md_top": 2624.0,
+      "name": "Ty Fm.",
+      "source": "Volve_well_picks_modified.csv"
+    },
+    {
+      "md_base": 3118.0,
+      "md_top": 2794.5,
+      "name": "Ekofisk Fm.",
+      "source": "Volve_well_picks_modified.csv"
+    },
+    {
+      "md_base": 3525.8,
+      "md_top": 3118.0,
+      "name": "Hod Fm.",
+      "source": "Volve_well_picks_modified.csv"
+    },
+    {
+      "md_base": 3574.9,
+      "md_top": 3525.8,
+      "name": "Draupne Fm.",
+      "source": "Volve_well_picks_modified.csv"
+    },
+    {
+      "md_base": 3585.2,
+      "md_top": 3574.9,
+      "name": "Heather Fm.",
+      "source": "Volve_well_picks_modified.csv"
+    },
+    {
+      "md_base": 3594.6,
+      "md_top": 3585.2,
+      "name": "Heather Fm. Sand VOLVE",
+      "source": "Volve_well_picks_modified.csv"
+    },
+    {
+      "md_base": 3702.0,
+      "md_top": 3594.6,
+      "name": "Hugin Fm. VOLVE",
+      "source": "Volve_well_picks_modified.csv"
+    }
+  ],
+  "well": "15_9-F-11_A"
+}

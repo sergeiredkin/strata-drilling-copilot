@@ -62,5 +62,24 @@
     "tool": "recon.mismatch",
     "unit": "min",
     "value": 2.9
+  },
+  "ev_1e9f584dbb": {
+    "generated_at": "2026-10-13T11:47:36.297158+00:00",
+    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
+    "id": "ev_1e9f584dbb",
+    "params": {
+      "formation": "Ty Fm.",
+      "stat": "avg_rop",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "Volve_well_picks_modified.csv",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "formation.stats",
+    "unit": "m/h",
+    "value": 30.927205205355065
   }
 }

@@ -1,4 +1,23 @@
 {
+  "ev_c72759ca82": {
+    "generated_at": "2026-10-13T11:47:36.297415+00:00",
+    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
+    "id": "ev_c72759ca82",
+    "params": {
+      "formation": "Heather Fm.",
+      "stat": "avg_rop",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "Volve_well_picks_modified.csv",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "formation.stats",
+    "unit": "m/h",
+    "value": 18.243129695288605
+  },
   "ev_c77377877b": {
     "generated_at": "2026-10-12T05:26:59.068120+00:00",
     "git_commit": "23add431fc45ab8b1439705b1677123947feed35",
@@ -17,8 +36,8 @@
     "value": 0.58
   },
   "ev_c7ab519ff9": {
-    "generated_at": "2026-10-13T09:16:50.291478+00:00",
-    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "generated_at": "2026-10-13T11:47:35.498493+00:00",
+    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
     "id": "ev_c7ab519ff9",
     "params": {
       "code": "TRIP",

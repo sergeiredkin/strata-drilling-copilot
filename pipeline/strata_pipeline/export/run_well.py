@@ -27,8 +27,12 @@ from strata_pipeline.export.real_well import (
     build_sections_json,
 )
 from strata_pipeline.export.series import export_channel_series
-from strata_pipeline.ingest.ddr import load_well_ddr
+from strata_pipeline.formation.depth_features import BitInterval, build_depth_features
+from strata_pipeline.formation.labels import FormationInterval, tops_to_intervals
+from strata_pipeline.formation.report import build_formation_report
+from strata_pipeline.ingest.ddr import load_well_bit_runs, load_well_ddr
 from strata_pipeline.ingest.drilling_window import drilling_windows_from_ddr
+from strata_pipeline.ingest.formation_tops import load_well_picks_csv, picks_for_wellbore
 from strata_pipeline.ingest.witsml_time import load_well_time_series
 from strata_pipeline.qc.align import align_well_channels
 from strata_pipeline.qc.config import load_qc_config
@@ -94,13 +98,21 @@ def _run_well_from_aligned(
     recon_cfg: dict[str, Any],
     travelling_block_weight: float,
     write_series: bool,
+    bit_intervals: list[BitInterval] | None = None,
+    formation_tops: list[FormationInterval] | None = None,
+    formation_tops_source: str | None = None,
 ) -> dict[str, Any]:
     """align -> rigstate -> kpi/ilt/recon -> write the static-export files, given QC's already
     -aligned output. Split out from `run_well_from_dataframes` so `run_well` can run ingest+QC
     in its own scope and drop the raw ingest DataFrame (`del long_time_df`) before this —
     otherwise that DataFrame stays referenced on `run_well`'s stack frame for this entire call
     (Python has no tail-call elimination), gigabytes held for no reason on a real multi-year-gap
-    well."""
+    well.
+
+    `bit_intervals`/`formation_tops` are optional (T11.1/T11.2): `formations.json` (ground-truth
+    tops + descriptive stats, not the classifier's predictions — that needs a trained model,
+    separate and not written here) is only written when both are given and non-empty, since
+    without them there's nothing honest to compute."""
     well_dir = out_dir / "wells" / well_id
     ddr_rows_raw = ddr_df.to_dicts()
 
@@ -137,6 +149,14 @@ def _run_well_from_aligned(
                 min_gap_seconds=qc_cfg["resample_gap_seconds"],
             )
         _write_json(well_dir / "series" / "index.json", {"well": well_id, "channels": series_channels})
+
+    if t and formation_tops:
+        depth_table = build_depth_features(t, channels, bit_intervals=bit_intervals)
+        if depth_table is not None:
+            formation_report = build_formation_report(
+                well_id, depth_table, formation_tops, reg, source=formation_tops_source or "unknown"
+            )
+            _write_json(well_dir / "formations.json", formation_report)
 
     well_duration_hours = (t[-1] - t[0]).total_seconds() / 3600.0 if len(t) > 1 else 0.0
     survived_fraction = (
@@ -196,6 +216,9 @@ def run_well_from_dataframes(
     recon_cfg: dict[str, Any],
     travelling_block_weight: float,
     write_series: bool = True,
+    bit_intervals: list[BitInterval] | None = None,
+    formation_tops: list[FormationInterval] | None = None,
+    formation_tops_source: str | None = None,
 ) -> dict[str, Any]:
     """Runs the full ingest(already loaded)->qc->align->rigstate->kpi/ilt/recon pipeline for one
     well and writes every `wells/<well_id>/*.json` file plus (if `write_series`) the series
@@ -206,6 +229,9 @@ def run_well_from_dataframes(
     return _run_well_from_aligned(
         well_id, t, channels, qc_stats, ddr_df, out_dir, reg, qc_cfg, rigstate_cfg, recon_cfg,
         travelling_block_weight, write_series,
+        bit_intervals=bit_intervals,
+        formation_tops=formation_tops,
+        formation_tops_source=formation_tops_source,
     )
 
 
@@ -219,6 +245,7 @@ def run_well(
     reg: EvidenceRegistry,
     travelling_block_weight: float = 200.0,
     write_series: bool = True,
+    well_picks_csv: Path | None = None,
 ) -> dict[str, Any]:
     """Resolves real raw-data paths (as produced by T2.1's download + T2.2/T2.3's ingest) and
     runs the qc->align->rigstate->kpi/ilt/recon pipeline. This is what the CLI (`make pipeline
@@ -229,7 +256,10 @@ def run_well(
     wellbores carry years of mostly-irrelevant post-campaign history that would otherwise blow
     up QC/rig-state's per-sample processing to minutes and gigabytes for no benefit (found during
     the T3.7 smoke test). No drilling-coded DDR rows at all means no bound is available, not that
-    nothing is in-window — the full log is loaded in that case.
+    nothing is in-window — the full log is loaded in that case. Bit records (for `formations.json`'s
+    MSE/dxc) come from the same DDR files (`ingest.ddr.load_well_bit_runs`) at no extra file-read
+    cost; `well_picks_csv` is a separate, optional provenance source (ADR 0010) — formations.json
+    is only written when it's given and the well has at least one resolvable formation top.
 
     Runs QC+align itself (rather than delegating to `run_well_from_dataframes`) and `del`s the
     raw ingest DataFrame right after: calling through to `run_well_from_dataframes` would keep
@@ -238,10 +268,18 @@ def run_well(
     samples) is gigabytes held for no reason through rigstate/kpi/series-export."""
     qc_cfg = load_qc_config()
     ddr_df = load_well_ddr(ddr_dir, ddr_file_prefix)
+    bit_rows = load_well_bit_runs(ddr_dir, ddr_file_prefix)
+    bit_intervals = [BitInterval(r["md_top"], r["md_base"], r["diameter_in"]) for r in bit_rows]
     windows = drilling_windows_from_ddr(ddr_df) or None
     long_time_df = load_well_time_series(witsml_root, wellbore_name, windows=windows)
     t, channels, qc_stats = _qc_and_align(long_time_df, qc_cfg)
     del long_time_df
+
+    formation_tops: list[FormationInterval] = []
+    if well_picks_csv is not None and well_picks_csv.exists():
+        picks_rows = load_well_picks_csv(well_picks_csv)
+        picks = picks_for_wellbore(picks_rows, wellbore_name)
+        formation_tops = tops_to_intervals(picks)
 
     config_path = Path(__file__).resolve().parents[1] / "config.yaml"
     raw_cfg = yaml.safe_load(config_path.read_text())
@@ -251,6 +289,11 @@ def run_well(
     return _run_well_from_aligned(
         well_id, t, channels, qc_stats, ddr_df, out_dir, reg, qc_cfg, rigstate_cfg, recon_cfg,
         travelling_block_weight, write_series,
+        bit_intervals=bit_intervals,
+        formation_tops=formation_tops,
+        # Filename only, not the full path -- an absolute path would differ by machine and break
+        # `make reproduce`'s byte-for-byte determinism guarantee for no benefit.
+        formation_tops_source=well_picks_csv.name if well_picks_csv is not None else None,
     )
 
 

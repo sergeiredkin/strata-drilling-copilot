@@ -23,6 +23,25 @@
     "unit": "h",
     "value": 3.8194444444444446
   },
+  "ev_db57069b7e": {
+    "generated_at": "2026-10-13T11:47:36.297539+00:00",
+    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
+    "id": "ev_db57069b7e",
+    "params": {
+      "formation": "Hugin Fm. VOLVE",
+      "stat": "avg_mse",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "Volve_well_picks_modified.csv",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "formation.stats",
+    "unit": "MPa",
+    "value": 1114.2181380896664
+  },
   "ev_db8e00e4c4": {
     "generated_at": "2026-10-12T05:26:59.071191+00:00",
     "git_commit": "23add431fc45ab8b1439705b1677123947feed35",

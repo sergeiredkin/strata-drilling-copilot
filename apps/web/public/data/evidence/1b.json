@@ -1,7 +1,7 @@
 {
   "ev_1b22d73c8e": {
-    "generated_at": "2026-10-13T09:16:50.228481+00:00",
-    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "generated_at": "2026-10-13T11:47:35.443181+00:00",
+    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
     "id": "ev_1b22d73c8e",
     "params": {
       "kpi": "conn_w2w",
@@ -17,5 +17,24 @@
     "tool": "kpi.connection_times",
     "unit": "min",
     "value": 0.23333333333333334
+  },
+  "ev_1bf8ef7991": {
+    "generated_at": "2026-10-13T11:47:36.297301+00:00",
+    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
+    "id": "ev_1bf8ef7991",
+    "params": {
+      "formation": "Hod Fm.",
+      "stat": "avg_rop",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "Volve_well_picks_modified.csv",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "formation.stats",
+    "unit": "m/h",
+    "value": 20.49486985826166
   }
 }

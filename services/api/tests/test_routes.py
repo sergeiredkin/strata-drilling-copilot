@@ -187,6 +187,19 @@ def test_issues_empty_fixture_list(client: TestClient) -> None:
     assert res.json() == []
 
 
-def test_formations_404s_when_not_yet_produced(client: TestClient) -> None:
+def test_formations_200s_for_the_real_well_with_real_tops(client: TestClient) -> None:
+    # T11.2: 15_9-F-11_A now has real formations.json (ground-truth tops + descriptive stats
+    # from the real DDR bit records + Volve well-picks CSV, see ADR 0010) -- this well is no
+    # longer one of the "not yet produced" cases the test below covers.
     res = client.get(f"/wells/{WELL}/formations")
+    assert res.status_code == 200
+    body = res.json()
+    assert body["well"] == WELL
+    assert len(body["tops"]) > 0
+
+
+def test_formations_404s_when_not_yet_produced(client: TestClient) -> None:
+    # Any other well still has no formations.json -- the classifier/LOWO side of T11.2 (and
+    # mock-well formations) aren't built yet.
+    res = client.get("/wells/15_9-F-5/formations")
     assert res.status_code == 404

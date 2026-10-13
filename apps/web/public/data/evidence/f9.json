@@ -1,7 +1,26 @@
 {
+  "ev_f901ec7f88": {
+    "generated_at": "2026-10-13T11:47:36.297179+00:00",
+    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
+    "id": "ev_f901ec7f88",
+    "params": {
+      "formation": "Ty Fm.",
+      "stat": "avg_mse",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "Volve_well_picks_modified.csv",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "formation.stats",
+    "unit": "MPa",
+    "value": 261.25721532100147
+  },
   "ev_f971717ce8": {
-    "generated_at": "2026-10-13T09:16:50.291351+00:00",
-    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "generated_at": "2026-10-13T11:47:35.498368+00:00",
+    "git_commit": "7def6cc8fb54a31cfa5d5faf576137cc161e26ec",
     "id": "ev_f971717ce8",
     "params": {
       "code": "DRILL",

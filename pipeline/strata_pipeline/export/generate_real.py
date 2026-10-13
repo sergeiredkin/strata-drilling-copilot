@@ -17,7 +17,14 @@ from typing import Any
 
 from strata_pipeline.confidence import assess
 from strata_pipeline.evidence import EvidenceRegistry
-from strata_pipeline.export.real_wells import DDR_DIR, REAL_WELLS, WITSML_ROOT, RealWellSpec, raw_data_available
+from strata_pipeline.export.real_wells import (
+    DDR_DIR,
+    REAL_WELLS,
+    WELL_PICKS_CSV,
+    WITSML_ROOT,
+    RealWellSpec,
+    raw_data_available,
+)
 from strata_pipeline.export.run_well import run_well
 from strata_pipeline.fixtures.wells import COVERAGE_KINDS
 from strata_pipeline.fixtures.wells import WELLS as MOCK_WELLS
@@ -115,6 +122,7 @@ def generate_real(out_dir: Path = OUT_DIR, wells: list[RealWellSpec] = REAL_WELL
         summary = run_well(
             spec.id, WITSML_ROOT, spec.wellbore_name, DDR_DIR, spec.ddr_file_prefix, out_dir, reg,
             spec.travelling_block_weight,
+            well_picks_csv=WELL_PICKS_CSV if WELL_PICKS_CSV.exists() else None,
         )
         well_summaries.append(_well_summary(spec, summary, reg))
         qc_entries.append(summary["qc"])
