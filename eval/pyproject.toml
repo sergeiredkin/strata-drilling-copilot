@@ -5,6 +5,7 @@ requires-python = ">=3.11"
 dependencies = [
   "pyyaml>=6.0",
   "strata-pipeline",
+  "strata-api",
 ]
 
 [dependency-groups]
@@ -12,6 +13,7 @@ dev = ["pytest>=8.3", "ruff>=0.6"]
 
 [tool.uv.sources]
 strata-pipeline = { workspace = true }
+strata-api = { workspace = true }
 
 [build-system]
 requires = ["hatchling"]

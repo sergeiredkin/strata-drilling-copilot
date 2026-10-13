@@ -1718,6 +1718,7 @@ version = "0.0.0"
 source = { editable = "eval" }
 dependencies = [
     { name = "pyyaml" },
+    { name = "strata-api" },
     { name = "strata-pipeline" },
 ]
 
@@ -1730,6 +1731,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "pyyaml", specifier = ">=6.0" },
+    { name = "strata-api", editable = "services/api" },
     { name = "strata-pipeline", editable = "pipeline" },
 ]
 
