@@ -11,67 +11,72 @@ near zero even when every channel individually has excellent coverage — classi
 real archive collapsing to a single R0 gap interval for an entire well before this existed. QC's
 own channel output must stay null-preserving (the UI's gap-hatching depends on it); this function
 only feeds rigstate's "what was the most recently known value" need, bounded so a genuinely long
-gap still reads as missing rather than holding forever."""
+gap still reads as missing rather than holding forever.
+
+All three functions below are vectorized with numpy (see qc/spikes.py's docstring for why —
+`run_rigstate` calls `hold_last_value` and `median_filter` once per core channel, so the
+per-sample Python loop cost that originally lived here was multiplied across every channel of
+every well)."""
 
 from __future__ import annotations
 
+import warnings
 from datetime import datetime
+
+import numpy as np
 
 
 def hold_last_value(values: list[float | None], t: list[datetime], max_hold_seconds: float) -> list[float | None]:
     """Forward-fills each null with the most recent non-null value, as long as that value is no
     more than `max_hold_seconds` old; reverts to `None` once staleness exceeds it."""
-    held: list[float | None] = list(values)
-    last_value: float | None = None
-    last_t: datetime | None = None
-    for i, v in enumerate(values):
-        if v is not None:
-            last_value, last_t = v, t[i]
-            continue
-        if last_value is not None and last_t is not None and (t[i] - last_t).total_seconds() <= max_hold_seconds:
-            held[i] = last_value
-        else:
-            held[i] = None
-    return held
+    n = len(values)
+    if n == 0:
+        return []
+    arr = np.array([np.nan if v is None else v for v in values], dtype=np.float64)
+    t_sec = np.array([ti.timestamp() for ti in t], dtype=np.float64)
+    valid = ~np.isnan(arr)
+
+    idx = np.arange(n)
+    last_valid_idx = np.where(valid, idx, -1)
+    np.maximum.accumulate(last_valid_idx, out=last_valid_idx)
+
+    has_prev = last_valid_idx >= 0
+    safe_idx = np.where(has_prev, last_valid_idx, 0)
+    age = np.where(has_prev, t_sec - t_sec[safe_idx], np.inf)
+    fill_mask = (~valid) & has_prev & (age <= max_hold_seconds)
+
+    held = arr.copy()
+    held[fill_mask] = arr[safe_idx][fill_mask]
+    held[(~valid) & (~fill_mask)] = np.nan
+    return [None if np.isnan(v) else float(v) for v in held]
 
 
 def median_filter(values: list[float | None], window_seconds: float, grid_seconds: float = 1.0) -> list[float | None]:
     """Centred rolling median with a `window_seconds`-wide window (converted to samples via
     `grid_seconds`). A null stays null; it is excluded from neighbouring windows' medians."""
-    half = max(1, round(window_seconds / grid_seconds / 2))
     n = len(values)
-    out: list[float | None] = [None] * n
-    for i in range(n):
-        if values[i] is None:
-            continue
-        lo, hi = max(0, i - half), min(n, i + half + 1)
-        window = [v for v in values[lo:hi] if v is not None]
-        out[i] = _median(window) if window else None
-    return out
+    if n == 0:
+        return []
+    half = max(1, round(window_seconds / grid_seconds / 2))
+    arr = np.array([np.nan if v is None else v for v in values], dtype=np.float64)
+
+    padded = np.pad(arr, (half, half), mode="constant", constant_values=np.nan)
+    windows = np.lib.stride_tricks.sliding_window_view(padded, 2 * half + 1)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", category=RuntimeWarning)  # all-NaN window is expected
+        out = np.nanmedian(windows, axis=1)
+    out[np.isnan(arr)] = np.nan  # null stays null regardless of neighbours (matches input exactly)
+    return [None if np.isnan(v) else float(v) for v in out]
 
 
 def block_velocity(bpos: list[float | None], window_seconds: float, grid_seconds: float = 1.0) -> list[float | None]:
     """v[i] = (bpos[i + half] - bpos[i - half]) / (2 * half * grid_seconds), a centred difference
     over `window_seconds`. Null wherever either endpoint is missing."""
-    half = max(1, round(window_seconds / grid_seconds / 2))
     n = len(bpos)
-    out: list[float | None] = [None] * n
-    span = 2 * half * grid_seconds
-    for i in range(n):
-        lo, hi = i - half, i + half
-        if lo < 0 or hi >= n:
-            continue
-        v_lo, v_hi = bpos[lo], bpos[hi]
-        if v_lo is None or v_hi is None:
-            continue
-        out[i] = (v_hi - v_lo) / span
-    return out
-
-
-def _median(xs: list[float]) -> float:
-    s = sorted(xs)
-    n = len(s)
-    mid = n // 2
-    if n % 2:
-        return s[mid]
-    return (s[mid - 1] + s[mid]) / 2.0
+    half = max(1, round(window_seconds / grid_seconds / 2))
+    out = np.full(n, np.nan)
+    if n > 2 * half:
+        arr = np.array([np.nan if v is None else v for v in bpos], dtype=np.float64)
+        span = 2 * half * grid_seconds
+        out[half : n - half] = (arr[2 * half : n] - arr[0 : n - 2 * half]) / span
+    return [None if np.isnan(v) else float(v) for v in out]
