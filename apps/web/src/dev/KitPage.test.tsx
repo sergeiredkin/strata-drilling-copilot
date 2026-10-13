@@ -18,8 +18,11 @@ describe('/dev/kit accessibility', () => {
       </QueryClientProvider>,
     )
 
-    // wait for the wells.json-backed Num examples to resolve past the loading state
-    await waitFor(() => expect(getAllByText('0.91').length).toBeGreaterThan(0))
+    // wait for the wells.json-backed Num examples (firstWell.qc_score) to resolve past the
+    // loading state — not the exact value, which depends on which well sorts first in the
+    // committed export (T10.4 moved 15_9-F-11_A to real data, which generate_real appends
+    // after the mock wells, changing which well is first).
+    await waitFor(() => expect(getAllByText(/^\d\.\d\d$/).length).toBeGreaterThan(0))
 
     const results = await axe(container)
     expect(results).toHaveNoViolations()

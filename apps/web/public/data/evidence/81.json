@@ -1,0 +1,21 @@
+{
+  "ev_81e0fb5cca": {
+    "generated_at": "2026-10-13T09:16:50.228680+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_81e0fb5cca",
+    "params": {
+      "kpi": "trip_in_open",
+      "stat": "median",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "kpi.trips",
+    "unit": "m/h",
+    "value": 0.13523332799350174
+  }
+}

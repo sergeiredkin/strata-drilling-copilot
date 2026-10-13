@@ -1,0 +1,15 @@
+{
+  "ev_3d23863c10": {
+    "generated_at": "2026-10-13T09:16:50.228791+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_3d23863c10",
+    "params": {
+      "stat": "trip_in_cased",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [],
+    "tool": "kpi.trips",
+    "unit": "m/h",
+    "value": null
+  }
+}

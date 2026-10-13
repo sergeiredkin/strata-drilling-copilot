@@ -23,6 +23,12 @@ def settings() -> Settings:
     return Settings(data_dir=FIXTURE_DATA_DIR, cors_origins=[])
 
 
+@pytest.fixture
+def well_span() -> tuple[float, float]:
+    rows = json.loads((FIXTURE_DATA_DIR / "wells" / WELL / "rigstate.json").read_text())
+    return min(r["t0"] for r in rows), max(r["t1"] for r in rows)
+
+
 class FakeToolUseBlock(BaseModel):
     type: Literal["tool_use"] = "tool_use"
     id: str
@@ -65,16 +71,14 @@ def _last_tool_result(messages: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 @pytest.mark.asyncio
-async def test_agent_verifies_a_claim_backed_by_a_freshly_minted_evidence_id(settings: Settings) -> None:
+async def test_agent_verifies_a_claim_backed_by_a_freshly_minted_evidence_id(
+    settings: Settings, well_span: tuple[float, float]
+) -> None:
+    t0, t1 = well_span
+
     def turn_1(_messages: list[dict[str, Any]]) -> FakeResponse:
         return FakeResponse(
-            [
-                FakeToolUseBlock(
-                    id="call_1",
-                    name="rigstate_summary",
-                    input={"well": WELL, "t0": 1700000000000, "t1": 1700345600000},
-                )
-            ]
+            [FakeToolUseBlock(id="call_1", name="rigstate_summary", input={"well": WELL, "t0": t0, "t1": t1})]
         )
 
     def turn_2(messages: list[dict[str, Any]]) -> FakeResponse:

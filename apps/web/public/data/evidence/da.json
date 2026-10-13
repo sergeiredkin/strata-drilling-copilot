@@ -1,0 +1,20 @@
+{
+  "ev_da408e961b": {
+    "generated_at": "2026-10-13T09:16:50.291635+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_da408e961b",
+    "params": {
+      "code": "TRIP",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "recon.agreement",
+    "unit": "%",
+    "value": 57.74392625576127
+  }
+}

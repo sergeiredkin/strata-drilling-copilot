@@ -104,6 +104,35 @@ def test_build_kpis_null_card_when_no_connections_present():
     assert conn_card["best"] is None
 
 
+def test_build_kpis_conn_s2s_and_conn_w2w_evidence_do_not_collide():
+    # Regression: _kpi_dist_card registered evidence with params {well, stat} only, shared
+    # across every KPI name that function is called for (conn_s2s and conn_w2w both call it
+    # with tool="kpi.connection_times") -- same tool+params+sources hash meant both KPIs'
+    # "median" (etc.) quantities minted the *same* evidence id, and whichever one ran second
+    # silently overwrote the first's record in the registry (found while verifying the T10.4
+    # real export against the copilot verifier, which looks evidence up by that id).
+    n = 400
+    t = [_dt(i) for i in range(n)]
+    channels = {"WOB": [20.0] * n, "BITDEPTH": [2000.0] * n}
+    intervals = [
+        _iv(0, 9, "connection", "R2"),
+        _iv(10, 99, "rotary_drilling", "R4"),
+        _iv(100, 109, "connection", "R2"),
+        _iv(110, 199, "rotary_drilling", "R4"),
+        _iv(200, 209, "connection", "R2"),
+        _iv(210, n - 1, "rotary_drilling", "R4"),
+    ]
+    reg = EvidenceRegistry()
+    report, connections, _ = build_kpis("W1", t, channels, intervals, reg)
+    assert len(connections) >= 2  # needed for a non-empty conn_w2w distribution
+
+    s2s_median = next(c for c in report["cards"] if c["kpi"] == "conn_s2s")["value"]
+    w2w_median = next(c for c in report["cards"] if c["kpi"] == "conn_w2w")["value"]
+    assert s2s_median["evidence_id"] != w2w_median["evidence_id"]
+    assert reg.get(s2s_median["evidence_id"])["value"] == s2s_median["value"]
+    assert reg.get(w2w_median["evidence_id"])["value"] == w2w_median["value"]
+
+
 def test_build_ilt_sums_categories_and_matches_combine_ilt_total():
     n = 700
     t = [_dt(i) for i in range(n)]

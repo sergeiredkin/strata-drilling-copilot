@@ -14,14 +14,16 @@ const SPARSE_WELL = '15_9-F-5'
 describe('StaticSource against the real fixtures', () => {
   const ds = new StaticSource('/data')
 
-  it('wells() returns all 9 wells, every one is_mock', async () => {
+  it('wells() returns all 9 wells, exactly one real (T10.4)', async () => {
     const list = await ds.wells()
     expect(list.wells).toHaveLength(9)
-    expect(list.wells.every((w) => w.is_mock)).toBe(true)
+    expect(list.wells.filter((w) => !w.is_mock).map((w) => w.id)).toEqual([RICH_WELL])
   })
 
   it('sections() returns the dense-window section for a detailed well', async () => {
-    const sections = await ds.sections(RICH_WELL)
+    // Not RICH_WELL: real wells' sections.json is honestly empty (sections.parquet derivation
+    // isn't built yet, docs/DATA_INVENTORY.md) -- this exercises a mock well that still has one.
+    const sections = await ds.sections(SPARSE_WELL)
     expect(sections.length).toBeGreaterThan(0)
     expect(sections[0]?.md_base).toBeGreaterThan(sections[0]?.md_top ?? 0)
   })

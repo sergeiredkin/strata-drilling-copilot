@@ -1,0 +1,21 @@
+{
+  "ev_1b22d73c8e": {
+    "generated_at": "2026-10-13T09:16:50.228481+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_1b22d73c8e",
+    "params": {
+      "kpi": "conn_w2w",
+      "stat": "min",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "kpi.connection_times",
+    "unit": "min",
+    "value": 0.23333333333333334
+  }
+}

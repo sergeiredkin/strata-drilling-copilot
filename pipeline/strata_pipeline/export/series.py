@@ -63,28 +63,31 @@ def _downsample(
 
 
 def nan_run_gaps(
-    t0_ms: float, bucket_s: float, values: np.ndarray, reason: str = "no_data"
+    t0_ms: float, bucket_s: float, values: np.ndarray, reason: str = "no_data", min_gap_seconds: float = 5.0
 ) -> list[dict[str, float | str]]:
-    """Scans an L0 (1-sample-per-bucket) array for NaN runs and returns GapInterval dicts."""
+    """Scans an L0 (1-sample-per-bucket) array for NaN runs and returns GapInterval dicts for
+    every run longer than `min_gap_seconds` — matching QC's own `resample_gap_seconds` threshold
+    (config.yaml), which is why a shorter hole stays a null in the binary chunk data (still
+    hatched by the renderer) but isn't individually named here. Without this threshold, a real,
+    irregularly-sampled well (sampled every 1-3s, not a clean 1Hz) turns every single missing
+    second into its own `GapInterval` — found exporting 15/9-F-11_A for real: 370k+ gap objects
+    for one channel alone, ballooning `series/index.json` past 400MB for a well whose actual
+    series data is ~100MB. Boundaries are found with one vectorized diff, not a per-sample
+    Python loop, for the same reason as qc/resample.py's `find_no_data_gaps`."""
     isn = np.isnan(values)
+    if not isn.any():
+        return []
+    padded = np.concatenate(([False], isn, [False]))
+    edges = np.diff(padded.astype(np.int8))
+    starts = np.where(edges == 1)[0]
+    ends = np.where(edges == -1)[0]  # exclusive, i.e. first non-NaN index after the run
+
     gaps: list[dict[str, float | str]] = []
-    n = len(values)
-    i = 0
-    while i < n:
-        if isn[i]:
-            j = i
-            while j < n and isn[j]:
-                j += 1
-            gaps.append(
-                {
-                    "t0": t0_ms + i * bucket_s * 1000,
-                    "t1": t0_ms + j * bucket_s * 1000,
-                    "reason": reason,
-                }
-            )
-            i = j
-        else:
-            i += 1
+    min_run_samples = min_gap_seconds / bucket_s
+    for start, end in zip(starts.tolist(), ends.tolist(), strict=True):
+        if (end - start) <= min_run_samples:
+            continue
+        gaps.append({"t0": t0_ms + start * bucket_s * 1000, "t1": t0_ms + end * bucket_s * 1000, "reason": reason})
     return gaps
 
 
@@ -96,11 +99,13 @@ def export_channel_series(
     t0_ms: float,
     values: np.ndarray,
     gap_reason: str = "no_data",
+    min_gap_seconds: float = 5.0,
 ) -> dict[str, object]:
     """`values` is a uniform 1 Hz (bucket_s=1) series, NaN = gap. Writes every pyramid level's
     chunks under `well_dir/series/{channel}/L{n}/{i}.bin` and returns the SeriesIndex channel
-    entry (unit, source, levels, gaps)."""
-    gaps = nan_run_gaps(t0_ms, 1.0, values, gap_reason)
+    entry (unit, source, levels, gaps). `min_gap_seconds` should match QC's own
+    `resample_gap_seconds` (see `nan_run_gaps`)."""
+    gaps = nan_run_gaps(t0_ms, 1.0, values, gap_reason, min_gap_seconds)
 
     mins = np.asarray(values, dtype="f4")
     maxs = np.asarray(values, dtype="f4")

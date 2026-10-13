@@ -16,6 +16,43 @@
     "unit": "1",
     "value": 0.84
   },
+  "ev_b16a74460b": {
+    "generated_at": "2026-10-13T09:00:29.185076+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_b16a74460b",
+    "params": {
+      "stat": "q1",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "kpi.trips",
+    "unit": "m/h",
+    "value": 0.0
+  },
+  "ev_b1d3caaa19": {
+    "generated_at": "2026-10-13T09:16:50.228774+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_b1d3caaa19",
+    "params": {
+      "kpi": "trip_out_open",
+      "stat": "outlier",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "kpi.trips",
+    "unit": "m/h",
+    "value": 701.7995981069711
+  },
   "ev_b1de2c4ea1": {
     "generated_at": "2026-10-12T05:26:58.929426+00:00",
     "git_commit": "23add431fc45ab8b1439705b1677123947feed35",

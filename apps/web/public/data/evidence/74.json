@@ -1,4 +1,23 @@
 {
+  "ev_7492a98242": {
+    "generated_at": "2026-10-13T09:16:50.228331+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_7492a98242",
+    "params": {
+      "kpi": "conn_s2s",
+      "stat": "q1",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "kpi.connection_times",
+    "unit": "min",
+    "value": 1.5041666666666667
+  },
   "ev_749eb31378": {
     "generated_at": "2026-10-12T05:26:58.934635+00:00",
     "git_commit": "23add431fc45ab8b1439705b1677123947feed35",

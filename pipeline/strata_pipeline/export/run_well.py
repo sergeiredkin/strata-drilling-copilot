@@ -132,7 +132,10 @@ def _run_well_from_aligned(
             # np.asarray is a no-op here, not a fresh Python-list-comprehension copy.
             arr = np.asarray(values, dtype="f8")
             unit = _CANONICAL_UNITS.get(name, "1")
-            series_channels[name] = export_channel_series(well_dir, name, unit, "pipeline:real", t0_ms, arr)
+            series_channels[name] = export_channel_series(
+                well_dir, name, unit, "pipeline:real", t0_ms, arr,
+                min_gap_seconds=qc_cfg["resample_gap_seconds"],
+            )
         _write_json(well_dir / "series" / "index.json", {"well": well_id, "channels": series_channels})
 
     well_duration_hours = (t[-1] - t[0]).total_seconds() / 3600.0 if len(t) > 1 else 0.0

@@ -21,5 +21,24 @@
     "tool": "recon.mismatch",
     "unit": "min",
     "value": 3.2333333333333334
+  },
+  "ev_e9cdc6d12a": {
+    "generated_at": "2026-10-13T09:16:50.291579+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_e9cdc6d12a",
+    "params": {
+      "code": "REAM",
+      "state": "circulating",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "recon.cell",
+    "unit": "min",
+    "value": 0.0
   }
 }

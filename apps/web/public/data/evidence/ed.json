@@ -1,0 +1,15 @@
+{
+  "ev_edf3803157": {
+    "generated_at": "2026-10-13T09:16:50.228804+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_edf3803157",
+    "params": {
+      "stat": "trip_out_cased",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [],
+    "tool": "kpi.trips",
+    "unit": "m/h",
+    "value": null
+  }
+}

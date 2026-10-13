@@ -22,5 +22,24 @@
     "tool": "recon.matrix",
     "unit": "min",
     "value": 0.0
+  },
+  "ev_0effffdd34": {
+    "generated_at": "2026-10-13T09:16:50.291501+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_0effffdd34",
+    "params": {
+      "code": "TRIP",
+      "state": "reaming",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "recon.cell",
+    "unit": "min",
+    "value": 0.0
   }
 }

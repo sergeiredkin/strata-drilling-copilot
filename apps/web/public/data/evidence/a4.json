@@ -1,0 +1,39 @@
+{
+  "ev_a47b9484f3": {
+    "generated_at": "2026-10-13T09:00:29.185098+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_a47b9484f3",
+    "params": {
+      "stat": "max",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "kpi.trips",
+    "unit": "m/h",
+    "value": 701.7995981069711
+  },
+  "ev_a48a0af004": {
+    "generated_at": "2026-10-13T09:16:50.228641+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_a48a0af004",
+    "params": {
+      "kpi": "trip_in_open",
+      "stat": "max",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "kpi.trips",
+    "unit": "m/h",
+    "value": 289.1517460264009
+  }
+}

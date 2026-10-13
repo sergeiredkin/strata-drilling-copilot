@@ -1,4 +1,23 @@
 {
+  "ev_f971717ce8": {
+    "generated_at": "2026-10-13T09:16:50.291351+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_f971717ce8",
+    "params": {
+      "code": "DRILL",
+      "state": "trip_out",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "recon.cell",
+    "unit": "min",
+    "value": 0.43333333333333335
+  },
   "ev_f98fcf6b76": {
     "generated_at": "2026-10-12T05:26:58.388131+00:00",
     "git_commit": "23add431fc45ab8b1439705b1677123947feed35",

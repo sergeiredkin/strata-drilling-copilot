@@ -21,5 +21,24 @@
     "tool": "kpi.ilt_breakdown",
     "unit": "h",
     "value": 2.038222222222222
+  },
+  "ev_59d63adbfb": {
+    "generated_at": "2026-10-13T09:16:50.291571+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_59d63adbfb",
+    "params": {
+      "code": "REAM",
+      "state": "reaming",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "recon.cell",
+    "unit": "min",
+    "value": 0.0
   }
 }

@@ -1,0 +1,20 @@
+{
+  "ev_9c727648c9": {
+    "generated_at": "2026-10-13T09:00:29.185068+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_9c727648c9",
+    "params": {
+      "stat": "min",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "kpi.trips",
+    "unit": "m/h",
+    "value": 0.0
+  }
+}

@@ -21,5 +21,42 @@
     "tool": "recon.mismatch",
     "unit": "min",
     "value": 2.1333333333333333
+  },
+  "ev_ad46fe1443": {
+    "generated_at": "2026-10-13T09:16:50.291416+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_ad46fe1443",
+    "params": {
+      "code": "CIRC",
+      "state": "trip_in",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "recon.cell",
+    "unit": "min",
+    "value": 0.0
+  },
+  "ev_aded037015": {
+    "generated_at": "2026-10-13T09:16:50.291604+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_aded037015",
+    "params": {
+      "code": "DRILL",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "recon.agreement",
+    "unit": "%",
+    "value": 88.65157532758698
   }
 }

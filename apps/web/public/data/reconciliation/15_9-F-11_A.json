@@ -1,21 +1,63 @@
 {
   "agreement": [
     {
+      "booked": {
+        "evidence_id": "ev_ccc6abf8ba",
+        "precision": 2,
+        "unit": "h",
+        "value": 79.5
+      },
       "code": "DRILL",
       "pct": {
-        "evidence_id": "ev_982bdb09e5",
+        "evidence_id": "ev_aded037015",
         "precision": 1,
         "unit": "%",
-        "value": 96.95163170163168
+        "value": 88.65157532758698
       }
     },
     {
-      "code": "TRIP",
+      "booked": {
+        "evidence_id": "ev_51c09fa257",
+        "precision": 2,
+        "unit": "h",
+        "value": 10.5
+      },
+      "code": "CIRC",
       "pct": {
-        "evidence_id": "ev_571827f8f9",
+        "evidence_id": "ev_539c8f6aa8",
         "precision": 1,
         "unit": "%",
-        "value": 100.0
+        "value": 93.99010396397398
+      }
+    },
+    {
+      "booked": {
+        "evidence_id": "ev_0f4d16aa38",
+        "precision": 2,
+        "unit": "h",
+        "value": 31.5
+      },
+      "code": "TRIP",
+      "pct": {
+        "evidence_id": "ev_da408e961b",
+        "precision": 1,
+        "unit": "%",
+        "value": 57.74392625576127
+      }
+    },
+    {
+      "booked": {
+        "evidence_id": "ev_1c9481a2f7",
+        "precision": 2,
+        "unit": "h",
+        "value": 1.5
+      },
+      "code": "REAM",
+      "pct": {
+        "evidence_id": "ev_71fb77f5ab",
+        "precision": 1,
+        "unit": "%",
+        "value": 0.0
       }
     }
   ],
@@ -23,17 +65,35 @@
     [
       {
         "minutes": {
-          "evidence_id": "ev_50727a5977",
-          "precision": 1,
+          "evidence_id": "ev_d8c9deed36",
+          "precision": 2,
           "unit": "min",
-          "value": 2077.383333333333
+          "value": 3434.7333333333336
         },
-        "pct": 72.6
+        "pct": 84.46723310421713
       },
       {
         "minutes": {
-          "evidence_id": "ev_2a9e43bf15",
-          "precision": 1,
+          "evidence_id": "ev_9ea9aca716",
+          "precision": 2,
+          "unit": "min",
+          "value": 96.71666666666667
+        },
+        "pct": 2.3784638967788476
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_5cf5d949f3",
+          "precision": 2,
+          "unit": "min",
+          "value": 73.43333333333334
+        },
+        "pct": 1.805878326591005
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_05f3e95683",
+          "precision": 2,
           "unit": "min",
           "value": 0.0
         },
@@ -41,17 +101,17 @@
       },
       {
         "minutes": {
-          "evidence_id": "ev_11879f9a24",
-          "precision": 1,
+          "evidence_id": "ev_f971717ce8",
+          "precision": 2,
           "unit": "min",
-          "value": 695.433333333333
+          "value": 0.43333333333333335
         },
-        "pct": 24.3
+        "pct": 0.010656567519601935
       },
       {
         "minutes": {
-          "evidence_id": "ev_2b2dd36a12",
-          "precision": 1,
+          "evidence_id": "ev_5034b0165d",
+          "precision": 2,
           "unit": "min",
           "value": 0.0
         },
@@ -59,55 +119,46 @@
       },
       {
         "minutes": {
-          "evidence_id": "ev_496d4271e3",
-          "precision": 1,
+          "evidence_id": "ev_650aaf4196",
+          "precision": 2,
           "unit": "min",
-          "value": 2.5
+          "value": 221.98333333333332
         },
-        "pct": 0.1
+        "pct": 5.459031645906853
       },
       {
         "minutes": {
-          "evidence_id": "ev_a93d78ae65",
-          "precision": 1,
+          "evidence_id": "ev_e0c2c49d93",
+          "precision": 2,
           "unit": "min",
-          "value": 40.05
+          "value": 41.71666666666667
         },
-        "pct": 1.4
+        "pct": 1.025899557752448
       },
       {
         "minutes": {
-          "evidence_id": "ev_83bb40791e",
-          "precision": 1,
+          "evidence_id": "ev_a67e283f0e",
+          "precision": 2,
           "unit": "min",
-          "value": 44.63333333333333
+          "value": 197.33333333333331
         },
-        "pct": 1.6
-      },
-      {
-        "minutes": {
-          "evidence_id": "ev_8dc67ef62f",
-          "precision": 1,
-          "unit": "min",
-          "value": 0.0
-        },
-        "pct": 0.0
-      },
-      {
-        "minutes": {
-          "evidence_id": "ev_a31edc23be",
-          "precision": 1,
-          "unit": "min",
-          "value": 13.100000000000001
-        },
-        "pct": 0.5
+        "pct": 4.852836901234111
       }
     ],
     [
       {
         "minutes": {
-          "evidence_id": "ev_086efec503",
-          "precision": 1,
+          "evidence_id": "ev_7fc9e66dc8",
+          "precision": 2,
+          "unit": "min",
+          "value": 7.366666666666667
+        },
+        "pct": 1.2286651470506478
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_1819c855ac",
+          "precision": 2,
           "unit": "min",
           "value": 0.0
         },
@@ -115,8 +166,17 @@
       },
       {
         "minutes": {
-          "evidence_id": "ev_8d4e1c9abe",
-          "precision": 1,
+          "evidence_id": "ev_495377cd69",
+          "precision": 2,
+          "unit": "min",
+          "value": 2.683333333333333
+        },
+        "pct": 0.44754544949129926
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_ad46fe1443",
+          "precision": 2,
           "unit": "min",
           "value": 0.0
         },
@@ -124,8 +184,8 @@
       },
       {
         "minutes": {
-          "evidence_id": "ev_cbaa698118",
-          "precision": 1,
+          "evidence_id": "ev_144e7040b0",
+          "precision": 2,
           "unit": "min",
           "value": 0.0
         },
@@ -133,26 +193,26 @@
       },
       {
         "minutes": {
-          "evidence_id": "ev_dece4f1750",
-          "precision": 1,
+          "evidence_id": "ev_2dfd04a265",
+          "precision": 2,
           "unit": "min",
-          "value": 13.333333333333334
+          "value": 7.1000000000000005
         },
-        "pct": 66.7
+        "pct": 1.1841885806415746
       },
       {
         "minutes": {
-          "evidence_id": "ev_afbd97a0f0",
-          "precision": 1,
+          "evidence_id": "ev_086abb10a6",
+          "precision": 2,
           "unit": "min",
-          "value": 6.666666666666667
+          "value": 563.5333333333333
         },
-        "pct": 33.3
+        "pct": 93.99010396397398
       },
       {
         "minutes": {
-          "evidence_id": "ev_e571c81f29",
-          "precision": 1,
+          "evidence_id": "ev_153bd91bbd",
+          "precision": 2,
           "unit": "min",
           "value": 0.0
         },
@@ -160,8 +220,19 @@
       },
       {
         "minutes": {
-          "evidence_id": "ev_c9aff5c250",
-          "precision": 1,
+          "evidence_id": "ev_c69674a135",
+          "precision": 2,
+          "unit": "min",
+          "value": 18.883333333333333
+        },
+        "pct": 3.149496858842497
+      }
+    ],
+    [
+      {
+        "minutes": {
+          "evidence_id": "ev_13b4c23c29",
+          "precision": 2,
           "unit": "min",
           "value": 0.0
         },
@@ -169,8 +240,8 @@
       },
       {
         "minutes": {
-          "evidence_id": "ev_49efe80b23",
-          "precision": 1,
+          "evidence_id": "ev_3aba195b63",
+          "precision": 2,
           "unit": "min",
           "value": 0.0
         },
@@ -178,12 +249,149 @@
       },
       {
         "minutes": {
-          "evidence_id": "ev_c5ab4a9f3c",
-          "precision": 1,
+          "evidence_id": "ev_c7ab519ff9",
+          "precision": 2,
           "unit": "min",
           "value": 0.0
         },
         "pct": 0.0
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_90a04dfd4f",
+          "precision": 2,
+          "unit": "min",
+          "value": 36.75
+        },
+        "pct": 3.445043355987813
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_c9acce6f8b",
+          "precision": 2,
+          "unit": "min",
+          "value": 579.2333333333333
+        },
+        "pct": 54.29888289977346
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_0effffdd34",
+          "precision": 2,
+          "unit": "min",
+          "value": 0.0
+        },
+        "pct": 0.0
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_f1cb84ec98",
+          "precision": 2,
+          "unit": "min",
+          "value": 79.25
+        },
+        "pct": 7.429107101007734
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_a705194d20",
+          "precision": 2,
+          "unit": "min",
+          "value": 130.4
+        },
+        "pct": 12.224044996484649
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_e157ab69d4",
+          "precision": 2,
+          "unit": "min",
+          "value": 241.1166666666667
+        },
+        "pct": 22.602921646746353
+      }
+    ],
+    [
+      {
+        "minutes": {
+          "evidence_id": "ev_e33e422f2f",
+          "precision": 2,
+          "unit": "min",
+          "value": 4.1
+        },
+        "pct": 20.585774058577407
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_37792028f6",
+          "precision": 2,
+          "unit": "min",
+          "value": 7.316666666666666
+        },
+        "pct": 36.736401673640174
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_6edf98fbae",
+          "precision": 2,
+          "unit": "min",
+          "value": 1.5166666666666666
+        },
+        "pct": 7.615062761506277
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_75520eea2c",
+          "precision": 2,
+          "unit": "min",
+          "value": 0.0
+        },
+        "pct": 0.0
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_11787ddfae",
+          "precision": 2,
+          "unit": "min",
+          "value": 0.0
+        },
+        "pct": 0.0
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_59d63adbfb",
+          "precision": 2,
+          "unit": "min",
+          "value": 0.0
+        },
+        "pct": 0.0
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_e9cdc6d12a",
+          "precision": 2,
+          "unit": "min",
+          "value": 0.0
+        },
+        "pct": 0.0
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_023f9b50a8",
+          "precision": 2,
+          "unit": "min",
+          "value": 0.0
+        },
+        "pct": 0.0
+      },
+      {
+        "minutes": {
+          "evidence_id": "ev_8ab6fd6c03",
+          "precision": 2,
+          "unit": "min",
+          "value": 6.983333333333333
+        },
+        "pct": 35.06276150627616
       }
     ]
   ],
@@ -201,21 +409,23 @@
   "per_well": [
     {
       "agreement": {
-        "evidence_id": "ev_1c2af05963",
+        "evidence_id": "ev_1d5809704b",
         "precision": 1,
         "unit": "%",
-        "value": 96.97280092592591
+        "value": 83.16959047384508
       },
       "well": "15_9-F-11_A"
     }
   ],
   "rows": [
     "DRILL",
-    "TRIP"
+    "CIRC",
+    "TRIP",
+    "REAM"
   ],
   "scope": "15_9-F-11_A",
   "tolerance": {
-    "boundary_slack_min": 5,
-    "min_duration_min": 2
+    "boundary_slack_min": 5.0,
+    "min_duration_min": 2.0
   }
 }

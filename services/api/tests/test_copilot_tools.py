@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import pytest
@@ -19,6 +20,15 @@ def tools() -> CopilotTools:
     return CopilotTools(settings, EvidenceRegistry(git_commit="test"))
 
 
+@pytest.fixture
+def well_span() -> tuple[float, float]:
+    """The well's actual rigstate span, read fresh rather than hardcoded — this well's export
+    can be mock or real depending on what's currently committed (docs/02_IMPLEMENTATION_PLAN.md
+    T10.4)."""
+    rows = json.loads((FIXTURE_DATA_DIR / "wells" / WELL / "rigstate.json").read_text())
+    return min(r["t0"] for r in rows), max(r["t1"] for r in rows)
+
+
 def test_list_wells_includes_the_fixture_well(tools: CopilotTools) -> None:
     result = tools.list_wells()
     assert any(w["id"] == WELL for w in result["wells"])
@@ -29,8 +39,11 @@ def test_well_summary_unknown_well_raises_tool_error(tools: CopilotTools) -> Non
         tools.well_summary("not-a-real-well")
 
 
-def test_rigstate_summary_mints_evidence_with_the_sum_of_overlapping_intervals(tools: CopilotTools) -> None:
-    result = tools.rigstate_summary(WELL, 1700000000000, 1700345600000)
+def test_rigstate_summary_mints_evidence_with_the_sum_of_overlapping_intervals(
+    tools: CopilotTools, well_span: tuple[float, float]
+) -> None:
+    t0, t1 = well_span
+    result = tools.rigstate_summary(WELL, t0, t1)
     assert result["n_intervals"] > 0
     assert "rotary_drilling" in result["by_state"]
     rotary = result["by_state"]["rotary_drilling"]
@@ -41,10 +54,14 @@ def test_rigstate_summary_mints_evidence_with_the_sum_of_overlapping_intervals(t
     assert record["value"] == rotary["value"]
 
 
-def test_rigstate_summary_partial_overlap_is_clipped_to_the_window(tools: CopilotTools) -> None:
+def test_rigstate_summary_partial_overlap_is_clipped_to_the_window(
+    tools: CopilotTools, well_span: tuple[float, float]
+) -> None:
     # A window covering only the first half of the well's span must not count the second half.
-    full = tools.rigstate_summary(WELL, 1700000000000, 1700345600000)
-    half = tools.rigstate_summary(WELL, 1700000000000, 1700172800000)
+    t0, t1 = well_span
+    midpoint = t0 + (t1 - t0) / 2
+    full = tools.rigstate_summary(WELL, t0, t1)
+    half = tools.rigstate_summary(WELL, t0, midpoint)
     full_rotary = full["by_state"].get("rotary_drilling", {}).get("value", 0.0)
     half_rotary = half["by_state"].get("rotary_drilling", {}).get("value", 0.0)
     assert half_rotary <= full_rotary
@@ -73,13 +90,16 @@ def test_ilt_breakdown_by_category(tools: CopilotTools) -> None:
 
 
 def test_ddr_search_finds_a_matching_narrative(tools: CopilotTools) -> None:
-    result = tools.ddr_search(WELL, "tripping pipe")
+    result = tools.ddr_search(WELL, "pulled out of hole")
     assert result["results"], "expected at least one BM25 match"
-    assert "trip" in result["results"][0]["narrative"].lower()
+    assert "pulled" in result["results"][0]["narrative"].lower()
 
 
 def test_ddr_search_no_match_returns_empty_results(tools: CopilotTools) -> None:
-    result = tools.ddr_search(WELL, "xyzxyzxyz_no_such_term")
+    # Gibberish with no real word fragments at all — unlike a made-up phrase built from ordinary
+    # English words (a prior version of this test used "xyzxyzxyz_no_such_term", which still
+    # BM25-matched on "no"/"such"/"term" once real DDR narratives replaced the mock ones).
+    result = tools.ddr_search(WELL, "qzxjklvwqz9999 zxcvbnmqwer8888")
     assert result["results"] == []
 
 

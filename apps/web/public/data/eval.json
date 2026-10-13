@@ -50,18 +50,6 @@
   "qc": [
     {
       "gap_hours": {
-        "evidence_id": "ev_4931b38841",
-        "precision": 2,
-        "unit": "h",
-        "value": 0.26666666666666666
-      },
-      "sentinels_removed": 0,
-      "spikes_removed": 0,
-      "unit_fixes": 0,
-      "well": "15_9-F-11_A"
-    },
-    {
-      "gap_hours": {
         "evidence_id": "ev_05a3d1e4e3",
         "precision": 2,
         "unit": "h",
@@ -155,13 +143,21 @@
       "spikes_removed": 0,
       "unit_fixes": 0,
       "well": "58-32"
+    },
+    {
+      "gap_hours": {
+        "evidence_id": "ev_4931b38841",
+        "precision": 2,
+        "unit": "h",
+        "value": 395.3930555555556
+      },
+      "sentinels_removed": 0,
+      "spikes_removed": 15080,
+      "unit_fixes": 0,
+      "well": "15_9-F-11_A"
     }
   ],
   "rigstate_agreement": [
-    {
-      "agreement": null,
-      "well": "15_9-F-11_A"
-    },
     {
       "agreement": null,
       "well": "15_9-F-15_D"
@@ -193,6 +189,10 @@
     {
       "agreement": null,
       "well": "58-32"
+    },
+    {
+      "agreement": null,
+      "well": "15_9-F-11_A"
     }
   ]
 }

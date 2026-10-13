@@ -1,0 +1,21 @@
+{
+  "ev_153bd91bbd": {
+    "generated_at": "2026-10-13T09:16:50.291446+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_153bd91bbd",
+    "params": {
+      "code": "CIRC",
+      "state": "out_of_hole",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "recon.cell",
+    "unit": "min",
+    "value": 0.0
+  }
+}

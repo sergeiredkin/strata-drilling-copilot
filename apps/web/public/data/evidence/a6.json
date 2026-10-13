@@ -1,0 +1,39 @@
+{
+  "ev_a67e283f0e": {
+    "generated_at": "2026-10-13T09:16:50.291383+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_a67e283f0e",
+    "params": {
+      "code": "DRILL",
+      "state": "unknown",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "recon.cell",
+    "unit": "min",
+    "value": 197.33333333333331
+  },
+  "ev_a6f7b365b8": {
+    "generated_at": "2026-10-13T09:00:29.184849+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_a6f7b365b8",
+    "params": {
+      "stat": "min",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "kpi.connection_times",
+    "unit": "min",
+    "value": 0.23333333333333334
+  }
+}

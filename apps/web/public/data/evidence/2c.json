@@ -1,0 +1,33 @@
+{
+  "ev_2c5c95c203": {
+    "generated_at": "2026-10-13T09:16:51.119626+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_2c5c95c203",
+    "params": {
+      "well": "15_9-F-11_A"
+    },
+    "sources": [],
+    "tool": "qc.score",
+    "unit": "1",
+    "value": 0.5063655904879062
+  },
+  "ev_2cc17529ca": {
+    "generated_at": "2026-10-13T09:16:50.228374+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_2cc17529ca",
+    "params": {
+      "kpi": "conn_s2s",
+      "stat": "composite_best",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "kpi.connection_times",
+    "unit": "min",
+    "value": 0.7083333333333334
+  }
+}

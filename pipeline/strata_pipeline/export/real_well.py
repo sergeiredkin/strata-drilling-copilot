@@ -118,7 +118,14 @@ def _kpi_dist_card(
     source = [{"file": "pipeline:real", "sha256": "n/a"}]
     conf = assess(sample_size=len(values))
     if not values:
-        eid = reg.add(tool, {"well": well, "stat": "value"}, None, unit, source)
+        # `kpi` disambiguates: `tool` is shared across every KPI this helper is called for
+        # (e.g. "kpi.connection_times" for both conn_s2s and conn_w2w) — without it, two
+        # different KPIs' evidence ids collide (same tool+params+sources hash), and whichever
+        # one registers last silently overwrites the other's record in the registry, even
+        # though each KPI's own embedded Quantity.value stays correct (found while verifying
+        # the T10.4 real export: a claim verified against conn_s2s's "median" evidence id was
+        # actually reading back conn_w2w's value).
+        eid = reg.add(tool, {"well": well, "kpi": name, "stat": "value"}, None, unit, source)
         null_card = {
             "kpi": name,
             "value": {"value": None, "unit": unit, "evidence_id": eid},
@@ -132,7 +139,7 @@ def _kpi_dist_card(
     best_result = compute_composite_best(values, values, kind)
 
     def q(stat: str, value: float) -> dict[str, Any]:
-        return reg.quantity(tool, {"well": well, "stat": stat}, value, unit, source, 2)
+        return reg.quantity(tool, {"well": well, "kpi": name, "stat": stat}, value, unit, source, 2)
 
     dist_payload = {
         "n": dist.n,

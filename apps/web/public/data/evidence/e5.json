@@ -34,5 +34,23 @@
     "tool": "qc.gaps",
     "unit": "h",
     "value": 0.0
+  },
+  "ev_e5ae684316": {
+    "generated_at": "2026-10-13T09:00:29.184882+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_e5ae684316",
+    "params": {
+      "stat": "max",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "kpi.connection_times",
+    "unit": "min",
+    "value": 4063.9333333333334
   }
 }

@@ -27,8 +27,17 @@ def test_write_read_roundtrip(tmp_path):
 
 def test_nan_run_gaps_detects_single_run():
     values = np.array([1.0, 1.0, np.nan, np.nan, np.nan, 1.0], dtype="f4")
-    gaps = nan_run_gaps(t0_ms=0.0, bucket_s=1.0, values=values)
+    gaps = nan_run_gaps(t0_ms=0.0, bucket_s=1.0, values=values, min_gap_seconds=0.0)
     assert gaps == [{"t0": 2000.0, "t1": 5000.0, "reason": "no_data"}]
+
+
+def test_nan_run_gaps_below_min_gap_seconds_is_not_reported():
+    # Regression: a real, irregularly-sampled well turns every single missing second into its
+    # own run without this threshold -- found exporting 15/9-F-11_A for real, where it ballooned
+    # series/index.json past 400MB (370k+ gap objects for one channel alone).
+    values = np.array([1.0, 1.0, np.nan, np.nan, np.nan, 1.0], dtype="f4")
+    gaps = nan_run_gaps(t0_ms=0.0, bucket_s=1.0, values=values, min_gap_seconds=5.0)
+    assert gaps == []
 
 
 def test_export_channel_series_preserves_spike_at_every_level(tmp_path):
@@ -61,9 +70,9 @@ def test_export_channel_series_preserves_spike_at_every_level(tmp_path):
 def test_export_channel_series_gap_listed(tmp_path):
     n = 100
     values = np.ones(n, dtype="f4")
-    values[10:15] = np.nan
+    values[10:20] = np.nan  # 10s, above the 5s default min_gap_seconds
     entry = export_channel_series(tmp_path, "RPM", "rpm", "synthetic", t0_ms=0.0, values=values)
-    assert entry["gaps"] == [{"t0": 10000.0, "t1": 15000.0, "reason": "no_data"}]
+    assert entry["gaps"] == [{"t0": 10000.0, "t1": 20000.0, "reason": "no_data"}]
 
 
 @pytest.mark.parametrize("level_idx", range(len(LEVEL_BUCKET_S)))

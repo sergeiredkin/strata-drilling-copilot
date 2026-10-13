@@ -22,5 +22,24 @@
     "tool": "recon.matrix",
     "unit": "min",
     "value": 1097.816666666667
+  },
+  "ev_90a04dfd4f": {
+    "generated_at": "2026-10-13T09:16:50.291485+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_90a04dfd4f",
+    "params": {
+      "code": "TRIP",
+      "state": "trip_in",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "recon.cell",
+    "unit": "min",
+    "value": 36.75
   }
 }

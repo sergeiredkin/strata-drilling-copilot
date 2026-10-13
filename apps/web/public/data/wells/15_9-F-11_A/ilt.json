@@ -1,6 +1,6 @@
 {
   "booked_npt": {
-    "evidence_id": "ev_4750e76b13",
+    "evidence_id": "ev_65c0b29e97",
     "precision": 2,
     "unit": "h",
     "value": 0.0
@@ -9,135 +9,94 @@
     {
       "category": "connections",
       "hours": {
-        "evidence_id": "ev_cfac00492b",
+        "evidence_id": "ev_77a1ab7eae",
         "precision": 2,
         "unit": "h",
-        "value": 12.267777777777782
+        "value": 7.475
       }
     },
     {
       "category": "trips",
       "hours": {
-        "evidence_id": "ev_9a22e3d5e4",
+        "evidence_id": "ev_511703b475",
         "precision": 2,
         "unit": "h",
-        "value": 0.0
+        "value": 2.09227438788994
       }
     },
     {
       "category": "flat_time",
       "hours": {
-        "evidence_id": "ev_710c850f79",
+        "evidence_id": "ev_4030e25639",
         "precision": 2,
         "unit": "h",
-        "value": 1.0558333333333334
+        "value": 7.488611111111111
       }
     },
     {
       "category": "unreported_reaming",
       "hours": {
-        "evidence_id": "ev_2e6adb72f6",
+        "evidence_id": "ev_7042cac622",
         "precision": 2,
         "unit": "h",
-        "value": 1.6347222222222217
+        "value": 0.0038888888888888888
       }
     }
   ],
-  "by_day": [
-    {
-      "coverage_pct": 99.7,
-      "date": "2015-06-01",
-      "hours": {
-        "evidence_id": "ev_f98fcf6b76",
-        "precision": 2,
-        "unit": "h",
-        "value": 3.3763888888888887
-      }
-    },
-    {
-      "coverage_pct": 99.7,
-      "date": "2015-06-02",
-      "hours": {
-        "evidence_id": "ev_b37cb10c05",
-        "precision": 2,
-        "unit": "h",
-        "value": 3.707500000000001
-      }
-    },
-    {
-      "coverage_pct": 99.7,
-      "date": "2015-06-03",
-      "hours": {
-        "evidence_id": "ev_6c91a3a651",
-        "precision": 2,
-        "unit": "h",
-        "value": 4.604444444444445
-      }
-    },
-    {
-      "coverage_pct": 99.7,
-      "date": "2015-06-04",
-      "hours": {
-        "evidence_id": "ev_5af90c8063",
-        "precision": 2,
-        "unit": "h",
-        "value": 3.2700000000000022
-      }
-    }
-  ],
+  "by_day": [],
   "by_section": [
     {
       "by_category": {
         "connections": {
-          "evidence_id": "ev_16304e7b0f",
+          "evidence_id": "ev_7d2092ff71",
           "precision": 2,
           "unit": "h",
-          "value": 12.267777777777782
+          "value": 7.475
         },
         "flat_time": {
-          "evidence_id": "ev_74c8bf0146",
+          "evidence_id": "ev_6718944098",
           "precision": 2,
           "unit": "h",
-          "value": 1.0558333333333334
+          "value": 7.488611111111111
         },
         "trips": {
-          "evidence_id": "ev_14341a2329",
+          "evidence_id": "ev_e05de354c1",
           "precision": 2,
           "unit": "h",
-          "value": 0.0
+          "value": 2.09227438788994
         },
         "unreported_reaming": {
-          "evidence_id": "ev_e638e50a6e",
+          "evidence_id": "ev_b2d36d8493",
           "precision": 2,
           "unit": "h",
-          "value": 1.6347222222222217
+          "value": 0.0038888888888888888
         }
       },
-      "section": "8\u00bd",
+      "section": "unknown",
       "total": {
-        "evidence_id": "ev_77ed42288c",
+        "evidence_id": "ev_b7def729e8",
         "precision": 2,
         "unit": "h",
-        "value": 14.958333333333337
+        "value": 17.059774387889938
       }
     }
   ],
   "definition": {
     "baseline": "composite_best",
-    "percentile": 10,
-    "text": "Invisible lost time is the excess of each connection/trip over the composite best (P10 of durations, or P90 of speeds) for its section, plus circulating or reaming time inside DDR rows coded DRILL/TRIP that the report does not call out."
+    "percentile": 10.0,
+    "text": "ILT = connection + trip overrun vs. composite-best, plus unreported flat/reaming time."
   },
   "excluded_gap_hours": {
-    "evidence_id": "ev_0a9d7a0411",
+    "evidence_id": "ev_27658ef481",
     "precision": 2,
     "unit": "h",
     "value": 0.0
   },
   "total": {
-    "evidence_id": "ev_c835739e23",
+    "evidence_id": "ev_11065554ff",
     "precision": 2,
     "unit": "h",
-    "value": 14.958333333333337
+    "value": 17.059774387889938
   },
   "well": "15_9-F-11_A"
 }

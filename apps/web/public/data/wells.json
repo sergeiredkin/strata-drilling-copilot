@@ -1,80 +1,6 @@
 {
-  "generated_at": "2026-10-12T05:26:59.068157+00:00",
+  "generated_at": "2026-10-13T09:16:51.119867+00:00",
   "wells": [
-    {
-      "confidence": {
-        "level": "high",
-        "reason": "coverage of all 6 data types is full or near-full with few gaps.",
-        "rule_ids": [
-          "C1"
-        ]
-      },
-      "coverage": [
-        {
-          "kind": "time_logs",
-          "rows": null,
-          "source_files": [],
-          "span": null,
-          "status": "full"
-        },
-        {
-          "kind": "depth_logs",
-          "rows": null,
-          "source_files": [],
-          "span": null,
-          "status": "full"
-        },
-        {
-          "kind": "daily_reports",
-          "rows": null,
-          "source_files": [],
-          "span": null,
-          "status": "full"
-        },
-        {
-          "kind": "formation_tops",
-          "rows": null,
-          "source_files": [],
-          "span": null,
-          "status": "full"
-        },
-        {
-          "kind": "survey",
-          "rows": null,
-          "source_files": [],
-          "span": null,
-          "status": "full"
-        },
-        {
-          "kind": "mud",
-          "rows": null,
-          "source_files": [],
-          "span": null,
-          "status": "full"
-        }
-      ],
-      "field": "Volve",
-      "id": "15_9-F-11_A",
-      "is_mock": true,
-      "md_range": [
-        0,
-        3750
-      ],
-      "name": "15/9-F-11 A",
-      "qc_score": {
-        "evidence_id": "ev_a8006fed4f",
-        "precision": 2,
-        "unit": "1",
-        "value": 0.91
-      },
-      "sections": [
-        "26",
-        "17\u00bd",
-        "12\u00bc",
-        "8\u00bd"
-      ],
-      "years": "2008\u20132016"
-    },
     {
       "confidence": {
         "level": "high",
@@ -657,6 +583,80 @@
         "8\u00be"
       ],
       "years": "2020\u20132022"
+    },
+    {
+      "confidence": {
+        "level": "low",
+        "reason": "core-channel coverage in window is 51%",
+        "rule_ids": [
+          "C1"
+        ]
+      },
+      "coverage": [
+        {
+          "kind": "time_logs",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "depth_logs",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "none"
+        },
+        {
+          "kind": "daily_reports",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "full"
+        },
+        {
+          "kind": "formation_tops",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "none"
+        },
+        {
+          "kind": "survey",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "none"
+        },
+        {
+          "kind": "mud",
+          "rows": null,
+          "source_files": [],
+          "span": null,
+          "status": "none"
+        }
+      ],
+      "field": "Volve",
+      "id": "15_9-F-11_A",
+      "is_mock": false,
+      "md_range": [
+        0,
+        3750
+      ],
+      "name": "15/9-F-11 A",
+      "qc_score": {
+        "evidence_id": "ev_2c5c95c203",
+        "precision": 2,
+        "unit": "1",
+        "value": 0.5063655904879062
+      },
+      "sections": [
+        "26",
+        "17\u00bd",
+        "12\u00bc",
+        "8\u00bd"
+      ],
+      "years": "2008\u20132016"
     }
   ]
 }

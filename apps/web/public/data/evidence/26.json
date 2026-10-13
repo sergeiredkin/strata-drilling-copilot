@@ -1,0 +1,19 @@
+{
+  "ev_2607d866d3": {
+    "generated_at": "2026-10-13T09:16:50.230835+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_2607d866d3",
+    "params": {
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "kpi.flat_time",
+    "unit": "%",
+    "value": 43.54039066548604
+  }
+}

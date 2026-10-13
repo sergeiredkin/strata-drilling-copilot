@@ -21,5 +21,24 @@
     "tool": "kpi.connection_times",
     "unit": "min",
     "value": 5.155833333333333
+  },
+  "ev_9ea9aca716": {
+    "generated_at": "2026-10-13T09:16:50.291320+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_9ea9aca716",
+    "params": {
+      "code": "DRILL",
+      "state": "sliding",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "recon.cell",
+    "unit": "min",
+    "value": 96.71666666666667
   }
 }

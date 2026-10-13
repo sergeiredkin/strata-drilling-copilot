@@ -1,0 +1,21 @@
+{
+  "ev_b008f63453": {
+    "generated_at": "2026-10-13T09:16:50.228672+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_b008f63453",
+    "params": {
+      "kpi": "trip_in_open",
+      "stat": "outlier",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "kpi.trips",
+    "unit": "m/h",
+    "value": 37.71158854166667
+  }
+}

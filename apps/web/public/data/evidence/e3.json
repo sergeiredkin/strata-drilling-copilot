@@ -21,5 +21,24 @@
     "tool": "recon.mismatch",
     "unit": "min",
     "value": 2.8666666666666667
+  },
+  "ev_e33e422f2f": {
+    "generated_at": "2026-10-13T09:16:50.291532+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_e33e422f2f",
+    "params": {
+      "code": "REAM",
+      "state": "rotary_drilling",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "recon.cell",
+    "unit": "min",
+    "value": 4.1
   }
 }

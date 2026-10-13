@@ -1,4 +1,23 @@
 {
+  "ev_c9acce6f8b": {
+    "generated_at": "2026-10-13T09:16:50.291493+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_c9acce6f8b",
+    "params": {
+      "code": "TRIP",
+      "state": "trip_out",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "recon.cell",
+    "unit": "min",
+    "value": 579.2333333333333
+  },
   "ev_c9aff5c250": {
     "generated_at": "2026-10-12T05:26:58.398559+00:00",
     "git_commit": "23add431fc45ab8b1439705b1677123947feed35",

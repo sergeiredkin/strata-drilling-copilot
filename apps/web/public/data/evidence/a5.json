@@ -1,4 +1,23 @@
 {
+  "ev_a515a7f617": {
+    "generated_at": "2026-10-13T09:16:50.228782+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_a515a7f617",
+    "params": {
+      "kpi": "trip_out_open",
+      "stat": "median",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "kpi.trips",
+    "unit": "m/h",
+    "value": 0.7962740384615384
+  },
   "ev_a536b30bb2": {
     "generated_at": "2026-10-12T05:26:58.929590+00:00",
     "git_commit": "23add431fc45ab8b1439705b1677123947feed35",

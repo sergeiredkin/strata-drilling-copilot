@@ -1,4 +1,23 @@
 {
+  "ev_e05de354c1": {
+    "generated_at": "2026-10-13T09:16:50.277909+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_e05de354c1",
+    "params": {
+      "category": "trips",
+      "section": "unknown",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "kpi.ilt_breakdown",
+    "unit": "h",
+    "value": 2.09227438788994
+  },
   "ev_e07b3b66f2": {
     "generated_at": "2026-10-12T05:26:58.731900+00:00",
     "git_commit": "23add431fc45ab8b1439705b1677123947feed35",
@@ -22,5 +41,24 @@
     "tool": "recon.matrix",
     "unit": "min",
     "value": 0.0
+  },
+  "ev_e0c2c49d93": {
+    "generated_at": "2026-10-13T09:16:50.291376+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_e0c2c49d93",
+    "params": {
+      "code": "DRILL",
+      "state": "out_of_hole",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "recon.cell",
+    "unit": "min",
+    "value": 41.71666666666667
   }
 }

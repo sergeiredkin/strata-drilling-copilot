@@ -1,0 +1,39 @@
+{
+  "ev_70185fe878": {
+    "generated_at": "2026-10-13T09:16:50.228419+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_70185fe878",
+    "params": {
+      "kpi": "conn_s2s",
+      "stat": "median",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "kpi.connection_times",
+    "unit": "min",
+    "value": 2.3583333333333334
+  },
+  "ev_7042cac622": {
+    "generated_at": "2026-10-13T09:16:50.277889+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_7042cac622",
+    "params": {
+      "category": "unreported_reaming",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "kpi.ilt_breakdown",
+    "unit": "h",
+    "value": 0.0038888888888888888
+  }
+}

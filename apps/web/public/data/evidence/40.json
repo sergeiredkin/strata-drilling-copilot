@@ -1,0 +1,39 @@
+{
+  "ev_4030e25639": {
+    "generated_at": "2026-10-13T09:16:50.277879+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_4030e25639",
+    "params": {
+      "category": "flat_time",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "kpi.ilt_breakdown",
+    "unit": "h",
+    "value": 7.488611111111111
+  },
+  "ev_40d9a0a6a3": {
+    "generated_at": "2026-10-13T09:16:50.228491+00:00",
+    "git_commit": "bcf38a6e95b7413a765cfd5c29e88157355ac6e5",
+    "id": "ev_40d9a0a6a3",
+    "params": {
+      "kpi": "conn_w2w",
+      "stat": "q1",
+      "well": "15_9-F-11_A"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "kpi.connection_times",
+    "unit": "min",
+    "value": 10.875
+  }
+}
