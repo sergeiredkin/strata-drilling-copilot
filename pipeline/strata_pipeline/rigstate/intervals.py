@@ -6,6 +6,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import datetime
+from typing import Any
 
 from .rules import Decision, RuleResult
 
@@ -133,6 +134,56 @@ def build_intervals(
                 confidence=n_decisive / n if n else 0.0,
                 back_reaming=back_reaming,
                 n_samples=n,
+            )
+        )
+    return intervals
+
+
+def _raw_segments_from_arrays(states: Any, rule_ids: Any) -> list[_Segment]:
+    segments: list[_Segment] = []
+    lo = 0
+    n = len(states)
+    for i in range(1, n + 1):
+        if i < n and states[i] == states[lo]:
+            continue
+        segments.append(_Segment(lo=lo, hi=i - 1, state=states[lo], rule_id=rule_ids[lo]))
+        lo = i
+    return segments
+
+
+def build_intervals_from_arrays(
+    t: list[datetime],
+    states: Any,
+    rule_ids: Any,
+    decisive: Any,
+    back_reaming: Any,
+    min_interval_seconds: float,
+) -> list[RigStateInterval]:
+    """Same algorithm as `build_intervals`, over numpy arrays from
+    `vectorized.classify_samples_vectorized` instead of a `list[RuleResult]` — avoids ever
+    materializing a per-sample object for a well's full sample count. `decisive` and
+    `back_reaming` are already-computed per-sample booleans (not a `Decision` list to re-derive
+    them from)."""
+    n = len(states)
+    if n == 0:
+        return []
+    raw = _raw_segments_from_arrays(states, rule_ids)
+    merged = _merge_short_segments(raw, t, min_interval_seconds)
+
+    intervals: list[RigStateInterval] = []
+    for seg in merged:
+        count = seg.hi - seg.lo + 1
+        n_decisive = int(decisive[seg.lo : seg.hi + 1].sum())
+        seg_back_reaming = bool(back_reaming[seg.lo : seg.hi + 1].any())
+        intervals.append(
+            RigStateInterval(
+                t0=t[seg.lo],
+                t1=t[seg.hi],
+                state=seg.state,
+                rule_id=seg.rule_id,
+                confidence=n_decisive / count if count else 0.0,
+                back_reaming=seg_back_reaming,
+                n_samples=count,
             )
         )
     return intervals

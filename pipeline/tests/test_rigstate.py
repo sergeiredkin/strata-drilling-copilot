@@ -268,6 +268,66 @@ def test_run_rigstate_independently_sparse_channels_still_classify_correctly():
     assert not any(iv.rule_id == "R0" for iv in run.intervals if (iv.t1 - iv.t0).total_seconds() > 10)
 
 
+def test_vectorized_classification_matches_scalar_reference_on_random_data():
+    # Cross-check: classify_samples_vectorized (what run_rigstate actually calls) must produce
+    # exactly the same per-sample state/rule_id/decisive/back_reaming as classify_sample (the
+    # tested scalar reference) on the same inputs — found necessary when rewriting classify.py
+    # to avoid allocating a RuleResult+Decision object per sample on real multi-million-sample
+    # wells. Randomized across the full plausible range of each channel, including occasional
+    # gaps, to exercise every rule branch rather than just the hand-picked cases above.
+    import random
+
+    import numpy as np
+    from strata_pipeline.rigstate.intervals import _is_decisive
+    from strata_pipeline.rigstate.vectorized import classify_samples_vectorized, trip_directions_vectorized
+
+    rng = random.Random(42)
+    n = 2000
+
+    def sample_channel(lo: float, hi: float, gap_prob: float = 0.05) -> list[float | None]:
+        return [None if rng.random() < gap_prob else rng.uniform(lo, hi) for _ in range(n)]
+
+    channels_raw = {
+        "HKLD": sample_channel(0.0, 1000.0),
+        "BPOS": sample_channel(0.0, 30.0),
+        "FLOWIN": sample_channel(0.0, 2000.0),
+        "RPM": sample_channel(0.0, 200.0),
+        "BITDEPTH": sample_channel(0.0, 3000.0),
+        "HOLEDEPTH": sample_channel(0.0, 3000.0),
+    }
+    hl_slips = 230.0
+    v_list = block_velocity(channels_raw["BPOS"], CFG["block_velocity_window_seconds"])
+    window_samples = max(1, round(CFG["trip_direction_window_seconds"]))
+    bitdepth_arr = np.array([np.nan if x is None else x for x in channels_raw["BITDEPTH"]])
+    trip_dirs_vec = trip_directions_vectorized(bitdepth_arr, window_samples)
+
+    # Scalar reference, sample by sample.
+    expected_state = []
+    expected_rule = []
+    expected_decisive = []
+    expected_back_reaming = []
+    for i in range(n):
+        raw = {c: channels_raw[c][i] for c in channels_raw}
+        flags = compute_flags(
+            hkld=raw["HKLD"], bitdepth=raw["BITDEPTH"], holedepth=raw["HOLEDEPTH"],
+            rpm=raw["RPM"], flowin=raw["FLOWIN"], v=v_list[i], hl_slips=hl_slips, cfg=CFG,
+        )
+        result = classify_sample(raw, flags, trip_dirs_vec[i], hl_slips, CFG)
+        expected_state.append(result.state)
+        expected_rule.append(result.rule_id)
+        expected_decisive.append(_is_decisive(result, CFG["confidence_margin_frac"]))
+        expected_back_reaming.append(result.back_reaming)
+
+    core = {c: np.array([np.nan if x is None else x for x in channels_raw[c]]) for c in channels_raw}
+    v_arr = np.array([np.nan if x is None else x for x in v_list])
+    state, rule_id, decisive, back_reaming = classify_samples_vectorized(core, v_arr, trip_dirs_vec, hl_slips, CFG)
+
+    assert list(state) == expected_state
+    assert list(rule_id) == expected_rule
+    assert list(decisive) == expected_decisive
+    assert list(back_reaming) == expected_back_reaming
+
+
 def test_run_rigstate_gap_in_core_channel_yields_unknown_interval():
     n = 100
     t = _seconds(n)

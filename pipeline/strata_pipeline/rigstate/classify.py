@@ -8,11 +8,13 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Any
 
+import numpy as np
+
 from .calibration import compute_hl_slips
-from .flags import compute_flags
-from .intervals import RigStateInterval, build_intervals
+from .intervals import RigStateInterval, build_intervals_from_arrays
 from .preprocess import block_velocity, hold_last_value, median_filter
-from .rules import CORE_CHANNELS, RuleResult, classify_sample
+from .rules import CORE_CHANNELS
+from .vectorized import classify_samples_vectorized, trip_directions_vectorized
 
 
 @dataclass(frozen=True)
@@ -22,20 +24,8 @@ class RigStateRun:
     hl_slips_method: str
 
 
-def _trip_directions(bitdepth: list[float | None], window_samples: int) -> list[str | None]:
-    n = len(bitdepth)
-    out: list[str | None] = [None] * n
-    for i in range(n):
-        lo = max(0, i - window_samples)
-        a, b = bitdepth[lo], bitdepth[i]
-        if a is None or b is None:
-            continue
-        net = b - a
-        if net > 0:
-            out[i] = "trip_in"
-        elif net < 0:
-            out[i] = "trip_out"
-    return out
+def _to_array(values: list[float | None]) -> np.ndarray:
+    return np.array([np.nan if v is None else v for v in values], dtype=np.float64)
 
 
 def run_rigstate(
@@ -53,27 +43,16 @@ def run_rigstate(
         c: median_filter(held[c], cfg["median_filter_seconds"], grid_seconds)
         for c in CORE_CHANNELS
     }
-    v = block_velocity(filtered["BPOS"], cfg["block_velocity_window_seconds"], grid_seconds)
+    v = _to_array(block_velocity(filtered["BPOS"], cfg["block_velocity_window_seconds"], grid_seconds))
 
     slips = compute_hl_slips(filtered["HKLD"], travelling_block_weight, cfg["slips_fallback_margin"])
 
+    core = {c: _to_array(filtered[c]) for c in CORE_CHANNELS}
+
     window_samples = max(1, round(cfg["trip_direction_window_seconds"] / grid_seconds))
-    trip_dirs = _trip_directions(filtered["BITDEPTH"], window_samples)
+    trip_dirs = trip_directions_vectorized(core["BITDEPTH"], window_samples)
 
-    results: list[RuleResult] = []
-    for i in range(len(t)):
-        raw = {c: filtered[c][i] for c in CORE_CHANNELS}
-        flags = compute_flags(
-            hkld=raw["HKLD"],
-            bitdepth=raw["BITDEPTH"],
-            holedepth=raw["HOLEDEPTH"],
-            rpm=raw["RPM"],
-            flowin=raw["FLOWIN"],
-            v=v[i],
-            hl_slips=slips.hl_slips,
-            cfg=cfg,
-        )
-        results.append(classify_sample(raw, flags, trip_dirs[i], slips.hl_slips, cfg))
+    states, rule_ids, decisive, back_reaming = classify_samples_vectorized(core, v, trip_dirs, slips.hl_slips, cfg)
 
-    intervals = build_intervals(t, results, cfg["min_interval_seconds"], cfg["confidence_margin_frac"])
+    intervals = build_intervals_from_arrays(t, states, rule_ids, decisive, back_reaming, cfg["min_interval_seconds"])
     return RigStateRun(intervals=intervals, hl_slips=slips.hl_slips, hl_slips_method=slips.method)
