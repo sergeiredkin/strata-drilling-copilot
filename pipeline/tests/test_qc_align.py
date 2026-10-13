@@ -7,8 +7,9 @@ T0 = datetime(2013, 1, 1, tzinfo=UTC)
 
 
 def _result(start_s: float, n: int, value: float) -> ChannelQCResult:
-    t = [T0 + timedelta(seconds=start_s + i) for i in range(n)]
-    return ChannelQCResult(channel="X", clean_t=t, clean_values=[value] * n, gaps=[], unit_fix=None)
+    return ChannelQCResult(
+        channel="X", clean_t0=T0 + timedelta(seconds=start_s), clean_values=[value] * n, gaps=[], unit_fix=None
+    )
 
 
 def test_align_well_channels_spans_union_of_all_channel_ranges():
@@ -29,7 +30,7 @@ def test_align_well_channels_spans_union_of_all_channel_ranges():
 def test_align_well_channels_empty_channel_stays_all_none():
     channels = {
         "HKLD": _result(0, 5, 500.0),
-        "WOB": ChannelQCResult(channel="WOB", clean_t=[], clean_values=[], gaps=[], unit_fix=None),
+        "WOB": ChannelQCResult(channel="WOB", clean_t0=None, clean_values=[], gaps=[], unit_fix=None),
     }
     t, aligned = align_well_channels(channels)
     assert len(t) == 5
@@ -37,7 +38,7 @@ def test_align_well_channels_empty_channel_stays_all_none():
 
 
 def test_align_well_channels_all_empty_returns_empty():
-    channels = {"HKLD": ChannelQCResult(channel="HKLD", clean_t=[], clean_values=[], gaps=[], unit_fix=None)}
+    channels = {"HKLD": ChannelQCResult(channel="HKLD", clean_t0=None, clean_values=[], gaps=[], unit_fix=None)}
     t, aligned = align_well_channels(channels)
     assert t == []
     assert aligned == {"HKLD": []}

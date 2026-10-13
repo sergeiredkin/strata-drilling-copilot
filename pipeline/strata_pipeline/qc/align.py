@@ -16,22 +16,28 @@ if TYPE_CHECKING:
 def align_well_channels(
     channels: dict[str, ChannelQCResult], grid_seconds: float = 1.0
 ) -> tuple[list[datetime], dict[str, list[float | None]]]:
-    non_empty = [c for c in channels.values() if c.clean_t]
-    if not non_empty:
+    starts = [c.clean_t0 for c in channels.values() if c.clean_t0 is not None]
+    if not starts:
         return [], {name: [] for name in channels}
 
-    t0 = min(c.clean_t[0] for c in non_empty)
-    t1 = max(c.clean_t[-1] for c in non_empty)
     step = timedelta(seconds=grid_seconds)
+    # Each channel's own grid is already arithmetic (clean_t0 + i * step — see
+    # qc.resample.resample_to_grid), so its span's end point is derived the same way instead of
+    # keeping a full per-channel datetime list just to read its last element.
+    ends = [c.clean_t0 + step * (len(c.clean_values) - 1) for c in channels.values() if c.clean_t0 is not None]
+    t0 = min(starts)
+    t1 = max(ends)
     n = int(round((t1 - t0).total_seconds() / grid_seconds)) + 1
     t = [t0 + step * i for i in range(n)]
 
     aligned: dict[str, list[float | None]] = {}
     for name, result in channels.items():
         out: list[float | None] = [None] * n
-        for ti, vi in zip(result.clean_t, result.clean_values, strict=True):
-            idx = int(round((ti - t0).total_seconds() / grid_seconds))
-            if 0 <= idx < n:
-                out[idx] = vi
+        if result.clean_t0 is not None:
+            offset = int(round((result.clean_t0 - t0).total_seconds() / grid_seconds))
+            for i, vi in enumerate(result.clean_values):
+                idx = offset + i
+                if 0 <= idx < n:
+                    out[idx] = vi
         aligned[name] = out
     return t, aligned

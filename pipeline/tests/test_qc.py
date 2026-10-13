@@ -80,29 +80,29 @@ def test_detect_and_fix_unit_leaves_plausible_values_untouched():
 def test_resample_to_grid_snaps_to_nearest_second():
     t = [T0, T0 + timedelta(seconds=1, milliseconds=100), T0 + timedelta(seconds=2)]
     values = [1.0, 2.0, 3.0]
-    grid_t, grid_v = resample_to_grid(t, values, grid_seconds=1.0)
-    assert len(grid_t) == 3
+    grid_t0, grid_v = resample_to_grid(t, values, grid_seconds=1.0)
+    assert grid_t0 == T0
     assert grid_v == [1.0, 2.0, 3.0]
 
 
 def test_find_no_data_gaps_reports_only_holes_over_threshold():
-    # Build a 20 s grid manually: samples at 0-2s and 10-19s, hole of 7s (3..9) in between.
-    grid_t = _seconds(20)
+    # 20 s grid: samples at 0-2s and 10-19s, hole of 7s (3..9) in between.
+    grid_t0 = T0
     grid_v: list[float | None] = [None] * 20
     for i in [0, 1, 2, *range(10, 20)]:
         grid_v[i] = 1.0
-    gaps = find_no_data_gaps(grid_t, grid_v, gap_seconds=5.0)
+    gaps = find_no_data_gaps(grid_t0, grid_v, grid_seconds=1.0, gap_seconds=5.0)
     assert len(gaps) == 1
     assert gaps[0].reason == "no_data"
-    assert gaps[0].t0 == grid_t[3]
-    assert gaps[0].t1 == grid_t[9]
+    assert gaps[0].t0 == T0 + timedelta(seconds=3)
+    assert gaps[0].t1 == T0 + timedelta(seconds=9)
 
 
 def test_find_no_data_gaps_ignores_short_holes():
-    grid_t = _seconds(10)
+    grid_t0 = T0
     grid_v: list[float | None] = [1.0] * 10
     grid_v[4] = None  # single missing second, well under the 5s threshold
-    gaps = find_no_data_gaps(grid_t, grid_v, gap_seconds=5.0)
+    gaps = find_no_data_gaps(grid_t0, grid_v, grid_seconds=1.0, gap_seconds=5.0)
     assert gaps == []
 
 

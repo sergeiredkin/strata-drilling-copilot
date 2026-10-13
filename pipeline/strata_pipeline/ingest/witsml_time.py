@@ -13,7 +13,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any
 from xml.etree import ElementTree as ET
 
 import polars as pl
@@ -136,7 +135,17 @@ def load_well_time_series(
     if not bore_dirs:
         raise FileNotFoundError(f"no WITSML registration found for wellbore {wellbore_name!r} under {witsml_root}")
 
-    records: list[dict[str, Any]] = []
+    # Column-oriented accumulation, not one dict per row: a `list[dict]` here would mean one
+    # Python dict object per sample (21M+ for a multi-year real well), which dominates memory on
+    # its own (dict-shell overhead, no values) — found via instrumented profiling of 15/9-F-1_C,
+    # which OOM'd inside this function alone, before QC or rig-state ever ran. `pl.DataFrame` from
+    # parallel column lists is also polars' documented-fast path, vs. transposing a row-list.
+    t_col: list[datetime] = []
+    channel_col: list[str] = []
+    value_col: list[float] = []
+    raw_mnemonic_col: list[str] = []
+    raw_unit_col: list[str] = []
+    source_log_col: list[str] = []
     for bore_dir in bore_dirs:
         for logset in log_sets(bore_dir):
             for logobj in log_objects(logset):
@@ -177,18 +186,14 @@ def load_well_time_series(
                                 value = _convert(raw_value, raw_unit, canonical_unit, conversions)
                             except UnitConversionError:
                                 continue
-                            records.append(
-                                {
-                                    "t": t,
-                                    "channel": canon,
-                                    "value": value,
-                                    "raw_mnemonic": raw_mnem,
-                                    "raw_unit": raw_unit,
-                                    "source_log": source_log,
-                                }
-                            )
+                            t_col.append(t)
+                            channel_col.append(canon)
+                            value_col.append(value)
+                            raw_mnemonic_col.append(raw_mnem)
+                            raw_unit_col.append(raw_unit)
+                            source_log_col.append(source_log)
 
-    if not records:
+    if not t_col:
         return pl.DataFrame(
             schema={
                 "t": pl.Datetime("ms", "UTC"),
@@ -199,5 +204,14 @@ def load_well_time_series(
                 "source_log": pl.Utf8,
             }
         )
-    df = pl.DataFrame(records)
+    df = pl.DataFrame(
+        {
+            "t": t_col,
+            "channel": channel_col,
+            "value": value_col,
+            "raw_mnemonic": raw_mnemonic_col,
+            "raw_unit": raw_unit_col,
+            "source_log": source_log_col,
+        }
+    )
     return df.sort("t")

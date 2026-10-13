@@ -24,7 +24,7 @@ from .units import UnitFixEvent, detect_and_fix_unit
 @dataclass
 class ChannelQCResult:
     channel: str
-    clean_t: list[datetime]
+    clean_t0: datetime | None
     clean_values: list[float | None]
     gaps: list[GapInterval]
     unit_fix: UnitFixEvent | None
@@ -35,7 +35,7 @@ class ChannelQCResult:
 def run_channel_qc(t: list[datetime], values: list[float], channel: str, cfg: dict[str, Any]) -> ChannelQCResult:
     n_total = len(values)
     if n_total == 0:
-        return ChannelQCResult(channel, [], [], [], None, {}, 1.0)
+        return ChannelQCResult(channel, None, [], [], None, {}, 1.0)
 
     working: list[float | None] = list(values)
     gaps: list[GapInterval] = []
@@ -67,13 +67,13 @@ def run_channel_qc(t: list[datetime], values: list[float], channel: str, cfg: di
 
     kept_t = [ti for ti, vi in zip(t, working, strict=True) if vi is not None]
     kept_v = [vi for vi in working if vi is not None]
-    grid_t, grid_v = resample_to_grid(kept_t, kept_v, cfg["resample_grid_seconds"])
-    gaps += find_no_data_gaps(grid_t, grid_v, cfg["resample_gap_seconds"])
+    grid_t0, grid_v = resample_to_grid(kept_t, kept_v, cfg["resample_grid_seconds"])
+    gaps += find_no_data_gaps(grid_t0, grid_v, cfg["resample_grid_seconds"], cfg["resample_gap_seconds"])
 
     n_removed = sum(reason_counts.values())
     survived_fraction = (n_total - n_removed) / n_total if n_total else 1.0
 
-    return ChannelQCResult(channel, grid_t, grid_v, gaps, unit_fix, reason_counts, survived_fraction)
+    return ChannelQCResult(channel, grid_t0, grid_v, gaps, unit_fix, reason_counts, survived_fraction)
 
 
 def _flag(
