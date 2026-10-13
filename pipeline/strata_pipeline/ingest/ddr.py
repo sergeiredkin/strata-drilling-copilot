@@ -96,6 +96,71 @@ def parse_ddr_file(xml_path: Path) -> list[dict[str, Any]]:
     return rows
 
 
+def parse_bit_runs(xml_path: Path) -> list[dict[str, Any]]:
+    """One row per `<bitRun>` inside this day's `<bitRecord>` (a sibling of `<activity>` under
+    `drillReport`, present only on reports where the bit record was updated — not every day).
+    `diaBit` (in) is reported once per `bitRecord` and applies to every `bitRun` under it; this
+    is the *same* number as "hole size" (a bit cuts the hole to its own diameter, modulo
+    reaming) — docs/07 §9/§11's MSE/dxc need exactly this, per ADR 0009/0010. Rows with a
+    missing diameter, a missing/equal/reversed MD bound, or a non-inch `uom` are dropped rather
+    than guessed (CLAUDE.md: never fabricate data)."""
+    root = parse_stripped(xml_path)
+    report_el = root.find("drillReport")
+    if report_el is None:
+        return []
+    bit_record_el = report_el.find("bitRecord")
+    if bit_record_el is None:
+        return []
+    dia_el = bit_record_el.find("diaBit")
+    if dia_el is None or not dia_el.text or dia_el.attrib.get("uom") != "in":
+        return []
+    try:
+        diameter_in = float(dia_el.text)
+    except ValueError:
+        return []
+
+    dtim_start_el = report_el.find("dTimStart")
+    report_date = None
+    if dtim_start_el is not None and dtim_start_el.text:
+        dt = _parse_local_datetime(dtim_start_el.text)
+        if dt is not None:
+            report_date = dt.date().isoformat()
+
+    rows: list[dict[str, Any]] = []
+    for run_el in bit_record_el.findall("bitRun"):
+        start_el = run_el.find("mdHoleStart")
+        stop_el = run_el.find("mdHoleStop")
+        if start_el is None or stop_el is None or not start_el.text or not stop_el.text:
+            continue
+        try:
+            md_a, md_b = float(start_el.text), float(stop_el.text)
+        except ValueError:
+            continue
+        if md_a == md_b:
+            continue
+        rows.append(
+            {
+                "report_date": report_date,
+                "diameter_in": diameter_in,
+                "md_top": min(md_a, md_b),
+                "md_base": max(md_a, md_b),
+            }
+        )
+    return rows
+
+
+def load_well_bit_runs(ddr_dir: Path, well_file_prefix: str) -> list[dict[str, Any]]:
+    """All `parse_bit_runs` rows across every `<well_file_prefix>_*.xml` daily report, in file
+    (chronological) order — callers resolving overlapping MD ranges should prefer later entries,
+    since a later report revising an earlier bit run's recorded range is a correction, not a
+    second physical bit at the same depth."""
+    files = sorted(glob.glob(str(ddr_dir / f"{well_file_prefix}_*.xml")))
+    rows: list[dict[str, Any]] = []
+    for f in files:
+        rows.extend(parse_bit_runs(Path(f)))
+    return rows
+
+
 def load_well_ddr(ddr_dir: Path, well_file_prefix: str) -> pl.DataFrame:
     """All activity rows across every `<well_file_prefix>_*.xml` daily report in `ddr_dir`
     (docs/DATA_INVENTORY.md's "Daily Drilling Report - XML Version" folder), sorted by t0.

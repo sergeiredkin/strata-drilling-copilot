@@ -1,6 +1,12 @@
 from pathlib import Path
 
-from strata_pipeline.ingest.ddr import load_well_ddr, normalize_code, parse_ddr_file
+from strata_pipeline.ingest.ddr import (
+    load_well_bit_runs,
+    load_well_ddr,
+    normalize_code,
+    parse_bit_runs,
+    parse_ddr_file,
+)
 
 SAMPLE_DIR = Path(__file__).parent / "samples" / "volve_15_9-F-11_A" / "ddr"
 
@@ -55,3 +61,23 @@ def test_load_well_ddr_missing_well_returns_empty_frame():
     df = load_well_ddr(SAMPLE_DIR, "99_9_Z_99_Z")
     assert len(df) == 0
     assert "normalized_code" in df.columns
+
+
+def test_parse_bit_runs_real_day_with_a_bit_record():
+    # Real F-11 A bit record: 8.5 in bit drilled 2586 -> 3762 m MD.
+    rows = parse_bit_runs(SAMPLE_DIR / "15_9_F_11_A_2013_05_25.xml")
+    assert rows == [{"report_date": "2013-05-24", "diameter_in": 8.5, "md_top": 2586.0, "md_base": 3762.0}]
+
+
+def test_parse_bit_runs_day_without_a_bit_record_is_empty():
+    rows = parse_bit_runs(SAMPLE_DIR / "15_9_F_11_A_2013_05_15.xml")
+    assert rows == []
+
+
+def test_load_well_bit_runs_concatenates_across_days():
+    rows = load_well_bit_runs(SAMPLE_DIR, "15_9_F_11_A")
+    assert rows == [{"report_date": "2013-05-24", "diameter_in": 8.5, "md_top": 2586.0, "md_base": 3762.0}]
+
+
+def test_load_well_bit_runs_missing_well_returns_empty_list():
+    assert load_well_bit_runs(SAMPLE_DIR, "99_9_Z_99_Z") == []

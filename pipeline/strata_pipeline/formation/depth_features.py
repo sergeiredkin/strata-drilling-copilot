@@ -4,16 +4,16 @@ BITDEPTH, and compute the physics features T11.2's classifier trains on: ROP, MS
 surface torque, WOB, RPM, dxc (Jorden & Shirley, ECD-corrected), total gas, plus rolling mean/std
 over 5 and 20 m.
 
-Bit diameter (needed for MSE's bit area and dxc's `12W/(1e6*D)` term) is not in any Volve archive
-we downloaded (docs/DATA_INVENTORY.md — no BHA/bit-run records, no casing/hole-size schedule) and
-is NOT guessed: callers pass `bit_diameter_in=None` for real wells until that data is sourced, and
-`compute_mse`/`compute_dxc` return all-NaN in that case rather than fabricate a size. Mock fixture
-wells may pass a synthetic diameter, exactly as legitimate as the rest of their synthetic curves
-(ADR 0009).
-"""
+Bit diameter (needed for MSE's bit area and dxc's `12W/(1e6*D)` term) is the same number as the
+hole size the bit is cutting — not read from any BHA/bit-run-specific file (there is none in the
+downloaded Volve archives) but from the DDR `<bitRecord><diaBit>` field alongside each bit run's
+`mdHoleStart`/`mdHoleStop` (`ingest/ddr.py:load_well_bit_runs`), matched to whichever MD bin falls
+inside that run's range (ADR 0010). `BitInterval`/`bit_diameter_by_md` do that lookup; a bin
+outside every reported run's range gets NaN, never a guessed diameter."""
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import datetime
 
@@ -22,6 +22,27 @@ import numpy as np
 _FT_PER_M = 3.28084
 _LBF_PER_KN = 224.809  # kN -> klbf (0.224809) -> lbf (x1000)
 _SECONDS_PER_HOUR = 3600.0
+
+
+@dataclass(frozen=True)
+class BitInterval:
+    """One reported bit run (`ingest/ddr.py`'s `diaBit`/`mdHoleStart`/`mdHoleStop`). `md_base` is
+    exclusive, matching `bit_diameter_by_md`'s `[md_top, md_base)` lookup."""
+
+    md_top: float
+    md_base: float
+    diameter_in: float
+
+
+def bit_diameter_by_md(md: np.ndarray, intervals: Sequence[BitInterval]) -> np.ndarray:
+    """Looks up each MD bin's bit diameter from reported bit-run intervals. NaN where no interval
+    covers that depth. Intervals are applied in the order given — pass them in chronological
+    (DDR file) order so a later report's revision of an earlier run's range wins the overlap,
+    rather than the reverse."""
+    out = np.full(len(md), np.nan)
+    for iv in intervals:
+        out[(md >= iv.md_top) & (md < iv.md_base)] = iv.diameter_in
+    return out
 
 
 @dataclass(frozen=True)
@@ -120,14 +141,12 @@ def compute_mse(
     torque_kNm: np.ndarray,
     rpm: np.ndarray,
     rop_m_per_h: np.ndarray,
-    bit_diameter_in: float | None,
+    bit_diameter_in: np.ndarray,
 ) -> np.ndarray:
     """Teale MSE, SI in -> MPa out (07 §11): `WOB/A + 2*pi*N*T / (A*ROP)`, surface torque used for
-    T (a stated limitation, not a downhole measurement). NaN wherever any input is non-finite,
-    ROP is 0, or `bit_diameter_in` is unknown."""
-    n = len(wob_kN)
-    if bit_diameter_in is None:
-        return np.full(n, np.nan)
+    T (a stated limitation, not a downhole measurement). `bit_diameter_in` is per-bin (see
+    `bit_diameter_by_md`); NaN wherever any input is non-finite, ROP is 0, or the diameter at
+    that bin is unknown."""
     diameter_m = bit_diameter_in * 0.0254
     area_m2 = np.pi * (diameter_m / 2.0) ** 2
 
@@ -147,19 +166,17 @@ def compute_dxc(
     rop_m_per_h: np.ndarray,
     rpm: np.ndarray,
     wob_kN: np.ndarray,
-    bit_diameter_in: float | None,
+    bit_diameter_in: np.ndarray,
     ecd_sg: np.ndarray | None,
     rho_normal_sg: float = 1.03,
 ) -> np.ndarray:
     """Corrected d-exponent, Jorden & Shirley (07 §11): `d = log10(R/(60N)) / log10(12W/(1e6*D))`
-    (R ft/h, N rpm, W lbf, D in) then `dxc = d * (rho_normal/ECD)`. NaN wherever an input is
-    non-finite/non-positive (log of a non-positive argument), `bit_diameter_in` is unknown, or
-    (for the ECD correction) ECD itself isn't available — the uncorrected `d` is never silently
-    substituted for `dxc`, since that would misrepresent an uncorrected number as the corrected one."""
+    (R ft/h, N rpm, W lbf, D in) then `dxc = d * (rho_normal/ECD)`. `bit_diameter_in` is per-bin
+    (see `bit_diameter_by_md`); NaN wherever an input is non-finite/non-positive (log of a
+    non-positive argument), the diameter at that bin is unknown, or (for the ECD correction) ECD
+    itself isn't available — the uncorrected `d` is never silently substituted for `dxc`, since
+    that would misrepresent an uncorrected number as the corrected one."""
     n = len(rop_m_per_h)
-    if bit_diameter_in is None:
-        return np.full(n, np.nan)
-
     rop_ft_per_h = rop_m_per_h * _FT_PER_M
     wob_lbf = wob_kN * _LBF_PER_KN
 
@@ -200,15 +217,16 @@ def rolling_mean_std(values: np.ndarray, window_bins: int) -> tuple[np.ndarray, 
 def build_depth_features(
     t: list[datetime],
     channels: dict[str, np.ndarray],
-    bit_diameter_in: float | None = None,
+    bit_intervals: Sequence[BitInterval] | None = None,
     rho_normal_sg: float = 1.03,
     bin_size_m: float = 1.0,
     rolling_windows_m: tuple[int, ...] = (5, 20),
 ) -> DepthFeatureTable | None:
-    """Orchestrates binning + MSE/dxc for one well. Rolling mean/std (07 §9) are intentionally
-    not part of `DepthFeatureTable` — T11.2 computes them per-feature as needed via
-    `rolling_mean_std`, since which features get rolled is a model-input decision, not an export
-    shape."""
+    """Orchestrates binning + MSE/dxc for one well. `bit_intervals` resolves each bin's bit
+    diameter via `bit_diameter_by_md` (no intervals -> every bin's diameter is unknown, so MSE/
+    dxc come back all-NaN). Rolling mean/std (07 §9) are intentionally not part of
+    `DepthFeatureTable` — T11.2 computes them per-feature as needed via `rolling_mean_std`, since
+    which features get rolled is a model-input decision, not an export shape."""
     table = bin_channels_by_depth(t, channels, bin_size_m)
     if table is None:
         return None
@@ -220,6 +238,7 @@ def build_depth_features(
         else None
     )
 
+    bit_diameter_in = bit_diameter_by_md(table.md, bit_intervals or [])
     mse = compute_mse(table.wob_kN, table.torque_kNm, table.rpm, table.rop_m_per_h, bit_diameter_in)
     dxc = compute_dxc(table.rop_m_per_h, table.rpm, table.wob_kN, bit_diameter_in, ecd_binned, rho_normal_sg)
     return DepthFeatureTable(
@@ -236,9 +255,11 @@ def build_depth_features(
 
 
 __all__ = [
+    "BitInterval",
     "DepthFeatureTable",
     "bin_channel_by_depth",
     "bin_channels_by_depth",
+    "bit_diameter_by_md",
     "build_depth_features",
     "compute_dxc",
     "compute_mse",
