@@ -29,6 +29,31 @@ def test_well_sections_unknown_well_404s(client: TestClient) -> None:
     assert res.status_code == 404
 
 
+def test_well_id_path_traversal_rejected_with_422(client: TestClient) -> None:
+    # Regression: docs/audits/2026-10-13_STRATA_ENGINEERING_AUDIT.md P1-15 — well_id used to be
+    # a plain unvalidated str, so `..` reached read_json and resolved to
+    # settings.data_dir/sections.json (outside the intended wells/<id>/ scope). Also regression
+    # for the first fix attempt: contracts.WellId's own regex allows '.', so `..` itself still
+    # passed that pattern — SAFE_ID_PATTERN deliberately excludes '.' entirely.
+    for path in (
+        "/wells/%2e%2e/sections",
+        "/wells/%2e%2e/kpis",
+        "/wells/%2e%2e/channels?ch=BITDEPTH&level=0",
+    ):
+        res = client.get(path)
+        assert res.status_code == 422, path
+
+
+def test_reconciliation_well_query_path_traversal_rejected_with_422(client: TestClient) -> None:
+    res = client.get("/reconciliation", params={"well": ".."})
+    assert res.status_code == 422
+
+
+def test_issue_precursors_id_path_traversal_rejected_with_422(client: TestClient) -> None:
+    res = client.get("/issues/%2e%2e/precursors")
+    assert res.status_code == 422
+
+
 def test_well_depthtime(client: TestClient) -> None:
     res = client.get(f"/wells/{WELL}/depthtime")
     assert res.status_code == 200

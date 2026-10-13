@@ -37,13 +37,20 @@ def run_channel_qc(t: list[datetime], values: list[float], channel: str, cfg: di
     if n_total == 0:
         return ChannelQCResult(channel, [], [], [], None, {}, 1.0)
 
-    fixed_values, unit_fix = detect_and_fix_unit(values, channel, cfg)
-
-    working: list[float | None] = list(fixed_values)
+    working: list[float | None] = list(values)
     gaps: list[GapInterval] = []
     reason_counts: dict[str, int] = {}
 
+    # Sentinels must be detected on the raw values, before any unit conversion: detect_and_fix_unit's
+    # own precondition is a sentinel-free input (a sentinel like -999.25 skews the median this
+    # heuristic keys off), and multiplying a sentinel by a unit-fix factor would also change its
+    # exact value, making it unrecognisable to sentinel_mask afterward.
     sentinel_flagged = sentinel_mask(pl.Series(working, dtype=pl.Float64), cfg["sentinels"]).to_list()
+    clean_for_median = [v for v, flagged in zip(values, sentinel_flagged, strict=True) if not flagged]
+    _, unit_fix = detect_and_fix_unit(clean_for_median, channel, cfg)
+    if unit_fix is not None:
+        working = [v * unit_fix.factor if v is not None else None for v in working]
+
     gaps += _flag(t, working, sentinel_flagged, "sentinel", reason_counts)
 
     plausible = cfg.get("plausible_ranges", {}).get(channel)

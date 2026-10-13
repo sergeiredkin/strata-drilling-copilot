@@ -192,6 +192,33 @@ def test_run_channel_qc_skips_frozen_value_for_excluded_channels():
     assert result.reason_counts.get("frozen_value") == n
 
 
+def test_run_channel_qc_unit_fix_median_excludes_sentinels():
+    # Regression (docs/audits/2026-10-13_STRATA_ENGINEERING_AUDIT.md P1-08): unit-fix detection
+    # used to run on the raw values, sentinels included. Here sentinels are the majority of the
+    # samples, so a median computed over the raw array would land near the sentinel value
+    # (-999.25, well under the 1500 median_above threshold) and wrongly skip the lbf->kN fix —
+    # the real, non-sentinel samples are consistently ~2000 (i.e. actually in lbf).
+    n = 100
+    values = [-999.25] * 60 + [2000.0] * 40
+    cfg = {
+        "unit_fix_rules": {"HKLD": {"median_above": 1500, "assume_raw_unit": "lbf", "factor_to_kn": 0.0044482216}},
+        "sentinels": [-999.25, -9999, 9999],
+        "spike_hampel_window": 31,
+        "spike_hampel_threshold_mad": 6.0,
+        "frozen_min_seconds": 1e9,
+        "resample_grid_seconds": 1.0,
+        "resample_gap_seconds": 5.0,
+    }
+    result = run_channel_qc(_seconds(n), values, "HKLD", cfg)
+    assert result.unit_fix is not None
+    assert result.unit_fix.median_before == 2000.0
+    kept = [v for v in result.clean_values if v is not None]
+    assert all(abs(v - 2000.0 * 0.0044482216) < 1e-9 for v in kept)
+    # The sentinel marker itself must still be recognisable and removed, not corrupted by an
+    # earlier unit-fix multiplication.
+    assert result.reason_counts.get("sentinel") == 60
+
+
 def test_implausible_mask_flags_only_out_of_range_values():
     values = [500.0, -35504.0, 1200.0, 519337.0, None]
     mask = implausible_mask(values, plausible_min=0.0, plausible_max=4000.0)

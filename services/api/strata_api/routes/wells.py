@@ -18,7 +18,7 @@ from strata_pipeline.contracts import (
 )
 
 from ..data_access import assemble_channel_level, read_json, require_well
-from ..deps import SettingsDep
+from ..deps import SafeIdPath, SettingsDep
 
 router = APIRouter(prefix="/wells", tags=["wells"])
 
@@ -29,26 +29,26 @@ def list_wells(settings: SettingsDep) -> WellList:
 
 
 @router.get("/{well_id}/sections", response_model=list[Section])
-def well_sections(well_id: str, settings: SettingsDep) -> list[Section]:
+def well_sections(well_id: SafeIdPath, settings: SettingsDep) -> list[Section]:
     require_well(settings, well_id)
     return [Section.model_validate(s) for s in read_json(settings, f"wells/{well_id}/sections.json")]
 
 
 @router.get("/{well_id}/depthtime", response_model=DepthTimeBlock)
-def well_depthtime(well_id: str, settings: SettingsDep) -> DepthTimeBlock:
+def well_depthtime(well_id: SafeIdPath, settings: SettingsDep) -> DepthTimeBlock:
     require_well(settings, well_id)
     return DepthTimeBlock.model_validate(read_json(settings, f"wells/{well_id}/depthtime.json"))
 
 
 @router.get("/{well_id}/series", response_model=SeriesIndex)
-def well_series_index(well_id: str, settings: SettingsDep) -> SeriesIndex:
+def well_series_index(well_id: SafeIdPath, settings: SettingsDep) -> SeriesIndex:
     require_well(settings, well_id)
     return SeriesIndex.model_validate(read_json(settings, f"wells/{well_id}/series/index.json"))
 
 
 @router.get("/{well_id}/channels")
 def well_channel(
-    well_id: str,
+    well_id: SafeIdPath,
     settings: SettingsDep,
     ch: Annotated[str, Query()],
     level: Annotated[int, Query()],
@@ -62,7 +62,7 @@ def well_channel(
 
 @router.get("/{well_id}/rigstate", response_model=list[RigStateInterval])
 def well_rigstate(
-    well_id: str,
+    well_id: SafeIdPath,
     settings: SettingsDep,
     start: Annotated[float | None, Query()] = None,
     end: Annotated[float | None, Query()] = None,
@@ -76,7 +76,7 @@ def well_rigstate(
 
 @router.get("/{well_id}/ddr", response_model=list[DdrActivity])
 def well_ddr(
-    well_id: str,
+    well_id: SafeIdPath,
     settings: SettingsDep,
     start: Annotated[float | None, Query()] = None,
     end: Annotated[float | None, Query()] = None,
@@ -89,18 +89,18 @@ def well_ddr(
 
 
 @router.get("/{well_id}/mismatches", response_model=list[Mismatch])
-def well_mismatches(well_id: str, settings: SettingsDep) -> list[Mismatch]:
+def well_mismatches(well_id: SafeIdPath, settings: SettingsDep) -> list[Mismatch]:
     require_well(settings, well_id)
     return [Mismatch.model_validate(m) for m in read_json(settings, f"wells/{well_id}/mismatches.json")]
 
 
 @router.get("/{well_id}/kpis", response_model=KpiReport)
-def well_kpis(well_id: str, settings: SettingsDep) -> KpiReport:
+def well_kpis(well_id: SafeIdPath, settings: SettingsDep) -> KpiReport:
     require_well(settings, well_id)
     return KpiReport.model_validate(read_json(settings, f"wells/{well_id}/kpis.json"))
 
 
 @router.get("/{well_id}/ilt", response_model=IltReport)
-def well_ilt(well_id: str, settings: SettingsDep) -> IltReport:
+def well_ilt(well_id: SafeIdPath, settings: SettingsDep) -> IltReport:
     require_well(settings, well_id)
     return IltReport.model_validate(read_json(settings, f"wells/{well_id}/ilt.json"))

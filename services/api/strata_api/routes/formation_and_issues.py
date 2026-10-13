@@ -11,19 +11,19 @@ from fastapi import APIRouter, Query
 from strata_pipeline.contracts import FormationPrediction, FormationReport, Issue, ModelCard, Precursors
 
 from ..data_access import read_json, require_well
-from ..deps import SettingsDep
+from ..deps import SafeIdPath, SettingsDep
 
 router = APIRouter(tags=["formation", "issues"])
 
 
 @router.get("/wells/{well_id}/formations", response_model=FormationReport)
-def formations(well_id: str, settings: SettingsDep) -> FormationReport:
+def formations(well_id: SafeIdPath, settings: SettingsDep) -> FormationReport:
     require_well(settings, well_id)
     return FormationReport.model_validate(read_json(settings, f"wells/{well_id}/formations.json"))
 
 
 @router.get("/wells/{well_id}/formation-pred", response_model=FormationPrediction)
-def formation_pred(well_id: str, settings: SettingsDep) -> FormationPrediction:
+def formation_pred(well_id: SafeIdPath, settings: SettingsDep) -> FormationPrediction:
     require_well(settings, well_id)
     return FormationPrediction.model_validate(read_json(settings, f"wells/{well_id}/formation_pred.json"))
 
@@ -51,5 +51,5 @@ def issues(
 
 
 @router.get("/issues/{issue_id}/precursors", response_model=Precursors)
-def precursors(issue_id: str, settings: SettingsDep) -> Precursors:
+def precursors(issue_id: SafeIdPath, settings: SettingsDep) -> Precursors:
     return Precursors.model_validate(read_json(settings, f"issues/{issue_id}_precursors.json"))

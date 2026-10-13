@@ -8,7 +8,10 @@ let instance: DataSource | null = null
 
 export function createDataSource(): DataSource {
   const apiUrl = import.meta.env.VITE_API_URL
-  return apiUrl ? new HttpSource(apiUrl) : new StaticSource('/data')
+  // `BASE_URL` is "/" locally and under `vite preview`, but a subpath on GitHub Pages
+  // (`/strata-drilling-copilot/`) — the exported data lives under that same base, not at the
+  // domain root, so a hardcoded '/data' 404s there (confirmed: see docs/audits).
+  return apiUrl ? new HttpSource(apiUrl) : new StaticSource(`${import.meta.env.BASE_URL}data`)
 }
 
 /** Lazily-created singleton for use outside React (e.g. query hook defaults). Components should
