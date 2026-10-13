@@ -10,6 +10,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any
 
+import numpy as np
 import polars as pl
 
 from .frozen import frozen_value_mask
@@ -25,7 +26,7 @@ from .units import UnitFixEvent, detect_and_fix_unit
 class ChannelQCResult:
     channel: str
     clean_t0: datetime | None
-    clean_values: list[float | None]
+    clean_values: np.ndarray  # float32, NaN = gap — see qc.resample.resample_to_grid
     gaps: list[GapInterval]
     unit_fix: UnitFixEvent | None
     reason_counts: dict[str, int] = field(default_factory=dict)
@@ -35,7 +36,7 @@ class ChannelQCResult:
 def run_channel_qc(t: list[datetime], values: list[float], channel: str, cfg: dict[str, Any]) -> ChannelQCResult:
     n_total = len(values)
     if n_total == 0:
-        return ChannelQCResult(channel, None, [], [], None, {}, 1.0)
+        return ChannelQCResult(channel, None, np.array([], dtype=np.float32), [], None, {}, 1.0)
 
     working: list[float | None] = list(values)
     gaps: list[GapInterval] = []

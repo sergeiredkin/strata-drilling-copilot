@@ -13,27 +13,26 @@ own channel output must stay null-preserving (the UI's gap-hatching depends on i
 only feeds rigstate's "what was the most recently known value" need, bounded so a genuinely long
 gap still reads as missing rather than holding forever.
 
-All three functions below are vectorized with numpy (see qc/spikes.py's docstring for why —
-`run_rigstate` calls `hold_last_value` and `median_filter` once per core channel, so the
-per-sample Python loop cost that originally lived here was multiplied across every channel of
-every well)."""
+All three functions below take and return `float64` numpy arrays (`NaN` = gap) end to end,
+instead of `list[float | None]`: `run_rigstate` calls these once per core channel, and a
+multi-year-gap real well's grid can be tens of millions of samples long, where converting
+list<->array at every step (as an earlier version of this module did) cost as much as the
+vectorized computation itself was saving."""
 
 from __future__ import annotations
 
 import warnings
-from datetime import datetime
 
 import numpy as np
 
 
-def hold_last_value(values: list[float | None], t: list[datetime], max_hold_seconds: float) -> list[float | None]:
-    """Forward-fills each null with the most recent non-null value, as long as that value is no
-    more than `max_hold_seconds` old; reverts to `None` once staleness exceeds it."""
-    n = len(values)
+def hold_last_value(arr: np.ndarray, t_sec: np.ndarray, max_hold_seconds: float) -> np.ndarray:
+    """Forward-fills each NaN with the most recent non-NaN value, as long as that value is no
+    more than `max_hold_seconds` old (per `t_sec`, seconds since epoch); reverts to `NaN` once
+    staleness exceeds it."""
+    n = len(arr)
     if n == 0:
-        return []
-    arr = np.array([np.nan if v is None else v for v in values], dtype=np.float64)
-    t_sec = np.array([ti.timestamp() for ti in t], dtype=np.float64)
+        return arr
     valid = ~np.isnan(arr)
 
     idx = np.arange(n)
@@ -48,35 +47,34 @@ def hold_last_value(values: list[float | None], t: list[datetime], max_hold_seco
     held = arr.copy()
     held[fill_mask] = arr[safe_idx][fill_mask]
     held[(~valid) & (~fill_mask)] = np.nan
-    return [None if np.isnan(v) else float(v) for v in held]
+    return held
 
 
-def median_filter(values: list[float | None], window_seconds: float, grid_seconds: float = 1.0) -> list[float | None]:
+def median_filter(arr: np.ndarray, window_seconds: float, grid_seconds: float = 1.0) -> np.ndarray:
     """Centred rolling median with a `window_seconds`-wide window (converted to samples via
-    `grid_seconds`). A null stays null; it is excluded from neighbouring windows' medians."""
-    n = len(values)
+    `grid_seconds`). A NaN stays NaN; it is excluded from neighbouring windows' medians."""
+    n = len(arr)
     if n == 0:
-        return []
+        return arr
     half = max(1, round(window_seconds / grid_seconds / 2))
-    arr = np.array([np.nan if v is None else v for v in values], dtype=np.float64)
 
     padded = np.pad(arr, (half, half), mode="constant", constant_values=np.nan)
     windows = np.lib.stride_tricks.sliding_window_view(padded, 2 * half + 1)
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", category=RuntimeWarning)  # all-NaN window is expected
         out = np.nanmedian(windows, axis=1)
-    out[np.isnan(arr)] = np.nan  # null stays null regardless of neighbours (matches input exactly)
-    return [None if np.isnan(v) else float(v) for v in out]
+    out[np.isnan(arr)] = np.nan  # NaN stays NaN regardless of neighbours (matches input exactly)
+    result: np.ndarray = out
+    return result
 
 
-def block_velocity(bpos: list[float | None], window_seconds: float, grid_seconds: float = 1.0) -> list[float | None]:
+def block_velocity(bpos: np.ndarray, window_seconds: float, grid_seconds: float = 1.0) -> np.ndarray:
     """v[i] = (bpos[i + half] - bpos[i - half]) / (2 * half * grid_seconds), a centred difference
-    over `window_seconds`. Null wherever either endpoint is missing."""
+    over `window_seconds`. NaN wherever either endpoint is missing."""
     n = len(bpos)
     half = max(1, round(window_seconds / grid_seconds / 2))
-    out = np.full(n, np.nan)
+    out = np.full(n, np.nan, dtype=np.float32)
     if n > 2 * half:
-        arr = np.array([np.nan if v is None else v for v in bpos], dtype=np.float64)
         span = 2 * half * grid_seconds
-        out[half : n - half] = (arr[2 * half : n] - arr[0 : n - 2 * half]) / span
-    return [None if np.isnan(v) else float(v) for v in out]
+        out[half : n - half] = (bpos[2 * half : n] - bpos[0 : n - 2 * half]) / span
+    return out

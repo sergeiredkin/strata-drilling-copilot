@@ -27,5 +27,13 @@ def pick_source_per_channel(long_df: pl.DataFrame) -> tuple[pl.DataFrame, dict[s
         current = chosen.get(channel)
         if current is None or n > report[channel][current]:
             chosen[channel] = source_log
-    keep_mask = pl.Series([chosen.get(c) == s for c, s in zip(long_df["channel"], long_df["source_log"], strict=True)])
-    return long_df.filter(keep_mask), report
+    # Map each row's channel to its winning source_log and compare, entirely in polars — the
+    # original approach zipped and iterated `long_df["channel"]`/`["source_log"]` as Python
+    # strings to build a mask, one allocation per row, which is the same list-of-Python-objects
+    # cost this session's other fixes removed from ingest/QC/align (real wells make `long_df`
+    # tens of millions of rows). A join was tried first but a hash join's own temporary tables
+    # measured a higher peak than this plain column comparison, which needs no temporaries at
+    # all beyond the (tiny, one-row-per-channel) `chosen` mapping.
+    winning_source = pl.col("channel").replace_strict(chosen, default=None)
+    kept = long_df.filter(pl.col("source_log") == winning_source)
+    return kept, report

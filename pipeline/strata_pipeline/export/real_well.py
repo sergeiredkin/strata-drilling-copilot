@@ -12,6 +12,8 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any
 
+import numpy as np
+
 from strata_pipeline.confidence import assess
 from strata_pipeline.evidence import EvidenceRegistry
 from strata_pipeline.kpi.composite_best import Kind, compute_composite_best
@@ -30,16 +32,27 @@ from strata_pipeline.rigstate.intervals import RigStateInterval
 SECTION = "unknown"  # placeholder hole section — see module docstring
 
 
+def _to_none_list(arr: np.ndarray) -> list[float | None]:
+    """`arr` is float64 with `NaN` = gap (see qc.align.align_well_channels) — JSON export needs
+    `null`, not a literal `NaN` token (not valid JSON)."""
+    return [None if np.isnan(v) else float(v) for v in arr]
+
+
 def build_depthtime_json(
-    t: list[datetime], channels: dict[str, list[float | None]], stride_s: int = 60
+    t: list[datetime], channels: dict[str, np.ndarray], stride_s: int = 60
 ) -> dict[str, Any]:
-    hole = channels.get("HOLEDEPTH", [None] * len(t))
-    bit = channels.get("BITDEPTH", [None] * len(t))
     idx = range(0, len(t), stride_s)
+    hole = channels.get("HOLEDEPTH")
+    bit = channels.get("BITDEPTH")
+    # Slice to the stride FIRST (a numpy view, no copy), then convert — this only materializes
+    # ~1/stride_s of the channel as Python objects instead of the full per-second array (which
+    # can be tens of millions of samples on a multi-year-gap real well).
+    hole_strided = _to_none_list(hole[::stride_s]) if hole is not None else [None] * len(idx)
+    bit_strided = _to_none_list(bit[::stride_s]) if bit is not None else [None] * len(idx)
     return {
         "t": [int(t[i].timestamp() * 1000) for i in idx],
-        "bit_md": [bit[i] for i in idx],
-        "hole_md": [hole[i] for i in idx],
+        "bit_md": bit_strided,
+        "hole_md": hole_strided,
     }
 
 
@@ -141,13 +154,19 @@ def _kpi_dist_card(
 def build_kpis(
     well: str,
     t: list[datetime],
-    channels: dict[str, list[float | None]],
+    channels: dict[str, np.ndarray],
     intervals: list[RigStateInterval],
     reg: EvidenceRegistry,
 ) -> tuple[dict[str, Any], list[ConnectionKPI], list[TripSegment]]:
     states = expand_states(intervals, t)
-    connections = compute_connections(t, channels.get("WOB", [None] * len(t)), states, intervals)
-    trips = compute_trips(t, channels.get("BITDEPTH", [None] * len(t)), intervals, casing_shoe_md=None)
+    wob = channels.get("WOB")
+    bitdepth = channels.get("BITDEPTH")
+    connections = compute_connections(
+        t, _to_none_list(wob) if wob is not None else [None] * len(t), states, intervals
+    )
+    trips = compute_trips(
+        t, _to_none_list(bitdepth) if bitdepth is not None else [None] * len(t), intervals, casing_shoe_md=None
+    )
 
     conn_s2s = [c.conn_s2s_seconds / 60.0 for c in connections]
     conn_windows = [(int(c.t0.timestamp() * 1000), int(c.t1.timestamp() * 1000)) for c in connections]

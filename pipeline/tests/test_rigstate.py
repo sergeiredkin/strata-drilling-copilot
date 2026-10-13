@@ -1,5 +1,6 @@
 from datetime import UTC, datetime, timedelta
 
+import numpy as np
 from strata_pipeline.rigstate.calibration import compute_hl_slips
 from strata_pipeline.rigstate.classify import run_rigstate
 from strata_pipeline.rigstate.flags import compute_flags
@@ -29,60 +30,68 @@ def _seconds(n: int) -> list[datetime]:
     return [T0 + timedelta(seconds=i) for i in range(n)]
 
 
+def _arr(values: list[float | None]) -> np.ndarray:
+    return np.array([np.nan if v is None else v for v in values], dtype=np.float64)
+
+
+def _t_sec(t: list[datetime]) -> np.ndarray:
+    return np.array([ti.timestamp() for ti in t], dtype=np.float64)
+
+
 def test_median_filter_smooths_single_sample_noise():
     values = [10.0, 10.0, 10.0, 10.0, 999.0, 10.0, 10.0, 10.0, 10.0]
-    out = median_filter(values, window_seconds=5.0)
+    out = median_filter(_arr(values), window_seconds=5.0)
     assert out[4] == 10.0
 
 
 def test_median_filter_preserves_none_as_none():
     values = [1.0, None, 3.0]
-    out = median_filter(values, window_seconds=5.0)
-    assert out[1] is None
+    out = median_filter(_arr(values), window_seconds=5.0)
+    assert np.isnan(out[1])
 
 
 def test_hold_last_value_bridges_short_gap():
     t = _seconds(10)
     values: list[float | None] = [5.0, None, None, None, 5.0, None, None, None, None, None]
-    held = hold_last_value(values, t, max_hold_seconds=5.0)
-    assert held[:4] == [5.0, 5.0, 5.0, 5.0]
+    held = hold_last_value(_arr(values), _t_sec(t), max_hold_seconds=5.0)
+    assert held[:4].tolist() == [5.0, 5.0, 5.0, 5.0]
     assert held[4] == 5.0
 
 
 def test_hold_last_value_reverts_to_none_past_max_hold():
     t = _seconds(10)
     values: list[float | None] = [5.0] + [None] * 9
-    held = hold_last_value(values, t, max_hold_seconds=3.0)
-    assert held[:4] == [5.0, 5.0, 5.0, 5.0]
-    assert held[4] is None
-    assert held[9] is None
+    held = hold_last_value(_arr(values), _t_sec(t), max_hold_seconds=3.0)
+    assert held[:4].tolist() == [5.0, 5.0, 5.0, 5.0]
+    assert np.isnan(held[4])
+    assert np.isnan(held[9])
 
 
 def test_hold_last_value_leading_nulls_stay_none():
     t = _seconds(5)
     values: list[float | None] = [None, None, 1.0, None, None]
-    held = hold_last_value(values, t, max_hold_seconds=5.0)
-    assert held[0] is None
-    assert held[1] is None
+    held = hold_last_value(_arr(values), _t_sec(t), max_hold_seconds=5.0)
+    assert np.isnan(held[0])
+    assert np.isnan(held[1])
     assert held[2] == 1.0
     assert held[3] == 1.0
 
 
 def test_block_velocity_constant_position_is_zero():
     bpos = [10.0] * 20
-    v = block_velocity(bpos, window_seconds=4.0)
+    v = block_velocity(_arr(bpos), window_seconds=4.0)
     assert v[10] == 0.0
 
 
 def test_block_velocity_sign_matches_direction_of_travel():
     bpos = [float(i) for i in range(20)]  # moving at +1 m/s
-    v = block_velocity(bpos, window_seconds=4.0)
+    v = block_velocity(_arr(bpos), window_seconds=4.0)
     assert abs(v[10] - 1.0) < 1e-9
 
 
 def test_compute_hl_slips_fallback_when_no_two_mode_histogram():
     values = [500.0] * 100  # single constant value, no histogram shape at all
-    slips = compute_hl_slips(values, travelling_block_weight=200.0, fallback_margin=0.15)
+    slips = compute_hl_slips(_arr(values), travelling_block_weight=200.0, fallback_margin=0.15)
     assert slips.method == "travelling_block_fallback"
     assert abs(slips.hl_slips - 230.0) < 1e-9
 
@@ -91,7 +100,7 @@ def test_compute_hl_slips_finds_valley_between_two_modes():
     # Two clear clusters: ~100 (slips/off-bottom) and ~500 (on-bottom drilling), enough samples
     # per bin for a real histogram shape.
     values = [100.0 + (i % 5) for i in range(200)] + [500.0 + (i % 5) for i in range(200)]
-    slips = compute_hl_slips(values, travelling_block_weight=200.0, fallback_margin=0.15)
+    slips = compute_hl_slips(_arr(values), travelling_block_weight=200.0, fallback_margin=0.15)
     assert slips.method == "histogram_valley"
     assert 105 < slips.hl_slips < 495
 
@@ -229,12 +238,12 @@ def test_run_rigstate_end_to_end_rotary_drilling_well():
     n = 1200
     t = _seconds(n)
     channels = {
-        "HKLD": [500.0] * n,
-        "BPOS": [10.0] * n,
-        "FLOWIN": [800.0] * n,
-        "RPM": [120.0] * n,
-        "BITDEPTH": [2000.0] * n,
-        "HOLEDEPTH": [2000.2] * n,
+        "HKLD": _arr([500.0] * n),
+        "BPOS": _arr([10.0] * n),
+        "FLOWIN": _arr([800.0] * n),
+        "RPM": _arr([120.0] * n),
+        "BITDEPTH": _arr([2000.0] * n),
+        "HOLEDEPTH": _arr([2000.2] * n),
     }
     run = run_rigstate(t, channels, travelling_block_weight=200.0, cfg=CFG)
     assert len(run.intervals) == 1
@@ -253,12 +262,12 @@ def test_run_rigstate_independently_sparse_channels_still_classify_correctly():
         return [value if (i - offset) % 3 == 0 else None for i in range(n)]
 
     channels = {
-        "HKLD": sparse(500.0, 0),
-        "BPOS": sparse(10.0, 1),
-        "FLOWIN": sparse(800.0, 2),
-        "RPM": sparse(120.0, 0),
-        "BITDEPTH": sparse(2000.0, 1),
-        "HOLEDEPTH": sparse(2000.2, 2),
+        "HKLD": _arr(sparse(500.0, 0)),
+        "BPOS": _arr(sparse(10.0, 1)),
+        "FLOWIN": _arr(sparse(800.0, 2)),
+        "RPM": _arr(sparse(120.0, 0)),
+        "BITDEPTH": _arr(sparse(2000.0, 1)),
+        "HOLEDEPTH": _arr(sparse(2000.2, 2)),
     }
     run = run_rigstate(t, channels, travelling_block_weight=200.0, cfg=CFG)
     rotary_seconds = sum(
@@ -277,7 +286,6 @@ def test_vectorized_classification_matches_scalar_reference_on_random_data():
     # gaps, to exercise every rule branch rather than just the hand-picked cases above.
     import random
 
-    import numpy as np
     from strata_pipeline.rigstate.intervals import _is_decisive
     from strata_pipeline.rigstate.vectorized import classify_samples_vectorized, trip_directions_vectorized
 
@@ -296,9 +304,9 @@ def test_vectorized_classification_matches_scalar_reference_on_random_data():
         "HOLEDEPTH": sample_channel(0.0, 3000.0),
     }
     hl_slips = 230.0
-    v_list = block_velocity(channels_raw["BPOS"], CFG["block_velocity_window_seconds"])
+    v_arr = block_velocity(_arr(channels_raw["BPOS"]), CFG["block_velocity_window_seconds"])
     window_samples = max(1, round(CFG["trip_direction_window_seconds"]))
-    bitdepth_arr = np.array([np.nan if x is None else x for x in channels_raw["BITDEPTH"]])
+    bitdepth_arr = _arr(channels_raw["BITDEPTH"])
     trip_dirs_vec = trip_directions_vectorized(bitdepth_arr, window_samples)
 
     # Scalar reference, sample by sample.
@@ -308,9 +316,10 @@ def test_vectorized_classification_matches_scalar_reference_on_random_data():
     expected_back_reaming = []
     for i in range(n):
         raw = {c: channels_raw[c][i] for c in channels_raw}
+        v_i = None if np.isnan(v_arr[i]) else float(v_arr[i])
         flags = compute_flags(
             hkld=raw["HKLD"], bitdepth=raw["BITDEPTH"], holedepth=raw["HOLEDEPTH"],
-            rpm=raw["RPM"], flowin=raw["FLOWIN"], v=v_list[i], hl_slips=hl_slips, cfg=CFG,
+            rpm=raw["RPM"], flowin=raw["FLOWIN"], v=v_i, hl_slips=hl_slips, cfg=CFG,
         )
         result = classify_sample(raw, flags, trip_dirs_vec[i], hl_slips, CFG)
         expected_state.append(result.state)
@@ -318,8 +327,7 @@ def test_vectorized_classification_matches_scalar_reference_on_random_data():
         expected_decisive.append(_is_decisive(result, CFG["confidence_margin_frac"]))
         expected_back_reaming.append(result.back_reaming)
 
-    core = {c: np.array([np.nan if x is None else x for x in channels_raw[c]]) for c in channels_raw}
-    v_arr = np.array([np.nan if x is None else x for x in v_list])
+    core = {c: _arr(channels_raw[c]) for c in channels_raw}
     state, rule_id, decisive, back_reaming = classify_samples_vectorized(core, v_arr, trip_dirs_vec, hl_slips, CFG)
 
     assert list(state) == expected_state
@@ -332,12 +340,12 @@ def test_run_rigstate_gap_in_core_channel_yields_unknown_interval():
     n = 100
     t = _seconds(n)
     channels = {
-        "HKLD": [500.0] * n,
-        "BPOS": [10.0] * n,
-        "FLOWIN": [800.0] * n,
-        "RPM": [120.0] * n,
-        "BITDEPTH": [None] * n,
-        "HOLEDEPTH": [2000.2] * n,
+        "HKLD": _arr([500.0] * n),
+        "BPOS": _arr([10.0] * n),
+        "FLOWIN": _arr([800.0] * n),
+        "RPM": _arr([120.0] * n),
+        "BITDEPTH": _arr([None] * n),
+        "HOLEDEPTH": _arr([2000.2] * n),
     }
     run = run_rigstate(t, channels, travelling_block_weight=200.0, cfg=CFG)
     assert len(run.intervals) == 1

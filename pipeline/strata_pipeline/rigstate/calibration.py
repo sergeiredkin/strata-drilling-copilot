@@ -6,6 +6,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+import numpy as np
+
 
 @dataclass(frozen=True)
 class SlipsThreshold:
@@ -14,22 +16,25 @@ class SlipsThreshold:
 
 
 def compute_hl_slips(
-    hkld_values: list[float | None],
+    hkld_values: np.ndarray,
     travelling_block_weight: float,
     fallback_margin: float,
     n_bins: int = 50,
     min_peak_frac: float = 0.05,
     min_valley_drop_frac: float = 0.5,
 ) -> SlipsThreshold:
-    """Builds a histogram of non-null `hkld_values` and looks for a valley (local minimum) between
+    """Builds a histogram of non-NaN `hkld_values` and looks for a valley (local minimum) between
     two modes (local maxima). Falls back to `travelling_block_weight * (1 + fallback_margin)` when
     the histogram doesn't have a clear two-mode shape: fewer than two local maxima, no valley
     strictly between the two tallest ones, either peak holding less than `min_peak_frac` of all
     samples (a real second population, not one noisy bin), or the valley not dipping below
     `min_valley_drop_frac` of the *smaller* peak's height (otherwise a continuous, roughly
     unimodal distribution's own sampling noise gets misread as two modes — this matters for a
-    well that's genuinely all-drilling with no real slips population in the window at all)."""
-    values = [v for v in hkld_values if v is not None]
+    well that's genuinely all-drilling with no real slips population in the window at all).
+    `hkld_values` is filtered with a vectorized NaN mask, not a Python list comprehension, since
+    on a multi-year-gap real well it can be tens of millions of samples long with only a small
+    fraction surviving QC/gridding."""
+    values = hkld_values[~np.isnan(hkld_values)].tolist()
     fallback = SlipsThreshold(
         hl_slips=travelling_block_weight * (1.0 + fallback_margin),
         method="travelling_block_fallback",

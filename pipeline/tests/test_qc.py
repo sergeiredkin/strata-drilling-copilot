@@ -1,5 +1,6 @@
 from datetime import UTC, datetime, timedelta
 
+import numpy as np
 import polars as pl
 from strata_pipeline.qc.config import load_qc_config
 from strata_pipeline.qc.frozen import frozen_value_mask
@@ -82,13 +83,13 @@ def test_resample_to_grid_snaps_to_nearest_second():
     values = [1.0, 2.0, 3.0]
     grid_t0, grid_v = resample_to_grid(t, values, grid_seconds=1.0)
     assert grid_t0 == T0
-    assert grid_v == [1.0, 2.0, 3.0]
+    assert grid_v.tolist() == [1.0, 2.0, 3.0]
 
 
 def test_find_no_data_gaps_reports_only_holes_over_threshold():
     # 20 s grid: samples at 0-2s and 10-19s, hole of 7s (3..9) in between.
     grid_t0 = T0
-    grid_v: list[float | None] = [None] * 20
+    grid_v = np.full(20, np.nan)
     for i in [0, 1, 2, *range(10, 20)]:
         grid_v[i] = 1.0
     gaps = find_no_data_gaps(grid_t0, grid_v, grid_seconds=1.0, gap_seconds=5.0)
@@ -100,8 +101,8 @@ def test_find_no_data_gaps_reports_only_holes_over_threshold():
 
 def test_find_no_data_gaps_ignores_short_holes():
     grid_t0 = T0
-    grid_v: list[float | None] = [1.0] * 10
-    grid_v[4] = None  # single missing second, well under the 5s threshold
+    grid_v = np.full(10, 1.0)
+    grid_v[4] = np.nan  # single missing second, well under the 5s threshold
     gaps = find_no_data_gaps(grid_t0, grid_v, grid_seconds=1.0, gap_seconds=5.0)
     assert gaps == []
 
@@ -212,7 +213,7 @@ def test_run_channel_qc_unit_fix_median_excludes_sentinels():
     result = run_channel_qc(_seconds(n), values, "HKLD", cfg)
     assert result.unit_fix is not None
     assert result.unit_fix.median_before == 2000.0
-    kept = [v for v in result.clean_values if v is not None]
+    kept = [v for v in result.clean_values if not np.isnan(v)]
     assert all(abs(v - 2000.0 * 0.0044482216) < 1e-9 for v in kept)
     # The sentinel marker itself must still be recognisable and removed, not corrupted by an
     # earlier unit-fix multiplication.
@@ -246,7 +247,7 @@ def test_run_channel_qc_removes_rare_implausible_values_outside_hampel_reach():
     }
     result = run_channel_qc(_seconds(n), values, "HKLD", cfg)
     assert result.reason_counts.get("implausible_value") == 2
-    kept = [v for v in result.clean_values if v is not None]
+    kept = [v for v in result.clean_values if not np.isnan(v)]
     assert all(0.0 <= v <= 4000.0 for v in kept)
 
 
