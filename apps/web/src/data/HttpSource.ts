@@ -6,6 +6,7 @@ import type {
   CopilotContext,
   CopilotEvent,
   DdrActivity,
+  DepthSeries,
   DepthTimeBlock,
   EvalReport,
   Evidence,
@@ -104,6 +105,10 @@ export class HttpSource implements DataSource {
 
   async formationPred(id: WellId): Promise<FormationPrediction> {
     return this.getJson(`/wells/${id}/formation-pred`)
+  }
+
+  async depthSeries(id: WellId): Promise<DepthSeries> {
+    return this.getJson(`/wells/${id}/depth-series`)
   }
 
   async modelCard(model: 'formation' | 'events'): Promise<ModelCard> {

@@ -7,6 +7,7 @@ import type {
   CopilotContext,
   CopilotEvent,
   DdrActivity,
+  DepthSeries,
   DepthTimeBlock,
   EvalReport,
   Evidence,
@@ -51,6 +52,7 @@ export type DataSource = {
   reconciliation(id?: WellId): Promise<Reconciliation>
   formations(id: WellId): Promise<FormationReport>
   formationPred(id: WellId): Promise<FormationPrediction>
+  depthSeries(id: WellId): Promise<DepthSeries>
   modelCard(model: 'formation' | 'events'): Promise<ModelCard>
   issues(q: IssueQuery): Promise<Issue[]>
   precursors(issueId: string): Promise<Precursors>

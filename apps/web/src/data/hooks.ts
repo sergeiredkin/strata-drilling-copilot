@@ -130,6 +130,38 @@ export function useModelCard(model: 'formation' | 'events') {
   return useQuery({ queryKey: ['modelCard', model], queryFn: () => ds.modelCard(model), retry: false })
 }
 
+// Legitimately 404 for a well that has no formations/depth-series yet (summary-only wells, or
+// any real well before T11.2's export has run for it) -- retry:false so that resolves quickly.
+export function useFormations(wellId: WellId | undefined) {
+  const ds = useDataSource()
+  return useQuery({
+    queryKey: ['formations', wellId],
+    queryFn: () => ds.formations(wellId as WellId),
+    enabled: Boolean(wellId),
+    retry: false,
+  })
+}
+
+export function useFormationPred(wellId: WellId | undefined) {
+  const ds = useDataSource()
+  return useQuery({
+    queryKey: ['formationPred', wellId],
+    queryFn: () => ds.formationPred(wellId as WellId),
+    enabled: Boolean(wellId),
+    retry: false,
+  })
+}
+
+export function useDepthSeries(wellId: WellId | undefined) {
+  const ds = useDataSource()
+  return useQuery({
+    queryKey: ['depthSeries', wellId],
+    queryFn: () => ds.depthSeries(wellId as WellId),
+    enabled: Boolean(wellId),
+    retry: false,
+  })
+}
+
 /** Picks the right LOD level for [t0, t1) at `plotWidthPx`, fetches every chunk of every
  * requested channel that overlaps the window, and concatenates + decodes them (NaN -> null). */
 export function useSeriesWindow(

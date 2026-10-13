@@ -81,6 +81,20 @@ describe('StaticSource against the real fixtures', () => {
     expect(all.scope).toBe('all')
   })
 
+  it('formations() and formationPred() return the real wells tops/predictions (T11.2)', async () => {
+    const report = await ds.formations(RICH_WELL)
+    expect(report.well).toBe(RICH_WELL)
+    expect(report.tops.length).toBeGreaterThan(0)
+    await expect(ds.formationPred(RICH_WELL)).rejects.toThrow(StrataDataError) // real LOWO still blocked
+  })
+
+  it('depthSeries() returns MD-aligned channel arrays (T11.1/T11.3)', async () => {
+    const series = await ds.depthSeries(RICH_WELL)
+    expect(series.well).toBe(RICH_WELL)
+    expect(series.md.length).toBeGreaterThan(0)
+    expect(series.channels.ROP?.values.length).toBe(series.md.length)
+  })
+
   it('evidence() resolves a real id via the shard map', async () => {
     const kpis = await ds.kpis(RICH_WELL)
     const card = kpis.cards.find((c) => c.value.evidence_id)

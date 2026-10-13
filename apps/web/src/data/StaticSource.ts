@@ -5,6 +5,7 @@ import type {
   CopilotContext,
   CopilotEvent,
   DdrActivity,
+  DepthSeries,
   DepthTimeBlock,
   EvalReport,
   Evidence,
@@ -29,6 +30,7 @@ import type {
 } from '../contracts/types'
 import {
   ddrActivitySchema,
+  depthSeriesSchema,
   evalReportSchema,
   iltReportSchema,
   issueSchema,
@@ -173,6 +175,10 @@ export class StaticSource implements DataSource {
 
   async formationPred(id: WellId): Promise<FormationPrediction> {
     return this.fetchJson(`wells/${id}/formation_pred.json`)
+  }
+
+  async depthSeries(id: WellId): Promise<DepthSeries> {
+    return this.fetchJson(`wells/${id}/depth_series.json`, depthSeriesSchema as unknown as z.ZodType<DepthSeries>)
   }
 
   async modelCard(model: 'formation' | 'events'): Promise<ModelCard> {
