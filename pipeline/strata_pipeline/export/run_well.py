@@ -28,6 +28,7 @@ from strata_pipeline.export.real_well import (
 )
 from strata_pipeline.export.series import export_channel_series
 from strata_pipeline.formation.depth_features import BitInterval, build_depth_features
+from strata_pipeline.formation.depth_series import build_depth_series
 from strata_pipeline.formation.labels import FormationInterval, tops_to_intervals
 from strata_pipeline.formation.report import build_formation_report
 from strata_pipeline.ingest.ddr import load_well_bit_runs, load_well_ddr
@@ -150,13 +151,15 @@ def _run_well_from_aligned(
             )
         _write_json(well_dir / "series" / "index.json", {"well": well_id, "channels": series_channels})
 
-    if t and formation_tops:
+    if t:
         depth_table = build_depth_features(t, channels, bit_intervals=bit_intervals)
         if depth_table is not None:
-            formation_report = build_formation_report(
-                well_id, depth_table, formation_tops, reg, source=formation_tops_source or "unknown"
-            )
-            _write_json(well_dir / "formations.json", formation_report)
+            _write_json(well_dir / "depth_series.json", build_depth_series(well_id, channels, depth_table))
+            if formation_tops:
+                formation_report = build_formation_report(
+                    well_id, depth_table, formation_tops, reg, source=formation_tops_source or "unknown"
+                )
+                _write_json(well_dir / "formations.json", formation_report)
 
     well_duration_hours = (t[-1] - t[0]).total_seconds() / 3600.0 if len(t) > 1 else 0.0
     survived_fraction = (

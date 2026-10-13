@@ -37,7 +37,7 @@ copilot/sessions/index.json + copilot/sessions/{id}.jsonl
 issues/{issue}_precursors.json
 wells/{id}/
   sections.json  depthtime.json  rigstate.json  ddr.json  mismatches.json
-  kpis.json  ilt.json  formations.json  formation_pred.json  replay_events.json
+  kpis.json  ilt.json  formations.json  formation_pred.json  depth_series.json  replay_events.json
   series/index.json
   series/{CH}/L{n}/{chunk}.bin
 ```

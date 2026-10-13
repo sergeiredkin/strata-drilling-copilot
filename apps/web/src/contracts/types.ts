@@ -113,6 +113,23 @@ export interface DdrQuote {
   ddr_activity_id: string;
 }
 
+export interface DepthSeries {
+  well: WellId;
+  /**
+   * 1 m MD bin edges (lower edge), ascending, shared by every channel below
+   */
+  md: number[];
+  /**
+   * keyed by channel name (ROP, MSE, DXC, GAS, MW_IN, ECD); each values array is the same length as md, null where that bin has no data
+   */
+  channels: {
+    [k: string]: {
+      unit: Unit;
+      values: (number | null)[];
+    };
+  };
+}
+
 export interface DepthTimeBlock {
   t: number[];
   bit_md: (number | null)[];

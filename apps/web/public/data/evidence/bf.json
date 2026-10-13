@@ -1,7 +1,7 @@
 {
   "ev_bf29c50375": {
-    "generated_at": "2026-10-13T11:57:49.104232+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:15:39.339736+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_bf29c50375",
     "params": {
       "well": "58-32"
@@ -12,8 +12,8 @@
     "value": 0.0
   },
   "ev_bf5cf4660f": {
-    "generated_at": "2026-10-13T11:58:45.328261+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:16:18.677528+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_bf5cf4660f",
     "params": {
       "formation": "Hod Fm.",

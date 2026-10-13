@@ -1,7 +1,7 @@
 {
   "ev_4931b38841": {
-    "generated_at": "2026-10-13T11:58:45.329033+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:16:18.678157+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_4931b38841",
     "params": {
       "well": "15_9-F-11_A"
@@ -12,8 +12,8 @@
     "value": 395.3930555555556
   },
   "ev_495377cd69": {
-    "generated_at": "2026-10-13T11:58:44.473648+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:16:17.821950+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_495377cd69",
     "params": {
       "code": "CIRC",
@@ -31,8 +31,8 @@
     "value": 2.683333333333333
   },
   "ev_496d4271e3": {
-    "generated_at": "2026-10-13T11:57:48.716207+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:15:38.935297+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_496d4271e3",
     "params": {
       "code": "DRILL",
@@ -55,8 +55,8 @@
     "value": 2.5
   },
   "ev_49efe80b23": {
-    "generated_at": "2026-10-13T11:57:48.716366+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:15:38.935409+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_49efe80b23",
     "params": {
       "code": "TRIP",

@@ -1,7 +1,7 @@
 {
   "ev_a515a7f617": {
-    "generated_at": "2026-10-13T11:58:44.419772+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:16:17.761860+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_a515a7f617",
     "params": {
       "kpi": "trip_out_open",
@@ -19,8 +19,8 @@
     "value": 0.7962740384615384
   },
   "ev_a536b30bb2": {
-    "generated_at": "2026-10-13T11:57:49.046932+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:15:39.269636+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_a536b30bb2",
     "params": {
       "row": 143,

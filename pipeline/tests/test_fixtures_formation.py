@@ -1,5 +1,9 @@
 from strata_pipeline.evidence import EvidenceRegistry
-from strata_pipeline.fixtures.formation import synthesize_formation_prediction, synthesize_formation_report
+from strata_pipeline.fixtures.formation import (
+    synthesize_depth_series,
+    synthesize_formation_prediction,
+    synthesize_formation_report,
+)
 from strata_pipeline.fixtures.wells import WellSpec
 
 VOLVE_SPEC = WellSpec(
@@ -58,3 +62,30 @@ def test_synthesize_formation_prediction_abstained_intervals_have_no_label() -> 
         if iv["abstained"]:
             assert iv["label"] is None
             assert iv["agrees_with_pick"] is None
+
+
+def test_synthesize_depth_series_covers_the_wells_full_md_range() -> None:
+    report = synthesize_formation_report(VOLVE_SPEC, EvidenceRegistry(), seed=1)
+    series = synthesize_depth_series(VOLVE_SPEC, report, seed=1)
+    assert series["well"] == "W_VOLVE"
+    assert series["md"][0] == 0.0
+    assert series["md"][-1] < 4000.0
+    for name in ("ROP", "MSE", "DXC", "GAS", "MW_IN", "ECD"):
+        assert len(series["channels"][name]["values"]) == len(series["md"])
+
+
+def test_synthesize_depth_series_ecd_exceeds_mud_weight_on_average() -> None:
+    # Per-bin noise means a single point could occasionally dip below MW -- the deterministic
+    # offset (ECD a bit above static MW, physically expected) is what this checks, via the mean.
+    report = synthesize_formation_report(VOLVE_SPEC, EvidenceRegistry(), seed=1)
+    series = synthesize_depth_series(VOLVE_SPEC, report, seed=1)
+    mw = series["channels"]["MW_IN"]["values"]
+    ecd = series["channels"]["ECD"]["values"]
+    assert sum(ecd) / len(ecd) > sum(mw) / len(mw)
+
+
+def test_synthesize_depth_series_is_deterministic_for_a_given_seed() -> None:
+    report = synthesize_formation_report(VOLVE_SPEC, EvidenceRegistry(), seed=1)
+    a = synthesize_depth_series(VOLVE_SPEC, report, seed=5)
+    b = synthesize_depth_series(VOLVE_SPEC, report, seed=5)
+    assert a == b

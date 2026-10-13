@@ -96,6 +96,24 @@
         "hole_md": { "type": "array", "items": { "type": ["number", "null"] } }
       }
     },
+    "DepthSeries": {
+      "type": "object", "required": ["well", "md", "channels"], "additionalProperties": false,
+      "properties": {
+        "well": { "$ref": "#/$defs/WellId" },
+        "md": { "type": "array", "items": { "type": "number" }, "description": "1 m MD bin edges (lower edge), ascending, shared by every channel below" },
+        "channels": {
+          "type": "object",
+          "description": "keyed by channel name (ROP, MSE, DXC, GAS, MW_IN, ECD); each values array is the same length as md, null where that bin has no data",
+          "additionalProperties": {
+            "type": "object", "required": ["unit", "values"], "additionalProperties": false,
+            "properties": {
+              "unit": { "$ref": "#/$defs/Unit" },
+              "values": { "type": "array", "items": { "type": ["number", "null"] } }
+            }
+          }
+        }
+      }
+    },
     "ChannelId": { "type": "string", "enum": ["HKLD", "BPOS", "WOB", "RPM", "TORQ", "SPP", "FLOWIN", "BITDEPTH", "HOLEDEPTH", "ROP", "MW_IN", "ECD", "GAS"] },
     "SeriesIndex": {
       "type": "object", "required": ["well", "channels"], "additionalProperties": false,

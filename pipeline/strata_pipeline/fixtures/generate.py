@@ -16,7 +16,7 @@ from typing import Any
 
 from ..evidence import EvidenceRegistry
 from ..export.series import export_channel_series
-from .formation import synthesize_formation_prediction, synthesize_formation_report
+from .formation import synthesize_depth_series, synthesize_formation_prediction, synthesize_formation_report
 from .kpi import compute_ilt, compute_kpis, compute_mismatches, compute_reconciliation
 from .synth import WellDetail, synthesize_well
 from .wells import COVERAGE_KINDS, WELLS, WellSpec
@@ -304,6 +304,7 @@ def generate(out_dir: Path = OUT_DIR) -> None:
             well_dir / "formation_pred.json",
             synthesize_formation_prediction(spec, formation_report, seed=300 + i),
         )
+        _write_json(well_dir / "depth_series.json", synthesize_depth_series(spec, formation_report, seed=300 + i))
 
         if spec.id == "15_9-F-11_A":
             well_a_detail, well_a_ilt, well_a_kpi = detail, ilt, kpis

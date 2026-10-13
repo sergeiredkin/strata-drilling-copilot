@@ -213,6 +213,29 @@ class DepthTimeBlock(BaseModel):
     hole_md: list[float | None]
 
 
+class Channels(BaseModel):
+    model_config = ConfigDict(
+        extra='forbid',
+    )
+    unit: Unit
+    values: list[float | None]
+
+
+class DepthSeries(BaseModel):
+    model_config = ConfigDict(
+        extra='forbid',
+    )
+    well: WellId
+    md: list[float]
+    """
+    1 m MD bin edges (lower edge), ascending, shared by every channel below
+    """
+    channels: dict[str, Channels]
+    """
+    keyed by channel name (ROP, MSE, DXC, GAS, MW_IN, ECD); each values array is the same length as md, null where that bin has no data
+    """
+
+
 class ChannelId(
     RootModel[
         Literal[
@@ -263,7 +286,7 @@ class Level(BaseModel):
     chunks: list[Chunk]
 
 
-class Channels(BaseModel):
+class Channels1(BaseModel):
     unit: Unit
     source: str
     levels: list[Level]
@@ -275,7 +298,7 @@ class SeriesIndex(BaseModel):
         extra='forbid',
     )
     well: WellId
-    channels: dict[str, Channels]
+    channels: dict[str, Channels1]
 
 
 class RigState(

@@ -1,7 +1,7 @@
 {
   "ev_0415b97ebc": {
-    "generated_at": "2026-10-13T11:58:44.419709+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:16:17.761797+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_0415b97ebc",
     "params": {
       "kpi": "trip_out_open",
@@ -19,8 +19,8 @@
     "value": 0.0
   },
   "ev_04dda778f0": {
-    "generated_at": "2026-10-13T11:57:48.701317+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:15:38.922000+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_04dda778f0",
     "params": {
       "well": "15_9-F-11_A"

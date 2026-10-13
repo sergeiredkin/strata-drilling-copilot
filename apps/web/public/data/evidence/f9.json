@@ -1,7 +1,7 @@
 {
   "ev_f901ec7f88": {
-    "generated_at": "2026-10-13T11:58:45.328100+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:16:18.677389+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_f901ec7f88",
     "params": {
       "formation": "Ty Fm.",
@@ -19,8 +19,8 @@
     "value": 261.25721532100147
   },
   "ev_f971717ce8": {
-    "generated_at": "2026-10-13T11:58:44.473590+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:16:17.821840+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_f971717ce8",
     "params": {
       "code": "DRILL",
@@ -38,8 +38,8 @@
     "value": 0.43333333333333335
   },
   "ev_f98fcf6b76": {
-    "generated_at": "2026-10-13T11:57:48.703699+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:15:38.924221+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_f98fcf6b76",
     "params": {
       "day": "2015-06-01",

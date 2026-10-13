@@ -1,7 +1,7 @@
 {
   "ev_7f6a00fc67": {
-    "generated_at": "2026-10-13T11:57:48.831302+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:15:39.044755+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_7f6a00fc67",
     "params": {
       "formation": "Utsira Fm.",
@@ -19,8 +19,8 @@
     "value": 16.078687628626092
   },
   "ev_7fa4d503d8": {
-    "generated_at": "2026-10-13T11:58:45.328414+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:16:18.677683+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_7fa4d503d8",
     "params": {
       "formation": "Heather Fm. Sand VOLVE",
@@ -38,8 +38,8 @@
     "value": 19.957258104055743
   },
   "ev_7fc9e66dc8": {
-    "generated_at": "2026-10-13T11:58:44.473632+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:16:17.821919+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_7fc9e66dc8",
     "params": {
       "code": "CIRC",

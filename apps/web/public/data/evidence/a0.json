@@ -1,7 +1,7 @@
 {
   "ev_a08a715c52": {
-    "generated_at": "2026-10-13T11:57:48.701269+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:15:38.921951+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_a08a715c52",
     "method_note": "composite best = P90 per KPI per section",
     "params": {
@@ -24,8 +24,8 @@
     "value": 6886.95652173913
   },
   "ev_a0ae3018c6": {
-    "generated_at": "2026-10-13T11:57:48.904059+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:15:39.133204+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_a0ae3018c6",
     "params": {
       "row": 39,

@@ -271,3 +271,18 @@ def test_run_well_from_dataframes_skips_formations_json_without_tops(tmp_path):
         "W1", _synthetic_long_df_with_rop(), _synthetic_ddr_df(), tmp_path, reg, cfg, RIGSTATE_CFG, RECON_CFG, 200.0,
     )
     assert not (tmp_path / "wells" / "W1" / "formations.json").exists()
+
+
+def test_run_well_from_dataframes_writes_depth_series_json_even_without_tops(tmp_path):
+    # depth_series.json only needs BITDEPTH+ROP, unlike formations.json which also needs tops.
+    reg = EvidenceRegistry(git_commit="test")
+    cfg = load_qc_config()
+    run_well_from_dataframes(
+        "W1", _synthetic_long_df_with_rop(), _synthetic_ddr_df(), tmp_path, reg, cfg, RIGSTATE_CFG, RECON_CFG, 200.0,
+    )
+    depth_series_path = tmp_path / "wells" / "W1" / "depth_series.json"
+    assert depth_series_path.exists()
+    series = json.loads(depth_series_path.read_text())
+    assert series["well"] == "W1"
+    assert len(series["md"]) == len(series["channels"]["ROP"]["values"])
+    assert series["channels"]["ROP"]["values"][0] == 18.0

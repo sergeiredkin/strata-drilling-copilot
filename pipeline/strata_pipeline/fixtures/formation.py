@@ -107,4 +107,50 @@ def synthesize_formation_prediction(
     return {"well": spec.id, "model_version": model_version, "held_out": False, "intervals": intervals}
 
 
-__all__ = ["synthesize_formation_prediction", "synthesize_formation_report"]
+def synthesize_depth_series(spec: WellSpec, formation_report: dict[str, Any], seed: int) -> dict[str, Any]:
+    """Smooth, clearly-synthetic ROP/MSE/dxc/gas/MW/ECD curves at 1 m MD bins across the well's
+    full range — same role as `export/generate_real.py`'s real `depth_series.json` for the real
+    well, but these mock detailed wells' synthetic channels (`fixtures/synth.py`) never had ROP/
+    GAS/MW_IN/ECD at all, so there's nothing to bin; these are fabricated directly instead,
+    varying smoothly by formation like the S6 comp's own demo generator does."""
+    rng = np.random.default_rng(seed + 2)
+    md_lo, md_hi = spec.md_range
+    md = np.arange(md_lo, md_hi, 1.0)
+    tops = formation_report["tops"]
+
+    def _formation_at(m: float) -> int:
+        for i, top in enumerate(tops):
+            if top["md_top"] <= m < top["md_base"]:
+                return i
+        return len(tops) - 1
+
+    idx = np.array([_formation_at(m) for m in md])
+
+    def _noise(scale: float) -> np.ndarray:
+        return rng.normal(0, scale, len(md))
+
+    rop = np.array([rng.uniform(*_ROP_RANGE_M_PER_H) for _ in tops])[idx] + _noise(1.5)
+    mse = np.array([rng.uniform(*_MSE_RANGE_MPA) for _ in tops])[idx] + _noise(8.0)
+    dxc = 0.9 + (md - md_lo) / (md_hi - md_lo) * 0.6 + _noise(0.03)  # mild compaction trend
+    gas = np.clip(np.full(len(md), 1.5) + _noise(0.5), 0.1, None)
+    mw = np.full(len(md), 1.25) + _noise(0.02)
+    ecd = mw + 0.08 + _noise(0.01)  # ECD a bit above static MW, as it physically should be
+
+    def _series(unit: str, values: np.ndarray) -> dict[str, Any]:
+        return {"unit": unit, "values": [round(float(v), 3) for v in values]}
+
+    return {
+        "well": spec.id,
+        "md": md.tolist(),
+        "channels": {
+            "ROP": _series("m/h", rop),
+            "MSE": _series("MPa", mse),
+            "DXC": _series("1", dxc),
+            "GAS": _series("%", gas),
+            "MW_IN": _series("sg", mw),
+            "ECD": _series("sg", ecd),
+        },
+    }
+
+
+__all__ = ["synthesize_depth_series", "synthesize_formation_prediction", "synthesize_formation_report"]

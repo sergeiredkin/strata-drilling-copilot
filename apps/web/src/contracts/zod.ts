@@ -49,6 +49,9 @@ export type Section = z.infer<typeof sectionSchema>;
 export const depthTimeBlockSchema = z.object({ "t": z.array(z.number()), "bit_md": z.array(z.union([z.number(), z.null()])), "hole_md": z.array(z.union([z.number(), z.null()])) }).strict();
 export type DepthTimeBlock = z.infer<typeof depthTimeBlockSchema>;
 
+export const depthSeriesSchema = z.object({ "well": wellIdSchema, "md": z.array(z.number()).describe("1 m MD bin edges (lower edge), ascending, shared by every channel below"), "channels": z.record(z.object({ "unit": unitSchema, "values": z.array(z.union([z.number(), z.null()])) }).strict()).describe("keyed by channel name (ROP, MSE, DXC, GAS, MW_IN, ECD); each values array is the same length as md, null where that bin has no data") }).strict();
+export type DepthSeries = z.infer<typeof depthSeriesSchema>;
+
 export const channelIdSchema = z.enum(["HKLD","BPOS","WOB","RPM","TORQ","SPP","FLOWIN","BITDEPTH","HOLEDEPTH","ROP","MW_IN","ECD","GAS"]);
 export type ChannelId = z.infer<typeof channelIdSchema>;
 

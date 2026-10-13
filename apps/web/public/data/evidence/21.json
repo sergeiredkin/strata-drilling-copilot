@@ -1,7 +1,7 @@
 {
   "ev_21123af1fb": {
-    "generated_at": "2026-10-13T11:58:44.419482+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:16:17.761581+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_21123af1fb",
     "params": {
       "kpi": "conn_w2w",
@@ -19,8 +19,8 @@
     "value": 413.9666666666667
   },
   "ev_2162085b52": {
-    "generated_at": "2026-10-13T11:57:49.102400+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:15:39.338353+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_2162085b52",
     "params": {
       "well": "58-32"
@@ -36,8 +36,8 @@
     "value": 0.37
   },
   "ev_21b5080c41": {
-    "generated_at": "2026-10-13T11:57:48.912593+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:15:39.140684+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_21b5080c41",
     "params": {
       "stat": "overall",

@@ -15,6 +15,7 @@ endpoints:
   - { method: GET,  path: "/reconciliation?well",           response: Reconciliation,      static: "reconciliation/{id|all}.json",          prio: P0 }
   - { method: GET,  path: /wells/{id}/formations,           response: FormationReport,     static: "wells/{id}/formations.json",            prio: P1 }
   - { method: GET,  path: /wells/{id}/formation-pred,       response: FormationPrediction, static: "wells/{id}/formation_pred.json",        prio: P1 }
+  - { method: GET,  path: /wells/{id}/depth-series,         response: DepthSeries,         static: "wells/{id}/depth_series.json",          prio: P1 }
   - { method: GET,  path: "/models/{model}/card",           response: ModelCard,           static: "models/{model}_card.json",              prio: P1 }
   - { method: GET,  path: "/issues?well&type&formation",    response: "Issue[]",           static: issues.json,                             prio: P1 }
   - { method: GET,  path: /issues/{id}/precursors,          response: Precursors,          static: "issues/{id}_precursors.json",           prio: P1 }

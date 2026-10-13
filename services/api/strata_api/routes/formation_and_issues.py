@@ -1,14 +1,22 @@
-"""P1/P2 routes from contracts/endpoints.yaml. None of these static files are produced by the
-pipeline yet (formation classifier is T11.x, events/issues is T12.x) — the routes exist so the
-contract is honoured end-to-end, but every one 404s honestly via `read_json` until that data
-exists, rather than being silently absent from the API."""
+"""P1/P2 routes from contracts/endpoints.yaml. Formation tops/stats/predictions (T11.2) and depth
+-indexed series (T11.1/T11.3) are produced for the wells that have them (one real, two mock
+detailed wells — see tasks/BACKLOG.md); events/issues is T12.x and still entirely unproduced.
+Every route 404s honestly via `read_json` when its file doesn't exist, rather than being silently
+absent from the API."""
 
 from __future__ import annotations
 
 from typing import Annotated, Literal
 
 from fastapi import APIRouter, Query
-from strata_pipeline.contracts import FormationPrediction, FormationReport, Issue, ModelCard, Precursors
+from strata_pipeline.contracts import (
+    DepthSeries,
+    FormationPrediction,
+    FormationReport,
+    Issue,
+    ModelCard,
+    Precursors,
+)
 
 from ..data_access import read_json, require_well
 from ..deps import SafeIdPath, SettingsDep
@@ -26,6 +34,12 @@ def formations(well_id: SafeIdPath, settings: SettingsDep) -> FormationReport:
 def formation_pred(well_id: SafeIdPath, settings: SettingsDep) -> FormationPrediction:
     require_well(settings, well_id)
     return FormationPrediction.model_validate(read_json(settings, f"wells/{well_id}/formation_pred.json"))
+
+
+@router.get("/wells/{well_id}/depth-series", response_model=DepthSeries)
+def depth_series(well_id: SafeIdPath, settings: SettingsDep) -> DepthSeries:
+    require_well(settings, well_id)
+    return DepthSeries.model_validate(read_json(settings, f"wells/{well_id}/depth_series.json"))
 
 
 @router.get("/models/{model}/card", response_model=ModelCard)

@@ -1,7 +1,7 @@
 {
   "ev_361265ba19": {
-    "generated_at": "2026-10-13T11:57:49.053251+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:15:39.277056+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_361265ba19",
     "params": {
       "code": "DRILL",
@@ -24,8 +24,8 @@
     "value": 30.43333333333333
   },
   "ev_36425f0547": {
-    "generated_at": "2026-10-13T11:57:48.700636+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:15:38.921320+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_36425f0547",
     "params": {
       "stat": "q3",
@@ -47,8 +47,8 @@
     "value": 12.228333333333333
   },
   "ev_36f39cbbad": {
-    "generated_at": "2026-10-13T11:57:48.831345+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:15:39.044795+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_36f39cbbad",
     "params": {
       "formation": "Utsira Fm.",

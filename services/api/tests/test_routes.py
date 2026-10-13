@@ -187,6 +187,19 @@ def test_issues_empty_fixture_list(client: TestClient) -> None:
     assert res.json() == []
 
 
+def test_depth_series_200s_for_a_detailed_well(client: TestClient) -> None:
+    res = client.get(f"/wells/{WELL}/depth-series")
+    assert res.status_code == 200
+    body = res.json()
+    assert body["well"] == WELL
+    assert len(body["md"]) == len(body["channels"]["ROP"]["values"])
+
+
+def test_depth_series_404s_for_a_summary_only_well(client: TestClient) -> None:
+    res = client.get("/wells/15_9-F-1_C/depth-series")
+    assert res.status_code == 404
+
+
 def test_formations_200s_for_the_real_well_with_real_tops(client: TestClient) -> None:
     # T11.2: 15_9-F-11_A now has real formations.json (ground-truth tops + descriptive stats
     # from the real DDR bit records + Volve well-picks CSV, see ADR 0010) -- this well is no

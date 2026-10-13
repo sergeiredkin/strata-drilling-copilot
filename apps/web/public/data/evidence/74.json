@@ -1,7 +1,7 @@
 {
   "ev_7492a98242": {
-    "generated_at": "2026-10-13T11:58:44.419305+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:16:17.761366+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_7492a98242",
     "params": {
       "kpi": "conn_s2s",
@@ -19,8 +19,8 @@
     "value": 1.5041666666666667
   },
   "ev_749eb31378": {
-    "generated_at": "2026-10-13T11:57:49.053186+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:15:39.277026+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_749eb31378",
     "params": {
       "code": "DRILL",
@@ -43,8 +43,8 @@
     "value": 0.0
   },
   "ev_74c8bf0146": {
-    "generated_at": "2026-10-13T11:57:48.703600+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:15:38.924174+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_74c8bf0146",
     "params": {
       "category": "flat_time",

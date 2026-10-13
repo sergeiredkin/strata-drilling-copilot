@@ -1,7 +1,7 @@
 {
   "ev_90162c0e7a": {
-    "generated_at": "2026-10-13T11:57:49.053123+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:15:39.276982+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_90162c0e7a",
     "params": {
       "code": "DRILL",
@@ -24,8 +24,8 @@
     "value": 1097.816666666667
   },
   "ev_9028565614": {
-    "generated_at": "2026-10-13T11:57:48.831530+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:15:39.045001+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_9028565614",
     "params": {
       "formation": "Hod Fm.",
@@ -43,8 +43,8 @@
     "value": 15.27715945275408
   },
   "ev_90a04dfd4f": {
-    "generated_at": "2026-10-13T11:58:44.473730+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:16:17.822109+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_90a04dfd4f",
     "params": {
       "code": "TRIP",

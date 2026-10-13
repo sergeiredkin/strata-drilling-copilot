@@ -1,7 +1,7 @@
 {
   "ev_414183e515": {
-    "generated_at": "2026-10-13T11:57:48.906375+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:15:39.135788+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_414183e515",
     "params": {
       "stat": "min",
@@ -23,8 +23,8 @@
     "value": 3.5458333333333334
   },
   "ev_41bcf876dd": {
-    "generated_at": "2026-10-13T11:57:48.906897+00:00",
-    "git_commit": "d34d96ecbaf8aa3534f2574b23bdee7423d80743",
+    "generated_at": "2026-10-13T12:15:39.136145+00:00",
+    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
     "id": "ev_41bcf876dd",
     "params": {
       "stat": "trip_out_cased",
