@@ -30,7 +30,10 @@ describe('OffsetCompare', () => {
   function pickerLabel(name: string): HTMLElement {
     // The picker checkboxes are the only place a well name sits inside a <label> -- a column
     // header (an unrelated <span>) also shows the same text once a well is selected.
-    const label = screen.getAllByText(name).map((el) => el.closest('label')).find((l): l is HTMLElement => l !== null)
+    const label = screen
+      .getAllByText(name)
+      .map((el) => el.closest('label'))
+      .find((l): l is HTMLLabelElement => l !== null)
     if (!label) throw new Error(`no picker <label> found for "${name}"`)
     return label
   }

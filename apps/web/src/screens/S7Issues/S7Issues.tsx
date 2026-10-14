@@ -54,7 +54,7 @@ function IssueRow({
         <td className="border-b px-2 py-2 font-sans" style={{ borderColor: 'var(--line-soft)' }}>
           {issue.mud ? (
             <>
-              <Num q={issue.mud.mw} /> / <Num q={issue.mud.ecd} />
+              {issue.mud.mw ? <Num q={issue.mud.mw} /> : '—'} / {issue.mud.ecd ? <Num q={issue.mud.ecd} /> : '—'}
             </>
           ) : (
             '—'

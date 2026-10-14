@@ -39,14 +39,15 @@ export function buildCurvePath(
   let started = false
   const span = valueMax - valueMin
   for (let i = 0; i < md.length; i++) {
+    const mdi = md[i]
     const v = values[i]
-    if (v === null || !Number.isFinite(v)) {
+    if (mdi === undefined || v === null || v === undefined || !Number.isFinite(v)) {
       started = false
       continue
     }
     const frac = span > 0 ? (v - valueMin) / span : 0.5
     const x = leftMargin + Math.max(0, Math.min(1, frac)) * (100 - leftMargin - rightMargin)
-    const y = mdToY(md[i], mdMin, mdMax, heightPx)
+    const y = mdToY(mdi, mdMin, mdMax, heightPx)
     path += `${started ? 'L' : 'M'}${x.toFixed(1)} ${y.toFixed(1)} `
     started = true
   }
@@ -61,13 +62,14 @@ export function finiteRange(values: (number | null)[]): [number, number] | null 
 
 // A small, stable palette so any formation name (real or mock/FORGE) gets a consistent, visually
 // distinct colour without hand-mapping every possible name.
+const FALLBACK_COLOR = '#5D6D7E'
 const PALETTE = [
   '#A7C4A0', '#D9C27A', '#8F8F8F', '#B0A08A', '#E8D27A', '#C9A97A', '#C98A6A', '#7F9CB0',
-  '#C9B27A', '#5D6D7E', '#9FB8A0', '#D8B4D8',
+  '#C9B27A', FALLBACK_COLOR, '#9FB8A0', '#D8B4D8',
 ]
 
 export function colorForFormation(name: string): string {
   let hash = 0
   for (let i = 0; i < name.length; i++) hash = (hash * 31 + name.charCodeAt(i)) >>> 0
-  return PALETTE[hash % PALETTE.length]
+  return PALETTE[hash % PALETTE.length] ?? FALLBACK_COLOR
 }

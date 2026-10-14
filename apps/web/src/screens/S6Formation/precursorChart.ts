@@ -34,7 +34,7 @@ export function buildPrecursorPaths(
   let started = false
   for (let i = 0; i < n; i++) {
     const v = value[i]
-    if (v === null || !Number.isFinite(v)) {
+    if (v === null || v === undefined || !Number.isFinite(v)) {
       started = false
       continue
     }
@@ -47,7 +47,12 @@ export function buildPrecursorPaths(
   for (let i = 0; i < n; i++) {
     const hiV = bandHi[i]
     const loV = bandLo[i]
-    if (hiV === null || loV === null || !Number.isFinite(hiV) || !Number.isFinite(loV)) continue
+    if (
+      hiV === null || hiV === undefined || loV === null || loV === undefined ||
+      !Number.isFinite(hiV) || !Number.isFinite(loV)
+    ) {
+      continue
+    }
     top.push(`${x(i).toFixed(1)} ${y(hiV).toFixed(1)}`)
     bottom.unshift(`${x(i).toFixed(1)} ${y(loV).toFixed(1)}`)
   }

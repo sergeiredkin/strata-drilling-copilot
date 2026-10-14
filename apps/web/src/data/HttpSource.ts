@@ -32,7 +32,7 @@ import type {
 import type { DataSource, IssueQuery } from './DataSource'
 import { StrataDataError } from './DataSource'
 import { decodeStrsBlock, type SeriesChunk } from './seriesDecoder'
-import { bridgeWebSocket, replayWsUrl } from './wsReplay'
+import { bridgeWebSocket, replayWsUrl, type WebSocketLike } from './wsReplay'
 
 export class HttpSource implements DataSource {
   constructor(private readonly baseUrl: string) {}
@@ -163,8 +163,15 @@ export class HttpSource implements DataSource {
   }
 
   async *replay(id: WellId, speed: 1 | 10 | 60, fromT: number): AsyncIterable<ReplayEvent> {
-    const socket = new WebSocket(replayWsUrl(this.baseUrl, id, speed, fromT))
-    yield* bridgeWebSocket(socket)
+    // The real WebSocket's onmessage/onclose/onerror property types are too wide (full
+    // MessageEvent/CloseEvent/Event) for WebSocketLike's minimal structural shape to accept
+    // directly — adapt it with a thin wrapper instead of a type assertion.
+    const ws = new WebSocket(replayWsUrl(this.baseUrl, id, speed, fromT))
+    const adapter: WebSocketLike = { onmessage: null, onclose: null, onerror: null, close: () => ws.close() }
+    ws.onmessage = (ev) => adapter.onmessage?.({ data: String(ev.data) })
+    ws.onclose = () => adapter.onclose?.()
+    ws.onerror = (ev) => adapter.onerror?.(ev)
+    yield* bridgeWebSocket(adapter)
   }
 
   async evalReport(): Promise<EvalReport> {

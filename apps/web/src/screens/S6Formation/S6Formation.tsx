@@ -403,6 +403,7 @@ export function S6Formation() {
       label: c.label,
       unit: depthSeries.data?.channels[c.key]?.unit ?? '1',
       values: depthSeries.data?.channels[c.key]?.values ?? [],
+      secondaryValues: undefined as (number | null)[] | undefined,
     }))
     return [
       ...base,
