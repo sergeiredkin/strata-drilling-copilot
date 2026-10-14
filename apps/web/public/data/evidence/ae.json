@@ -1,7 +1,7 @@
 {
   "ev_ae12b95669": {
-    "generated_at": "2026-10-13T12:15:39.136025+00:00",
-    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
+    "generated_at": "2026-10-14T06:14:13.877778+00:00",
+    "git_commit": "de29c139e7991252bd78461b7da10b4b1b1fb022",
     "id": "ev_ae12b95669",
     "method_note": "composite best = P10 per KPI per section",
     "params": {
@@ -24,8 +24,8 @@
     "value": 3.9694166666666666
   },
   "ev_ae40ce4545": {
-    "generated_at": "2026-10-13T12:15:39.185666+00:00",
-    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
+    "generated_at": "2026-10-14T06:14:13.930661+00:00",
+    "git_commit": "de29c139e7991252bd78461b7da10b4b1b1fb022",
     "id": "ev_ae40ce4545",
     "params": {
       "formation": "Ty Fm.",
@@ -43,8 +43,8 @@
     "value": 17.2767241523889
   },
   "ev_aed59f7a22": {
-    "generated_at": "2026-10-13T12:15:39.268309+00:00",
-    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
+    "generated_at": "2026-10-14T06:14:14.007881+00:00",
+    "git_commit": "de29c139e7991252bd78461b7da10b4b1b1fb022",
     "id": "ev_aed59f7a22",
     "params": {
       "row": 46,

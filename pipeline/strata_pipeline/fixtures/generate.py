@@ -14,6 +14,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
+from ..events.model_card import build_events_model_card
 from ..evidence import EvidenceRegistry
 from ..export.series import export_channel_series
 from .formation import synthesize_depth_series, synthesize_formation_prediction, synthesize_formation_report
@@ -311,6 +312,10 @@ def generate(out_dir: Path = OUT_DIR) -> None:
 
     _write_json(out_dir / "wells.json", {"wells": well_summaries, "generated_at": datetime.now(UTC).isoformat()})
     _write_json(out_dir / "issues.json", [])
+    # Mock DDR narratives are purely mechanical ("Drilling X hole from A to B") and never match
+    # T12.1's lexicon — an honest zero-candidate card until export/generate_real.py overwrites it
+    # with the real wells' totals, same "mock first, real overwrites" pattern as formations.json.
+    _write_json(out_dir / "models" / "events_card.json", build_events_model_card([]))
 
     all_agreement = [a for r in reconciliations for a in r.get("per_well", [])]
     _write_json(out_dir / "reconciliation" / "all.json", {

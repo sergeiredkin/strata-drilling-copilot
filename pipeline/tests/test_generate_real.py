@@ -133,6 +133,14 @@ def test_generate_real_writes_issues_json_with_extracted_events(tmp_path):
     assert [i["id"] for i in issues] == ["issue_15_9-F-11_A_0"]
 
 
+def test_generate_real_writes_events_model_card(tmp_path):
+    gr.generate_real(tmp_path, ONE_WELL)
+    card = json.loads((tmp_path / "models" / "events_card.json").read_text())
+    assert card["model"] == "events"
+    assert card["n_wells"] == 1
+    assert card["n_samples"] == 1
+
+
 def test_generate_real_merges_issues_json_preserving_other_wells(tmp_path):
     (tmp_path / "issues.json").write_text(
         json.dumps([{"id": "issue_58-32_0", "well": "58-32", "type": "losses"}])

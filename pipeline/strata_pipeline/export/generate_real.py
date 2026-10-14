@@ -16,6 +16,7 @@ from pathlib import Path
 from typing import Any
 
 from strata_pipeline.confidence import assess
+from strata_pipeline.events.model_card import build_events_model_card
 from strata_pipeline.evidence import EvidenceRegistry
 from strata_pipeline.export.real_wells import (
     DDR_DIR,
@@ -150,6 +151,7 @@ def generate_real(out_dir: Path = OUT_DIR, wells: list[RealWellSpec] = REAL_WELL
     real_issue_wells = {w["id"] for w in well_summaries}
     merged_issues = [i for i in existing_issues if i["well"] not in real_issue_wells] + issues
     _write_json(out_dir / "issues.json", merged_issues)
+    _write_json(out_dir / "models" / "events_card.json", build_events_model_card(merged_issues))
 
     existing_eval_path = out_dir / "eval.json"
     existing_eval: dict[str, Any] = (

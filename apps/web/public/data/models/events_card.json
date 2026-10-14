@@ -1,0 +1,18 @@
+{
+  "baseline_metrics": {},
+  "inputs": [
+    "DDR narrative text"
+  ],
+  "limitations": [
+    "Not a predictive model: a keyword-retrieval pass over DDR narratives, tagged extraction:\"rule\" on every Issue it produces, not something trained or validated.",
+    "Precision is not self-certified here: a bare keyword match (e.g. \"power loss\") can false-positive against a cluster it does not semantically belong to \u2014 observed during development on real data, not from a formal review.",
+    "No manual-review CSV exists yet for a representative sample of candidates.",
+    "The optional LLM extraction pass (07 \u00a710) is not built; every Issue here is rule-only."
+  ],
+  "metrics": {},
+  "model": "events",
+  "n_samples": 4,
+  "n_wells": 1,
+  "validation": "Rule lexicon (07 \u00a710); manual-review precision pending \u2014 see tasks/BACKLOG.md's \"Needs Sergei\" list.",
+  "version": "rule-lexicon-0.1"
+}
