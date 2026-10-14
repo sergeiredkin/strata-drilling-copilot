@@ -101,6 +101,18 @@ export function useIssues(query: IssueQuery) {
   return useQuery({ queryKey: ['issues', query], queryFn: () => ds.issues(query) })
 }
 
+// Legitimately 404 for an issue with no precursors file (e.g. no MD, or it predates the time
+// series -- events/precursors.py's own honest-null cases).
+export function usePrecursors(issueId: string | undefined) {
+  const ds = useDataSource()
+  return useQuery({
+    queryKey: ['precursors', issueId],
+    queryFn: () => ds.precursors(issueId as string),
+    enabled: Boolean(issueId),
+    retry: false,
+  })
+}
+
 export function useEvidence(evidenceId: string | undefined) {
   const ds = useDataSource()
   return useQuery({

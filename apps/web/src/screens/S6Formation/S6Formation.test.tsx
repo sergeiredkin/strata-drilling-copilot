@@ -122,3 +122,40 @@ describe('S6Formation', () => {
     expect(results).toHaveNoViolations()
   })
 })
+
+describe('S6Formation events (T12.3)', () => {
+  it('clicking a real event marker shows its excerpt and precursor sparklines', async () => {
+    const user = userEvent.setup()
+    renderAt('/well/15_9-F-11_A/formation')
+    await waitFor(() => expect(screen.getByText('Per-formation summary')).toBeInTheDocument())
+
+    const eventButtons = await waitFor(() => {
+      const buttons = screen.getAllByRole('button', { pressed: false }).filter((b) => b.title.includes(' at '))
+      expect(buttons.length).toBeGreaterThan(0)
+      return buttons
+    })
+    await user.click(eventButtons[0] as HTMLElement)
+
+    await waitFor(() => expect(screen.getByText(/Precursor signature/)).toBeInTheDocument())
+    expect(screen.getByRole('button', { name: 'Open window in Workspace' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Ask copilot' })).toBeInTheDocument()
+  })
+
+  it('"Ask copilot" on a selected event prefills a question and opens the panel', async () => {
+    const user = userEvent.setup()
+    renderAt('/well/15_9-F-11_A/formation')
+    await waitFor(() => expect(screen.getByText('Per-formation summary')).toBeInTheDocument())
+
+    const eventButtons = await waitFor(() => {
+      const buttons = screen.getAllByRole('button', { pressed: false }).filter((b) => b.title.includes(' at '))
+      expect(buttons.length).toBeGreaterThan(0)
+      return buttons
+    })
+    await user.click(eventButtons[0] as HTMLElement)
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Ask copilot' })).toBeInTheDocument())
+    await user.click(screen.getByRole('button', { name: 'Ask copilot' }))
+
+    await waitFor(() => expect(useView.getState().panel).toBe('copilot'))
+    expect(useView.getState().copilotPrefill).toContain('DDR excerpt:')
+  })
+})
