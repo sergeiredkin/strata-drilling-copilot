@@ -2,13 +2,18 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest'
 import { axe } from 'vitest-axe'
 import { installFixtureFetch } from '../../test/fixtureFetch'
+import { EMPTY_VIEW_STATE, useView } from '../../state/view'
 import { S6Formation } from './S6Formation'
 
 beforeAll(() => {
   installFixtureFetch()
+})
+
+beforeEach(() => {
+  useView.getState().replaceState(EMPTY_VIEW_STATE)
 })
 
 function renderAt(path: string) {
@@ -94,6 +99,20 @@ describe('S6Formation', () => {
     expect(topButtons.length).toBeGreaterThan(0)
     await user.click(topButtons[0] as HTMLElement)
     await waitFor(() => expect(screen.getByTestId('workspace-landed')).toBeInTheDocument())
+  })
+
+  it('"Generate formation brief" prefills a pre-spud question and opens the copilot panel (T11.6)', async () => {
+    const user = userEvent.setup()
+    renderAt('/well/15_9-F-11_A/formation')
+    await waitFor(() => expect(screen.getByText('Per-formation summary')).toBeInTheDocument())
+
+    const select = screen.getByLabelText('Formation for the generated brief') as HTMLSelectElement
+    const formationName = select.value
+    await user.click(screen.getByRole('button', { name: 'Generate formation brief' }))
+
+    await waitFor(() => expect(useView.getState().panel).toBe('copilot'))
+    expect(useView.getState().copilotPrefill).toContain(`Pre-spud brief: ${formationName}`)
+    expect(useView.getState().depthRange).not.toBeNull()
   })
 
   it('has no axe violations', async () => {

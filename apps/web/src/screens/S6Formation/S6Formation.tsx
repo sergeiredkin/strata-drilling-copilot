@@ -17,6 +17,7 @@ import {
   useModelCard,
   useWells,
 } from '../../data/hooks'
+import { useView } from '../../state/view'
 import { ConfidenceBadge } from '../../trust/ConfidenceBadge'
 import { InsufficientData } from '../../trust/InsufficientData'
 import { MockBadge } from '../../trust/MockBadge'
@@ -269,12 +270,27 @@ export function S6Formation() {
   const depthSeries = useDepthSeries(wellId)
   const depthTime = useDepthTime(wellId)
   const modelCard = useModelCard('formation')
+  const setDepthRange = useView((s) => s.setDepthRange)
+  const setCopilotPrefill = useView((s) => s.setCopilotPrefill)
+  const setPanel = useView((s) => s.setPanel)
+  const [briefFormation, setBriefFormation] = useState<string | null>(null)
 
   function openIntervalInWorkspace(mdTop: number, mdBase: number) {
     if (!depthTime.data || !wellId) return
     const window = mdIntervalToTimeWindow(depthTime.data, mdTop, mdBase)
     if (!window) return
     navigate(`/well/${wellId}/workspace?t0=${window.t0}&t1=${window.t1}`)
+  }
+
+  function generateFormationBrief(formationName: string) {
+    if (!wellSummary || !formations.data) return
+    const top = formations.data.tops.find((t) => t.name === formationName)
+    if (top) setDepthRange([top.md_top, top.md_base])
+    setCopilotPrefill(
+      `Pre-spud brief: ${formationName} — summarize ROP, MSE and any known issues before drilling ` +
+        `into it in ${wellSummary.name}.`,
+    )
+    setPanel('copilot')
   }
 
   const md = depthSeries.data?.md ?? []
@@ -346,12 +362,30 @@ export function S6Formation() {
           >
             Offset compare
           </button>
+          {formations.data && formations.data.stats.length > 0 && (
+            <select
+              aria-label="Formation for the generated brief"
+              className="min-h-9 rounded border px-2 text-dense"
+              style={{ borderColor: 'var(--line)', background: 'var(--panel)' }}
+              value={briefFormation ?? formations.data.stats[0]?.formation ?? ''}
+              onChange={(e) => setBriefFormation(e.target.value)}
+            >
+              {formations.data.stats.map((s) => (
+                <option key={s.formation} value={s.formation}>
+                  {s.formation}
+                </option>
+              ))}
+            </select>
+          )}
           <button
             type="button"
-            disabled
-            className="min-h-9 rounded border px-3.5 text-dense opacity-50"
+            disabled={!formations.data || formations.data.stats.length === 0}
+            onClick={() =>
+              generateFormationBrief(briefFormation ?? formations.data?.stats[0]?.formation ?? '')
+            }
+            className="min-h-9 rounded border px-3.5 text-dense disabled:opacity-50"
             style={{ borderColor: 'var(--accent)', background: 'var(--mock-bg)', color: 'var(--mock-fg)' }}
-            title="Formation brief sessions arrive in T11.6 (P1)"
+            title="Opens the copilot with a pre-spud brief question for the selected formation"
           >
             Generate formation brief
           </button>
