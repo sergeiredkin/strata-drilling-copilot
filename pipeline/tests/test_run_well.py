@@ -307,3 +307,15 @@ def test_run_well_from_dataframes_writes_precursors_for_an_extracted_issue(tmp_p
     precursors = json.loads(precursors_files[0].read_text())
     assert precursors["window_h"] == 6.0
     assert len(precursors["channels"]) > 0
+
+
+def test_run_well_from_dataframes_writes_replay_events_json(tmp_path):
+    reg = EvidenceRegistry(git_commit="test")
+    cfg = load_qc_config()
+    run_well_from_dataframes(
+        "W1", _synthetic_long_df(), _synthetic_ddr_df(), tmp_path, reg, cfg, RIGSTATE_CFG, RECON_CFG, 200.0,
+    )
+    events_path = tmp_path / "wells" / "W1" / "replay_events.json"
+    assert events_path.exists()
+    events = json.loads(events_path.read_text())
+    assert any(e["type"] == "state" for e in events)

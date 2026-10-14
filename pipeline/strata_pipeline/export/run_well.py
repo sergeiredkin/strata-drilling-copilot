@@ -28,6 +28,7 @@ from strata_pipeline.export.real_well import (
     build_rigstate_json,
     build_sections_json,
 )
+from strata_pipeline.export.replay_events import build_replay_events
 from strata_pipeline.export.series import export_channel_series
 from strata_pipeline.formation.depth_features import BitInterval, build_depth_features
 from strata_pipeline.formation.depth_series import build_depth_series
@@ -139,6 +140,9 @@ def _run_well_from_aligned(
     _write_json(well_dir / "kpis.json", kpi_report)
     _write_json(well_dir / "ilt.json", ilt_report)
     _write_json(out_dir / "reconciliation" / f"{well_id}.json", recon_report)
+    _write_json(
+        well_dir / "replay_events.json", build_replay_events(intervals, ddr_rows_raw, connections, kpi_report)
+    )
 
     if write_series and t:
         t0_ms = t[0].timestamp() * 1000

@@ -1,0 +1,9065 @@
+[
+  {
+    "state": "rotary_drilling",
+    "t": 1368525602000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368532952000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368532960000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368535292000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1368535407000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368535438000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_0",
+      "kind": "slow_connection",
+      "message": "Connection took 3.5 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368535438000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368535647000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_0",
+      "kind": "data_gap",
+      "message": "Core channel gap, 200 min"
+    },
+    "t": 1368535647000,
+    "type": "alert"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368547670000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368547722000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368547845000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_1",
+      "kind": "slow_connection",
+      "message": "Connection took 1.3 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368547845000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368547925000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_1",
+      "kind": "data_gap",
+      "message": "Core channel gap, 14 min"
+    },
+    "t": 1368547925000,
+    "type": "alert"
+  },
+  {
+    "state": "connection",
+    "t": 1368548749000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_2",
+      "kind": "slow_connection",
+      "message": "Connection took 82.3 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368548749000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368553689000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368553738000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368553759000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368553780000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368553801000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368553814000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368553871000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368553889000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368553905000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368553923000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368553938000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368553951000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368553972000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368553984000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368553997000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368554015000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368554053000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368554066000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368554851000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368554950000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368554999000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_3",
+      "kind": "slow_connection",
+      "message": "Connection took 23.4 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368554999000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368556402000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368556427000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_4",
+      "kind": "slow_connection",
+      "message": "Connection took 1.5 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368556427000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368556516000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368556534000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368556549000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368556614000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368556619000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_2",
+      "kind": "data_gap",
+      "message": "Core channel gap, 0 min"
+    },
+    "t": 1368556619000,
+    "type": "alert"
+  },
+  {
+    "state": "connection",
+    "t": 1368556631000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_5",
+      "kind": "slow_connection",
+      "message": "Connection took 2.1 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368556631000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368556757000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368556897000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_0",
+      "kind": "flat_time",
+      "message": "Flat time 30 min (circulating)"
+    },
+    "t": 1368556897000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368558675000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368558754000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_6",
+      "kind": "slow_connection",
+      "message": "Connection took 2.2 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368558754000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368558887000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_3",
+      "kind": "data_gap",
+      "message": "Core channel gap, 17 min"
+    },
+    "t": 1368558887000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368559921000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368574954000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_4",
+      "kind": "data_gap",
+      "message": "Core channel gap, 14 min"
+    },
+    "t": 1368574954000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368575786000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368579308000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_5",
+      "kind": "data_gap",
+      "message": "Core channel gap, 34 min"
+    },
+    "t": 1368579308000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368581335000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368581934000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_1",
+      "kind": "flat_time",
+      "message": "Flat time 17 min (unknown)"
+    },
+    "t": 1368581934000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368582931000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368583107000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368583128000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368583728000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368584211000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368584385000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1368585160000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368585208000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1368585547000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368585569000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368585642000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_7",
+      "kind": "slow_connection",
+      "message": "Connection took 1.5 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368585642000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368585734000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_6",
+      "kind": "data_gap",
+      "message": "Core channel gap, 6 min"
+    },
+    "t": 1368585734000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1368586082000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368587109000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368593579000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368593776000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_8",
+      "kind": "slow_connection",
+      "message": "Connection took 2.9 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368593776000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368593949000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_7",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1368593949000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1368594095000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368594335000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_8",
+      "kind": "data_gap",
+      "message": "Core channel gap, 1 min"
+    },
+    "t": 1368594335000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1368594392000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368594420000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368599023000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368599281000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_9",
+      "kind": "slow_connection",
+      "message": "Connection took 3.0 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368599281000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368599459000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_9",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1368599459000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1368599614000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368599970000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368604454000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1368604584000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368604637000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368604690000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_10",
+      "kind": "data_gap",
+      "message": "Core channel gap, 0 min"
+    },
+    "t": 1368604690000,
+    "type": "alert"
+  },
+  {
+    "state": "connection",
+    "t": 1368604710000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_10",
+      "kind": "slow_connection",
+      "message": "Connection took 1.9 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368604710000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368604827000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_11",
+      "kind": "data_gap",
+      "message": "Core channel gap, 7 min"
+    },
+    "t": 1368604827000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1368605239000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368605284000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1368605304000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368605483000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368610172000,
+    "type": "state"
+  },
+  {
+    "state": "reaming",
+    "t": 1368610297000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_reaming_0",
+      "kind": "unreported_reaming",
+      "message": "Reaming during a DDR row coded DRILL, not REAM"
+    },
+    "t": 1368610297000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1368610312000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368610346000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368610374000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_11",
+      "kind": "slow_connection",
+      "message": "Connection took 3.3 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368610374000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368610575000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_12",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1368610575000,
+    "type": "alert"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368610766000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1368610839000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368611018000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_13",
+      "kind": "data_gap",
+      "message": "Core channel gap, 1 min"
+    },
+    "t": 1368611018000,
+    "type": "alert"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368611058000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368617508000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368618002000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368618024000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368618080000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368618660000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_12",
+      "kind": "slow_connection",
+      "message": "Connection took 1.9 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368618660000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368618777000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_14",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1368618777000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1368619029000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368619275000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_15",
+      "kind": "data_gap",
+      "message": "Core channel gap, 1 min"
+    },
+    "t": 1368619275000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1368619332000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368619410000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368624478000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1368624699000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368624752000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_13",
+      "kind": "slow_connection",
+      "message": "Connection took 2.9 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368624752000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368624925000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_16",
+      "kind": "data_gap",
+      "message": "Core channel gap, 5 min"
+    },
+    "t": 1368624925000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1368625242000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368625345000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_17",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1368625345000,
+    "type": "alert"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368625548000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368632802000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1368633012000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368633051000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_18",
+      "kind": "data_gap",
+      "message": "Core channel gap, 1 min"
+    },
+    "t": 1368633051000,
+    "type": "alert"
+  },
+  {
+    "state": "connection",
+    "t": 1368633102000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_14",
+      "kind": "slow_connection",
+      "message": "Connection took 1.5 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368633102000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368633191000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_19",
+      "kind": "data_gap",
+      "message": "Core channel gap, 6 min"
+    },
+    "t": 1368633191000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1368633575000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368633861000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368640679000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1368640866000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368640903000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_15",
+      "kind": "slow_connection",
+      "message": "Connection took 2.6 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368640903000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368641062000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_20",
+      "kind": "data_gap",
+      "message": "Core channel gap, 6 min"
+    },
+    "t": 1368641062000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1368641396000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368641507000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_21",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1368641507000,
+    "type": "alert"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368641698000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368649593000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1368650344000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368650384000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368650398000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_16",
+      "kind": "slow_connection",
+      "message": "Connection took 2.6 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368650398000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368650557000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_22",
+      "kind": "data_gap",
+      "message": "Core channel gap, 5 min"
+    },
+    "t": 1368650557000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1368650857000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368651128000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368652382000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368652436000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368657551000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1368657708000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368657778000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368657792000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_17",
+      "kind": "slow_connection",
+      "message": "Connection took 2.9 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368657792000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368657965000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_23",
+      "kind": "data_gap",
+      "message": "Core channel gap, 6 min"
+    },
+    "t": 1368657965000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1368658302000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368658347000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1368658364000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368658630000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368665716000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368666313000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_18",
+      "kind": "slow_connection",
+      "message": "Connection took 3.1 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368666313000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368666500000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_24",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1368666500000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1368666663000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368666942000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_25",
+      "kind": "data_gap",
+      "message": "Core channel gap, 0 min"
+    },
+    "t": 1368666942000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1368666965000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368667049000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368674561000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1368674749000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368674769000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_19",
+      "kind": "slow_connection",
+      "message": "Connection took 2.7 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368674769000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368674933000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_26",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1368674933000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1368675203000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368675581000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368682939000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368683188000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_27",
+      "kind": "data_gap",
+      "message": "Core channel gap, 8 min"
+    },
+    "t": 1368683188000,
+    "type": "alert"
+  },
+  {
+    "state": "connection",
+    "t": 1368683684000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_20",
+      "kind": "slow_connection",
+      "message": "Connection took 2.1 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368683684000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368683812000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_28",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1368683812000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1368684012000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368684303000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368695105000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1368695329000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368695357000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368695433000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_21",
+      "kind": "slow_connection",
+      "message": "Connection took 1.2 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368695433000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368695508000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_29",
+      "kind": "data_gap",
+      "message": "Core channel gap, 5 min"
+    },
+    "t": 1368695508000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1368695825000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368696133000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368705986000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1368706224000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368706257000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_30",
+      "kind": "data_gap",
+      "message": "Core channel gap, 1 min"
+    },
+    "t": 1368706257000,
+    "type": "alert"
+  },
+  {
+    "state": "connection",
+    "t": 1368706308000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_22",
+      "kind": "slow_connection",
+      "message": "Connection took 2.3 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368706308000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368706447000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_31",
+      "kind": "data_gap",
+      "message": "Core channel gap, 5 min"
+    },
+    "t": 1368706447000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1368706722000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368707537000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368716660000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368716939000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_32",
+      "kind": "data_gap",
+      "message": "Core channel gap, 1 min"
+    },
+    "t": 1368716939000,
+    "type": "alert"
+  },
+  {
+    "state": "connection",
+    "t": 1368717026000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_23",
+      "kind": "slow_connection",
+      "message": "Connection took 2.3 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368717026000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368717166000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_33",
+      "kind": "data_gap",
+      "message": "Core channel gap, 7 min"
+    },
+    "t": 1368717166000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1368717578000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368717850000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368725205000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368725583000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_34",
+      "kind": "data_gap",
+      "message": "Core channel gap, 11 min"
+    },
+    "t": 1368725583000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1368726272000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_2",
+      "kind": "flat_time",
+      "message": "Flat time 49 min (circulating)"
+    },
+    "t": 1368726272000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368729212000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368729313000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_3",
+      "kind": "flat_time",
+      "message": "Flat time 45 min (circulating)"
+    },
+    "t": 1368729313000,
+    "type": "alert"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368732026000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368732244000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_4",
+      "kind": "flat_time",
+      "message": "Flat time 141 min (circulating)"
+    },
+    "t": 1368732244000,
+    "type": "alert"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368740712000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368740792000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_5",
+      "kind": "flat_time",
+      "message": "Flat time 34 min (circulating)"
+    },
+    "t": 1368740792000,
+    "type": "alert"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368742842000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368742917000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_6",
+      "kind": "flat_time",
+      "message": "Flat time 39 min (circulating)"
+    },
+    "t": 1368742917000,
+    "type": "alert"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368745231000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368745365000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368745605000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_35",
+      "kind": "data_gap",
+      "message": "Core channel gap, 73 min"
+    },
+    "t": 1368745605000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1368749977000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_7",
+      "kind": "flat_time",
+      "message": "Flat time 45 min (circulating)"
+    },
+    "t": 1368749977000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368752684000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368753558000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_24",
+      "kind": "slow_connection",
+      "message": "Connection took 75.1 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368753558000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368758063000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_8",
+      "kind": "flat_time",
+      "message": "Flat time 119 min (unknown)"
+    },
+    "t": 1368758063000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368765215000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368765233000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_9",
+      "kind": "flat_time",
+      "message": "Flat time 92 min (unknown)"
+    },
+    "t": 1368765233000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1368770778000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368771108000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368771923000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368772195000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368772996000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368773340000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_10",
+      "kind": "flat_time",
+      "message": "Flat time 131 min (unknown)"
+    },
+    "t": 1368773340000,
+    "type": "alert"
+  },
+  {
+    "state": "connection",
+    "t": 1368781172000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_25",
+      "kind": "slow_connection",
+      "message": "Connection took 189.0 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368781172000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368792512000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368792644000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368792682000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368792840000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368792976000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368792999000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368793571000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368793599000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368793855000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368793878000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368794415000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368794438000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368794955000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368794976000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368795434000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368795463000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368796000000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368796023000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368796286000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368796370000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368796997000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368797067000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368797170000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_36",
+      "kind": "data_gap",
+      "message": "Core channel gap, 15 min"
+    },
+    "t": 1368797170000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368798064000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368798489000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368798509000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368798755000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368798778000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368799113000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368799131000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368799395000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368799416000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368799729000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368799747000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368799981000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368800142000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368800264000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368800282000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368800597000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368800615000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368800827000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368800892000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368801158000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368801343000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_11",
+      "kind": "flat_time",
+      "message": "Flat time 17 min (circulating)"
+    },
+    "t": 1368801343000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368802359000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368802477000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368802510000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_37",
+      "kind": "data_gap",
+      "message": "Core channel gap, 12 min"
+    },
+    "t": 1368802510000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368803230000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368803532000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368803555000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368803898000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368803919000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368804251000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368804283000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368804531000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368804552000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368805077000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_38",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1368805077000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368805268000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368805411000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368805490000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368805669000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_12",
+      "kind": "flat_time",
+      "message": "Flat time 112 min (unknown)"
+    },
+    "t": 1368805669000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1368812406000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_13",
+      "kind": "flat_time",
+      "message": "Flat time 15 min (circulating)"
+    },
+    "t": 1368812406000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368813335000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_14",
+      "kind": "flat_time",
+      "message": "Flat time 587 min (unknown)"
+    },
+    "t": 1368813335000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1368848534000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_15",
+      "kind": "flat_time",
+      "message": "Flat time 15 min (circulating)"
+    },
+    "t": 1368848534000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368849447000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368850318000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368850838000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_39",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1368850838000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368851090000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368851611000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_40",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1368851611000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368851712000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368852168000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_41",
+      "kind": "data_gap",
+      "message": "Core channel gap, 12 min"
+    },
+    "t": 1368852168000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368852874000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368853745000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368853820000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368854426000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368897358000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368897836000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_16",
+      "kind": "flat_time",
+      "message": "Flat time 73 min (circulating)"
+    },
+    "t": 1368897836000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368902241000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368902302000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368902353000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368902381000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368902408000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_42",
+      "kind": "data_gap",
+      "message": "Core channel gap, 15 min"
+    },
+    "t": 1368902408000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368903338000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368925799000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_43",
+      "kind": "data_gap",
+      "message": "Core channel gap, 1 min"
+    },
+    "t": 1368925799000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368925876000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368944327000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_44",
+      "kind": "data_gap",
+      "message": "Core channel gap, 12 min"
+    },
+    "t": 1368944327000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368945019000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368970734000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368970754000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368970941000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368971040000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368971056000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368971087000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_17",
+      "kind": "flat_time",
+      "message": "Flat time 103 min (circulating)"
+    },
+    "t": 1368971087000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368977258000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_18",
+      "kind": "flat_time",
+      "message": "Flat time 20 min (unknown)"
+    },
+    "t": 1368977258000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368978443000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368978574000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368978598000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368978770000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368978796000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368979114000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368979134000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368979185000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368979204000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368979347000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368979362000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368979523000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368979538000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368979828000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368979851000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368979991000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368980012000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368980170000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368980196000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368980475000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368980504000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368980791000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368980823000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368981088000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368981111000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368981388000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368981402000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368981631000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368981890000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368982040000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368982066000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368982466000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368982534000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368982925000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368982940000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368983350000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368983365000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368983402000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368983526000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368983720000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1368983735000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368983897000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368983929000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368984143000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368984155000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368984504000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368984519000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368984862000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368984877000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368985240000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368985255000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368985322000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1368985362000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368985390000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_26",
+      "kind": "slow_connection",
+      "message": "Connection took 4.9 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368985390000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368985684000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_19",
+      "kind": "flat_time",
+      "message": "Flat time 23 min (unknown)"
+    },
+    "t": 1368985684000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1368987084000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368987623000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_45",
+      "kind": "data_gap",
+      "message": "Core channel gap, 6 min"
+    },
+    "t": 1368987623000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1368987991000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368988265000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_46",
+      "kind": "data_gap",
+      "message": "Core channel gap, 1 min"
+    },
+    "t": 1368988265000,
+    "type": "alert"
+  },
+  {
+    "state": "connection",
+    "t": 1368988344000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_27",
+      "kind": "slow_connection",
+      "message": "Connection took 2.2 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368988344000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368988480000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_47",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1368988480000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1368988699000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368988853000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368989080000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1368995204000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1368995512000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1368995545000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_28",
+      "kind": "slow_connection",
+      "message": "Connection took 3.4 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1368995545000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1368995749000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_48",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1368995749000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1368995895000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1368995998000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_49",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1368995998000,
+    "type": "alert"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1368996181000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369001763000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1369001862000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1369001896000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_29",
+      "kind": "slow_connection",
+      "message": "Connection took 2.4 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1369001896000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369002041000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_50",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369002041000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1369002310000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1369002596000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369008761000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369009092000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1369009103000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_30",
+      "kind": "slow_connection",
+      "message": "Connection took 3.0 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1369009103000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369009281000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_51",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369009281000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1369009422000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369009525000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_52",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369009525000,
+    "type": "alert"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1369009722000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369014871000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1369015330000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1369015358000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_31",
+      "kind": "slow_connection",
+      "message": "Connection took 3.5 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1369015358000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369015570000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_53",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369015570000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1369015680000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369015769000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_54",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369015769000,
+    "type": "alert"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1369015999000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369024394000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_20",
+      "kind": "flat_time",
+      "message": "Flat time 16 min (circulating)"
+    },
+    "t": 1369024394000,
+    "type": "alert"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1369025351000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369025390000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1369025430000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_32",
+      "kind": "slow_connection",
+      "message": "Connection took 2.4 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1369025430000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369025577000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_55",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369025577000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1369025816000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369025936000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_56",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369025936000,
+    "type": "alert"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1369026103000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369033846000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1369034020000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1369034059000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369034089000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_57",
+      "kind": "data_gap",
+      "message": "Core channel gap, 1 min"
+    },
+    "t": 1369034089000,
+    "type": "alert"
+  },
+  {
+    "state": "connection",
+    "t": 1369034124000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_33",
+      "kind": "slow_connection",
+      "message": "Connection took 2.0 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1369034124000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369034243000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_58",
+      "kind": "data_gap",
+      "message": "Core channel gap, 5 min"
+    },
+    "t": 1369034243000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1369034535000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1369034877000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369042570000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1369042745000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1369042790000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369042809000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_59",
+      "kind": "data_gap",
+      "message": "Core channel gap, 1 min"
+    },
+    "t": 1369042809000,
+    "type": "alert"
+  },
+  {
+    "state": "connection",
+    "t": 1369042843000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_34",
+      "kind": "slow_connection",
+      "message": "Connection took 2.3 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1369042843000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369042982000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_60",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369042982000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369043140000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1369043828000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369050895000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1369051094000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369051134000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1369051201000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_35",
+      "kind": "slow_connection",
+      "message": "Connection took 2.0 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1369051201000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369051323000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_61",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369051323000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1369051503000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1369051842000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369056361000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1369056983000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369057324000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_21",
+      "kind": "flat_time",
+      "message": "Flat time 40 min (circulating)"
+    },
+    "t": 1369057324000,
+    "type": "alert"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1369059752000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369060245000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369060284000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369060311000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_22",
+      "kind": "flat_time",
+      "message": "Flat time 22 min (unknown)"
+    },
+    "t": 1369060311000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369061659000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1369062031000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369065050000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1369065288000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369065310000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1369065321000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_36",
+      "kind": "slow_connection",
+      "message": "Connection took 2.9 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1369065321000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369065497000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_62",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369065497000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1369065657000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1369065951000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369074315000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1369074382000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369074409000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1369074446000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369075029000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1369075631000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369075664000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1369075886000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1369075916000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369075927000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_63",
+      "kind": "data_gap",
+      "message": "Core channel gap, 0 min"
+    },
+    "t": 1369075927000,
+    "type": "alert"
+  },
+  {
+    "state": "connection",
+    "t": 1369075953000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_37",
+      "kind": "slow_connection",
+      "message": "Connection took 2.9 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1369075953000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369076129000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_64",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369076129000,
+    "type": "alert"
+  },
+  {
+    "state": "sliding",
+    "t": 1369076250000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1369076535000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369085154000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1369085350000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369085411000,
+    "type": "state"
+  },
+  {
+    "state": "sliding",
+    "t": 1369085618000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1369085655000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_38",
+      "kind": "slow_connection",
+      "message": "Connection took 3.1 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1369085655000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369085845000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_65",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369085845000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369086030000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369086164000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_66",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369086164000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369086293000,
+    "type": "state"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1369086517000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369090131000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369090479000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369090521000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_23",
+      "kind": "flat_time",
+      "message": "Flat time 50 min (circulating)"
+    },
+    "t": 1369090521000,
+    "type": "alert"
+  },
+  {
+    "state": "rotary_drilling",
+    "t": 1369093548000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369093621000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_24",
+      "kind": "flat_time",
+      "message": "Flat time 54 min (circulating)"
+    },
+    "t": 1369093621000,
+    "type": "alert"
+  },
+  {
+    "state": "reaming",
+    "t": 1369096884000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369096944000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1369097345000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369097397000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_67",
+      "kind": "data_gap",
+      "message": "Core channel gap, 0 min"
+    },
+    "t": 1369097397000,
+    "type": "alert"
+  },
+  {
+    "state": "connection",
+    "t": 1369097418000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_39",
+      "kind": "slow_connection",
+      "message": "Connection took 1.8 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1369097418000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369097529000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_68",
+      "kind": "data_gap",
+      "message": "Core channel gap, 7 min"
+    },
+    "t": 1369097529000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369097972000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_25",
+      "kind": "flat_time",
+      "message": "Flat time 139 min (circulating)"
+    },
+    "t": 1369097972000,
+    "type": "alert"
+  },
+  {
+    "state": "reaming",
+    "t": 1369106317000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369106382000,
+    "type": "state"
+  },
+  {
+    "state": "reaming",
+    "t": 1369106415000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369106615000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_26",
+      "kind": "flat_time",
+      "message": "Flat time 19 min (circulating)"
+    },
+    "t": 1369106615000,
+    "type": "alert"
+  },
+  {
+    "state": "reaming",
+    "t": 1369107731000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369107774000,
+    "type": "state"
+  },
+  {
+    "state": "reaming",
+    "t": 1369107787000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369107850000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_27",
+      "kind": "flat_time",
+      "message": "Flat time 102 min (circulating)"
+    },
+    "t": 1369107850000,
+    "type": "alert"
+  },
+  {
+    "state": "reaming",
+    "t": 1369113941000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369114108000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369114173000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_28",
+      "kind": "flat_time",
+      "message": "Flat time 20 min (unknown)"
+    },
+    "t": 1369114173000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369115402000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_29",
+      "kind": "flat_time",
+      "message": "Flat time 65 min (circulating)"
+    },
+    "t": 1369115402000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369119278000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369119341000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369119538000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_30",
+      "kind": "flat_time",
+      "message": "Flat time 16 min (circulating)"
+    },
+    "t": 1369119538000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369120526000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369120596000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369120710000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_69",
+      "kind": "data_gap",
+      "message": "Core channel gap, 10 min"
+    },
+    "t": 1369120710000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369121285000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_31",
+      "kind": "flat_time",
+      "message": "Flat time 106 min (circulating)"
+    },
+    "t": 1369121285000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369127672000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369127722000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369127861000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_70",
+      "kind": "data_gap",
+      "message": "Core channel gap, 10 min"
+    },
+    "t": 1369127861000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369128475000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369128567000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_71",
+      "kind": "data_gap",
+      "message": "Core channel gap, 11 min"
+    },
+    "t": 1369128567000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369129254000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_32",
+      "kind": "flat_time",
+      "message": "Flat time 21 min (circulating)"
+    },
+    "t": 1369129254000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369130516000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_33",
+      "kind": "flat_time",
+      "message": "Flat time 23 min (unknown)"
+    },
+    "t": 1369130516000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369131883000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369131998000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369132367000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_34",
+      "kind": "flat_time",
+      "message": "Flat time 137 min (circulating)"
+    },
+    "t": 1369132367000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369140588000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369140655000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369140775000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_72",
+      "kind": "data_gap",
+      "message": "Core channel gap, 12 min"
+    },
+    "t": 1369140775000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369141490000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369141918000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369142105000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_73",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369142105000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369142318000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_35",
+      "kind": "flat_time",
+      "message": "Flat time 126 min (circulating)"
+    },
+    "t": 1369142318000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369149853000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369149901000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369150043000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_74",
+      "kind": "data_gap",
+      "message": "Core channel gap, 6 min"
+    },
+    "t": 1369150043000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369150433000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369150504000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369150545000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369150744000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369150968000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369150984000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369151157000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_75",
+      "kind": "data_gap",
+      "message": "Core channel gap, 6 min"
+    },
+    "t": 1369151157000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369151514000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369151554000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369151581000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369151780000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369151978000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_76",
+      "kind": "data_gap",
+      "message": "Core channel gap, 20 min"
+    },
+    "t": 1369151978000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369153149000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369153384000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369153429000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369153689000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369153862000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_77",
+      "kind": "data_gap",
+      "message": "Core channel gap, 10 min"
+    },
+    "t": 1369153862000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369154468000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369154484000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369154742000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369154923000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_78",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369154923000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369155148000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369155176000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369155453000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369155637000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_79",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369155637000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369155856000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369155993000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_80",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369155993000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369156223000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369156393000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_81",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369156393000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369156556000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369156766000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369157083000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369157281000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_82",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369157281000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369157545000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369157559000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369157886000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369158132000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_83",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369158132000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369158264000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369158640000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369158768000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_84",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369158768000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369158984000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369159292000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369159465000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_85",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369159465000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369159659000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369159684000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369160009000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369160165000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_86",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369160165000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369160294000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369160328000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369160653000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369160845000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_87",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369160845000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369160972000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369161011000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369161389000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369161587000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_88",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369161587000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369161739000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369161756000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369162131000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369162329000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_89",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369162329000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369162476000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369162487000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369162803000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369163001000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_90",
+      "kind": "data_gap",
+      "message": "Core channel gap, 12 min"
+    },
+    "t": 1369163001000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369163692000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369163900000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369164186000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369164374000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369164470000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369164771000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369164814000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369165241000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369165279000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369165516000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369165536000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369165819000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369166038000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369166336000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369166359000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369166502000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369166721000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369167002000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369167023000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369167565000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369167608000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369168086000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369168106000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369168676000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369168709000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369169240000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369169257000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369169982000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369170045000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369170239000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369170274000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369170604000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369171153000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369171799000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369171819000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369172496000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369172519000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369173091000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369173125000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369173606000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369173617000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_36",
+      "kind": "flat_time",
+      "message": "Flat time 176 min (circulating)"
+    },
+    "t": 1369173617000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369184153000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_37",
+      "kind": "flat_time",
+      "message": "Flat time 599 min (unknown)"
+    },
+    "t": 1369184153000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369220097000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_38",
+      "kind": "flat_time",
+      "message": "Flat time 62 min (circulating)"
+    },
+    "t": 1369220097000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369223829000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_39",
+      "kind": "flat_time",
+      "message": "Flat time 417 min (unknown)"
+    },
+    "t": 1369223829000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369248850000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369249525000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369249547000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369249584000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369249595000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369249640000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369249833000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369249872000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369249889000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369249939000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369249967000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369250824000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369250911000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369251426000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_40",
+      "kind": "flat_time",
+      "message": "Flat time 462 min (unknown)"
+    },
+    "t": 1369251426000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369279143000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_41",
+      "kind": "flat_time",
+      "message": "Flat time 53 min (circulating)"
+    },
+    "t": 1369279143000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369282316000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_42",
+      "kind": "flat_time",
+      "message": "Flat time 19 min (unknown)"
+    },
+    "t": 1369282316000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369283436000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369284050000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369286373000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369286524000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369286563000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369286723000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369287323000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369287400000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_91",
+      "kind": "data_gap",
+      "message": "Core channel gap, 5 min"
+    },
+    "t": 1369287400000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369287683000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369287881000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_92",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369287881000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369287983000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369289349000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_93",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369289349000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369289442000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369289500000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369289722000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369290844000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_94",
+      "kind": "data_gap",
+      "message": "Core channel gap, 9 min"
+    },
+    "t": 1369290844000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369291407000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369291488000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_95",
+      "kind": "data_gap",
+      "message": "Core channel gap, 12 min"
+    },
+    "t": 1369291488000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369292197000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369293087000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_96",
+      "kind": "data_gap",
+      "message": "Core channel gap, 20 min"
+    },
+    "t": 1369293087000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369294266000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369302019000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369302619000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369303598000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369303739000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369303900000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369303918000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369304320000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369304335000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369304558000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369304573000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369304807000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369304825000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369305101000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369305119000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369305259000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369305380000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369305513000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369305525000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369305650000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369305764000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369305896000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369305911000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369306162000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369306177000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369306424000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369306469000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369306608000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369306625000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369306852000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369306931000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369307064000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369307079000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369307247000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369307264000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369307400000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369307418000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369307583000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369307617000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369307761000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369307773000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369307941000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369307956000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369308114000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369308160000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369308484000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_97",
+      "kind": "data_gap",
+      "message": "Core channel gap, 13 min"
+    },
+    "t": 1369308484000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369309252000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369309347000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369309400000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369309534000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_98",
+      "kind": "data_gap",
+      "message": "Core channel gap, 17 min"
+    },
+    "t": 1369309534000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369310532000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369310998000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369311013000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369311762000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369311921000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369312073000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369312088000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369312409000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369312424000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369312712000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369312724000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369312992000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369313006000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369313574000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369313586000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369313974000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369313989000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369314543000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369314560000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369314753000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369314889000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369315055000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369315067000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369315374000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369315406000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369315562000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369315580000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369315750000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1369315762000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_40",
+      "kind": "slow_connection",
+      "message": "Connection took 4.8 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1369315762000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369316053000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_43",
+      "kind": "flat_time",
+      "message": "Flat time 20 min (unknown)"
+    },
+    "t": 1369316053000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369317232000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_44",
+      "kind": "flat_time",
+      "message": "Flat time 50 min (circulating)"
+    },
+    "t": 1369317232000,
+    "type": "alert"
+  },
+  {
+    "state": "connection",
+    "t": 1369320219000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_41",
+      "kind": "slow_connection",
+      "message": "Connection took 3.2 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1369320219000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369320412000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_99",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369320412000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369320656000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369320670000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369321208000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369321272000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_45",
+      "kind": "flat_time",
+      "message": "Flat time 43 min (circulating)"
+    },
+    "t": 1369321272000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369323862000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_46",
+      "kind": "flat_time",
+      "message": "Flat time 27 min (unknown)"
+    },
+    "t": 1369323862000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369325511000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_47",
+      "kind": "flat_time",
+      "message": "Flat time 18 min (circulating)"
+    },
+    "t": 1369325511000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369326575000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369326759000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_100",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369326759000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369327004000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369327109000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_101",
+      "kind": "data_gap",
+      "message": "Core channel gap, 11 min"
+    },
+    "t": 1369327109000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369327796000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369328213000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369328236000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369328400000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_102",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369328400000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369328614000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369328625000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369328694000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_103",
+      "kind": "data_gap",
+      "message": "Core channel gap, 12 min"
+    },
+    "t": 1369328694000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369329406000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_48",
+      "kind": "flat_time",
+      "message": "Flat time 45 min (circulating)"
+    },
+    "t": 1369329406000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369332136000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369332164000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369332323000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_104",
+      "kind": "data_gap",
+      "message": "Core channel gap, 11 min"
+    },
+    "t": 1369332323000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369333012000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369333105000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369333136000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369333222000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_105",
+      "kind": "data_gap",
+      "message": "Core channel gap, 11 min"
+    },
+    "t": 1369333222000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369333883000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369334031000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_106",
+      "kind": "data_gap",
+      "message": "Core channel gap, 6 min"
+    },
+    "t": 1369334031000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369334362000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369334373000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369334796000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369334930000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_107",
+      "kind": "data_gap",
+      "message": "Core channel gap, 5 min"
+    },
+    "t": 1369334930000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369335230000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369335241000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369335667000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369335681000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369335848000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_108",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369335848000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369336042000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369336184000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_109",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369336184000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369336316000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369336478000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_110",
+      "kind": "data_gap",
+      "message": "Core channel gap, 1 min"
+    },
+    "t": 1369336478000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369336563000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369336713000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_111",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369336713000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369336899000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369337052000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_112",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369337052000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369337190000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369337335000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_113",
+      "kind": "data_gap",
+      "message": "Core channel gap, 5 min"
+    },
+    "t": 1369337335000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369337613000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369337766000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_114",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369337766000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369337971000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369337991000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369338119000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_115",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369338119000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369338341000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369338486000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_116",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369338486000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369338682000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369338694000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369339046000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369339058000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369339233000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_117",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369339233000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369339436000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369339586000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_118",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369339586000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369339839000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369339978000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_119",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369339978000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369340150000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369340161000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369340306000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_120",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369340306000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369340564000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369340698000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_121",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369340698000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369340942000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369340956000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369341090000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_122",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369341090000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369341317000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369341434000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_123",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369341434000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369341650000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369341673000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369341818000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_124",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369341818000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369341989000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369342134000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_125",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369342134000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369342325000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369342476000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_126",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369342476000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369342675000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369342812000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_127",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369342812000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369342969000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369343003000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369343139000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_128",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369343139000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369343350000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369343506000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_129",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369343506000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369343689000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369343700000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369343904000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_130",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369343904000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369344109000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369344237000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_131",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369344237000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369344445000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369344459000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369344840000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369344854000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369345007000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_132",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369345007000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369345190000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369345220000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369345351000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_133",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369345351000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369345593000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369345738000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_134",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369345738000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369345895000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369345909000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369346054000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_135",
+      "kind": "data_gap",
+      "message": "Core channel gap, 5 min"
+    },
+    "t": 1369346054000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369346326000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369346466000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_136",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369346466000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369346592000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369346914000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369346931000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369347101000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_137",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369347101000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369347276000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369347418000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_138",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369347418000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369347626000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369347762000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_139",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369347762000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369347911000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369347931000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369348256000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369348420000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_140",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369348420000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369348530000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369348686000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_141",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369348686000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369348911000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369349042000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_142",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369349042000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369349222000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369349437000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_143",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369349437000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369349544000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369349708000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_144",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369349708000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369349824000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369349838000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369349985000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_145",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369349985000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369350176000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369350316000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_146",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369350316000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369350459000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369350473000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369350621000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_147",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369350621000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369350804000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369350932000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_148",
+      "kind": "data_gap",
+      "message": "Core channel gap, 4 min"
+    },
+    "t": 1369350932000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369351154000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369351301000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_149",
+      "kind": "data_gap",
+      "message": "Core channel gap, 5 min"
+    },
+    "t": 1369351301000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369351593000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369351696000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_150",
+      "kind": "data_gap",
+      "message": "Core channel gap, 42 min"
+    },
+    "t": 1369351696000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369354212000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369354412000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369354438000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369355042000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369355060000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369355476000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369355494000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369355860000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369355880000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369356266000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369356286000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369356487000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369356528000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369356649000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369356670000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369356994000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369357818000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369358174000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369358208000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369358287000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369358308000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369358329000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_151",
+      "kind": "data_gap",
+      "message": "Core channel gap, 16 min"
+    },
+    "t": 1369358329000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369359288000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369359505000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369359526000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369359872000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369359884000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369360088000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369360372000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369360765000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369360786000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369361045000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369361066000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369361320000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369361337000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369361586000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369361603000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369361787000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369361862000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369362202000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369362216000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369362434000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369362449000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369362694000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369362709000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369362854000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369362867000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369362958000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369362975000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369363739000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369363756000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369364013000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369364031000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369364237000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369364252000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369364389000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369364510000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369364635000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369364650000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369364856000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369364868000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369365041000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369365056000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369374974000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369375009000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_152",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369375009000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369375141000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369375342000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_153",
+      "kind": "data_gap",
+      "message": "Core channel gap, 12 min"
+    },
+    "t": 1369375342000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369376037000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369377203000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369377693000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369378285000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_154",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369378285000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369378426000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369378477000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369378624000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_155",
+      "kind": "data_gap",
+      "message": "Core channel gap, 11 min"
+    },
+    "t": 1369378624000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369379313000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369381254000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369381277000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369382705000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369382719000,
+    "type": "state"
+  },
+  {
+    "state": "out_of_hole",
+    "t": 1369384594000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369387786000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369388403000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369389010000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369389064000,
+    "type": "state"
+  },
+  {
+    "state": "out_of_hole",
+    "t": 1369389239000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369393108000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_156",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369393108000,
+    "type": "alert"
+  },
+  {
+    "state": "out_of_hole",
+    "t": 1369393282000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369393629000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_157",
+      "kind": "data_gap",
+      "message": "Core channel gap, 1 min"
+    },
+    "t": 1369393629000,
+    "type": "alert"
+  },
+  {
+    "state": "out_of_hole",
+    "t": 1369393680000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369394385000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_158",
+      "kind": "data_gap",
+      "message": "Core channel gap, 24 min"
+    },
+    "t": 1369394385000,
+    "type": "alert"
+  },
+  {
+    "state": "out_of_hole",
+    "t": 1369395797000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369400080000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_159",
+      "kind": "data_gap",
+      "message": "Core channel gap, 0 min"
+    },
+    "t": 1369400080000,
+    "type": "alert"
+  },
+  {
+    "state": "out_of_hole",
+    "t": 1369400098000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369401707000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_160",
+      "kind": "data_gap",
+      "message": "Core channel gap, 1 min"
+    },
+    "t": 1369401707000,
+    "type": "alert"
+  },
+  {
+    "state": "out_of_hole",
+    "t": 1369401750000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369402035000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_161",
+      "kind": "data_gap",
+      "message": "Core channel gap, 2 min"
+    },
+    "t": 1369402035000,
+    "type": "alert"
+  },
+  {
+    "state": "out_of_hole",
+    "t": 1369402186000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369402438000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_162",
+      "kind": "data_gap",
+      "message": "Core channel gap, 1 min"
+    },
+    "t": 1369402438000,
+    "type": "alert"
+  },
+  {
+    "state": "out_of_hole",
+    "t": 1369402517000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369402729000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_163",
+      "kind": "data_gap",
+      "message": "Core channel gap, 1 min"
+    },
+    "t": 1369402729000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369402800000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369403038000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369403117000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369403329000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369403400000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369403755000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369403987000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369405438000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369408069000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369415428000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369415439000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369417163000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369417175000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369417376000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369417399000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369417625000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369417638000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369417880000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369417892000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369418263000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369418275000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369418479000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369418496000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369418851000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369418914000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369419188000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369419992000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369420072000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369420101000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369420226000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_164",
+      "kind": "data_gap",
+      "message": "Core channel gap, 14 min"
+    },
+    "t": 1369420226000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369421087000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369421388000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369421403000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369421791000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369421806000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369423427000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369423439000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369423541000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369423562000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369424082000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_165",
+      "kind": "data_gap",
+      "message": "Core channel gap, 7 min"
+    },
+    "t": 1369424082000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369424514000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369424530000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_166",
+      "kind": "data_gap",
+      "message": "Core channel gap, 11 min"
+    },
+    "t": 1369424530000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369425219000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369427218000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369427235000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1369428176000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_42",
+      "kind": "slow_connection",
+      "message": "Connection took 4.3 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1369428176000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369428437000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369428452000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369429274000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369429562000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1369429702000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369429749000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_167",
+      "kind": "data_gap",
+      "message": "Core channel gap, 11 min"
+    },
+    "t": 1369429749000,
+    "type": "alert"
+  },
+  {
+    "state": "connection",
+    "t": 1369430438000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_43",
+      "kind": "slow_connection",
+      "message": "Connection took 3.0 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1369430438000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369430617000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_168",
+      "kind": "data_gap",
+      "message": "Core channel gap, 11 min"
+    },
+    "t": 1369430617000,
+    "type": "alert"
+  },
+  {
+    "state": "connection",
+    "t": 1369431304000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_44",
+      "kind": "slow_connection",
+      "message": "Connection took 3.4 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1369431304000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369431507000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369431945000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369432238000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_169",
+      "kind": "data_gap",
+      "message": "Core channel gap, 0 min"
+    },
+    "t": 1369432238000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369432256000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_49",
+      "kind": "flat_time",
+      "message": "Flat time 60 min (circulating)"
+    },
+    "t": 1369432256000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369435875000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_50",
+      "kind": "flat_time",
+      "message": "Flat time 19 min (unknown)"
+    },
+    "t": 1369435875000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369437021000,
+    "type": "state"
+  },
+  {
+    "state": "reaming",
+    "t": 1369437753000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369437774000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_51",
+      "kind": "flat_time",
+      "message": "Flat time 48 min (circulating)"
+    },
+    "t": 1369437774000,
+    "type": "alert"
+  },
+  {
+    "state": "reaming",
+    "t": 1369440684000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369440884000,
+    "type": "state"
+  },
+  {
+    "state": "reaming",
+    "t": 1369441107000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369441274000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369441344000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_52",
+      "kind": "flat_time",
+      "message": "Flat time 26 min (unknown)"
+    },
+    "t": 1369441344000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369442879000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_53",
+      "kind": "flat_time",
+      "message": "Flat time 18 min (circulating)"
+    },
+    "t": 1369442879000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369443937000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369444105000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369444136000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_54",
+      "kind": "flat_time",
+      "message": "Flat time 52 min (unknown)"
+    },
+    "t": 1369444136000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369447269000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369447448000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369447535000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_55",
+      "kind": "flat_time",
+      "message": "Flat time 16 min (circulating)"
+    },
+    "t": 1369447535000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369448490000,
+    "type": "state"
+  },
+  {
+    "state": "connection",
+    "t": 1369448571000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_slowconn_45",
+      "kind": "slow_connection",
+      "message": "Connection took 1.9 min, > 1.5x composite best (0.7 min)"
+    },
+    "t": 1369448571000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369448683000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_170",
+      "kind": "data_gap",
+      "message": "Core channel gap, 15 min"
+    },
+    "t": 1369448683000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369449568000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369450046000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369450069000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369450500000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369450520000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369451222000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369451237000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369451656000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369451674000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369452527000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369452548000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369452798000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369452813000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369453529000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369453541000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369454033000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369454056000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369454558000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369454721000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369454751000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369454846000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369454877000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_56",
+      "kind": "flat_time",
+      "message": "Flat time 25 min (circulating)"
+    },
+    "t": 1369454877000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369456361000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369456389000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369456548000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_171",
+      "kind": "data_gap",
+      "message": "Core channel gap, 12 min"
+    },
+    "t": 1369456548000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369457243000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369457829000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369457846000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369458015000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369458030000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369458440000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369458455000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369458779000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369458794000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369458992000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369459015000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369459532000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369459544000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369459678000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369459914000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_57",
+      "kind": "flat_time",
+      "message": "Flat time 76 min (circulating)"
+    },
+    "t": 1369459914000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369464481000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_58",
+      "kind": "flat_time",
+      "message": "Flat time 16 min (unknown)"
+    },
+    "t": 1369464481000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369465417000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369465446000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_172",
+      "kind": "data_gap",
+      "message": "Core channel gap, 12 min"
+    },
+    "t": 1369465446000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369466147000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369466362000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369466374000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369467087000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369467099000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369468126000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369468149000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369468316000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369468331000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369468490000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369468808000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369469366000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369469384000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369469699000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_59",
+      "kind": "flat_time",
+      "message": "Flat time 43 min (unknown)"
+    },
+    "t": 1369469699000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369472299000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369472345000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369472383000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369472443000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369472506000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369473111000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369473356000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369473464000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369473510000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369473523000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369473572000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369473671000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369473706000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369474433000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369474445000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369474463000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369474806000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369474828000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369475100000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369475118000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369475314000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369475346000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369475963000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369475981000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369476064000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369476115000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369476799000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369477092000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369477215000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369477824000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369479001000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_173",
+      "kind": "data_gap",
+      "message": "Core channel gap, 11 min"
+    },
+    "t": 1369479001000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369479688000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369500422000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369500511000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369501079000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369501208000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369501507000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_174",
+      "kind": "data_gap",
+      "message": "Core channel gap, 3 min"
+    },
+    "t": 1369501507000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369501659000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369501780000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369501811000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369501846000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_175",
+      "kind": "data_gap",
+      "message": "Core channel gap, 9 min"
+    },
+    "t": 1369501846000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369502362000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369502571000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369502595000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369502650000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_176",
+      "kind": "data_gap",
+      "message": "Core channel gap, 11 min"
+    },
+    "t": 1369502650000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369503339000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369503540000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369503558000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369503991000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369504583000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369504638000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369504880000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369504918000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369505056000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369505072000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369505110000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369505128000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369505154000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369505222000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369505493000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369505726000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369505754000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369505892000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_60",
+      "kind": "flat_time",
+      "message": "Flat time 20 min (unknown)"
+    },
+    "t": 1369505892000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369507116000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369507137000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369511277000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369511289000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369511377000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369511728000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_61",
+      "kind": "flat_time",
+      "message": "Flat time 62 min (circulating)"
+    },
+    "t": 1369511728000,
+    "type": "alert"
+  },
+  {
+    "state": "reaming",
+    "t": 1369515425000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369515619000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_62",
+      "kind": "flat_time",
+      "message": "Flat time 40 min (circulating)"
+    },
+    "t": 1369515619000,
+    "type": "alert"
+  },
+  {
+    "state": "reaming",
+    "t": 1369518026000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369518274000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_63",
+      "kind": "flat_time",
+      "message": "Flat time 142 min (circulating)"
+    },
+    "t": 1369518274000,
+    "type": "alert"
+  },
+  {
+    "state": "reaming",
+    "t": 1369526776000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369526951000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_64",
+      "kind": "flat_time",
+      "message": "Flat time 41 min (circulating)"
+    },
+    "t": 1369526951000,
+    "type": "alert"
+  },
+  {
+    "state": "reaming",
+    "t": 1369529383000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369529527000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_65",
+      "kind": "flat_time",
+      "message": "Flat time 39 min (circulating)"
+    },
+    "t": 1369529527000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369531880000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369532061000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_177",
+      "kind": "data_gap",
+      "message": "Core channel gap, 11 min"
+    },
+    "t": 1369532061000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369532750000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369533036000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369533109000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369533433000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369533453000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369534038000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369534915000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369535049000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_178",
+      "kind": "data_gap",
+      "message": "Core channel gap, 11 min"
+    },
+    "t": 1369535049000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369535739000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369538050000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369538502000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369539106000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369539154000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_66",
+      "kind": "flat_time",
+      "message": "Flat time 22 min (circulating)"
+    },
+    "t": 1369539154000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369540445000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_67",
+      "kind": "flat_time",
+      "message": "Flat time 26 min (unknown)"
+    },
+    "t": 1369540445000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369542021000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369542261000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369542276000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369542930000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369542998000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369543059000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_179",
+      "kind": "data_gap",
+      "message": "Core channel gap, 1 min"
+    },
+    "t": 1369543059000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369543127000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_68",
+      "kind": "flat_time",
+      "message": "Flat time 126 min (circulating)"
+    },
+    "t": 1369543127000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369550681000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369551547000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369551823000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_69",
+      "kind": "flat_time",
+      "message": "Flat time 40 min (unknown)"
+    },
+    "t": 1369551823000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369554229000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369554851000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369555041000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369555108000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369555145000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369555274000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_70",
+      "kind": "flat_time",
+      "message": "Flat time 45 min (unknown)"
+    },
+    "t": 1369555274000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369558001000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369558650000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369559533000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369559714000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369559726000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369560122000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369560188000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369560307000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369560330000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369560666000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369560795000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369561097000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369561109000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369561679000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369561700000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369561898000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369561915000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369562189000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369562890000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369563121000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_180",
+      "kind": "data_gap",
+      "message": "Core channel gap, 1 min"
+    },
+    "t": 1369563121000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369563200000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369563340000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369563486000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_71",
+      "kind": "flat_time",
+      "message": "Flat time 95 min (circulating)"
+    },
+    "t": 1369563486000,
+    "type": "alert"
+  },
+  {
+    "state": "unknown",
+    "t": 1369569173000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_flat_72",
+      "kind": "flat_time",
+      "message": "Flat time 30 min (unknown)"
+    },
+    "t": 1369569173000,
+    "type": "alert"
+  },
+  {
+    "state": "circulating",
+    "t": 1369570998000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369571463000,
+    "type": "state"
+  },
+  {
+    "state": "circulating",
+    "t": 1369571522000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369571827000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369572056000,
+    "type": "state"
+  },
+  {
+    "alert": {
+      "id": "alert_gap_181",
+      "kind": "data_gap",
+      "message": "Core channel gap, 16 min"
+    },
+    "t": 1369572056000,
+    "type": "alert"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369572996000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369573047000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369573135000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369573635000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369573676000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369575164000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369575176000,
+    "type": "state"
+  },
+  {
+    "state": "unknown",
+    "t": 1369575293000,
+    "type": "state"
+  },
+  {
+    "state": "trip_out",
+    "t": 1369575442000,
+    "type": "state"
+  },
+  {
+    "state": "trip_in",
+    "t": 1369585458000,
+    "type": "state"
+  }
+]

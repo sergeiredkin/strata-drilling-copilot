@@ -1,7 +1,7 @@
 {
   "ev_70185fe878": {
-    "generated_at": "2026-10-14T06:14:58.154618+00:00",
-    "git_commit": "de29c139e7991252bd78461b7da10b4b1b1fb022",
+    "generated_at": "2026-10-14T06:22:40.926900+00:00",
+    "git_commit": "2473f9f4473b57ba8d43f6b27c7b2c1c6b25b73c",
     "id": "ev_70185fe878",
     "params": {
       "kpi": "conn_s2s",
@@ -19,8 +19,8 @@
     "value": 2.3583333333333334
   },
   "ev_7042cac622": {
-    "generated_at": "2026-10-14T06:14:58.201708+00:00",
-    "git_commit": "de29c139e7991252bd78461b7da10b4b1b1fb022",
+    "generated_at": "2026-10-14T06:22:40.969888+00:00",
+    "git_commit": "2473f9f4473b57ba8d43f6b27c7b2c1c6b25b73c",
     "id": "ev_7042cac622",
     "params": {
       "category": "unreported_reaming",

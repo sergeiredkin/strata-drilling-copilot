@@ -23,8 +23,8 @@
     "value": 5.155833333333333
   },
   "ev_9e67c596c4": {
-    "generated_at": "2026-10-14T06:14:59.025116+00:00",
-    "git_commit": "de29c139e7991252bd78461b7da10b4b1b1fb022",
+    "generated_at": "2026-10-14T06:22:41.786845+00:00",
+    "git_commit": "2473f9f4473b57ba8d43f6b27c7b2c1c6b25b73c",
     "id": "ev_9e67c596c4",
     "params": {
       "issue": "issue_ddr_15_9-F-11_A_27_tight_hole"
@@ -40,8 +40,8 @@
     "value": 30.0
   },
   "ev_9ea9aca716": {
-    "generated_at": "2026-10-14T06:14:58.214373+00:00",
-    "git_commit": "de29c139e7991252bd78461b7da10b4b1b1fb022",
+    "generated_at": "2026-10-14T06:22:40.982936+00:00",
+    "git_commit": "2473f9f4473b57ba8d43f6b27c7b2c1c6b25b73c",
     "id": "ev_9ea9aca716",
     "params": {
       "code": "DRILL",

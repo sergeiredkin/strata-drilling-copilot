@@ -23,8 +23,8 @@
     "value": 1.0558333333333334
   },
   "ev_71a3755685": {
-    "generated_at": "2026-10-14T06:14:58.154748+00:00",
-    "git_commit": "de29c139e7991252bd78461b7da10b4b1b1fb022",
+    "generated_at": "2026-10-14T06:22:40.926994+00:00",
+    "git_commit": "2473f9f4473b57ba8d43f6b27c7b2c1c6b25b73c",
     "id": "ev_71a3755685",
     "params": {
       "kpi": "conn_w2w",
@@ -42,8 +42,8 @@
     "value": 4063.9333333333334
   },
   "ev_71fb77f5ab": {
-    "generated_at": "2026-10-14T06:14:58.214813+00:00",
-    "git_commit": "de29c139e7991252bd78461b7da10b4b1b1fb022",
+    "generated_at": "2026-10-14T06:22:40.983280+00:00",
+    "git_commit": "2473f9f4473b57ba8d43f6b27c7b2c1c6b25b73c",
     "id": "ev_71fb77f5ab",
     "params": {
       "code": "REAM",
