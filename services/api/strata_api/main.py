@@ -8,7 +8,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .deps import get_settings
-from .routes import copilot, evidence, formation_and_issues, meta, reconciliation, wells
+from .routes import copilot, evidence, formation_and_issues, meta, reconciliation, replay, wells
 
 app = FastAPI(title="STRATA API", version="0.2.0")
 
@@ -26,6 +26,7 @@ app.include_router(evidence.router)
 app.include_router(meta.router)
 app.include_router(copilot.router)
 app.include_router(formation_and_issues.router)
+app.include_router(replay.router)
 
 
 @app.get("/healthz")

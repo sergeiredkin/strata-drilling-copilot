@@ -32,6 +32,7 @@ import type {
 import type { DataSource, IssueQuery } from './DataSource'
 import { StrataDataError } from './DataSource'
 import { decodeStrsBlock, type SeriesChunk } from './seriesDecoder'
+import { bridgeWebSocket, replayWsUrl } from './wsReplay'
 
 export class HttpSource implements DataSource {
   constructor(private readonly baseUrl: string) {}
@@ -161,10 +162,9 @@ export class HttpSource implements DataSource {
     }
   }
 
-  // eslint-disable-next-line require-yield
-  async *replay(_id: WellId, _speed: 1 | 10 | 60, _fromT: number): AsyncIterable<ReplayEvent> {
-    // P1 (T13.2) — live replay is a WebSocket (`WS /replay/{well}`), not plain fetch.
-    return
+  async *replay(id: WellId, speed: 1 | 10 | 60, fromT: number): AsyncIterable<ReplayEvent> {
+    const socket = new WebSocket(replayWsUrl(this.baseUrl, id, speed, fromT))
+    yield* bridgeWebSocket(socket)
   }
 
   async evalReport(): Promise<EvalReport> {

@@ -47,6 +47,23 @@ describe('StaticSource against the real fixtures', () => {
     expect(chunk.bucketS).toBe(1)
   })
 
+  it('replay() streams real sample/state/alert events from the beginning (T13.2)', async () => {
+    const dt = await ds.depthTime(RICH_WELL)
+    const fromT = dt.t[0] as number
+    const events = []
+    for await (const e of ds.replay(RICH_WELL, 60, fromT)) {
+      events.push(e)
+      if (events.length >= 20) break // the real well has thousands of events; this is a smoke test
+    }
+    expect(events.length).toBe(20)
+    expect(events.every((e) => e.t >= fromT)).toBe(true)
+    expect(new Set(events.map((e) => e.type)).size).toBeGreaterThan(0)
+    const sample = events.find((e) => e.type === 'sample')
+    if (sample?.type === 'sample') {
+      expect(Object.keys(sample.values).length).toBeGreaterThan(0)
+    }
+  })
+
   it('rigState() filters to the requested window', async () => {
     const all = await ds.rigState(RICH_WELL, 0, Number.MAX_SAFE_INTEGER)
     const first = all[0]

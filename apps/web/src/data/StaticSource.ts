@@ -47,9 +47,16 @@ import {
 import type { DataSource, IssueQuery } from './DataSource'
 import { StrataDataError } from './DataSource'
 import { EvidenceIndex } from './evidenceIndex'
+import { mergeReplayEvents, playReplay } from './replayPlayer'
 import { decodeStrsBlock, type SeriesChunk } from './seriesDecoder'
 import { isFastMode, playSession } from './sessionPlayer'
 import { z } from 'zod'
+
+// T13.2: the fixed channel set replay streams as "sample" events — the same drilling-parameter
+// tracks S2's workspace shows, not every channel a well happens to have exported.
+const REPLAY_CHANNELS: ChannelId[] = [
+  'HKLD', 'BPOS', 'WOB', 'RPM', 'TORQ', 'SPP', 'FLOWIN', 'BITDEPTH', 'HOLEDEPTH',
+]
 
 const shouldValidate = (): boolean => Boolean(import.meta.env.DEV)
 
@@ -251,10 +258,33 @@ export class StaticSource implements DataSource {
     return res.text()
   }
 
-  // eslint-disable-next-line require-yield
-  async *replay(_id: WellId, _speed: 1 | 10 | 60, _fromT: number): AsyncIterable<ReplayEvent> {
-    // P1 (T13.2) — static replay streams L0 chunks + replay_events.json with a timer.
-    return
+  /** T13.2: merges real `state`/`alert` events (`wells/{id}/replay_events.json`) with `sample`
+   * events decoded lazily from L0 series chunks (one chunk's worth of every replay channel at a
+   * time — never the whole well's samples held in memory at once), then streams the merged,
+   * time-ordered result through `playReplay`'s real-time-scaled delay. */
+  async *replay(id: WellId, speed: 1 | 10 | 60, fromT: number): AsyncIterable<ReplayEvent> {
+    const index = await this.seriesIndex(id)
+    const channels = REPLAY_CHANNELS.filter((ch) => index.channels[ch])
+
+    let stateAlerts: ReplayEvent[]
+    try {
+      stateAlerts = await this.fetchJson<ReplayEvent[]>(`wells/${id}/replay_events.json`)
+    } catch {
+      stateAlerts = [] // no replay export for this well yet -- an honest empty stream, not an error
+    }
+    stateAlerts = stateAlerts.filter((e) => e.t >= fromT).sort((a, b) => a.t - b.t)
+
+    const driverChannel = channels[0]
+    const chunkMetas = driverChannel
+      ? (index.channels[driverChannel]?.levels.find((l) => l.level === 0)?.chunks ?? [])
+          .filter((c) => c.t1 > fromT)
+          .slice()
+          .sort((a, b) => a.t0 - b.t0)
+      : []
+
+    const fetchChunk = (ch: ChannelId, i: number) => this.seriesChunk(id, ch, 0, i)
+    const merged = mergeReplayEvents(index, channels, chunkMetas, stateAlerts, fromT, fetchChunk)
+    yield* playReplay(merged, { speed, fast: isFastMode() })
   }
 
   async evalReport(): Promise<EvalReport> {
