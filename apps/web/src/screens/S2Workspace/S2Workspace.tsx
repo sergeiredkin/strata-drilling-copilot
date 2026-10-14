@@ -16,6 +16,10 @@ import { ConfidenceBadge } from '../../trust/ConfidenceBadge'
 import { InsufficientData } from '../../trust/InsufficientData'
 import { MockBadge } from '../../trust/MockBadge'
 import { MismatchPopover } from './MismatchPopover'
+import { ReplayControls } from './ReplayControls'
+import { ReplayToastList } from './ReplayToasts'
+import { useReplayRunner } from './useReplayRunner'
+import { useReplayToasts } from './useReplayToasts'
 
 const TRACKS: TrackDef[] = [
   { channel: 'HKLD', name: 'Hookload' },
@@ -93,6 +97,13 @@ export function S2Workspace() {
   function handleRangeSettled(next: [number, number]) {
     setRange(next)
     setTimeRange(next)
+  }
+
+  const { toasts, push: pushToast, dismiss: dismissToast } = useReplayToasts()
+  const replayRunner = useReplayRunner(wellId, fullRange, sync, handleRangeSettled, pushToast)
+
+  function playReplay() {
+    replayRunner.start(rangeRef.current[0])
   }
 
   function zoom(factor: number) {
@@ -187,18 +198,14 @@ export function S2Workspace() {
             >
               Fit connection
             </button>
-            <button
-              type="button"
-              disabled
-              className="min-h-9 rounded border px-3 text-dense opacity-50"
-              style={{ borderColor: 'var(--line)', background: 'var(--panel)' }}
-              title="Replay arrives in T13 (P1)"
-            >
-              {'▶'} Replay · P1
-            </button>
+            <div className="relative">
+              <ReplayControls onPlay={playReplay} onPause={replayRunner.stop} />
+            </div>
             <MockBadge />
           </div>
         </div>
+
+        <ReplayToastList toasts={toasts} onDismiss={dismissToast} />
 
         <Overview wellId={wellId} fullRange={fullRange} sync={sync} onRangeSettled={handleRangeSettled} />
 
