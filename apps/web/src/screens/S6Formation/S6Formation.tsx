@@ -6,7 +6,7 @@
 // T11.1/T11.2). The events column and precursor panel are left honestly empty — DDR event
 // extraction (T12.x) hasn't been built, so there's nothing real to show there yet, and offset
 // compare / depth<->time linking (T11.4/T11.5) are separate follow-on tasks, not stubbed here.
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import type { FormationPrediction, FormationReport } from '../../contracts/types'
 import { useDepthSeries, useFormationPred, useFormations, useModelCard, useWells } from '../../data/hooks'
@@ -15,6 +15,7 @@ import { InsufficientData } from '../../trust/InsufficientData'
 import { MockBadge } from '../../trust/MockBadge'
 import { Num } from '../../trust/Num'
 import { buildCurvePath, buildDepthTicks, colorForFormation, finiteRange, mdToY } from './depthScale'
+import { OffsetCompare } from './OffsetCompare'
 
 const TRACK_HEIGHT = 720
 const CURVES: { key: string; label: string }[] = [
@@ -242,6 +243,7 @@ function PerFormationTable({ stats }: { stats: FormationReport['stats'] }) {
 
 export function S6Formation() {
   const { id: wellId } = useParams<{ id: string }>()
+  const [viewMode, setViewMode] = useState<'single' | 'offset'>('single')
   const wells = useWells()
   const wellSummary = wells.data?.wells.find((w) => w.id === wellId)
   const formations = useFormations(wellId)
@@ -302,18 +304,19 @@ export function S6Formation() {
         <div className="ml-auto flex flex-wrap items-center gap-1.5">
           <button
             type="button"
+            onClick={() => setViewMode('single')}
+            aria-pressed={viewMode === 'single'}
             className="min-h-9 rounded border px-3.5 text-dense"
-            style={{ borderColor: 'var(--accent)', background: 'var(--panel)' }}
-            aria-pressed
+            style={{ borderColor: viewMode === 'single' ? 'var(--accent)' : 'var(--line)', background: 'var(--panel)' }}
           >
             Single well
           </button>
           <button
             type="button"
-            disabled
-            className="min-h-9 rounded border px-3.5 text-dense opacity-50"
-            style={{ borderColor: 'var(--line)', background: 'var(--panel)' }}
-            title="Offset compare arrives in T11.4 (P1)"
+            onClick={() => setViewMode('offset')}
+            aria-pressed={viewMode === 'offset'}
+            className="min-h-9 rounded border px-3.5 text-dense"
+            style={{ borderColor: viewMode === 'offset' ? 'var(--accent)' : 'var(--line)', background: 'var(--panel)' }}
           >
             Offset compare
           </button>
@@ -330,6 +333,9 @@ export function S6Formation() {
         </div>
       </div>
 
+      {viewMode === 'offset' && <OffsetCompare wells={wells.data?.wells ?? []} initialWellId={wellId} />}
+
+      {viewMode === 'single' && (
       <div className="flex flex-wrap items-start gap-4">
         <section
           className="min-w-0 flex-[999_1_720px] overflow-x-auto rounded border"
@@ -440,8 +446,9 @@ export function S6Formation() {
           </section>
         </aside>
       </div>
+      )}
 
-      <PerFormationTable stats={formations.data.stats} />
+      {viewMode === 'single' && <PerFormationTable stats={formations.data.stats} />}
     </main>
   )
 }

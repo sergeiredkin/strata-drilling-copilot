@@ -162,6 +162,20 @@ export function useDepthSeries(wellId: WellId | undefined) {
   })
 }
 
+/** T11.4 offset compare: fetches `formations` for every candidate well at once so the picker
+ * can offer only wells that actually have a formations export, without hardcoding which wells
+ * those are (today: the 3 detailed wells, but this generalises as more get real/mock data). */
+export function useFormationsForWells(wellIds: WellId[]) {
+  const ds = useDataSource()
+  return useQueries({
+    queries: wellIds.map((id) => ({
+      queryKey: ['formations', id],
+      queryFn: () => ds.formations(id),
+      retry: false,
+    })),
+  })
+}
+
 /** Picks the right LOD level for [t0, t1) at `plotWidthPx`, fetches every chunk of every
  * requested channel that overlaps the window, and concatenates + decodes them (NaN -> null). */
 export function useSeriesWindow(

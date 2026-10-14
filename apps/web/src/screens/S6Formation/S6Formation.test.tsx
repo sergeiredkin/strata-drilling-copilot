@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { render, screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { beforeAll, describe, expect, it } from 'vitest'
 import { axe } from 'vitest-axe'
@@ -55,6 +56,19 @@ describe('S6Formation', () => {
   it('shows insufficient data for an unknown well id', async () => {
     renderAt('/well/not-a-real-well/formation')
     await waitFor(() => expect(screen.getAllByText(/No well named/).length).toBeGreaterThan(0))
+  })
+
+  it('switching to "Offset compare" shows the picker and hides the single-well tracks', async () => {
+    const user = userEvent.setup()
+    renderAt('/well/15_9-F-11_A/formation')
+    await waitFor(() => expect(screen.getByText('Per-formation summary')).toBeInTheDocument())
+
+    await user.click(screen.getByRole('button', { name: 'Offset compare' }))
+    await waitFor(() => expect(screen.getByText('Offset compare · up to 4 wells')).toBeInTheDocument())
+    expect(screen.queryByText('Per-formation summary')).not.toBeInTheDocument()
+
+    await user.click(screen.getByRole('button', { name: 'Single well' }))
+    await waitFor(() => expect(screen.getByText('Per-formation summary')).toBeInTheDocument())
   })
 
   it('has no axe violations', async () => {
