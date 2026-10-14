@@ -24,6 +24,20 @@ function renderAt(path: string) {
   )
 }
 
+function renderWithWorkspaceRoute(path: string) {
+  const client = new QueryClient({ defaultOptions: { queries: { retry: false } } })
+  return render(
+    <QueryClientProvider client={client}>
+      <MemoryRouter initialEntries={[path]}>
+        <Routes>
+          <Route path="well/:id/formation" element={<S6Formation />} />
+          <Route path="well/:id/workspace" element={<div data-testid="workspace-landed" />} />
+        </Routes>
+      </MemoryRouter>
+    </QueryClientProvider>,
+  )
+}
+
 describe('S6Formation', () => {
   it('renders the real wells tops, curve tracks and per-formation table', async () => {
     renderAt('/well/15_9-F-11_A/formation')
@@ -69,6 +83,17 @@ describe('S6Formation', () => {
 
     await user.click(screen.getByRole('button', { name: 'Single well' }))
     await waitFor(() => expect(screen.getByText('Per-formation summary')).toBeInTheDocument())
+  })
+
+  it('clicking a picked top opens the corresponding window in Workspace (T11.5)', async () => {
+    const user = userEvent.setup()
+    renderWithWorkspaceRoute('/well/15_9-F-11_A/formation')
+    await waitFor(() => expect(screen.getByText('Per-formation summary')).toBeInTheDocument())
+
+    const topButtons = screen.getAllByTitle(/open this depth window in Workspace/)
+    expect(topButtons.length).toBeGreaterThan(0)
+    await user.click(topButtons[0] as HTMLElement)
+    await waitFor(() => expect(screen.getByTestId('workspace-landed')).toBeInTheDocument())
   })
 
   it('has no axe violations', async () => {

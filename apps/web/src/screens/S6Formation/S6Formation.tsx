@@ -7,14 +7,22 @@
 // extraction (T12.x) hasn't been built, so there's nothing real to show there yet, and offset
 // compare / depth<->time linking (T11.4/T11.5) are separate follow-on tasks, not stubbed here.
 import { useMemo, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import type { FormationPrediction, FormationReport } from '../../contracts/types'
-import { useDepthSeries, useFormationPred, useFormations, useModelCard, useWells } from '../../data/hooks'
+import {
+  useDepthSeries,
+  useDepthTime,
+  useFormationPred,
+  useFormations,
+  useModelCard,
+  useWells,
+} from '../../data/hooks'
 import { ConfidenceBadge } from '../../trust/ConfidenceBadge'
 import { InsufficientData } from '../../trust/InsufficientData'
 import { MockBadge } from '../../trust/MockBadge'
 import { Num } from '../../trust/Num'
 import { buildCurvePath, buildDepthTicks, colorForFormation, finiteRange, mdToY } from './depthScale'
+import { mdIntervalToTimeWindow } from './depthTimeLink'
 import { OffsetCompare } from './OffsetCompare'
 
 const TRACK_HEIGHT = 720
@@ -31,10 +39,12 @@ function TopsTrack({
   tops,
   mdMin,
   mdMax,
+  onSelect,
 }: {
   tops: FormationReport['tops']
   mdMin: number
   mdMax: number
+  onSelect?: (mdTop: number, mdBase: number) => void
 }) {
   return (
     <div style={{ position: 'relative', height: TRACK_HEIGHT }}>
@@ -42,15 +52,18 @@ function TopsTrack({
         const y0 = mdToY(top.md_top, mdMin, mdMax, TRACK_HEIGHT)
         const y1 = mdToY(top.md_base, mdMin, mdMax, TRACK_HEIGHT)
         return (
-          <div
+          <button
             key={`${top.name}-${top.md_top}`}
-            className="absolute right-0 left-0 box-border overflow-hidden px-1.5 py-1"
-            style={{ top: y0, height: Math.max(0, y1 - y0), background: colorForFormation(top.name) }}
+            type="button"
+            onClick={() => onSelect?.(top.md_top, top.md_base)}
+            title={`${top.name} — open this depth window in Workspace`}
+            className="absolute right-0 left-0 box-border overflow-hidden border-0 px-1.5 py-1 text-left"
+            style={{ top: y0, height: Math.max(0, y1 - y0), background: colorForFormation(top.name), cursor: onSelect ? 'pointer' : 'default' }}
           >
             <span className="text-[11.5px] font-semibold" style={{ color: '#0A0E13' }}>
               {top.name}
             </span>
-          </div>
+          </button>
         )
       })}
     </div>
@@ -61,10 +74,12 @@ function PredictedTrack({
   intervals,
   mdMin,
   mdMax,
+  onSelect,
 }: {
   intervals: FormationPrediction['intervals']
   mdMin: number
   mdMax: number
+  onSelect?: (mdTop: number, mdBase: number) => void
 }) {
   return (
     <div style={{ position: 'relative', height: TRACK_HEIGHT }}>
@@ -75,16 +90,18 @@ function PredictedTrack({
         const bg = iv.abstained ? ABSTAIN_PATTERN : disagrees ? 'var(--danger)' : colorForFormation(iv.label ?? '')
         const fg = iv.abstained ? 'var(--text)' : '#0A0E13'
         const title = iv.abstained
-          ? `Abstained (p=${iv.p.toFixed(2)} below threshold)`
+          ? `Abstained (p=${iv.p.toFixed(2)} below threshold) — open this depth window in Workspace`
           : disagrees
-            ? `Disagrees with picked top (p=${iv.p.toFixed(2)})`
-            : `${iv.label} (p=${iv.p.toFixed(2)})`
+            ? `Disagrees with picked top (p=${iv.p.toFixed(2)}) — open this depth window in Workspace`
+            : `${iv.label} (p=${iv.p.toFixed(2)}) — open this depth window in Workspace`
         return (
-          <div
+          <button
             key={`${iv.md_top}-${iv.md_base}`}
+            type="button"
+            onClick={() => onSelect?.(iv.md_top, iv.md_base)}
             title={title}
-            className="absolute right-0 left-0 box-border flex items-center justify-between overflow-hidden px-1.5 py-1"
-            style={{ top: y0, height: Math.max(0, y1 - y0), background: bg }}
+            className="absolute right-0 left-0 box-border flex items-center justify-between overflow-hidden border-0 px-1.5 py-1 text-left"
+            style={{ top: y0, height: Math.max(0, y1 - y0), background: bg, cursor: onSelect ? 'pointer' : 'default' }}
           >
             <span className="text-[11px] font-semibold" style={{ color: fg }}>
               {iv.abstained ? 'abstain' : iv.label}
@@ -94,7 +111,7 @@ function PredictedTrack({
                 {iv.p.toFixed(2)}
               </span>
             )}
-          </div>
+          </button>
         )
       })}
     </div>
@@ -243,13 +260,22 @@ function PerFormationTable({ stats }: { stats: FormationReport['stats'] }) {
 
 export function S6Formation() {
   const { id: wellId } = useParams<{ id: string }>()
+  const navigate = useNavigate()
   const [viewMode, setViewMode] = useState<'single' | 'offset'>('single')
   const wells = useWells()
   const wellSummary = wells.data?.wells.find((w) => w.id === wellId)
   const formations = useFormations(wellId)
   const formationPred = useFormationPred(wellId)
   const depthSeries = useDepthSeries(wellId)
+  const depthTime = useDepthTime(wellId)
   const modelCard = useModelCard('formation')
+
+  function openIntervalInWorkspace(mdTop: number, mdBase: number) {
+    if (!depthTime.data || !wellId) return
+    const window = mdIntervalToTimeWindow(depthTime.data, mdTop, mdBase)
+    if (!window) return
+    navigate(`/well/${wellId}/workspace?t0=${window.t0}&t1=${window.t1}`)
+  }
 
   const md = depthSeries.data?.md ?? []
   const mdMin = md[0] ?? 0
@@ -367,7 +393,7 @@ export function S6Formation() {
               <div className="flex h-[46px] flex-col justify-end gap-0.5 border-b px-2 py-1.5" style={{ borderColor: 'var(--line)' }}>
                 <span className="font-condensed text-label uppercase text-text-3">Tops · picked</span>
               </div>
-              <TopsTrack tops={formations.data.tops} mdMin={mdMin} mdMax={mdMax} />
+              <TopsTrack tops={formations.data.tops} mdMin={mdMin} mdMax={mdMax} onSelect={openIntervalInWorkspace} />
             </div>
 
             <div className="flex min-w-0 flex-col" style={{ borderLeft: '1px solid var(--line-soft)' }}>
@@ -378,7 +404,12 @@ export function S6Formation() {
                 <span className="font-mono text-[11px] text-text-3">LOWO model</span>
               </div>
               {formationPred.data ? (
-                <PredictedTrack intervals={formationPred.data.intervals} mdMin={mdMin} mdMax={mdMax} />
+                <PredictedTrack
+                  intervals={formationPred.data.intervals}
+                  mdMin={mdMin}
+                  mdMax={mdMax}
+                  onSelect={openIntervalInWorkspace}
+                />
               ) : (
                 <div className="p-2 text-label text-text-2">No trained prediction for this well yet.</div>
               )}
