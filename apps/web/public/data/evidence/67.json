@@ -1,7 +1,7 @@
 {
   "ev_6718944098": {
-    "generated_at": "2026-10-14T05:52:15.026693+00:00",
-    "git_commit": "dbe962d6c3c3f70305a0271ec89da9572084e03c",
+    "generated_at": "2026-10-14T06:00:43.751804+00:00",
+    "git_commit": "b811a65eb9097f94eac7cafc2c914c447a6eb3b0",
     "id": "ev_6718944098",
     "params": {
       "category": "flat_time",
@@ -42,8 +42,8 @@
     "value": 3.641666666666666
   },
   "ev_678d46655d": {
-    "generated_at": "2026-10-14T05:52:14.982698+00:00",
-    "git_commit": "dbe962d6c3c3f70305a0271ec89da9572084e03c",
+    "generated_at": "2026-10-14T06:00:43.700217+00:00",
+    "git_commit": "b811a65eb9097f94eac7cafc2c914c447a6eb3b0",
     "id": "ev_678d46655d",
     "params": {
       "kpi": "trip_out_open",

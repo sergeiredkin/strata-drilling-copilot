@@ -17,6 +17,7 @@ import polars as pl
 import yaml
 
 from strata_pipeline.events.extract import extract_issues
+from strata_pipeline.events.precursors import build_precursors
 from strata_pipeline.evidence import EvidenceRegistry
 from strata_pipeline.export.real_well import (
     build_ddr_json,
@@ -165,6 +166,10 @@ def _run_well_from_aligned(
                 _write_json(well_dir / "formations.json", formation_report)
 
     issues = extract_issues(well_id, ddr_json_rows, reg, formations=formation_report)
+    for issue in issues:
+        precursors = build_precursors(issue, t, channels, intervals)
+        if precursors is not None:
+            _write_json(out_dir / "issues" / f"{issue['id']}_precursors.json", precursors)
 
     well_duration_hours = (t[-1] - t[0]).total_seconds() / 3600.0 if len(t) > 1 else 0.0
     survived_fraction = (

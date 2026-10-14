@@ -286,3 +286,24 @@ def test_run_well_from_dataframes_writes_depth_series_json_even_without_tops(tmp
     assert series["well"] == "W1"
     assert len(series["md"]) == len(series["channels"]["ROP"]["values"])
     assert series["channels"]["ROP"]["values"][0] == 18.0
+
+
+def test_run_well_from_dataframes_writes_precursors_for_an_extracted_issue(tmp_path):
+    reg = EvidenceRegistry(git_commit="test")
+    cfg = load_qc_config()
+    ddr_df = pl.DataFrame(
+        {
+            "well": ["W1"], "wellbore": ["W1"], "report_date": ["2013-01-01"],
+            "t0": [T0 + timedelta(seconds=100)], "t1": [T0 + timedelta(seconds=150)],
+            "md": [2050.0], "raw_code": ["drilling -- drill"], "normalized_code": ["DRILL"],
+            "state": ["ok"], "narrative": ["Observed overpull while tripping."], "npt_flag": [None],
+        }
+    )
+    run_well_from_dataframes(
+        "W1", _synthetic_long_df_with_rop(), ddr_df, tmp_path, reg, cfg, RIGSTATE_CFG, RECON_CFG, 200.0,
+    )
+    precursors_files = list((tmp_path / "issues").glob("*_precursors.json"))
+    assert len(precursors_files) == 1
+    precursors = json.loads(precursors_files[0].read_text())
+    assert precursors["window_h"] == 6.0
+    assert len(precursors["channels"]) > 0

@@ -1,7 +1,7 @@
 {
   "ev_4931b38841": {
-    "generated_at": "2026-10-14T05:52:15.913786+00:00",
-    "git_commit": "dbe962d6c3c3f70305a0271ec89da9572084e03c",
+    "generated_at": "2026-10-14T06:00:48.461129+00:00",
+    "git_commit": "b811a65eb9097f94eac7cafc2c914c447a6eb3b0",
     "id": "ev_4931b38841",
     "params": {
       "well": "15_9-F-11_A"
@@ -12,8 +12,8 @@
     "value": 395.3930555555556
   },
   "ev_495377cd69": {
-    "generated_at": "2026-10-14T05:52:15.039074+00:00",
-    "git_commit": "dbe962d6c3c3f70305a0271ec89da9572084e03c",
+    "generated_at": "2026-10-14T06:00:43.764250+00:00",
+    "git_commit": "b811a65eb9097f94eac7cafc2c914c447a6eb3b0",
     "id": "ev_495377cd69",
     "params": {
       "code": "CIRC",
