@@ -181,8 +181,19 @@ def test_copilot_ask_streams_start_then_a_graceful_error_without_llm_credentials
     assert '"type": "error"' in body
 
 
-def test_issues_empty_fixture_list(client: TestClient) -> None:
+def test_issues_list_has_real_extracted_events_for_the_real_well(client: TestClient) -> None:
+    # T12.1: rule-lexicon DDR event extraction found real events for 15_9-F-11_A (and, matching
+    # the lexicon's imperfect precision by design, one false positive -- "TDS power loss" isn't
+    # a circulation-losses event -- that the spec's manual-review step exists to catch).
     res = client.get("/issues")
+    assert res.status_code == 200
+    body = res.json()
+    assert len(body) > 0
+    assert all(i["well"] == WELL for i in body)
+
+
+def test_issues_empty_for_a_well_with_no_extracted_events(client: TestClient) -> None:
+    res = client.get(f"/issues?well={WELL}&type=kick")
     assert res.status_code == 200
     assert res.json() == []
 

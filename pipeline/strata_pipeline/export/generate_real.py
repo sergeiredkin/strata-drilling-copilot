@@ -117,6 +117,7 @@ def generate_real(out_dir: Path = OUT_DIR, wells: list[RealWellSpec] = REAL_WELL
     qc_entries = []
     per_well_agreement = []
     rigstate_agreement = []
+    issues: list[dict[str, Any]] = []
 
     for spec in wells:
         summary = run_well(
@@ -128,6 +129,7 @@ def generate_real(out_dir: Path = OUT_DIR, wells: list[RealWellSpec] = REAL_WELL
         qc_entries.append(summary["qc"])
         per_well_agreement.extend(summary["reconciliation"]["per_well"])
         rigstate_agreement.append({"well": spec.id, "agreement": None})  # gold labels pending Sergei
+        issues.extend(summary["issues"])
 
     existing_wells_path = out_dir / "wells.json"
     existing = json.loads(existing_wells_path.read_text()) if existing_wells_path.exists() else {"wells": []}
@@ -142,6 +144,12 @@ def generate_real(out_dir: Path = OUT_DIR, wells: list[RealWellSpec] = REAL_WELL
             "per_well": per_well_agreement, "tolerance": {"boundary_slack_min": 5, "min_duration_min": 2},
         },
     )
+
+    existing_issues_path = out_dir / "issues.json"
+    existing_issues = json.loads(existing_issues_path.read_text()) if existing_issues_path.exists() else []
+    real_issue_wells = {w["id"] for w in well_summaries}
+    merged_issues = [i for i in existing_issues if i["well"] not in real_issue_wells] + issues
+    _write_json(out_dir / "issues.json", merged_issues)
 
     existing_eval_path = out_dir / "eval.json"
     existing_eval: dict[str, Any] = (

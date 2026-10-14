@@ -16,6 +16,7 @@ import numpy as np
 import polars as pl
 import yaml
 
+from strata_pipeline.events.extract import extract_issues
 from strata_pipeline.evidence import EvidenceRegistry
 from strata_pipeline.export.real_well import (
     build_ddr_json,
@@ -129,10 +130,11 @@ def _run_well_from_aligned(
     ilt_report = build_ilt(well_id, kpi_report, connections, trips, intervals, ddr_rows_raw, reg)
     recon_report = build_reconciliation(well_id, ddr_rows_raw, intervals, recon_cfg, reg)
 
+    ddr_json_rows = build_ddr_json(well_id, ddr_rows_raw)
     _write_json(well_dir / "sections.json", build_sections_json())
     _write_json(well_dir / "depthtime.json", build_depthtime_json(t, channels))
     _write_json(well_dir / "rigstate.json", build_rigstate_json(intervals))
-    _write_json(well_dir / "ddr.json", build_ddr_json(well_id, ddr_rows_raw))
+    _write_json(well_dir / "ddr.json", ddr_json_rows)
     _write_json(well_dir / "kpis.json", kpi_report)
     _write_json(well_dir / "ilt.json", ilt_report)
     _write_json(out_dir / "reconciliation" / f"{well_id}.json", recon_report)
@@ -151,6 +153,7 @@ def _run_well_from_aligned(
             )
         _write_json(well_dir / "series" / "index.json", {"well": well_id, "channels": series_channels})
 
+    formation_report: dict[str, Any] | None = None
     if t:
         depth_table = build_depth_features(t, channels, bit_intervals=bit_intervals)
         if depth_table is not None:
@@ -160,6 +163,8 @@ def _run_well_from_aligned(
                     well_id, depth_table, formation_tops, reg, source=formation_tops_source or "unknown"
                 )
                 _write_json(well_dir / "formations.json", formation_report)
+
+    issues = extract_issues(well_id, ddr_json_rows, reg, formations=formation_report)
 
     well_duration_hours = (t[-1] - t[0]).total_seconds() / 3600.0 if len(t) > 1 else 0.0
     survived_fraction = (
@@ -205,6 +210,7 @@ def _run_well_from_aligned(
         "reconciliation": recon_report,
         "n_rigstate_intervals": len(intervals),
         "n_ddr_rows": len(ddr_rows_raw),
+        "issues": issues,
     }
 
 

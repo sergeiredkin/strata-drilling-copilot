@@ -1,7 +1,7 @@
 {
   "ev_f901ec7f88": {
-    "generated_at": "2026-10-13T12:16:18.677389+00:00",
-    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
+    "generated_at": "2026-10-14T05:52:15.910786+00:00",
+    "git_commit": "dbe962d6c3c3f70305a0271ec89da9572084e03c",
     "id": "ev_f901ec7f88",
     "params": {
       "formation": "Ty Fm.",
@@ -19,8 +19,8 @@
     "value": 261.25721532100147
   },
   "ev_f971717ce8": {
-    "generated_at": "2026-10-13T12:16:17.821840+00:00",
-    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
+    "generated_at": "2026-10-14T05:52:15.039012+00:00",
+    "git_commit": "dbe962d6c3c3f70305a0271ec89da9572084e03c",
     "id": "ev_f971717ce8",
     "params": {
       "code": "DRILL",

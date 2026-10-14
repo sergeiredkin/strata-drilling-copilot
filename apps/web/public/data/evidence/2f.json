@@ -1,0 +1,19 @@
+{
+  "ev_2fd42e7b31": {
+    "generated_at": "2026-10-14T05:52:15.912502+00:00",
+    "git_commit": "dbe962d6c3c3f70305a0271ec89da9572084e03c",
+    "id": "ev_2fd42e7b31",
+    "params": {
+      "issue": "issue_ddr_15_9-F-11_A_37_tight_hole"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "events.duration",
+    "unit": "min",
+    "value": 90.0
+  }
+}

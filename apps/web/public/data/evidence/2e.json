@@ -45,6 +45,23 @@
     "unit": "h",
     "value": 1.6347222222222217
   },
+  "ev_2e9f0a7f8e": {
+    "generated_at": "2026-10-14T05:52:15.912020+00:00",
+    "git_commit": "dbe962d6c3c3f70305a0271ec89da9572084e03c",
+    "id": "ev_2e9f0a7f8e",
+    "params": {
+      "issue": "issue_ddr_15_9-F-11_A_21_losses"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "events.duration",
+    "unit": "min",
+    "value": 300.0
+  },
   "ev_2ef2c6b6d3": {
     "generated_at": "2026-10-13T12:15:39.271339+00:00",
     "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",

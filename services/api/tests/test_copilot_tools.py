@@ -110,8 +110,14 @@ def test_formation_stats_unavailable_raises_tool_error(tools: CopilotTools) -> N
         tools.formation_stats(WELL, "Hugin")
 
 
-def test_issues_query_empty_fixture_returns_empty_list(tools: CopilotTools) -> None:
+def test_issues_query_returns_the_real_wells_extracted_events(tools: CopilotTools) -> None:
     result = tools.issues_query(well=WELL)
+    assert len(result["issues"]) > 0
+    assert all(i["well"] == WELL for i in result["issues"])
+
+
+def test_issues_query_empty_for_a_type_with_no_matches(tools: CopilotTools) -> None:
+    result = tools.issues_query(well=WELL, type="kick")
     assert result["issues"] == []
 
 

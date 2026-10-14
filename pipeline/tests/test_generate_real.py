@@ -31,6 +31,24 @@ def _fake_run_well(well_id, witsml_root, wellbore_name, ddr_dir, ddr_file_prefix
         "reconciliation": {"per_well": [{"well": well_id, "agreement": agreement}]},
         "n_rigstate_intervals": 10,
         "n_ddr_rows": 5,
+        "issues": [
+            {
+                "id": f"issue_{well_id}_0",
+                "well": well_id,
+                "type": "tight_hole",
+                "t0": 1000,
+                "t1": 2000,
+                "md": 2600.0,
+                "formation": None,
+                "section": None,
+                "duration": None,
+                "mud": None,
+                "ddr_activity_ids": [f"ddr_{well_id}_0"],
+                "excerpt": "Observed overpull.",
+                "report_date": "2013-05-20",
+                "extraction": "rule",
+            }
+        ],
     }
 
 
@@ -107,6 +125,22 @@ def test_generate_real_writes_evidence_shards_and_repro_manifest(tmp_path):
     repro = json.loads((tmp_path / "repro.json").read_text())
     assert repro["command"] == "make export"
     assert any(f["path"] == "wells.json" for f in repro["data_files"])
+
+
+def test_generate_real_writes_issues_json_with_extracted_events(tmp_path):
+    gr.generate_real(tmp_path, ONE_WELL)
+    issues = json.loads((tmp_path / "issues.json").read_text())
+    assert [i["id"] for i in issues] == ["issue_15_9-F-11_A_0"]
+
+
+def test_generate_real_merges_issues_json_preserving_other_wells(tmp_path):
+    (tmp_path / "issues.json").write_text(
+        json.dumps([{"id": "issue_58-32_0", "well": "58-32", "type": "losses"}])
+    )
+    gr.generate_real(tmp_path, ONE_WELL)
+    issues = json.loads((tmp_path / "issues.json").read_text())
+    ids = {i["id"] for i in issues}
+    assert ids == {"issue_58-32_0", "issue_15_9-F-11_A_0"}
 
 
 def test_merge_write_shards_preserves_prior_registry_evidence(tmp_path):

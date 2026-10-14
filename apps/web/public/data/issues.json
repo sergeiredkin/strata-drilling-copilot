@@ -1,1 +1,94 @@
-[]
+[
+  {
+    "ddr_activity_ids": [
+      "ddr_15_9-F-11_A_21"
+    ],
+    "duration": {
+      "evidence_id": "ev_2e9f0a7f8e",
+      "precision": 1,
+      "unit": "min",
+      "value": 300.0
+    },
+    "excerpt": "Drilled and oriented 8 1/2\" hole from 3561 m MD to 3646 m MD with 2290 liter/min, 185-189 bar, 180 rpm, 16-19 kNm, WOB 6-11 MT, 1.42-1,43 sg ECD. Average ROP: 17 m/hr. TDS not able to maintain rpm due to loss of power.",
+    "extraction": "rule",
+    "formation": "Hugin Fm. VOLVE",
+    "id": "issue_ddr_15_9-F-11_A_21_losses",
+    "md": 3646.0,
+    "mud": null,
+    "report_date": "2013-05-20",
+    "section": null,
+    "t0": 1369038600000,
+    "t1": 1369056600000,
+    "type": "losses",
+    "well": "15_9-F-11_A"
+  },
+  {
+    "ddr_activity_ids": [
+      "ddr_15_9-F-11_A_22"
+    ],
+    "duration": {
+      "evidence_id": "ev_cc29f1a430",
+      "precision": 1,
+      "unit": "min",
+      "value": 30.0
+    },
+    "excerpt": "Worked with solving TDS power loss problem.",
+    "extraction": "rule",
+    "formation": "Hugin Fm. VOLVE",
+    "id": "issue_ddr_15_9-F-11_A_22_losses",
+    "md": 3646.0,
+    "mud": null,
+    "report_date": "2013-05-20",
+    "section": null,
+    "t0": 1369056600000,
+    "t1": 1369058400000,
+    "type": "losses",
+    "well": "15_9-F-11_A"
+  },
+  {
+    "ddr_activity_ids": [
+      "ddr_15_9-F-11_A_27"
+    ],
+    "duration": {
+      "evidence_id": "ev_9e67c596c4",
+      "precision": 1,
+      "unit": "min",
+      "value": 30.0
+    },
+    "excerpt": "Performed sticky test with drill string static for 20 minutes, observed 5 Ton overpull. Meanwhile: Held pre-job meeting prior to taking pressure points.",
+    "extraction": "rule",
+    "formation": null,
+    "id": "issue_ddr_15_9-F-11_A_27_tight_hole",
+    "md": 3707.0,
+    "mud": null,
+    "report_date": "2013-05-21",
+    "section": null,
+    "t0": 1369112400000,
+    "t1": 1369114200000,
+    "type": "tight_hole",
+    "well": "15_9-F-11_A"
+  },
+  {
+    "ddr_activity_ids": [
+      "ddr_15_9-F-11_A_37"
+    ],
+    "duration": {
+      "evidence_id": "ev_2fd42e7b31",
+      "precision": 1,
+      "unit": "min",
+      "value": 90.0
+    },
+    "excerpt": "Circulated and conditioned mud with 2300 liter/min, 2160 bar, 100 rpm 16-20 kNm, max gas 0,43%. Performed sticky test with string static for 20 minutes, no overpull observed. Meanwhile: Held pre-job meeting prior to take pressure points.",
+    "extraction": "rule",
+    "formation": null,
+    "id": "issue_ddr_15_9-F-11_A_37_tight_hole",
+    "md": 3762.0,
+    "mud": null,
+    "report_date": "2013-05-23",
+    "section": null,
+    "t0": 1369319400000,
+    "t1": 1369324800000,
+    "type": "tight_hole",
+    "well": "15_9-F-11_A"
+  }
+]

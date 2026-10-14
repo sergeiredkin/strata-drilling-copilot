@@ -1,7 +1,24 @@
 {
+  "ev_cc29f1a430": {
+    "generated_at": "2026-10-14T05:52:15.912052+00:00",
+    "git_commit": "dbe962d6c3c3f70305a0271ec89da9572084e03c",
+    "id": "ev_cc29f1a430",
+    "params": {
+      "issue": "issue_ddr_15_9-F-11_A_22_losses"
+    },
+    "sources": [
+      {
+        "file": "pipeline:real",
+        "sha256": "n/a"
+      }
+    ],
+    "tool": "events.duration",
+    "unit": "min",
+    "value": 30.0
+  },
   "ev_ccc6abf8ba": {
-    "generated_at": "2026-10-13T12:16:17.822386+00:00",
-    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
+    "generated_at": "2026-10-14T05:52:15.039295+00:00",
+    "git_commit": "dbe962d6c3c3f70305a0271ec89da9572084e03c",
     "id": "ev_ccc6abf8ba",
     "params": {
       "code": "DRILL",

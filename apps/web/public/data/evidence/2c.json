@@ -1,7 +1,7 @@
 {
   "ev_2c5c95c203": {
-    "generated_at": "2026-10-13T12:16:18.700756+00:00",
-    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
+    "generated_at": "2026-10-14T05:52:15.932517+00:00",
+    "git_commit": "dbe962d6c3c3f70305a0271ec89da9572084e03c",
     "id": "ev_2c5c95c203",
     "params": {
       "well": "15_9-F-11_A"
@@ -12,8 +12,8 @@
     "value": 0.5063655904879062
   },
   "ev_2cc17529ca": {
-    "generated_at": "2026-10-13T12:16:17.761427+00:00",
-    "git_commit": "f75c5c4c91195836d2db91b40662291c47ac682b",
+    "generated_at": "2026-10-14T05:52:14.982315+00:00",
+    "git_commit": "dbe962d6c3c3f70305a0271ec89da9572084e03c",
     "id": "ev_2cc17529ca",
     "params": {
       "kpi": "conn_s2s",
