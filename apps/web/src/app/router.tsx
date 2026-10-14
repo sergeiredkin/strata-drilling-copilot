@@ -17,6 +17,7 @@ const S3Performance = lazy(() =>
 )
 const S5Trust = lazy(() => import('../screens/S5Trust/S5Trust').then((m) => ({ default: m.S5Trust })))
 const S6Formation = lazy(() => import('../screens/S6Formation/S6Formation').then((m) => ({ default: m.S6Formation })))
+const S7Issues = lazy(() => import('../screens/S7Issues/S7Issues').then((m) => ({ default: m.S7Issues })))
 
 const LAZY_FALLBACK = <div className="p-6 text-text-2">Loading…</div>
 
@@ -47,7 +48,14 @@ export const router = createBrowserRouter([
       { path: 'well/:id/td', element: <Placeholder name="S9 Torque & drag" /> },
       { path: 'well/:id/mse', element: <Placeholder name="S10 MSE" /> },
       { path: 'well/:id/trips', element: <Placeholder name="S11 Trip-speed envelope" /> },
-      { path: 'issues', element: <Placeholder name="S7 Issue catalogue" /> },
+      {
+        path: 'issues',
+        element: (
+          <Suspense fallback={LAZY_FALLBACK}>
+            <S7Issues />
+          </Suspense>
+        ),
+      },
       {
         path: 'trust',
         element: (

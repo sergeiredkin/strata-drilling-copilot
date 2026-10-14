@@ -1,6 +1,6 @@
 // Nav — docs/05_DESIGN_SYSTEM.md §6: 56px, brand "STRATA" condensed amber, links Field ·
-// Workspace · Performance · Formation · Trust; right side ModeBadge, units toggle, Copilot
-// toggle.
+// Workspace · Performance · Formation · Issues · Trust; right side ModeBadge, units toggle,
+// Copilot toggle.
 import { NavLink } from 'react-router-dom'
 import { usePrefs } from '../state/prefs'
 import { useView } from '../state/view'
@@ -11,6 +11,7 @@ const LINKS = [
   { to: '/well/15_9-F-11_A/workspace', label: 'Workspace' },
   { to: '/well/15_9-F-11_A/performance', label: 'Performance' },
   { to: '/well/15_9-F-11_A/formation', label: 'Formation' },
+  { to: '/issues', label: 'Issues' },
   { to: '/trust', label: 'Trust' },
 ]
 
